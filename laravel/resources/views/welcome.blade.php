@@ -1,91 +1,51 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.master')
 
-        <title>Laravel</title>
+@section('title')
+    My dick is so big
+@endsection
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+@section('content')
+    
+    @include('includes.message-block')
 
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Raleway';
-                font-weight: 100;
-                height: 100vh;
-                margin: 0;
-            }
-
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 12px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    <a href="{{ url('/login') }}">Login</a>
-                    <a href="{{ url('/register') }}">Register</a>
+    <div class="row">
+        <div class="col-md-6">
+            <h1>Sign Up</h1>
+            <form action="{{ route('signup') }}" method="post">
+                <div class="form-group {{ $errors->has('email') ? 'has-error' : ''}}">
+                    <label for="email">Your Email</label>
+                    <input class="form-control" type="text" name="email" id="email" value="{{ Request::old('email')}}">
                 </div>
-            @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
+                <div class="form-group">
+                    <label for="first_name">Your First Name</label>
+                    <input class="form-control" type="text" name="first_name" id="first_name" value="{{ Request::old('first_name')}}">
                 </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                <div class="form-group">
+                    <label for="password">Your Password</label>
+                    <input class="form-control" type="password" name="password" id="password" value="{{ Request::old('password')}}">
                 </div>
-            </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <input type="hidden" name="_token" value="{{ Session::token() }}">
+            </form>
+            
         </div>
-    </body>
-</html>
+        
+        <div class="col-md-6">
+            <h1>Sign In</h1>
+            <form action="{{ route('signin') }}" method="post">
+                <div class="form-group">
+                    <label for="email">Your Email</label>
+                    <input class="form-control" type="text" name="email" id="email" value="{{ Request::old('email')}}">
+                </div>
+                <div class="form-group">
+                    <label for="password">Your Password</label>
+                    <input class="form-control" type="password" name="password" id="password" value="{{ Request::old('password')}}">
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <input type="hidden" name="_token" value="{{ Session::token() }}">
+            </form>
+            
+        </div>
+        
+    </div>
+@endsection
