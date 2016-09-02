@@ -29,7 +29,7 @@ class UserController extends Controller
 
         Auth::login($user);
 
-        return redirect()->route('home');
+        return redirect()->route('index');
     }
 
     public function postSignIn(Request $request)
@@ -49,6 +49,6 @@ class UserController extends Controller
     public function getLogout()
     {
         Auth::logout();
-        return redirect()->route('home');
+        return redirect()->route('index');
     }
 }

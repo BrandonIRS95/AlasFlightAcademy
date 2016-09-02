@@ -5,34 +5,15 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Alas Academy</title>
-    <link href="http://fonts.googleapis.com/icon?family=Material+Icons|Antic|Cantarell|Copse|Raleway|Varel" rel="stylesheet">
-    <link rel="stylesheet" href="{{ URL::to('css/vendor.css') }}">
-    <link rel="stylesheet" href="{{ URL::to('css/shared.css') }}">
+    @include('includes.styles-shared')
     <link rel="stylesheet" href="{{ URL::to('css/landing-page.css') }}">
   </head>
   <body>
     <div class="Application_container">
       <nav class="Navbar--transparent">
-        <div class="Navbar__wrapper nav-wrapper"><a href="{{ route('home') }}" class="Navbar__logo brand-logo"><span class="Navbar__logo--alas">Alas</span><span class="Navbar__logo--academy">Academy</span></a><a id="menu-button" href="#" data-activates="side-nav" class="Navbar__menu_button button-collapse"><i class="material-icons">menu</i></a>
-          <ul class="Navbar__link_list right hide-on-med-and-down">
-            <li class="Navbar__item"><a href="./about.html" class="Navbar__item_link"><span class="Navbar__item_text">About us</span></a></li>
-            <li class="Navbar__item"><a href="./pilot-programs.html" class="Navbar__item_link"><span class="Navbar__item_text">Pilot programs</span></a></li>
-            <li class="Navbar__item"><a href="./contact.html" class="Navbar__item_link"><span class="Navbar__item_text">Contact</span></a></li>
-            <li class="Navbar__item"><a href="#become-pilot" class="Navbar__item_link"><span class="Navbar__item_text">Become a pilot</span></a></li>
-            <li class="Navbar__item"><a href="./enroll.html" class="Navbar__item_link"><span class="Navbar__item_text">Enroll Now</span></a></li>
-            <li class="Navbar__item"><a href="#signin" class="Navbar__item_link"><span class="Navbar__item_text">Sign in</span></a></li>
-          </ul>
-        </div>
+        @include('includes.navbar-content')
       </nav>
-      <ul id="side-nav" class="Sidenav__list side-nav">
-        <li class="Sidenav__item"><a href="./index.html" class="Sidenav__item_link"><span class="Sidenav__item_title"> <span class="Sidenav__item_title--alas">Alas</span><span class="Sidenav__item_title--academy">Academy</span></span></a></li>
-        <li class="Sidenav__item"><a href="./about.html" class="Sidenav__item_link"><span class="Sidenav__item_text">About us</span></a></li>
-        <li class="Sidenav__item"><a href="./pilot-programs.html" class="Sidenav__item_link"><span class="Sidenav__item_text">Pilot programs</span></a></li>
-        <li class="Sidenav__item"><a href="./contact.html" class="Sidenav__item_link"><span class="Sidenav__item_text">Contact</span></a></li>
-        <li class="Sidenav__item"><a href="#become-pilot" class="Sidenav__item_link"><span class="Sidenav__item_text">Become a pilot</span></a></li>
-        <li class="Sidenav__item"><a href="./enroll.html" class="Sidenav__item_link"><span class="Sidenav__item_text">Enroll Now</span></a></li>
-        <li class="Sidenav__item"><a href="#signin" class="Sidenav__item_link"><span class="Sidenav__item_text">Sign in</span></a></li>
-      </ul>
+      @include('includes.sidenav')
       <div class="Page__header--landing Page__header parallax-container">
         <div class="parallax"><img src="{{ URL::to('images/enroll.jpg') }}" width="100%"></div>
         <div class="Page__header__filter--landing"></div>
@@ -68,17 +49,7 @@
         <h2 id="land-section-7" class="Landing__cta__title">Make your dream come true</h2>
         <button id="land-section-8" class="Landing__cta__button">Contact us</button>
       </div>
-      <footer class="Footer">
-        <ul class="Footer__list">
-          <li class="Footer__list_item"><a class="Footer__link">About us</a></li>
-          <li class="Footer__list_item"><a class="Footer__link">Pilot programs</a></li>
-          <li class="Footer__list_item"><a class="Footer__link">Contact</a></li>
-          <li class="Footer__list_item"><a class="Footer__link">Become a pilot</a></li>
-          <li class="Footer__list_item"><a class="Footer__link">Sign in</a></li>
-          <li class="Footer__list_item"><a class="Footer__link">Enroll now</a></li>
-        </ul>
-        <p class="Footer__text">© 2016 Alas Academy</p>
-      </footer>
+      @include('includes.footer')
     </div>
     <script src="{{ URL::to('js/vendor.js')}}"></script>
     <script>
