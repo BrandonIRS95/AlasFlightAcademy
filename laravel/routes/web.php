@@ -35,19 +35,3 @@ Route::get('/enroll', function () {
     return view('enroll');
 })->name('enroll');
 
-
-
-Route::post('/signup', [
-    'uses' => 'UserController@postSignUp',
-    'as' => 'signup'
-]);
-
-Route::post('/signin', [
-    'uses' => 'UserController@postSignIn',
-    'as' => 'signin'
-]);
-
-Route::get('/logout', [
-    'uses' => 'UserController@getLogout',
-    'as' => 'logout'
-]);
