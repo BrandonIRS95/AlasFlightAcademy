@@ -1,0 +1,242 @@
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/shared\/CTA_bar\.scss}line{font-family:\000031}}
+.CTA_bar {
+  height: 78px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background: #cdd8e2;
+  text-transform: uppercase; }
+  @media only screen and (max-width: 600px) and (orientation: landscape) {
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/shared\/CTA_bar\.scss}line{font-family:\000031}}
+    .CTA_bar {
+      height: 60px; } }
+  @media only screen and (min-width: 600px) {
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/shared\/CTA_bar\.scss}line{font-family:\000031}}
+    .CTA_bar {
+      height: 70px; } }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/shared\/CTA_bar\.scss}line{font-family:\0000318}}
+.CTA_bar__text {
+  font-size: 1.3em;
+  font-weight: 300;
+  text-align: center; }
+  @media only screen and (max-width: 600px) and (orientation: landscape) {
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/shared\/CTA_bar\.scss}line{font-family:\0000318}}
+    .CTA_bar__text {
+      height: 1em; } }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/shared\/CTA_bar\.scss}line{font-family:\0000328}}
+.CTA_bar__button {
+  background: #f3a536;
+  border: none;
+  padding: 1em 2em;
+  border-radius: 10px;
+  color: white;
+  margin: 0 1em;
+  text-transform: uppercase; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/shared\/PageHeader\.scss}line{font-family:\000031}}
+.Page__header, .Page__header--landing {
+  width: 100vw;
+  height: calc(520px - 70px - 64px);
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: white;
+  text-align: center; }
+  @media only screen and (max-width: 600px) and (orientation: landscape) {
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/shared\/PageHeader\.scss}line{font-family:\000031}}
+    .Page__header, .Page__header--landing {
+      height: calc(300px - 60px - 56px); } }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/shared\/PageHeader\.scss}line{font-family:\0000315}}
+.Page__header--landing {
+  width: 100vw;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: white;
+  text-align: center;
+  height: 620px;
+  background: transparent; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/shared\/PageHeader\.scss}line{font-family:\0000327}}
+.Page__header__filter, .Page__header__filter--landing {
+  content: "";
+  position: absolute;
+  width: 100vw;
+  height: calc(520px - 70px - 64px);
+  background: none;
+  top: 56px;
+  left: 0;
+  background: none; }
+  @media only screen and (max-width: 600px) and (orientation: landscape) {
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/shared\/PageHeader\.scss}line{font-family:\0000327}}
+    .Page__header__filter, .Page__header__filter--landing {
+      height: calc(300px - 60px - 56px); } }
+  @media only screen and (min-width: 600px) {
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/shared\/PageHeader\.scss}line{font-family:\0000327}}
+    .Page__header__filter, .Page__header__filter--landing {
+      top: 64px; } }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/shared\/PageHeader\.scss}line{font-family:\0000346}}
+.Page__header__filter--landing {
+  top: 0;
+  left: 0;
+  height: 620px;
+  max-width: 100vw;
+  padding: 0;
+  margin: 0;
+  background: rgba(0, 0, 0, 0.5); }
+  @media only screen and (max-width: 600px) and (orientation: landscape) {
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/shared\/PageHeader\.scss}line{font-family:\0000346}}
+    .Page__header__filter--landing {
+      height: calc(300px - 60px - 56px); } }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/shared\/PageHeader\.scss}line{font-family:\0000361}}
+.Page__header__text {
+  font-size: 4em;
+  font-weight: bold;
+  margin: 0;
+  z-index: 1;
+  margin: 2em; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/Programs\/ProgramsDescription\.scss}line{font-family:\000031}}
+.Programs__description {
+  width: 80%;
+  margin: 0 10%;
+  padding: 1em 0;
+  font-size: 1.2em;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  text-align: center;
+  border-bottom: 1px solid #cccccc; }
+  @media only screen and (min-width: 600px) {
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/Programs\/ProgramsDescription\.scss}line{font-family:\000031}}
+    .Programs__description {
+      font-size: 1.3em;
+      text-align: left;
+      padding: 2em 5%; } }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/Programs\/ProgramsDescription\.scss}line{font-family:\0000320}}
+.Programs__description__title {
+  font-weight: bold; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/Programs\/ProgramsItem\.scss}line{font-family:\000031}}
+.Programs__item {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 80%;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 1.5em auto;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding-bottom: 3em;
+  border-bottom: 1px solid #cccccc; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/Programs\/ProgramsItem\.scss}line{font-family:\0000310}}
+  .Programs__item:last-child {
+    border-bottom: none; }
+  @media only screen and (min-width: 600px) {
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/Programs\/ProgramsItem\.scss}line{font-family:\000031}}
+    .Programs__item {
+      margin: 0 auto;
+      padding-bottom: 0;
+      width: 100%;
+      -webkit-box-orient: horizontal;
+      -webkit-box-direction: normal;
+      -webkit-flex-direction: row;
+          -ms-flex-direction: row;
+              flex-direction: row;
+      border-bottom: none; } }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/Programs\/ProgramsItem\.scss}line{font-family:\0000324}}
+.Programs__item__image {
+  width: 50vw;
+  height: 70vw;
+  display: none; }
+  @media only screen and (min-width: 600px) {
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/Programs\/ProgramsItem\.scss}line{font-family:\0000324}}
+    .Programs__item__image {
+      display: block;
+      width: 50vw;
+      height: 600px; } }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/Programs\/ProgramsItem\.scss}line{font-family:\0000336}}
+.Programs__item__description {
+  padding: .2em 0em;
+  font-size: 1.3em;
+  text-align: center;
+  max-width: 100%; }
+  @media only screen and (min-width: 600px) {
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/Programs\/ProgramsItem\.scss}line{font-family:\0000336}}
+    .Programs__item__description {
+      max-width: 50%;
+      padding: 2em;
+      text-align: left; } }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/Programs\/ProgramsItem\.scss}line{font-family:\0000350}}
+.Programs__item__button {
+  display: block;
+  text-align: center;
+  border: none;
+  background: #187ac7;
+  border-radius: 5px;
+  color: white;
+  margin: 0 auto;
+  padding: .5em 1em; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/Programs\/ProgramsList\.scss}line{font-family:\000031}}
+.Programs__list {
+  margin: 0; }
+  @media only screen and (min-width: 600px) {
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/Programs\/ProgramsList\.scss}line{font-family:\000031}}
+    .Programs__list {
+      margin-top: 4em; } }
+
+/*# sourceMappingURL=pilot-programs-page.css.map */

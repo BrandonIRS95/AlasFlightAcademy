@@ -12,8 +12,12 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 })->name('home');
+
+Route::get('/login', function () {
+    return view('welcome');
+})->name('welcome');
 
 Route::post('/signup', [
     'uses' => 'UserController@postSignUp',
