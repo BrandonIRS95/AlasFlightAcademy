@@ -1,0 +1,428 @@
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/shared\/CTA_bar\.scss}line{font-family:\000031}}
+.CTA_bar {
+  height: 78px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background: #cdd8e2;
+  text-transform: uppercase; }
+  @media only screen and (max-width: 600px) and (orientation: landscape) {
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/shared\/CTA_bar\.scss}line{font-family:\000031}}
+    .CTA_bar {
+      height: 60px; } }
+  @media only screen and (min-width: 600px) {
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/shared\/CTA_bar\.scss}line{font-family:\000031}}
+    .CTA_bar {
+      height: 70px; } }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/shared\/CTA_bar\.scss}line{font-family:\0000318}}
+.CTA_bar__text {
+  font-size: 1.3em;
+  font-weight: 300;
+  text-align: center; }
+  @media only screen and (max-width: 600px) and (orientation: landscape) {
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/shared\/CTA_bar\.scss}line{font-family:\0000318}}
+    .CTA_bar__text {
+      height: 1em; } }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/shared\/CTA_bar\.scss}line{font-family:\0000328}}
+.CTA_bar__button {
+  background: #f3a536;
+  border: none;
+  padding: 1em 2em;
+  border-radius: 10px;
+  color: white;
+  margin: 0 1em;
+  text-transform: uppercase; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/shared\/PageHeader\.scss}line{font-family:\000031}}
+.Page__header, .Page__header--landing {
+  width: 100vw;
+  height: calc(520px - 70px - 64px);
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: white;
+  text-align: center; }
+  @media only screen and (max-width: 600px) and (orientation: landscape) {
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/shared\/PageHeader\.scss}line{font-family:\000031}}
+    .Page__header, .Page__header--landing {
+      height: calc(300px - 60px - 56px); } }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/shared\/PageHeader\.scss}line{font-family:\0000315}}
+.Page__header--landing {
+  width: 100vw;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: white;
+  text-align: center;
+  height: 620px;
+  background: transparent; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/shared\/PageHeader\.scss}line{font-family:\0000327}}
+.Page__header__filter, .Page__header__filter--landing {
+  content: "";
+  position: absolute;
+  width: 100vw;
+  height: calc(520px - 70px - 64px);
+  background: none;
+  top: 56px;
+  left: 0;
+  background: none; }
+  @media only screen and (max-width: 600px) and (orientation: landscape) {
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/shared\/PageHeader\.scss}line{font-family:\0000327}}
+    .Page__header__filter, .Page__header__filter--landing {
+      height: calc(300px - 60px - 56px); } }
+  @media only screen and (min-width: 600px) {
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/shared\/PageHeader\.scss}line{font-family:\0000327}}
+    .Page__header__filter, .Page__header__filter--landing {
+      top: 64px; } }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/shared\/PageHeader\.scss}line{font-family:\0000346}}
+.Page__header__filter--landing {
+  top: 0;
+  left: 0;
+  height: 620px;
+  max-width: 100vw;
+  padding: 0;
+  margin: 0;
+  background: rgba(0, 0, 0, 0.5); }
+  @media only screen and (max-width: 600px) and (orientation: landscape) {
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/shared\/PageHeader\.scss}line{font-family:\0000346}}
+    .Page__header__filter--landing {
+      height: calc(300px - 60px - 56px); } }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/shared\/PageHeader\.scss}line{font-family:\0000361}}
+.Page__header__text {
+  font-size: 4em;
+  font-weight: bold;
+  margin: 0;
+  z-index: 1;
+  margin: 2em; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/ModalForm\/modalform-header\.scss}line{font-family:\000031}}
+.ModalForm__header {
+  position: relative;
+  margin: 0;
+  width: 100%;
+  border-bottom: 1px solid #367ac8; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/ModalForm\/modalform-header\.scss}line{font-family:\000038}}
+.ModalForm__header__title {
+  font-size: 1.5em;
+  margin: 0;
+  padding: .5em 2em; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/ModalForm\/modalform-header\.scss}line{font-family:\0000314}}
+.ModalForm__header__icon {
+  position: absolute;
+  cursor: pointer;
+  top: .4em;
+  right: 1em; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/ModalForm\/modalform-header\.scss}line{font-family:\0000321}}
+.ModalForm__header__title__icon {
+  position: absolute;
+  cursor: pointer;
+  top: .4em;
+  left: .5em;
+  font-size: 1.2em;
+  color: #367ac8;
+  cursor: pointer; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/ModalForm\/modalform-page\.scss}line{font-family:\000031}}
+.ModalForm__pages_container {
+  height: 90%;
+  margin: 0 3em;
+  padding: 0 5%;
+  padding-bottom: 1em;
+  position: relative;
+  overflow-y: auto;
+  width: 100%;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 0 auto;
+      -ms-flex: 1 0 auto;
+          flex: 1 0 auto; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/ModalForm\/modalform-page\.scss}line{font-family:\0000312}}
+.ModalForm__page.ModalForm__page.ModalForm__page {
+  height: 100%;
+  margin: 0; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/ModalForm\/modalform-page\.scss}line{font-family:\0000317}}
+.ModalForm__page__step {
+  color: #cccccc;
+  font-size: 1.1em;
+  position: absolute;
+  top: 1.2em;
+  margin: 0;
+  right: .5em; }
+  @media only screen and (min-width: 600px) {
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/ModalForm\/modalform-page\.scss}line{font-family:\0000317}}
+    .ModalForm__page__step {
+      right: 4em; } }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/ModalForm\/modalform-page\.scss}line{font-family:\0000330}}
+.ModalForm__page__section_title {
+  font-weight: bold;
+  font-size: 1.5em;
+  padding-top: .7em;
+  padding-left: .5em; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/ModalForm\/modalform-page\.scss}line{font-family:\0000337}}
+.Modal_Form__page__section_subtitle {
+  padding-left: 1em;
+  font-size: .8em;
+  font-weight: bold;
+  color: #888;
+  margin: 0; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/ModalForm\/modalform-buttons\.scss}line{font-family:\000031}}
+.ModalForm__buttons, .ModalForm__buttons--force-bottom {
+  align-text: right;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  margin-top: 3em;
+  margin-bottom: 1em; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/ModalForm\/modalform-buttons\.scss}line{font-family:\000039}}
+.ModalForm__button {
+  color: black;
+  margin: 2em 1em 0 1em; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/ModalForm\/modalform-buttons\.scss}line{font-family:\0000314}}
+.ModalForm__button--active {
+  color: white;
+  margin: 2em 1em 0 1em; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/ModalForm\/modalform-buttons\.scss}line{font-family:\0000319}}
+.ModalForm__buttons--fit.ModalForm__buttons--fit.ModalForm__buttons--fit button {
+  margin-right: 2em; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/ModalForm\/modalform-buttons\.scss}line{font-family:\0000323}}
+.ModalForm__buttons--force-bottom.ModalForm__buttons--force-bottom.ModalForm__buttons--force-bottom.ModalForm__buttons--force-bottom {
+  position: absolute;
+  bottom: -4em;
+  margin-bottom: 0;
+  left: 0em; }
+  @media only screen and (max-width: 600px) and (orientation: landscape) {
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/ModalForm\/modalform-buttons\.scss}line{font-family:\0000323}}
+    .ModalForm__buttons--force-bottom.ModalForm__buttons--force-bottom.ModalForm__buttons--force-bottom.ModalForm__buttons--force-bottom {
+      bottom: -15em;
+      margin: 1em; } }
+  @media only screen and (min-width: 992px) {
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/ModalForm\/modalform-buttons\.scss}line{font-family:\0000323}}
+    .ModalForm__buttons--force-bottom.ModalForm__buttons--force-bottom.ModalForm__buttons--force-bottom.ModalForm__buttons--force-bottom {
+      left: -3em; } }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/ModalForm\/modalform-buttons\.scss}line{font-family:\0000340}}
+.ModalForm__buttons_margin {
+  margin-top: 6em; }
+  @media only screen and (max-width: 600px) and (orientation: landscape) {
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/ModalForm\/modalform-buttons\.scss}line{font-family:\0000340}}
+    .ModalForm__buttons_margin {
+      margin-top: 0; } }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/ModalForm\/modalform-input\.scss}line{font-family:\000031}}
+.ModalForm__input.ModalForm__input {
+  margin: 0;
+  margin-bottom: .4em; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/ModalForm\/modalform-input\.scss}line{font-family:\000037}}
+.ModalForm__input--select input.select-dropdown {
+  margin: 0; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/ModalForm\/modalform-input\.scss}line{font-family:\0000311}}
+.ModalForm__input_file {
+  padding: 0; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/ModalForm\/modalform\.scss}line{font-family:\000038}}
+.ModalForm {
+  height: 100%;
+  width: 600%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  overflow-x: hidden;
+  will-change: transform;
+  -webkit-transition:.5s transform ease-in-out;
+  transition: .5s transform ease-in-out;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 0 auto;
+      -ms-flex: 1 0 auto;
+          flex: 1 0 auto; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/ModalForm\/modalform\.scss}line{font-family:\0000318}}
+.Modalform__checkboxes {
+  padding-left: 1em; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/ModalForm\/modalform\.scss}line{font-family:\0000323}}
+.ModalForm__input_icon {
+  margin-top: .5em;
+  font-size: 3em; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/ModalForm\/modalform\.scss}line{font-family:\0000329}}
+.ModalForm__datepicker {
+  margin-top: 1em; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/ModalForm\/modalform\.scss}line{font-family:\0000333}}
+.ModalForm__divider {
+  border: 1px dashed #187ac7;
+  margin: 3em 0 1em 0; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/ModalForm\/modalform\.scss}line{font-family:\0000339}}
+.ModalForm .picker__frame.picker__frame {
+  top: 5%;
+  border: none; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/ModalForm\/modalform\.scss}line{font-family:\0000345}}
+.ModalForm .picker__holder {
+  background: rgba(255, 255, 255, 0.5);
+  will-change: transform;
+  -webkit-transform: translateX(-40%);
+          transform: translateX(-40%); }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/ModalForm\/modalform\.scss}line{font-family:\0000351}}
+.ModalForm .picker__box {
+  border: none; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/ModalForm\/modalform\.scss}line{font-family:\0000355}}
+.ModalForm__certification {
+  margin-top: 4em; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/Enroll\/enrollTitle\.scss}line{font-family:\000031}}
+.Enroll__title {
+  text-align: center;
+  margin: 1em 10% 0 10%;
+  padding-bottom: 1em;
+  border-bottom: 1px solid #cccccc; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/Enroll\/enrollStepList\.scss}line{font-family:\000031}}
+.Enroll__step_list {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  border-bottom: 1px solid #cccccc;
+  padding-bottom: 1.1em;
+  margin: 0 10%; }
+  @media only screen and (min-width: 600px) {
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/Enroll\/enrollStepList\.scss}line{font-family:\000031}}
+    .Enroll__step_list {
+      -webkit-box-orient: horizontal;
+      -webkit-box-direction: normal;
+      -webkit-flex-direction: row;
+          -ms-flex-direction: row;
+              flex-direction: row;
+      -webkit-flex-wrap: wrap;
+          -ms-flex-wrap: wrap;
+              flex-wrap: wrap;
+      -webkit-justify-content: space-around;
+          -ms-flex-pack: distribute;
+              justify-content: space-around; } }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/Enroll\/enrollStep\.scss}line{font-family:\000031}}
+.Enroll__step {
+  text-align: center; }
+  @media only screen and (min-width: 600px) {
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/Enroll\/enrollStep\.scss}line{font-family:\000031}}
+    .Enroll__step {
+      width: 40%;
+      text-align: left; } }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/Enroll\/enrollStep\.scss}line{font-family:\0000310}}
+.Enroll__step__divider {
+  background: red;
+  width: 20%;
+  height: 3px;
+  margin: 0 auto; }
+  @media only screen and (min-width: 600px) {
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/Enroll\/enrollStep\.scss}line{font-family:\0000310}}
+    .Enroll__step__divider {
+      margin: 0; } }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/Enroll\/enrollStep\.scss}line{font-family:\0000321}}
+.Enroll__step__description {
+  padding: 0 10%; }
+  @media only screen and (min-width: 600px) {
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/Enroll\/enrollStep\.scss}line{font-family:\0000321}}
+    .Enroll__step__description {
+      padding: 0; } }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/Enroll\/enrollButton\.scss}line{font-family:\000031}}
+.Enroll__button {
+  background: #f3a536;
+  border: none;
+  font-size: 2em;
+  padding: .5em 2em;
+  border-radius: 10px;
+  color: white;
+  margin: 1.5em 0 4em 0;
+  text-transform: uppercase; }
+  @media only screen and (min-width: 992px) {
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/Enroll\/enrollButton\.scss}line{font-family:\000031}}
+    .Enroll__button {
+      font-size: 1.2em;
+      margin: 3em 0 10em 0;
+      padding: 1em 5em; } }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/Enroll\/enroll\.scss}line{font-family:\000037}}
+.Enroll {
+  text-align: center; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/Enroll\/enroll\.scss}line{font-family:\0000312}}
+.Enroll__modal {
+  max-height: 100%;
+  overflow: hidden; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/Enroll\/enroll\.scss}line{font-family:\0000318}}
+.modal {
+  min-height: 80%;
+  height: 80%; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/Enroll\/enroll\.scss}line{font-family:\0000323}}
+.modal.fit-size {
+  height: auto;
+  min-height: auto; }
+
+/*# sourceMappingURL=enroll-page.css.map */

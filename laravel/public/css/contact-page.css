@@ -1,0 +1,138 @@
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/Map\/map\.scss}line{font-family:\000031}}
+.Map {
+  width: 100vw;
+  height: 250px;
+  position: relative; }
+  @media only screen and (max-width: 600px) and (orientation: landscape) {
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/Map\/map\.scss}line{font-family:\000031}}
+    .Map {
+      height: 240px; } }
+  @media only screen and (min-width: 992px) {
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/Map\/map\.scss}line{font-family:\000031}}
+    .Map {
+      height: 350px; } }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/Map\/map\.scss}line{font-family:\0000315}}
+.Map__canvas {
+  height: 100%;
+  width: 100%; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/Map\/map\.scss}line{font-family:\0000320}}
+.Map__triangle {
+  width: 0;
+  height: 0;
+  position: absolute;
+  bottom: -27px;
+  left: calc(50vw - 75px);
+  border-bottom: 100px solid #011a35;
+  border-left: 75px solid transparent;
+  border-right: 75px solid transparent;
+  border-top: 100px solid transparent; }
+  @media only screen and (min-width: 600px) {
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/Map\/map\.scss}line{font-family:\0000320}}
+    .Map__triangle {
+      bottom: -27px; } }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/Contact\/contactTitle\.scss}line{font-family:\000031}}
+.Contact__title {
+  font-size: 2em;
+  text-align: center;
+  padding: 3em 1.5em;
+  margin: 0; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/Contact\/contactContent\.scss}line{font-family:\000031}}
+.Contact__content {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding-bottom: 2em;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center; }
+  @media only screen and (min-width: 600px) {
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/Contact\/contactContent\.scss}line{font-family:\000031}}
+    .Contact__content {
+      padding-bottom: 3em; } }
+  @media only screen and (min-width: 992px) {
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/Contact\/contactContent\.scss}line{font-family:\000031}}
+    .Contact__content {
+      -webkit-box-orient: horizontal;
+      -webkit-box-direction: normal;
+      -webkit-flex-direction: row;
+          -ms-flex-direction: row;
+              flex-direction: row;
+      margin: 0 auto;
+      padding-bottom: 5em;
+      -webkit-box-pack: center;
+      -webkit-justify-content: center;
+          -ms-flex-pack: center;
+              justify-content: center; } }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/Contact\/contactInfo\.scss}line{font-family:\000031}}
+.Contact__info {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  text-align: center; }
+  @media only screen and (min-width: 600px) {
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/Contact\/contactInfo\.scss}line{font-family:\000031}}
+    .Contact__info {
+      font-size: 1.5em; } }
+  @media only screen and (min-width: 992px) {
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/Contact\/contactInfo\.scss}line{font-family:\000031}}
+    .Contact__info {
+      width: 400px;
+      font-size: 1em; } }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/Contact\/contactInfo\.scss}line{font-family:\0000316}}
+.Contact__info__brand {
+  font-size: 3em;
+  margin: 0; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/Contact\/contactInfo\.scss}line{font-family:\0000321}}
+.Contact__info__brand--academy {
+  color: #abcff8; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/Contact\/contactInfo\.scss}line{font-family:\0000325}}
+.Contact__info__phone {
+  margin: 0;
+  font-size: 2em;
+  margin-bottom: .5em; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/Contact\/contactInfo\.scss}line{font-family:\0000331}}
+.Contact__info__direction {
+  margin: 0; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/Contact\/contactInfo\.scss}line{font-family:\0000335}}
+.Contact__info__email {
+  font-size: 1.1em; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/Contact\/contactForm\.scss}line{font-family:\000031}}
+.Contact__form {
+  padding: 2em 10%;
+  width: 100%; }
+  @media only screen and (min-width: 992px) {
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/Contact\/contactForm\.scss}line{font-family:\000031}}
+    .Contact__form {
+      width: 400px;
+      padding: 0; } }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/Contact\/contact\.scss}line{font-family:\000037}}
+.Contact {
+  background: #011a35;
+  color: white; }
+
+/*# sourceMappingURL=contact-page.css.map */
