@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-    My dick is so big
+    Alas Flight Academy
 @endsection
 
 @section('content')
