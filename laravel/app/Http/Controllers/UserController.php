@@ -50,5 +50,6 @@ class UserController extends Controller
     {
         Auth::logout();
         return redirect()->route('home');
+        /*PEPEPEPEP*/
     }
 }
