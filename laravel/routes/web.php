@@ -35,3 +35,13 @@ Route::get('/enroll', function () {
     return view('enroll');
 })->name('enroll');
 
+
+Route::get('/addperson', [
+    'uses' => 'PersonController@getAddPerson',
+    'as' => 'addperson'
+]);
+
+Route::post('/addcontact', [
+    'uses' => 'ContactController@postAddContact',
+    'as' => 'addcontact'
+]);

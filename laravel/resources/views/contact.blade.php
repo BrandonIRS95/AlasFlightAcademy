@@ -2,6 +2,20 @@
 
 @section('individual-styles')
     <link rel="stylesheet" href="{{URL::to('css/contact-page.css')}}">
+    <style>
+        #add-contact-btn {
+            background: #f3a536;
+            border: none;
+            padding: 1em 2em;
+            border-radius: 10px;
+            color: white;
+            text-transform: uppercase;
+        }
+        .Contact__form
+        {
+            text-align: center;
+        }
+    </style>
 @endsection
 
 @section('content')
@@ -19,27 +33,29 @@
                 <p class="Contact__info__direction">San Diego, CA 19661-8622</p>
                 <p class="Contact__info__email">contact@alasacademy.com</p>
             </div>
-            <form class="Contact__form">
+            <form class="Contact__form" action="{{route('addcontact')}}" method="post">
                 <div class="input-field">
                     <label for="firstName">First Name</label>
-                    <input id="firstName" type="text">
+                    <input id="firstName" name="first_name" type="text">
                 </div>
                 <div class="input-field">
                     <label for="lastName">Last Name</label>
-                    <input id="lastName" type="text">
+                    <input id="lastName" name="last_name" type="text">
                 </div>
                 <div class="input-field">
                     <label for="phoneNumber">Phone Number</label>
-                    <input id="phoneNumber" type="text">
+                    <input id="phoneNumber" name="phone_number" type="text">
                 </div>
                 <div class="input-field">
                     <label for="email">E-mail</label>
-                    <input id="email" type="text">
+                    <input id="email" name="email" type="text">
                 </div>
                 <div class="input-field">
                     <label for="comments">Comments of questions</label>
-                    <input id="comments" type="text">
+                    <input id="comments" name="question" type="text">
                 </div>
+                <input type="hidden" name="_token" value="{{ Session::token() }}">
+                <button id="add-contact-btn" class="btn-warning" type="submit">send</button>
             </form>
         </div>
     </div>
