@@ -62,11 +62,39 @@
             margin-top: 50px;
         }
 
+        #phoneNumber-error{
+            position: absolute;
+            left: 0;
+            top: 60px;
+        }
+
         #phone-number-label{
             position: relative;
             float: left;
             margin-top: -10px;
             margin-bottom: 20px;
+        }
+
+        #form-add-contact img {
+            width: 200px;
+        }
+
+        .done-message{
+            font-size: 2em;
+            color: #FFFFFF;
+        }
+
+        #comments {
+            padding-top: 10px;
+            border-top: none;
+            border-left: none;
+            border-right: none;
+            outline:none;
+            resize: none;
+        }
+
+        #comments-error{
+            margin-top: 5px;
         }
 
     </style>
@@ -106,7 +134,7 @@
                 </div>
                 <div class="input-field">
                     <label for="comments">Comments or questions *</label>
-                    <input id="comments" name="question" type="text">
+                    <textarea id="comments" name="question" type="text" rows="2"></textarea>
                 </div>
                 <input type="hidden" name="_token" value="{{ Session::token() }}">
                 <button id="add-contact-btn" class="btn-warning" type="submit">send</button>
@@ -117,9 +145,11 @@
 
 @section('javascript-functions')
     <script src="{{URL::to('js/jquery-migrate-1.4.1.min.js')}}" type="text/javascript"></script>
+    <script src="{{URL::to('js/TweenMax.min.js')}}" type="text/javascript"></script>
     <script src="{{URL::to('js/jquery.validate.js')}}" type="text/javascript"></script>
     <script src="{{URL::to('js/additional-methods.js')}}" type="text/javascript"></script>
     <script src="{{URL::to('js/intlTelInput.js')}}" type="text/javascript"></script>
+    <script src="{{URL::to('js/autosize.js')}}" type="text/javascript"></script>
     <script>
         $('.button-collapse').sideNav();
         var $navbarItems = $('.Navbar__item');
@@ -139,11 +169,12 @@
         }
     </script>
     <script>
+
+        autosize($("#comments"));
+
         $('#phoneNumber').intlTelInput({
             utilsScript: "js/utils.js"
         });
-
-
 
         jQuery.validator.addMethod("validPhoneFormat", function(value, element) {
             if ($.trim(value)) {
@@ -184,13 +215,32 @@
             },
             submitHandler: function(form) {
 
+                $("#add-contact-btn").prop('disabled', true);
+
                 var data = $(form).serializeArray();
                 data[2].value = $("#phoneNumber").intlTelInput("getNumber");
 
                 $.ajax({
                    method: 'post',
+
                     url: '{{route('addcontact')}}',
                     data: data
+                }).done(function(response){
+                    console.log(response);
+                    var $form = $('#form-add-contact');
+
+                    if(response.status === 0)
+                    {
+
+                        $form.empty();
+                        $form.append('<img id="done-icon" src="{{URL::to('images/icons/ic_done_white_1024px.svg')}}" /><div class="done-message">We\'ll reply you in your email.<br>Thank you!</div>');
+                        TweenMax.from($("#done-icon"), 0.8, {opacity: 0, scale: 0, rotation:360});
+                        TweenMax.from($(".done-message"), 0.8, {opacity: 0, rotationY: 360});
+                    }
+                    else
+                    {
+                        $form.append('<div class="done-message">This service is not available.<br>We\'re working on it, sorry for the inconvenience.</div>');
+                    }
                 });
             }
         });
