@@ -16,6 +16,25 @@
         {
             text-align: center;
         }
+
+        #comments-error{
+            margin-bottom: 10px;
+        }
+        span.error {
+            position: relative;
+            width: 100%;
+            text-align: left;
+            float: left;
+            font-size: 14px;
+            margin-top: -10px;
+            color: red;
+        }
+
+        input.error {
+            border-bottom: 1px solid red;
+            box-shadow: 0 1px 0 0 red;
+        }
+
     </style>
 @endsection
 
@@ -86,6 +105,8 @@
     </script>
     <script>
         $('#form-add-contact').validate({
+            errorClass: "error",
+            errorElement: "span",
             rules: {
                 first_name:{
                     required: true
