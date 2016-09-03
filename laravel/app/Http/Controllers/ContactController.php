@@ -18,7 +18,5 @@ class ContactController extends Controller
         $contact->question = $request['question'];
 
         $contact->save();
-
-        return redirect()->route('contact');
     }
 }

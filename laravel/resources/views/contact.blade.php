@@ -2,6 +2,7 @@
 
 @section('individual-styles')
     <link rel="stylesheet" href="{{URL::to('css/contact-page.css')}}">
+
     <style>
         #add-contact-btn {
             background: #f3a536;
@@ -33,9 +34,9 @@
                 <p class="Contact__info__direction">San Diego, CA 19661-8622</p>
                 <p class="Contact__info__email">contact@alasacademy.com</p>
             </div>
-            <form class="Contact__form" action="{{route('addcontact')}}" method="post">
+            <form id="form-add-contact" class="Contact__form" action="{{route('addcontact')}}" method="post">
                 <div class="input-field">
-                    <label for="firstName">First Name</label>
+                    <label for="firstName">First Name *</label>
                     <input id="firstName" name="first_name" type="text">
                 </div>
                 <div class="input-field">
@@ -47,11 +48,11 @@
                     <input id="phoneNumber" name="phone_number" type="text">
                 </div>
                 <div class="input-field">
-                    <label for="email">E-mail</label>
+                    <label for="email">E-mail *</label>
                     <input id="email" name="email" type="text">
                 </div>
                 <div class="input-field">
-                    <label for="comments">Comments of questions</label>
+                    <label for="comments">Comments of questions *</label>
                     <input id="comments" name="question" type="text">
                 </div>
                 <input type="hidden" name="_token" value="{{ Session::token() }}">
@@ -62,6 +63,9 @@
 @endsection
 
 @section('javascript-functions')
+    <script src="{{URL::to('js/jquery-migrate-1.4.1.min.js')}}" type="text/javascript"></script>
+    <script src="{{URL::to('js/jquery.validate.js')}}" type="text/javascript"></script>
+    <script src="{{URL::to('js/additional-methods.js')}}" type="text/javascript"></script>
     <script>
         $('.button-collapse').sideNav();
         var $navbarItems = $('.Navbar__item');
@@ -79,6 +83,29 @@
                 zoom: 8
             });
         }
+    </script>
+    <script>
+        $('#form-add-contact').validate({
+            rules: {
+                first_name:{
+                    required: true
+                },
+                email: {
+                    required: true,
+                    email: true
+                },
+                question: {
+                    required: true
+                }
+            },
+            submitHandler: function(form) {
+                $.ajax({
+                   method: 'post',
+                    url: '{{route('addcontact')}}',
+                    data: $(form).serialize()
+                });
+            }
+        });
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD3yLB8Z-4fx9RsAOJETr7CndhqHjo_za4&amp;callback=initMap"></script>
 @endsection
