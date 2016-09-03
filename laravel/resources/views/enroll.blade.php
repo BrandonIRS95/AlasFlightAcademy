@@ -125,7 +125,7 @@
           </div>
           <div class="ModalForm__input--select input-field col s12 m8">
             <select>
-              <option value="" disabled selected>Country of passport Inssuance</option>
+              <option value="" disabled selected>Country of passport Issuance</option>
               <option>Mexico</option>
               <option>USA</option>
             </select>

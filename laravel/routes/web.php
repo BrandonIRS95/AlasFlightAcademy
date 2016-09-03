@@ -36,18 +36,12 @@ Route::get('/enroll', function () {
 })->name('enroll');
 
 
-
-Route::post('/signup', [
-    'uses' => 'UserController@postSignUp',
-    'as' => 'signup'
+Route::get('/addperson', [
+    'uses' => 'PersonController@getAddPerson',
+    'as' => 'addperson'
 ]);
 
-Route::post('/signin', [
-    'uses' => 'UserController@postSignIn',
-    'as' => 'signin'
-]);
-
-Route::get('/logout', [
-    'uses' => 'UserController@getLogout',
-    'as' => 'logout'
+Route::post('/addcontact', [
+    'uses' => 'ContactController@postAddContact',
+    'as' => 'addcontact'
 ]);

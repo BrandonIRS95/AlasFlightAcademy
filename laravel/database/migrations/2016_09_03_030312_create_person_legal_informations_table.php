@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUsersTable extends Migration
+class CreatePersonLegalInformationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,14 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('person_legal_informations', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('password');
-            $table->boolean('status');
-            $table->integer('type_of_user_id');
+            $table->string('citizenship');
+            $table->string('country_of_passport_issuance');
+            $table->string('passport_number');
+            $table->date('passport_expiration_date');
             $table->integer('person_id');
             $table->timestamps();
-            $table->rememberToken();
         });
     }
 
@@ -31,6 +31,6 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('person_legal_informations');
     }
 }
