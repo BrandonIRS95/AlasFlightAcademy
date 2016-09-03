@@ -22,7 +22,6 @@ class CreatePeopleTable extends Migration
             $table->string('email');
             $table->string('city_country_of_birth');
             $table->timestamps();
-            $table->rememberToken();
         });
     }
 
