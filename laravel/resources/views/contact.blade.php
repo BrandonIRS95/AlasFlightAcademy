@@ -2,7 +2,7 @@
 
 @section('individual-styles')
     <link rel="stylesheet" href="{{URL::to('css/contact-page.css')}}">
-
+    <link rel="stylesheet" href="{{URL::to('css/intlTelInput.css')}}">
     <style>
         #add-contact-btn {
             background: #f3a536;
@@ -17,15 +17,16 @@
             text-align: center;
         }
 
-        #comments-error{
-            margin-bottom: 10px;
+        .input-field{
+            margin-bottom: 30px;
         }
+
         span.error {
             position: relative;
             width: 100%;
             text-align: left;
             float: left;
-            font-size: 14px;
+            font-size: 12px;
             margin-top: -10px;
             color: red;
         }
@@ -33,6 +34,39 @@
         input.error {
             border-bottom: 1px solid red;
             box-shadow: 0 1px 0 0 red;
+        }
+
+        .country-name{
+            color: dimgray;
+        }
+
+        .intl-tel-input{
+            width: 100%;
+            box-sizing: content-box;
+        }
+
+        #phoneNumber::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+            color:#9e9e9e;
+        }
+        #phoneNumber::-moz-placeholder { /* Firefox 19+ */
+            color: #9e9e9e;
+        }
+        #phoneNumber:-ms-input-placeholder { /* IE 10+ */
+            color: #9e9e9e;
+        }
+        #phoneNumber:-moz-placeholder { /* Firefox 18- */
+            color: #9e9e9e;
+        }
+
+        #content-email {
+            margin-top: 50px;
+        }
+
+        #phone-number-label{
+            position: relative;
+            float: left;
+            margin-top: -10px;
+            margin-bottom: 20px;
         }
 
     </style>
@@ -59,19 +93,19 @@
                     <input id="firstName" name="first_name" type="text">
                 </div>
                 <div class="input-field">
-                    <label for="lastName">Last Name</label>
+                    <label for="lastName">Last Name (optional)</label>
                     <input id="lastName" name="last_name" type="text">
                 </div>
                 <div class="input-field">
-                    <label for="phoneNumber">Phone Number</label>
-                    <input id="phoneNumber" name="phone_number" type="text">
+                    <label id="phone-number-label">Phone Number (optional)</label>
+                    <input id="phoneNumber" name="phone_number" type="tel">
                 </div>
-                <div class="input-field">
+                <div id="content-email" class="input-field">
                     <label for="email">E-mail *</label>
                     <input id="email" name="email" type="text">
                 </div>
                 <div class="input-field">
-                    <label for="comments">Comments of questions *</label>
+                    <label for="comments">Comments or questions *</label>
                     <input id="comments" name="question" type="text">
                 </div>
                 <input type="hidden" name="_token" value="{{ Session::token() }}">
@@ -85,6 +119,7 @@
     <script src="{{URL::to('js/jquery-migrate-1.4.1.min.js')}}" type="text/javascript"></script>
     <script src="{{URL::to('js/jquery.validate.js')}}" type="text/javascript"></script>
     <script src="{{URL::to('js/additional-methods.js')}}" type="text/javascript"></script>
+    <script src="{{URL::to('js/intlTelInput.js')}}" type="text/javascript"></script>
     <script>
         $('.button-collapse').sideNav();
         var $navbarItems = $('.Navbar__item');
@@ -104,12 +139,40 @@
         }
     </script>
     <script>
+        $('#phoneNumber').intlTelInput({
+            utilsScript: "js/utils.js"
+        });
+
+
+
+        jQuery.validator.addMethod("validPhoneFormat", function(value, element) {
+            if ($.trim(value)) {
+                if ($(element).intlTelInput("isValidNumber")) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+
+            return true;
+        }, "Please enter a valid phone number.");
+
+        jQuery.validator.addMethod("nulleable", function(value, element) {
+            return true;
+        }, "Please enter a valid phone number.");
+
         $('#form-add-contact').validate({
             errorClass: "error",
             errorElement: "span",
             rules: {
+                phone_number: {
+                    validPhoneFormat: true
+                },
                 first_name:{
                     required: true
+                },
+                last_name: {
+                    nulleable: true
                 },
                 email: {
                     required: true,
@@ -120,10 +183,14 @@
                 }
             },
             submitHandler: function(form) {
+
+                var data = $(form).serializeArray();
+                data[2].value = $("#phoneNumber").intlTelInput("getNumber");
+
                 $.ajax({
                    method: 'post',
                     url: '{{route('addcontact')}}',
-                    data: $(form).serialize()
+                    data: data
                 });
             }
         });
