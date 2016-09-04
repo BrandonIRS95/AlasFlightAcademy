@@ -17,6 +17,11 @@ class ContactController extends Controller
         $contact->email = $request['email'];
         $contact->question = $request['question'];
 
-        $contact->save();
+        if($contact->save())
+            return response()->json(['status' => 0,
+                'message' => 'Question successfully sent.'], 200);
+        else
+            return response()->json(['status' => 1,
+                'message' => 'Question not sent.'], 200);
     }
 }
