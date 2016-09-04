@@ -38,7 +38,7 @@
     <div class="parallax"><img src="{{ URL::to('images/landing-cta-2.jpg')}}" width="100%"></div>
     <div class="Landing__cta__overlay"></div>
     <h2 id="land-section-7" class="Landing__cta__title">Make your dream come true</h2>
-    <button id="land-section-8" class="Landing__cta__button">Contact us</button>
+    <button id="land-section-8" onclick="window.location.href = '{{URL::to('contact')}}'" class="Landing__cta__button">Contact us</button>
   </div>
 @endsection
 
