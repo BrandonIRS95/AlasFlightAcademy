@@ -6,7 +6,12 @@
 
 @section('content')
   <div class="Page__header--landing Page__header parallax-container">
-    <div class="parallax"><img src="{{ URL::to('images/enroll.jpg') }}" width="100%"></div>
+    <div class="parallax">
+      <video width="100%" autoplay loop>
+        <source src="{{URL::to('videos/alasvideo.mp4')}}" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
     <div class="Page__header__filter--landing"></div>
     <div class="Page__header__text">Spread your wings</div>
   </div>
