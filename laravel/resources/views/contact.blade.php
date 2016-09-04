@@ -120,7 +120,7 @@
                 <p class="Contact__info__direction">San Diego, CA 19661-8622</p>
                 <p class="Contact__info__email">contact@alasacademy.com</p>
             </div>
-            <form id="form-add-contact" class="Contact__form" action="{{route('addcontact')}}" method="post">
+            <form id="form-add-contact" class="Contact__form" autocomplete="off">
                 <div class="input-field">
                     <label for="firstName">First Name *</label>
                     <input id="firstName" name="first_name" type="text">

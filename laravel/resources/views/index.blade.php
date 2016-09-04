@@ -14,19 +14,19 @@
     <h3 class="CTA_bar__text">Want to become a pilot?</h3>
     <button class="CTA_bar__button">Apply now!</button>
   </div>
-  <div class="Landing__sections row"><a id="land-section-1" href="#" class="Landing__section col l8 s12">
+  <div class="Landing__sections row"><a id="land-section-1" href="{{route('index')}}" class="Landing__section col l8 s12">
       <figure class="Landing__section__image_container"><img src="{{ URL::to('images/landing-become-a-pilot.jpg') }}" class="Landing__section__image">
         <figcaption class="Landing__section__title">Become a pilot</figcaption>
-      </figure></a><a id="land-section-2" href="#" class="Landing__section col l4 s12">
+      </figure></a><a id="land-section-2" href="{{route('enroll')}}" class="Landing__section col l4 s12">
       <figure class="Landing__section__image_container"><img src="{{ URL::to('images/landing-enroll-now.jpg') }}" class="Landing__section__image">
         <figcaption class="Landing__section__title">Enroll now</figcaption>
-      </figure></a><a id="land-section-3" href="#" class="Landing__section col l4 s12">
+      </figure></a><a id="land-section-3" href="{{route('pilot-programs')}}" class="Landing__section col l4 s12">
       <figure class="Landing__section__image_container"><img src="{{ URL::to('images/landing-pilot-programs.jpg') }}" class="Landing__section__image">
         <figcaption class="Landing__section__title">Pilot programs</figcaption>
-      </figure></a><a id="land-section-4" href="#" class="Landing__section col l4 s12">
+      </figure></a><a id="land-section-4" href="{{route('about')}}" class="Landing__section col l4 s12">
       <figure class="Landing__section__image_container"><img src="{{ URL::to('images/landing-about-us.jpg') }}" class="Landing__section__image">
         <figcaption class="Landing__section__title">About us</figcaption>
-      </figure></a><a id="land-section-5" href="#" class="Landing__section col l4 s12">
+      </figure></a><a id="land-section-5" href="{{route('contact')}}" class="Landing__section col l4 s12">
       <figure class="Landing__section__image_container"><img src="{{ URL::to('images/landing-contact.jpg') }}" class="Landing__section__image">
         <figcaption class="Landing__section__title">Contact</figcaption>
       </figure></a></div>
