@@ -93,6 +93,11 @@
             resize: none;
         }
 
+        #comments:focus:not([readonly]){
+            border-bottom: 1px solid #367ac8;
+            box-shadow: 0 1px 0 0 #367ac8;
+        }
+
         #comments-error{
             margin-top: 5px;
         }
