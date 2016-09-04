@@ -6,7 +6,12 @@
 
 @section('content')
   <div class="Page__header--landing Page__header parallax-container">
-    <div class="parallax"><img src="{{ URL::to('images/enroll.jpg') }}" width="100%"></div>
+    <div class="parallax">
+      <video width="100%" autoplay loop>
+        <source src="{{URL::to('videos/alasvideo.mp4')}}" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
     <div class="Page__header__filter--landing"></div>
     <div class="Page__header__text">Spread your wings</div>
   </div>
@@ -14,19 +19,19 @@
     <h3 class="CTA_bar__text">Want to become a pilot?</h3>
     <button class="CTA_bar__button">Apply now!</button>
   </div>
-  <div class="Landing__sections row"><a id="land-section-1" href="#" class="Landing__section col l8 s12">
+  <div class="Landing__sections row"><a id="land-section-1" href="{{route('index')}}" class="Landing__section col l8 s12">
       <figure class="Landing__section__image_container"><img src="{{ URL::to('images/landing-become-a-pilot.jpg') }}" class="Landing__section__image">
         <figcaption class="Landing__section__title">Become a pilot</figcaption>
-      </figure></a><a id="land-section-2" href="#" class="Landing__section col l4 s12">
+      </figure></a><a id="land-section-2" href="{{route('enroll')}}" class="Landing__section col l4 s12">
       <figure class="Landing__section__image_container"><img src="{{ URL::to('images/landing-enroll-now.jpg') }}" class="Landing__section__image">
         <figcaption class="Landing__section__title">Enroll now</figcaption>
-      </figure></a><a id="land-section-3" href="#" class="Landing__section col l4 s12">
+      </figure></a><a id="land-section-3" href="{{route('pilot-programs')}}" class="Landing__section col l4 s12">
       <figure class="Landing__section__image_container"><img src="{{ URL::to('images/landing-pilot-programs.jpg') }}" class="Landing__section__image">
         <figcaption class="Landing__section__title">Pilot programs</figcaption>
-      </figure></a><a id="land-section-4" href="#" class="Landing__section col l4 s12">
+      </figure></a><a id="land-section-4" href="{{route('about')}}" class="Landing__section col l4 s12">
       <figure class="Landing__section__image_container"><img src="{{ URL::to('images/landing-about-us.jpg') }}" class="Landing__section__image">
         <figcaption class="Landing__section__title">About us</figcaption>
-      </figure></a><a id="land-section-5" href="#" class="Landing__section col l4 s12">
+      </figure></a><a id="land-section-5" href="{{route('contact')}}" class="Landing__section col l4 s12">
       <figure class="Landing__section__image_container"><img src="{{ URL::to('images/landing-contact.jpg') }}" class="Landing__section__image">
         <figcaption class="Landing__section__title">Contact</figcaption>
       </figure></a></div>
@@ -38,7 +43,7 @@
     <div class="parallax"><img src="{{ URL::to('images/landing-cta-2.jpg')}}" width="100%"></div>
     <div class="Landing__cta__overlay"></div>
     <h2 id="land-section-7" class="Landing__cta__title">Make your dream come true</h2>
-    <button id="land-section-8" class="Landing__cta__button">Contact us</button>
+    <button id="land-section-8" onclick="window.location.href = '{{URL::to('contact')}}'" class="Landing__cta__button">Contact us</button>
   </div>
 @endsection
 
