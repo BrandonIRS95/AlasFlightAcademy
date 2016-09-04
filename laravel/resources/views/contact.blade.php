@@ -31,7 +31,7 @@
             color: red;
         }
 
-        input.error {
+        input.error, textarea.error {
             border-bottom: 1px solid red;
             box-shadow: 0 1px 0 0 red;
         }
