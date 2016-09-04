@@ -12,7 +12,7 @@
   </div>
   <div class="CTA_bar">
     <h3 class="CTA_bar__text">Have questions?</h3>
-    <button class="CTA_bar__button">Contact us!</button>
+    <button class="CTA_bar__button" onclick="window.location.href = '{{URL::to('contact')}}'">Contact us!</button>
   </div>
   <div class="About__offer">
     <h3 class="About__offer__title">What do we offer?</h3>
