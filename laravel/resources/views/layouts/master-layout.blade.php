@@ -18,7 +18,7 @@
                 <li class="Navbar__item{{ (Request::is('contact') ? '--active' : '') }}"><a href="{{route('contact')}}" class="Navbar__item_link"><span class="Navbar__item_text">Contact</span></a></li>
                 <li class="Navbar__item"><a href="#become-pilot" class="Navbar__item_link"><span class="Navbar__item_text">Become a pilot</span></a></li>
                 <li class="Navbar__item{{ (Request::is('enroll') ? '--active' : '') }}"><a href="{{route('enroll')}}" class="Navbar__item_link"><span class="Navbar__item_text">Enroll Now</span></a></li>
-                <li class="Navbar__item"><a href="#signin" class="Navbar__item_link"><span class="Navbar__item_text">Sign in</span></a></li>
+                <li class="Navbar__item{{ (Request::is('signin') ? '--active' : '') }}"><a href="{{route('signin')}}" class="Navbar__item_link"><span class="Navbar__item_text">Sign in</span></a></li>
             </ul>
         </div>
     </nav>
@@ -29,7 +29,7 @@
         <li class="Sidenav__item"><a href="{{route('contact')}}" class="Sidenav__item_link"><span class="Sidenav__item_text">Contact</span></a></li>
         <li class="Sidenav__item"><a href="#become-pilot" class="Sidenav__item_link"><span class="Sidenav__item_text">Become a pilot</span></a></li>
         <li class="Sidenav__item"><a href="{{route('enroll')}}" class="Sidenav__item_link"><span class="Sidenav__item_text">Enroll Now</span></a></li>
-        <li class="Sidenav__item"><a href="#signin" class="Sidenav__item_link"><span class="Sidenav__item_text">Sign in</span></a></li>
+        <li class="Sidenav__item"><a href="{{route('signin')}}" class="Sidenav__item_link"><span class="Sidenav__item_text">Sign in</span></a></li>
     </ul>
 
     @yield('content')
@@ -40,7 +40,7 @@
             <li class="Footer__list_item"><a href="{{route('pilot-programs')}}" class="Footer__link">Pilot programs</a></li>
             <li class="Footer__list_item"><a href="{{route('contact')}}" class="Footer__link">Contact</a></li>
             <li class="Footer__list_item"><a class="Footer__link">Become a pilot</a></li>
-            <li class="Footer__list_item"><a class="Footer__link">Sign in</a></li>
+            <li class="Footer__list_item"><a href="{{route('signin')}}" class="Footer__link">Sign in</a></li>
             <li class="Footer__list_item"><a href="{{route('enroll')}}" class="Footer__link">Enroll now</a></li>
         </ul>
         <p class="Footer__text"><a href="{{route('index')}}" class="Footer__link">© 2016 Alas Academy</a></p>

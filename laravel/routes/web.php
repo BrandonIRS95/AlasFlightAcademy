@@ -11,6 +11,24 @@
 |
 */
 
+Route::post('/signup', [
+    'uses' => 'UserController@postSignUp',
+    'as' => 'signup'
+]);
+
+Route::get('/logout', [
+    'uses' => 'UserController@getLogout',
+    'as' => 'logout'
+]);
+
+Route::get('/admin', [
+    'uses' => 'UserController@getAdminView',
+    'as' => 'admin',
+    'middleware' => 'auth'
+]);
+
+
+
 Route::get('/', function () {
     return view('index');
 })->name('index');
@@ -34,6 +52,15 @@ Route::get('/contact', function () {
 Route::get('/enroll', function () {
     return view('enroll');
 })->name('enroll');
+
+Route::get('/signin', function () {
+    return view('signin');
+})->name('signin');
+
+Route::post('/signin', [
+    'uses' => 'UserController@postSignIn',
+    'as' => 'signin'
+]);
 
 
 Route::get('/addperson', [

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\TypeOfUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\User;
@@ -42,7 +43,14 @@ class UserController extends Controller
 
         if(Auth::attempt(['email' => $request['email'], 'password' => $request['password'] ]))
         {
-            return redirect()->route('dashboard');
+            //$type = Auth::user()->typeOfUser->type;
+
+            $type = Auth::user()->typeOfUser->type;
+
+            if($type == 'Admin')
+                return redirect()->route('admin');
+            else
+                return redirect()->route('index'); //cambiar cuando tengamos el dashboard de los estudiantes
         }
         return redirect()->back();
     }
@@ -51,5 +59,16 @@ class UserController extends Controller
     {
         Auth::logout();
         return redirect()->route('index');
+    }
+
+    public function getAdminView()
+    {
+        $type = Auth::user()->typeOfUser->type;
+
+        if($type == 'Admin')
+            return view('admin');
+        else
+            return redirect()->route('index');
+
     }
 }

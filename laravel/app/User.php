@@ -13,5 +13,10 @@ class User extends Model implements Authenticatable
     {
         return $this->hasMany('App\Post');
     }*/
+
+    public function typeOfUser()
+    {
+        return $this->belongsTo('App\TypeOfUser');
+    }
 }
 
