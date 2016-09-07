@@ -16,7 +16,7 @@ class CreateTypeOfUsersTable extends Migration
         Schema::create('type_of_users', function (Blueprint $table) {
             $table->increments('id');
             $table->string('type');
-            $table->rememberToken();
+            //$table->rememberToken();
         });
     }
 
