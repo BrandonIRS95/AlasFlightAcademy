@@ -190,10 +190,10 @@
           </div>
           <div class="Modalform__input col s12 m8">
             <p>Was this school located on the USA?</p>
-            <input id="school-in-usa-input" type="radio" name="school_in_usa2" value="1" class="ModalForm__input with-gap">
-            <label for="school-in-usa-input">Yes</label>
-            <input id="school-not-in-usa-input" type="radio" name="school_in_usa2" value="0" class="ModalForm__input with-gap">
-            <label for="school-not-in-usa-input">No</label>
+            <input id="school-in-usa-input2" type="radio" name="school_in_usa2" value="1" class="ModalForm__input with-gap">
+            <label for="school-in-usa-input2">Yes</label>
+            <input id="school-not-in-usa-input2" type="radio" name="school_in_usa2" value="0" class="ModalForm__input with-gap">
+            <label for="school-not-in-usa-input2">No</label>
           </div>
           <div class="input-field col s12 m6">
             <label for="degree-2">Diploma/Degree Achieved</label>
