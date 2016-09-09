@@ -2,6 +2,11 @@
 
 @section('individual-styles')
   <link rel="stylesheet" href="{{URL::to('css/enroll-page.css')}}">
+  <style>
+    span.error{
+      color: red;
+    }
+  </style>
 @endsection
 
 @section('content')
@@ -47,7 +52,7 @@
     <button id="enroll-button" data-target="enroll-modal" class="Enroll__button modal-trigger">Enroll</button>
   </div>
   <div id="enroll-modal" class="Enroll__modal modal">
-    <form id="enroll-form" method="post" action="/form" class="ModalForm row col s10">
+    <form id="enroll-form" class="ModalForm row col s10">
       <div class="ModalForm__page container col s2">
         <div class="ModalForm__header">
           <h2 class="ModalForm__header__title">Application for admission</h2><i data-target="modalconfirm" class="ModalForm__header__icon material-icons modal-trigger">clear</i>
@@ -55,6 +60,7 @@
         <div class="ModalForm__pages_container col s12 m12 row">
           <h3 class="ModalForm__page__step">Step 1 of 5</h3>
           <h4 class="ModalForm__page__section_title">Student details</h4>
+
           <div class="Modalform__checkboxes">
             <p>Gender</p>
             <input id="gender-female-input" type="radio" name="gender" value="female" class="ModalForm__input with-gap">
@@ -64,25 +70,30 @@
           </div>
           <div class="input-field col s10 m8">
             <label for="birthdate">Date of birth</label>
-            <input id="birthdate" type="date" class="ModalForm__input datepicker">
+            <input id="birthdate" name="date_of_birth" type="date" class="ModalForm__input datepicker">
+
           </div><i class="ModalForm__input_icon col s2 m2 material-icons">today</i>
-          <div class="input-field col s12 m12">
-            <label for="name">Name</label>
-            <input id="name" type="text" class="ModalForm__input">
+          <div class="input-field col s12 m6">
+            <label for="name">First name</label>
+            <input id="name" name="first_name" type="text" class="ModalForm__input">
+          </div>
+          <div class="input-field col s12 m6">
+            <label for="name">Last name</label>
+            <input id="name" name="last_name" type="text" class="ModalForm__input">
           </div>
           <div class="input-field col s12 m12">
             <label for="address">Address</label>
-            <input id="address" type="text" class="ModalForm__input">
+            <input id="address" type="text" name="address" class="ModalForm__input">
           </div>
           <div class="ModalForm__input--select input-field col s12 m6">
-            <select>
+            <select name="country">
               <option value="" disabled selected>Country</option>
               <option>Mexico</option>
               <option>USA</option>
             </select>
           </div>
           <div class="ModalForm__input--select input-field col s12 m6">
-            <select>
+            <select name="state">
               <option value="" disabled selected>State</option>
               <option>CA</option>
               <option>FL</option>
@@ -91,22 +102,24 @@
           </div>
           <div class="input-field col s12 m6">
             <label for="city">City</label>
-            <input id="city" type="text" class="ModalForm__input">
+            <input id="city" type="text" name="city" class="ModalForm__input">
           </div>
           <div class="input-field col s12 m6">
             <label for="zipcode">Zip Code</label>
-            <input id="zipcode" type="text" class="ModalForm__input">
+            <input id="zipcode" type="text" name="zip_code" class="ModalForm__input">
           </div>
           <div class="input-field col s12 m6">
             <label for="phone">Phone Number</label>
-            <input id="phone" type="text" class="ModalForm__input">
+            <input id="phone" type="text" name="phone_number" class="ModalForm__input">
           </div>
           <div class="input-field col s12 m6">
             <label for="email">E-mail</label>
-            <input id="email" type="email" class="ModalForm__input validate">
+            <input id="email" type="email" name="email" class="ModalForm__input validate">
           </div>
           <div class="ModalForm__buttons col s12 m12"><a data-target="modalconfirm" class="waves-effect waves-light btn ModalForm__button grey lighten-2 modal-trigger">cancel</a><a class="waves-effect waves-light btn ModalForm__button--active modal-go-to-2">NEXT</a></div>
+
         </div>
+
       </div>
       <div class="ModalForm__page container col s2">
         <div class="ModalForm__header">
@@ -117,14 +130,15 @@
           <h4 class="ModalForm__page__section_title">Student details</h4>
           <div class="input-field col s12 m8">
             <label for="birthplace">City and coutry of birth</label>
-            <input id="birthplace" type="text" class="ModalForm__input">
+            <input id="birthplace" type="text" class="ModalForm__input" name="city_country_of_birth">
+            <input type="submit" value="ADDDUMMY">
           </div>
           <div class="input-field col s12 m8">
             <label for="citizenship">Citizenship</label>
-            <input id="citizenship" type="text" class="ModalForm__input">
+            <input id="citizenship" type="text" name="citizenship" class="ModalForm__input">
           </div>
           <div class="ModalForm__input--select input-field col s12 m8">
-            <select>
+            <select name="country_of_passport_issuance">
               <option value="" disabled selected>Country of passport Issuance</option>
               <option>Mexico</option>
               <option>USA</option>
@@ -132,11 +146,11 @@
           </div>
           <div class="input-field col s12 m6">
             <label for="passport">Passport number</label>
-            <input id="passport" type="text" class="ModalForm__input">
+            <input id="passport" name="passport_number" type="text" class="ModalForm__input">
           </div>
           <div class="col s10 m8">
             <label for="birthdate">Passport expiration date</label>
-            <input id="birthdate" type="date" class="ModalForm__input datepicker">
+            <input id="birthdate" name="passport_expiration_date" type="date" class="ModalForm__input datepicker">
           </div><i class="ModalForm__input_icon col s2 m2 material-icons">today</i>
           <div class="ModalForm__buttons_margin col s12"></div>
           <div class="ModalForm__buttons col s12 m12"><a data-target="modalconfirm" class="waves-effect waves-light btn ModalForm__button grey lighten-2 modal-trigger">cancel</a><a class="waves-effect waves-light btn ModalForm__button--active modal-go-to-3">NEXT</a></div>
@@ -152,42 +166,42 @@
           <p class="Modal_Form__page__section_subtitle">List two most recent schools attended (High School, University or Technical)</p>
           <div class="input-field col s12 m8">
             <label for="school-name-1">School Name</label>
-            <input id="school-name-1" type="text" class="ModalForm__input">
+            <input id="school-name-1" name="school_name1" type="text" class="ModalForm__input">
           </div>
           <div class="Modalform__input col s12 m8">
             <p>Was this school located on the USA?</p>
-            <input id="school-in-usa-input" type="radio" name="school-in-usa" value="true" class="ModalForm__input with-gap">
+            <input id="school-in-usa-input" type="radio" name="school_in_usa1" value="1" class="ModalForm__input with-gap">
             <label for="school-in-usa-input">Yes</label>
-            <input id="school-not-in-usa-input" type="radio" name="school-in-usa" value="false" class="ModalForm__input with-gap">
+            <input id="school-not-in-usa-input" type="radio" name="school_in_usa1" value="0" class="ModalForm__input with-gap">
             <label for="school-not-in-usa-input">No</label>
           </div>
           <div class="input-field col s12 m6">
             <label for="degree-1">Diploma/Degree Achieved</label>
-            <input id="degree-1" type="text" class="ModalForm__input">
+            <input id="degree-1" name="diploma_degree1" type="text" class="ModalForm__input">
           </div>
           <div class="input-field col s10 m8">
             <label for="attendance-1">Attendance date finish</label>
-            <input id="attendance-1" type="date" class="ModalForm__input datepicker">
+            <input id="attendance-1" type="date" name="attendance_date_finish1" class="ModalForm__input datepicker">
           </div><i class="ModalForm__input_icon col s2 m2 material-icons">today</i>
           <div class="ModalForm__divider col s12 m12"></div>
           <div class="input-field col s12 m8">
             <label for="school-name-2">School Name</label>
-            <input id="school-name-2" type="text" class="ModalForm__input">
+            <input id="school-name-2" name="school_name2" type="text" class="ModalForm__input">
           </div>
           <div class="Modalform__input col s12 m8">
             <p>Was this school located on the USA?</p>
-            <input id="school-in-usa-input" type="radio" name="school-in-usa" value="true" class="ModalForm__input with-gap">
+            <input id="school-in-usa-input" type="radio" name="school_in_usa2" value="1" class="ModalForm__input with-gap">
             <label for="school-in-usa-input">Yes</label>
-            <input id="school-not-in-usa-input" type="radio" name="school-in-usa" value="false" class="ModalForm__input with-gap">
+            <input id="school-not-in-usa-input" type="radio" name="school_in_usa2" value="0" class="ModalForm__input with-gap">
             <label for="school-not-in-usa-input">No</label>
           </div>
           <div class="input-field col s12 m6">
             <label for="degree-2">Diploma/Degree Achieved</label>
-            <input id="degree-2" type="text" class="ModalForm__input">
+            <input id="degree-2" name="diploma_degree2" type="text" class="ModalForm__input">
           </div>
           <div class="input-field col s10 m8">
             <label for="attendance-2">Attendance date finish</label>
-            <input id="attendance-2" type="date" class="ModalForm__input datepicker">
+            <input id="attendance-2" name="attendance_date_finish2" type="date" class="ModalForm__input datepicker">
           </div><i class="ModalForm__input_icon col s2 m2 material-icons">today</i>
           <div class="ModalForm__buttons col s12 m12"><a data-target="modalconfirm" class="waves-effect waves-light btn ModalForm__button grey lighten-2 modal-trigger">cancel</a><a class="waves-effect waves-light btn ModalForm__button--active modal-go-to-4">NEXT</a></div>
         </div>
@@ -285,6 +299,7 @@
               <input type="file">
             </div>
           </div>
+          <input type="hidden" name="_token" value="{{ Session::token() }}">
           <div class="input-field col s6">
             <label for="startdate">Today's date</label>
             <input id="startdate" type="date" class="ModalForm__input datepicker">
@@ -309,6 +324,9 @@
 @endsection
 
 @section('javascript-functions')
+  <script src="{{URL::to('js/jquery-migrate-1.4.1.min.js')}}"></script>
+  <script src="{{URL::to('js/jquery.validate.js')}}"></script>
+  <script src="{{URL::to('js/additional-methods.js')}}"></script>
   <script>
     $('.button-collapse').sideNav();
     var $navbarItems = $('.Navbar__item');
@@ -344,8 +362,11 @@
       // Material stuff
       $('select').material_select();
       $('.datepicker').pickadate({
+        formatSubmit: 'yyyy/mm/dd',
         selectMonths: true,
-        selectYears: 100
+        selectYears: 100,
+        hiddenPrefix: 'prefix__',
+        hiddenSuffix: '__suffix'
       });
       // Listeners
       $('#modal-close-button').on('click', closeForm);
@@ -364,6 +385,41 @@
       $('.modal-go-to-5').on('click', function() {
         translateToModalPage(5);
       });
+    });
+  </script>
+  <script>
+    $("#enroll-form").validate({
+        errorElement: "span",
+        rules : {
+          gender: {
+            required: true
+          },
+          date_of_birth: {
+            required: true
+          },
+          first_name : {
+            required: true
+          },
+          last_name : {
+            required: true
+          },
+          address : {
+            required: true
+          },
+          country : {
+            required: true
+          }
+        },
+        submitHandler: function(form){
+          console.log($(form).serializeArray());
+          $.ajax({
+            method: 'post',
+            url: '{{route('addAdmission')}}',
+            data: $(form).serialize()
+          }).done(function (response) {
+            console.log(response);
+          })
+        }
     });
   </script>
 @endsection

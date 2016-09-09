@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class PersonLegalInformation extends Model
+class SchoolRecord extends Model
 {
     public function person()
     {

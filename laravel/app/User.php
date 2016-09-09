@@ -18,5 +18,10 @@ class User extends Model implements Authenticatable
     {
         return $this->belongsTo('App\TypeOfUser');
     }
+
+    public function person()
+    {
+        return $this->belongsTo('App\Person');
+    }
 }
 

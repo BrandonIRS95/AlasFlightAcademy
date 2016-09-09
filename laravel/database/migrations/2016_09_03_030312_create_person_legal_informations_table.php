@@ -21,7 +21,6 @@ class CreatePersonLegalInformationsTable extends Migration
             $table->date('passport_expiration_date');
             $table->integer('person_id');
             $table->timestamps();
-            //$table->rememberToken();
         });
     }
 

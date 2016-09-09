@@ -23,7 +23,7 @@ class CreateAddressesTable extends Migration
             $table->string('phone_number');
             $table->integer('person_id');
             $table->timestamps();
-            //$table->rememberToken();
+
         });
     }
 

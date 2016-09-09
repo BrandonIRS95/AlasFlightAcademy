@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAdmissionsTable extends Migration
+class CreateSchoolRecordsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,14 @@ class CreateAdmissionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('admissions', function (Blueprint $table) {
+        Schema::create('school_records', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('status');
-            $table->integer('person_id');
+            $table->string('school_name');
+            $table->boolean('school_in_usa');
+            $table->string('diploma_degree');
+            $table->date('attendance_date_finish');
             $table->timestamps();
+            $table->integer('person_id');
         });
     }
 
@@ -28,6 +31,6 @@ class CreateAdmissionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('admissions');
+        Schema::dropIfExists('school_records');
     }
 }

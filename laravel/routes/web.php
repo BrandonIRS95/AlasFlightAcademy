@@ -21,6 +21,11 @@ Route::get('/logout', [
     'as' => 'logout'
 ]);
 
+Route::post('/addAdmission', [
+    'uses' => 'AdmissionController@postAddAdmission',
+    'as' => 'addAdmission'
+]);
+
 Route::get('/admin', [
     'uses' => 'UserController@getAdminView',
     'as' => 'admin',

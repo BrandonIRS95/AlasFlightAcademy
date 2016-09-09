@@ -21,7 +21,6 @@ class CreateContactsTable extends Migration
             $table->string('email');
             $table->text('question');
             $table->timestamps();
-            //$table->rememberToken();
         });
     }
 
