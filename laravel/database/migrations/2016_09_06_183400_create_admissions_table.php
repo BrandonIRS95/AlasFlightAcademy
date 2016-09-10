@@ -16,6 +16,17 @@ class CreateAdmissionsTable extends Migration
         Schema::create('admissions', function (Blueprint $table) {
             $table->increments('id');
             $table->string('status');
+            $table->date('start_date');
+            $table->boolean('requesting_financial_aid');
+            $table->boolean('elegible_va_benefits');
+            $table->boolean('english_native_language');
+            $table->boolean('convicted_crime');
+            $table->text('flight_certificates_rating');
+            $table->text('schools_rating_obtained');
+            $table->string('ffa_medical');
+            $table->boolean('information_application_factual');
+            $table->string('electronic_signature');
+            $table->date('todays_date');
             $table->integer('pilot_program_id');
             $table->integer('person_id');
             $table->timestamps();

@@ -3,9 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Address;
+use App\Admission;
 use App\PersonLegalInformation;
+use App\PilotProgram;
 use App\SchoolRecord;
+use App\TypeOfUser;
+use App\User;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
+use DateTime;
 use App\Person;
 use App\Http\Requests;
 
@@ -56,9 +62,36 @@ class AdmissionController extends Controller
 
         $person->schoolRecords()->save($schoolRecord2);
 
+        $admission = new Admission();
+        $admission->status = 'onhold';
+        $admission->start_date = $request['prefix__start_date__suffix'];
+        $admission->requesting_financial_aid = $request['requesting_financial_aid'];
+        $admission->elegible_va_benefits = $request['elegible_va_benefits'];
+        $admission->english_native_language = $request['english_native_language'];
+        $admission->convicted_crime = $request['convicted_crime'];
+        $admission->flight_certificates_rating = $request['flight_certificates_rating'];
+        $admission->schools_rating_obtained = $request['schools_rating_obtained'];
+        $admission->ffa_medical = $request['ffa_medical'];
+        $admission->information_application_factual = $request['information_application_factual'];
+        $admission->electronic_signature = $request['electronic_signature'];
+        $admission->todays_date = $request['prefix__todays_date__suffix'];
+        $admission->person()->associate($person);
+        $admission->pilotProgram()->associate(PilotProgram::find($request['pilot_program']));
+
+        $admission->save();
 
 
+        $user = new User();
+        $user->password = bcrypt('alasfa2016');
+        $user->status = 0;
+        $user->typeOfUser()->associate(TypeOfUser::find(2));
+        $user->email = $request['email'];
+        $user->person()->associate($person);
 
+        $user->save();
+
+        return response()->json(['status' => 0,
+            'message' => 'Admission successfully added.'], 200);
 
     }
 }

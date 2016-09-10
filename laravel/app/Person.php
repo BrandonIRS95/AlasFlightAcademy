@@ -21,4 +21,9 @@ class Person extends Model
     {
         return $this->hasMany('App\SchoolRecord');
     }
+
+    public function admission()
+    {
+        return $this->hasOne('App\Admission');
+    }
 }
