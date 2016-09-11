@@ -3,8 +3,16 @@
 @section('individual-styles')
   <link rel="stylesheet" href="{{URL::to('css/enroll-page.css')}}">
   <style>
-    span.error{
+    div.error{
       color: red;
+    }
+    /*#gender-error {
+      position: absolute;
+      top: 50px;
+    }*/
+    input.error, select.error {
+      border-bottom: 1px solid red;
+      box-shadow: 0 1px 0 0 red;
     }
   </style>
 @endsection
@@ -86,14 +94,14 @@
             <input id="address" type="text" name="address" class="ModalForm__input">
           </div>
           <div class="ModalForm__input--select input-field col s12 m6">
-            <select name="country">
+            <select id="country_select" name="country">
               <option value="" disabled selected>Country</option>
               <option>Mexico</option>
               <option>USA</option>
             </select>
           </div>
           <div class="ModalForm__input--select input-field col s12 m6">
-            <select name="state">
+            <select id="state_select" name="state">
               <option value="" disabled selected>State</option>
               <option>CA</option>
               <option>FL</option>
@@ -218,8 +226,8 @@
             <input id="startdate" name="start_date" type="date" class="ModalForm__input datepicker">
           </div><i class="ModalForm__input_icon col s2 m2 material-icons">today</i>
           <div class="ModalForm__input--select input-field col s12 m8">
-            <select name="pilot_program">
-              <option value="" disabled selected>Select pilot program</option>
+            <select id="pilot_program_select" name="pilot_program">
+              <option value="" selected disabled>Select pilot program</option>
               <option value="1">Program 1</option>
               <option value="2">Program 2</option>
               <option value="3">Program 3</option>
@@ -301,8 +309,8 @@
           </div>
           <input type="hidden" name="_token" value="{{ Session::token() }}">
           <div class="input-field col s6">
-            <label for="startdate">Today's date</label>
-            <input id="startdate" name="todays_date" type="date" class="ModalForm__input datepicker">
+            <label for="todays_date">Today's date</label>
+            <input id="todays_date" name="todays_date" type="date" class="ModalForm__input datepicker">
           </div><i class="ModalForm__input_icon col s2 material-icons">today</i>
           <div class="ModalForm__buttons_margin col s12"></div>
           <div class="ModalForm__buttons col s12"><a data-target="modalconfirm" class="waves-effect waves-light btn ModalForm__button grey lighten-2 modal-trigger">cancel</a>
@@ -388,8 +396,34 @@
     });
   </script>
   <script>
+    $('#pilot_program_select').change(function () {
+       $(this).valid();
+    });
+    $('#country_select').change(function () {
+      $(this).valid();
+    });
+    $('#state_select').change(function () {
+      $(this).valid();
+    });
+    $('#birthdate').change(function () {
+      $(this).valid();
+    });
+    $('#startdate').change(function () {
+      $(this).valid();
+    });
+    $('#todays_date').change(function () {
+      $(this).valid();
+    });
+
     $("#enroll-form").validate({
-        errorElement: "span",
+        ignore: [],
+        errorElement: "div",
+        errorPlacement: function(error, element) {
+
+            $(element).parent().append(error);
+
+
+        },
         rules : {
           gender: {
             required: true
@@ -407,6 +441,73 @@
             required: true
           },
           country : {
+            required: true
+          },
+          phone_number : {
+            required: true
+          },
+          email : {
+            required: true,
+            email: true
+          },
+          city : {
+            required: true
+          },
+          state : {
+            required: true
+          },
+          country : {
+            required: true
+          },
+          zip_code : {
+            required: true
+          },
+          city_country_of_birth : {
+            required: true
+          },
+          citizenship : {
+            required: true
+          },
+          school_name1 : {
+            required: true
+          },
+          school_in_usa1 : {
+            required: true
+          },
+          diploma_degree1 : {
+            required: true
+          },
+          school_name2 : {
+            required: true
+          },
+          school_in_usa2 : {
+            required: true
+          },
+          diploma_degree2 : {
+            required: true
+          },
+          start_date : {
+            required: true
+          },
+          pilot_program : {
+            required: true
+          },
+          requesting_financial_aid : {
+            required: true
+          },
+          english_native_language : {
+            required: true
+          },
+          convicted_crime : {
+            required: true
+          },
+          information_application_factual : {
+            required: true
+          },
+          electronic_signature : {
+            required: true
+          },
+          todays_date : {
             required: true
           }
         },

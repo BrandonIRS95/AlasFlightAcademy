@@ -18,12 +18,12 @@ class CreateAdmissionsTable extends Migration
             $table->string('status');
             $table->date('start_date');
             $table->boolean('requesting_financial_aid');
-            $table->boolean('elegible_va_benefits');
+            $table->boolean('elegible_va_benefits')->nullable();
             $table->boolean('english_native_language');
             $table->boolean('convicted_crime');
-            $table->text('flight_certificates_rating');
-            $table->text('schools_rating_obtained');
-            $table->string('ffa_medical');
+            $table->text('flight_certificates_rating')->nullable();
+            $table->text('schools_rating_obtained')->nullable();
+            $table->string('ffa_medical')->nullable();
             $table->boolean('information_application_factual');
             $table->string('electronic_signature');
             $table->date('todays_date');

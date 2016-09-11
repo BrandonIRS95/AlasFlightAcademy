@@ -18,7 +18,7 @@ class CreateSchoolRecordsTable extends Migration
             $table->string('school_name');
             $table->boolean('school_in_usa');
             $table->string('diploma_degree');
-            $table->date('attendance_date_finish');
+            $table->date('attendance_date_finish')->nullable();
             $table->timestamps();
             $table->integer('person_id');
         });

@@ -42,7 +42,8 @@ class AdmissionController extends Controller
         $legalInformation->citizenship = $request['citizenship'];
         $legalInformation->country_of_passport_issuance = $request['country_of_passport_issuance'];
         $legalInformation->passport_number = $request['passport_number'];
-        $legalInformation->passport_expiration_date = $request['prefix__passport_expiration_date__suffix'];
+        $expiration = $request['prefix__passport_expiration_date__suffix'];
+        $legalInformation->passport_expiration_date = (is_null($expiration) || empty($expiration) || strlen($expiration) < 1 ? NULL : $expiration);
 
         $person->legalInformation()->save($legalInformation);
 
@@ -50,7 +51,8 @@ class AdmissionController extends Controller
         $schoolRecord1->school_name = $request['school_name1'];
         $schoolRecord1->school_in_usa = $request['school_in_usa1'];
         $schoolRecord1->diploma_degree = $request['diploma_degree1'];
-        $schoolRecord1->attendance_date_finish = $request['prefix__attendance_date_finish1__suffix'];
+        $attendance1 = $request['prefix__attendance_date_finish1__suffix'];
+        $schoolRecord1->attendance_date_finish = (is_null($attendance1) || empty($attendance1) || strlen($attendance1) < 1 ? NULL : $attendance1);
 
         $person->schoolRecords()->save($schoolRecord1);
 
@@ -58,7 +60,8 @@ class AdmissionController extends Controller
         $schoolRecord2->school_name = $request['school_name2'];
         $schoolRecord2->school_in_usa = $request['school_in_usa2'];
         $schoolRecord2->diploma_degree = $request['diploma_degree2'];
-        $schoolRecord2->attendance_date_finish = $request['prefix__attendance_date_finish2__suffix'];
+        $attendance2 = $request['prefix__attendance_date_finish2__suffix'];
+        $schoolRecord2->attendance_date_finish = (is_null($attendance2) || empty($attendance2) || strlen($attendance2) < 1 ? NULL : $attendance2);
 
         $person->schoolRecords()->save($schoolRecord2);
 

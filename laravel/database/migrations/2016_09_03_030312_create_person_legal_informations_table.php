@@ -16,9 +16,9 @@ class CreatePersonLegalInformationsTable extends Migration
         Schema::create('person_legal_informations', function (Blueprint $table) {
             $table->increments('id');
             $table->string('citizenship');
-            $table->string('country_of_passport_issuance');
-            $table->string('passport_number');
-            $table->date('passport_expiration_date');
+            $table->string('country_of_passport_issuance')->nullable();
+            $table->string('passport_number')->nullable();
+            $table->date('passport_expiration_date')->nullable();
             $table->integer('person_id');
             $table->timestamps();
         });
