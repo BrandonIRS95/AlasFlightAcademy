@@ -329,6 +329,7 @@
       <button id="modal-close-button" class="waves-effect waves-light btn ModalForm__button grey lighten-2">CLOSE</button>
     </div>
   </div>
+
 @endsection
 
 @section('javascript-functions')
@@ -417,6 +418,15 @@
 
     $("#enroll-form").validate({
         ignore: [],
+        invalidHandler: function(event, validator) {
+          // 'this' refers to the form
+          var errors = validator.numberOfInvalids();
+          if (errors) {
+            alert('You missed ' + errors + ' fields, please check the form again.');
+          } else {
+            $("div.error").hide();
+          }
+        },
         errorElement: "div",
         errorPlacement: function(error, element) {
 
