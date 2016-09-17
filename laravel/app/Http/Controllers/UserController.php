@@ -66,9 +66,21 @@ class UserController extends Controller
         $type = Auth::user()->typeOfUser->type;
 
         if($type == 'Admin')
-            return view('admin');
+            return view('admin.dashboard');
         else
             return redirect()->route('index');
 
     }
+
+    public function getCalendarView()
+    {
+        $type = Auth::user()->typeOfUser->type;
+
+        if($type == 'Admin')
+            return view('admin.calendar');
+        else
+            return redirect()->route('index');
+
+    }
+
 }

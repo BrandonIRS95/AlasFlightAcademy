@@ -8,6 +8,11 @@
         font-size: 30px;
       }
     }
+    @media only screen and (max-width:387px){
+      #text-header{
+        font-size: 22px;
+      }
+    }
   </style>
 @endsection
 

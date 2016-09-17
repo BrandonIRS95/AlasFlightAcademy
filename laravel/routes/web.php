@@ -32,6 +32,12 @@ Route::get('/admin', [
     'middleware' => 'auth'
 ]);
 
+Route::get('/calendar', [
+    'uses' => 'UserController@getCalendarView',
+    'as' => 'calendar',
+    'middleware' => 'auth'
+]);
+
 
 
 Route::get('/', function () {

@@ -2,6 +2,7 @@
 
 @section('individual-styles')
   <link rel="stylesheet" href="{{URL::to('css/enroll-page.css')}}">
+  <link rel="stylesheet" href="{{URL::to('css/intlTelInput.css')}}">
   <style>
     div.error{
       color: red;
@@ -14,6 +15,25 @@
       border-bottom: 1px solid red;
       box-shadow: 0 1px 0 0 red;
     }
+
+    .intl-tel-input{
+      width: 100%;
+      box-sizing: content-box;
+    }
+
+    #phone::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+      color:#9e9e9e;
+    }
+    #phone::-moz-placeholder { /* Firefox 19+ */
+      color: #9e9e9e;
+    }
+    #phone:-ms-input-placeholder { /* IE 10+ */
+      color: #9e9e9e;
+    }
+    #phone:-moz-placeholder { /* Firefox 18- */
+      color: #9e9e9e;
+    }
+
   </style>
 @endsection
 
@@ -117,7 +137,7 @@
             <input id="zipcode" type="text" name="zip_code" class="ModalForm__input">
           </div>
           <div class="input-field col s12 m6">
-            <label for="phone">Phone Number</label>
+
             <input id="phone" type="text" name="phone_number" class="ModalForm__input">
           </div>
           <div class="input-field col s12 m6">
@@ -336,6 +356,7 @@
   <script src="{{URL::to('js/jquery-migrate-1.4.1.min.js')}}"></script>
   <script src="{{URL::to('js/jquery.validate.js')}}"></script>
   <script src="{{URL::to('js/additional-methods.js')}}"></script>
+  <script src="{{URL::to('js/intlTelInput.js')}}" type="text/javascript"></script>
   <script>
     $('.button-collapse').sideNav();
     var $navbarItems = $('.Navbar__item');
@@ -353,7 +374,7 @@
       var $enrollModal = $('#enroll-modal');
       var $enrollForm  = $('#enroll-form');
       var $modalTriggers = $('.modal-trigger');
-      function closeForm() {
+      window.closeForm = function closeForm() {
         $enrollModal.closeModal();
         $confirmModal.closeModal();
         $enrollForm.trigger('reset');
@@ -397,6 +418,23 @@
     });
   </script>
   <script>
+    $('#phone').intlTelInput({
+      utilsScript: "js/utils.js"
+    });
+
+    jQuery.validator.addMethod("validPhoneFormat", function(value, element) {
+      if ($.trim(value)) {
+        if ($(element).intlTelInput("isValidNumber")) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+
+      return true;
+    }, "Please enter a valid phone number.");
+
+
     $('#pilot_program_select').change(function () {
        $(this).valid();
     });
@@ -454,7 +492,8 @@
             required: true
           },
           phone_number : {
-            required: true
+            required: true,
+            validPhoneFormat: true
           },
           email : {
             required: true,
@@ -523,17 +562,24 @@
         },
         submitHandler: function(form){
           console.log($(form).serializeArray());
+
+          $("#add-contact-btn").prop('disabled', true);
+
+          var data = $(form).serializeArray();
+          data[10].value = $("#phone").intlTelInput("getNumber");
+
           $.ajax({
             method: 'post',
             url: '{{route('addAdmission')}}',
-            data: $(form).serialize()
+            data: data
           }).done(function (response) {
             if(response.status === 0)
             {
-              alert('Admission sent');
+              alert('Admission sent. Now follow the other steps to complete your admission.');
+              closeForm();
             }
             else {
-              alert("CACA");
+              alert("Error: We could not send your data. Please try again.");
             }
           })
         }

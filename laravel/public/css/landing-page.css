@@ -118,7 +118,7 @@
   @media only screen and (max-width: 600px) and (orientation: landscape) {
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/shared\/PageHeader\.scss}line{font-family:\0000346}}
     .Page__header__filter--landing {
-      height: calc(300px - 60px - 56px); } }
+      /*height: calc(300px - 60px - 56px);*/ } }
 
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/shared\/PageHeader\.scss}line{font-family:\0000361}}
 .Page__header__text {

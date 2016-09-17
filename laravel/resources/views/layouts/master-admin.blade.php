@@ -36,6 +36,7 @@
             padding-right: 0;
         }
     </style>
+    @yield('individual-styles')
 </head>
 <body>
 <header class="cd-main-header">
@@ -96,7 +97,7 @@
             </li>
 
             <li class="has-children comments">
-                <a href="#0">Calendar</a>
+                <a href="{{route('calendar')}}">Calendar</a>
             </li>
 
             <li class="has-children notifications">
