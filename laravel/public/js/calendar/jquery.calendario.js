@@ -90,7 +90,7 @@
 		},
 		// Calendar logic based on http://jszen.blogspot.pt/2007/03/how-to-build-simple-calendar-with.html
 		_generateTemplate : function( callback ) {
-            
+
 			var head = this._getHead(),
 				body = this._getBody(),
 				rowClass;
@@ -287,7 +287,6 @@
 		setData : function( caldata ) {
 
 			caldata = caldata || {};
-            console.log(caldata);
 			$.extend( this.caldata, caldata );
 			this._generateTemplate();
 

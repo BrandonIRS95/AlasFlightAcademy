@@ -1,137 +1,226 @@
 @extends('layouts.master-admin')
 
 @section('individual-styles')
-    <!--<link rel="shortcut icon" href="../favicon.ico">-->
-        <link rel="stylesheet" type="text/css" href="{{URL::to('css/calendar/style.css')}}" />
         <link rel="stylesheet" type="text/css" href="{{URL::to('css/calendar/calendar.css')}}" />
-        <link rel="stylesheet" type="text/css" href="{{URL::to('css/calendar/custom_2.css')}}" />
-        <link type="text/css" href="{{URL::to('css/calendar/jquery.jscrollpane.css')}}" rel="stylesheet" media="all" />
+        <link rel="stylesheet" type="text/css" href="{{URL::to('css/calendar/custom_1.css')}}" />
+        <script src="{{URL::to('js/calendar/modernizr.custom.63321.js')}}"></script>
+        <style>
+            body {
+
+            }
+
+            .cd-main-content, .content-wrapper{
+                height: 100vh;
+            }
+
+            .container{
+                height: calc(100% - 23px);
+            }
+
+            .custom-calendar-full{
+                top: 0px;
+            }
+
+            .custom-header h3{
+                text-align: left;
+                color: gray;
+            }
+
+            .title-view{
+                display: none;
+            }
+
+            .fc-calendar-container{
+                top: 60px;
+            }
+
+            .fc-calendar{
+                left: 0px;
+                right: 0px;
+            }
+
+            .fc-calendar .fc-head, .fc-calendar
+            {
+                border-radius: 0px;
+            }
+
+            .fc-calendar .fc-head{
+                color: #b1b1b1;
+                box-shadow: 0;
+                border-top: 1px solid lightgray;
+                border-bottom: 1px solid lightgray;
+                background: none;
+                padding: 0px;
+            }
+
+            .fc-calendar .fc-head div {
+                box-shadow: -1px 0 0 #dadada;
+            }
+
+            .fc-calendar .fc-row {
+                box-shadow: inset 0 -1px 0 0 #dadada;
+            }
+
+            .fc-calendar .fc-head div:nth-child(1){
+                box-shadow: none;
+            }
+
+            .custom-header h2, .custom-header h3{
+                text-transform: none;
+                letter-spacing: 0;
+            }
+
+            .fc-calendar .fc-head > div {
+                text-transform: none;
+                letter-spacing: 0;
+                text-shadow: none;
+                font-weight: bold;
+            }
+
+            .fc-calendar .fc-row > div {
+                box-shadow: -1px 0 0 #dadada;
+            }
+
+            .fc-calendar .fc-row > div > span.fc-date {
+                color: #011a35;
+            }
+
+            .fc-calendar .fc-row > div.fc-today{
+                box-shadow: none;
+            }
+
+            .fc-calendar .fc-body{
+                padding: 0px;
+            }
+
+            #custom-month{
+                font-size: 30px;
+                color: #011a35;
+            }
+
+            #custom-year{
+                font-size: 25px;
+
+            }
+
+            .conteiner-cal-nav{
+                position: relative;
+                float: right;
+                font-size: 30px;
+                cursor: pointer;
+            }
+
+            .custom-header nav span{
+                background: #1784c7;
+            }
+
+            .custom-header nav span:hover{
+                background: #1784c7;
+            }
+
+            .container{
+                height: calc(100vh - 60px);
+            }
+
+            @media only screen and (min-width: 768px){
+                .cd-side-nav {
+                    position: fixed;
+                }
+            }
+
+            @media only screen and (max-width: 880px){
+                .fc-calendar-container{
+                    top: 0px;
+                }
+            }
+
+            @media screen and (max-width: 880px), screen and (max-height: 450px) {
+                .custom-header{
+
+                }
+            }
+        </style>
     @endsection
 
 @section('title-view')
-        Calendar
+        <div style="position: relative; float: left;">Calendar</div>
+        <!--<div class="conteiner-cal-nav">
+            <span id="custom-prev" class="">&#8678;</span>
+            <span id="custom-next" class="">&#8680;</span>
+            <span id="custom-current" class="" title="Got to current date">&#8682;</span>
+        </div>-->
+        <div style="clear: both;"></div>
     @endsection
 
 
 @section('content')
-        <div class="content-calendar">
-            <div class="custom-calendar-wrap">
-                <div id="custom-inner" class="custom-inner">
-                    <div class="custom-header clearfix">
-                        <nav>
-                            <span id="custom-prev" class="custom-prev"></span>
-                            <span id="custom-next" class="custom-next"></span>
-                        </nav>
-                        <h2 id="custom-month" class="custom-month"></h2>
-                        <h3 id="custom-year" class="custom-year"></h3>
-                    </div>
-                    <div id="calendar" class="fc-calendar-container"></div>
-                </div>
+    <div class="container">
+    <div class="custom-calendar-wrap custom-calendar-full">
+            <div class="custom-header clearfix">
+                <h3 class="custom-month-year">
+                    <span id="custom-month" class="custom-month"></span>
+                    <span id="custom-year" class="custom-year"></span>
+                    <nav>
+                        <span id="custom-prev" class="custom-prev"></span>
+                        <span id="custom-next" class="custom-next"></span>
+                        <span id="custom-current" class="custom-current" title="Got to current date"></span>
+                    </nav>
+                </h3>
             </div>
+            <div id="calendar" class="fc-calendar-container"></div>
         </div>
-
-        <div class="content-events">
-
-            <div class="custom-content-reveal" style="top: 0%">
-                <h4 id="content-date-selected">EVENTS FOR MAY 01, 2016</h4>
-            </div>
-
-            <div id="main-events" class="scroll-pane">
-                <div class="events">
-                    <div class="event-time">05:30 - 06:00</div>
-                    <img src="{{URL::to('images/calendar/plane-icon.png')}}"/>
-                    <div class="circle-event-status" style="background: #5fcc88;"></div>
-                </div>
-                <div class="events">
-                    <div class="event-time">07:30 - 08:30</div>
-                    <img src="{{URL::to('images/calendar/test-icon.png')}}"/>
-                    <div class="circle-event-status"></div>
-                </div>
-                <div class="events">
-                    <div class="event-time">10:30 - 11:00</div>
-                    <img src="{{URL::to('images/calendar/test-icon.png')}}"/>
-                    <div class="circle-event-status"></div>
-                </div>
-                <div class="events">
-                    <div class="event-time">12:30 - 13:30</div>
-                    <img src="{{URL::to('images/calendar/plane-icon.png')}}"/>
-                    <div class="circle-event-status" style="background: #5fcc88;"></div>
-                </div>
-                <div class="events">
-                    <div class="event-time">15:30 - 16:00</div>
-                    <img src="{{URL::to('images/calendar/plane-icon.png')}}"/>
-                    <div class="circle-event-status"></div>
-                </div>
-                <div class="events">
-                    <div class="event-time">17:30 - 18:00</div>
-                    <img src="{{URL::to('images/calendar/test-icon.png')}}"/>
-                    <div class="circle-event-status" style="background: #5fcc88;"></div>
-                </div>
-                <div class="events">
-                    <div class="event-time">15:30 - 16:00</div>
-                    <img src="{{URL::to('images/calendar/plane-icon.png')}}"/>
-                    <div class="circle-event-status" style="background: #5fcc88;"></div>
-                </div>
-                <div class="events">
-                    <div class="event-time">17:30 - 18:00</div>
-                    <img src="{{URL::to('images/calendar/plane-icon.png')}}"/>
-                    <div class="circle-event-status"></div>
-                </div>
-            </div>
-
-            <div id="content-event-options">
-                <div class="content-checkboxs-events">
-                    <div class="checkboxs-events"></div>
-                    <div class="checkboxs-events-title">Available</div>
-                </div>
-                <div class="content-checkboxs-events">
-                    <div class="checkboxs-events"></div>
-                    <div class="checkboxs-events-title">Booked</div>
-                </div>
-                <div class="content-buttons-event-options">
-                    <img src="{{URL::to('images/calendar/test-icon.png')}}"/>
-                    <div class="title">Tests</div>
-                </div>
-                <div class="content-buttons-event-options">
-                    <img src="{{URL::to('images/calendar/plane-icon.png')}}"/>
-                    <div class="title">Flights</div>
-                </div>
-            </div>
-
-
-            <button id="addEventBtn" class="add-button">+</button>
-
-            <div id="content-add-options">
-                <div id="content-popup-options">
-                    <img id="triangle-box-front" class="triangle-box-front" src="{{URL::to('images/calendar/triangle.png')}}"/>
-                    <button id="add-test-btn" class="buttons-options-popup">
-                        <img src="{{URL::to('images/calendar/white-test-icon.png')}}"/>
-                    </button>
-                    <button id="add-flight-btn" class="buttons-options-popup">
-                        <img src="{{URL::to('images/calendar/white-plane-icon.png')}}"/>
-                    </button>
-                </div>
-                <img id="triangle-box" class="triangle-box" src="{{URL::to('images/calendar/triangle.png')}}"/>
-                <button id="close-add-options" class="add-button">+</button>
-            </div>
-
-
         </div>
     @endsection
 
 @section('javascript')
-        <script type="text/javascript" src="{{URL::to('js/jquery-migrate-1.4.1.min.js')}}"></script>
-        <script type="text/javascript" src="{{URL::to('js/calendar/modernizr.custom.63321.js')}}"></script>
-        <script type="text/javascript" src="{{URL::to('js/TweenMax.min.js')}}"></script>
-        <script>
-            var routeSvg = '{{URL::to('svg/calendar')}}';
-            var routeImages = '{{URL::to('images/calendar')}}';
-        </script>
-        <script type="text/javascript" src="{{URL::to('js/calendar/resources.js')}}"></script>
-        <script type="text/javascript" src="{{URL::to('js/calendar/general-functions.js')}}"></script>
-        <script type="text/javascript" src="{{URL::to('js/calendar/jquery.mousewheel.js')}}"></script>
-        <script type="text/javascript" src="{{URL::to('js/calendar/jquery.jscrollpane.min.js')}}"></script>
-        <script type="text/javascript" src="{{URL::to('js/calendar/functions-calendario.js')}}"></script>
         <script type="text/javascript" src="{{URL::to('js/calendar/jquery.calendario.js')}}"></script>
         <script type="text/javascript" src="{{URL::to('js/calendar/data.js')}}"></script>
+        <script type="text/javascript">
+            $(function() {
+
+                var cal = $( '#calendar' ).calendario( {
+                            onDayClick : function( $el, $contentEl, dateProperties ) {
+
+                                for( var key in dateProperties ) {
+                                    console.log( key + ' = ' + dateProperties[ key ] );
+                                }
+
+                            },
+                            caldata : codropsEvents
+                        } ),
+                        $month = $( '#custom-month' ).html( cal.getMonthName() ),
+                        $year = $( '#custom-year' ).html( cal.getYear() );
+
+                $( '#custom-next' ).on( 'click', function() {
+                    cal.gotoNextMonth( updateMonthYear );
+                } );
+                $( '#custom-prev' ).on( 'click', function() {
+                    cal.gotoPreviousMonth( updateMonthYear );
+                } );
+                $( '#custom-current' ).on( 'click', function() {
+                    cal.gotoNow( updateMonthYear );
+                } );
+
+                function updateMonthYear() {
+                    $month.html( cal.getMonthName() );
+                    $year.html( cal.getYear() );
+                }
+
+                // you can also add more data later on. As an example:
+                /*
+                 someElement.on( 'click', function() {
+
+                 cal.setData( {
+                 '03-01-2013' : '<a href="#">testing</a>',
+                 '03-10-2013' : '<a href="#">testing</a>',
+                 '03-12-2013' : '<a href="#">testing</a>'
+                 } );
+                 // goes to a specific month/year
+                 cal.goto( 3, 2013, updateMonthYear );
+
+                 } );
+                 */
+
+            });
+        </script>
     @endsection
