@@ -1,6 +1,8 @@
 /* General Demo Style */
 
 
+html { height: 100%; }
+
 *,
 *:after,
 *:before {
@@ -24,6 +26,15 @@
 
 .clearfix {
     *zoom: 1;
+}
+
+body {
+    /*font-family: 'Lato', Calibri, Arial, sans-serif;
+    background: #f9f9f9 url(../images/bg.jpg);
+    font-weight: 300;
+    font-size: 15px;
+    color: #333;
+    height: 100%;*/
 }
 
 a {

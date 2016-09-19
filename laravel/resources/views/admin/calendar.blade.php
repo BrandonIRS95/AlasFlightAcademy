@@ -6,221 +6,197 @@
         <script src="{{URL::to('js/calendar/modernizr.custom.63321.js')}}"></script>
         <style>
             body {
-
-            }
-
-            .cd-main-content, .content-wrapper{
-                height: 100vh;
-            }
-
-            .container{
-                height: calc(100% - 23px);
-            }
-
-            .custom-calendar-full{
-                top: 0px;
-            }
-
-            .custom-header h3{
-                text-align: left;
-                color: gray;
+                background: #cdd8e2;
             }
 
             .title-view{
                 display: none;
             }
 
+            .cd-main-content .content-wrapper{
+                padding: 0;
+                padding-top: 55px;
+                height: 100vh;
+                position: relative;
+            }
+
+            #conteiner-calendar-events{
+                position: absolute;
+                left: 20px;
+                top: 75px;
+                bottom: 20px;
+                right: 20px;
+                box-shadow: 0px 5px 5px rgba(0,0,0,0.1);
+            }
+
+            .container{
+                position: relative;
+                float: left;
+                width: 63%;
+                height: 100%;
+                background: #fff;
+            }
+
+            .custom-calendar-full{
+                top:0px;
+            }
+
+            .custom-header h3{
+                padding-right: 0px;
+                text-align: left;
+            }
+
             .fc-calendar-container{
-                top: 60px;
-            }
-
-            .fc-calendar{
-                left: 0px;
-                right: 0px;
-            }
-
-            .fc-calendar .fc-head, .fc-calendar
-            {
-                border-radius: 0px;
+                top:120px;
             }
 
             .fc-calendar .fc-head{
-                color: #b1b1b1;
-                box-shadow: 0;
-                border-top: 1px solid lightgray;
-                border-bottom: 1px solid lightgray;
                 background: none;
-                padding: 0px;
+                box-shadow: none;
+                color: #c2cdd7;
             }
 
-            .fc-calendar .fc-head div {
-                box-shadow: -1px 0 0 #dadada;
+            .fc-calendar .fc-head > div{
+                text-shadow: none;
+                font-size: 30px;
+                font-weight: 400;
+                letter-spacing: 0;
             }
 
-            .fc-calendar .fc-row {
-                box-shadow: inset 0 -1px 0 0 #dadada;
+            .fc-calendar .fc-row > div > span.fc-date{
+                text-shadow: none;
+                text-align: center;
+                position: absolute;
+                top:50%;
+                left:50%;
+                transform: translate(-50%,-50%);
+                color: #a4afb9;
+
+                font-weight: 400;
+
             }
 
-            .fc-calendar .fc-head div:nth-child(1){
+            .fc-calendar .fc-row > div{
+                box-shadow: none;
+            }
+
+            .fc-calendar .fc-row{
                 box-shadow: none;
             }
 
             .custom-header h2, .custom-header h3{
-                text-transform: none;
-                letter-spacing: 0;
-            }
-
-            .fc-calendar .fc-head > div {
-                text-transform: none;
-                letter-spacing: 0;
                 text-shadow: none;
-                font-weight: bold;
             }
 
-            .fc-calendar .fc-row > div {
-                box-shadow: -1px 0 0 #dadada;
+            .fc-calendar{
+                background: none;
             }
 
-            .fc-calendar .fc-row > div > span.fc-date {
-                color: #011a35;
+            .custom-month{
+                color: #aeb9c3;
+                font-size: 40px;
+                letter-spacing: 0;
+                text-transform: none;
+                font-weight: 400;
             }
-
-            .fc-calendar .fc-row > div.fc-today{
-                box-shadow: none;
-            }
-
-            .fc-calendar .fc-body{
-                padding: 0px;
-            }
-
-            #custom-month{
+            
+            .custom-year{
                 font-size: 30px;
-                color: #011a35;
+                color: #b8c3cd;
+                font-weight: 400;
+                letter-spacing: 0;
             }
 
-            #custom-year{
-                font-size: 25px;
+            .fc-calendar .fc-row > div > span.fc-emptydate{
+                opacity: 0.5;
+            }
+
+            .custom-header {
+                height: 130px;
+                padding:0 40px;
 
             }
 
-            .conteiner-cal-nav{
+            .vertical-center{
+                position: absolute;
+                top:50%;
+                transform: translateY(-50%);
+            }
+
+
+            #conteiner-events{
                 position: relative;
-                float: right;
-                font-size: 30px;
-                cursor: pointer;
+                float: left;
+                width: 37%;
+                height: 100%;
+                background: #011a35;
             }
 
-            .custom-header nav span{
-                background: #1784c7;
-            }
 
-            .custom-header nav span:hover{
-                background: #1784c7;
-            }
-
-            .container{
-                height: calc(100vh - 60px);
-            }
-
-            @media only screen and (min-width: 768px){
-                .cd-side-nav {
-                    position: fixed;
-                }
-            }
-
-            @media only screen and (max-width: 880px){
-                .fc-calendar-container{
-                    top: 0px;
-                }
-            }
-
-            @media screen and (max-width: 880px), screen and (max-height: 450px) {
-                .custom-header{
-
-                }
-            }
         </style>
-    @endsection
-
-@section('title-view')
-        <div style="position: relative; float: left;">Calendar</div>
-        <!--<div class="conteiner-cal-nav">
-            <span id="custom-prev" class="">&#8678;</span>
-            <span id="custom-next" class="">&#8680;</span>
-            <span id="custom-current" class="" title="Got to current date">&#8682;</span>
-        </div>-->
-        <div style="clear: both;"></div>
     @endsection
 
 
 @section('content')
-    <div class="container">
-    <div class="custom-calendar-wrap custom-calendar-full">
-            <div class="custom-header clearfix">
-                <h3 class="custom-month-year">
-                    <span id="custom-month" class="custom-month"></span>
-                    <span id="custom-year" class="custom-year"></span>
-                    <nav>
-                        <span id="custom-prev" class="custom-prev"></span>
-                        <span id="custom-next" class="custom-next"></span>
-                        <span id="custom-current" class="custom-current" title="Got to current date"></span>
-                    </nav>
-                </h3>
+        <div id="conteiner-calendar-events">
+            <div class="container">
+                <div class="custom-calendar-wrap custom-calendar-full">
+                    <div class="custom-header clearfix">
+                        <h3 class="custom-month-year">
+                            <div class="vertical-center">
+                                <span id="custom-month" class="custom-month"></span>
+                                <span class="custom-month">, </span>
+                                <span id="custom-year" class="custom-year"></span>
+                            </div>
+                            <!--<nav class="vertical-center">
+                                <span id="custom-prev">&25C0</span>
+                                <span id="custom-next"></span>
+                                <span id="custom-current" title="Got to current date">
+                                    <img src="{{URL::to('svg/calendar/ic_today_black_48px.svg')}}">
+                                </span>
+                            </nav>-->
+                        </h3>
+                    </div>
+                    <div id="calendar" class="fc-calendar-container"></div>
+                </div>
             </div>
-            <div id="calendar" class="fc-calendar-container"></div>
-        </div>
+            <div id="conteiner-events">
+
+            </div>
         </div>
     @endsection
 
 @section('javascript')
-        <script type="text/javascript" src="{{URL::to('js/calendar/jquery.calendario.js')}}"></script>
+        <script type="text/javascript" src="{{URL::to('js/calendar/calendario.js')}}"></script>
         <script type="text/javascript" src="{{URL::to('js/calendar/data.js')}}"></script>
         <script type="text/javascript">
             $(function() {
 
-                var cal = $( '#calendar' ).calendario( {
-                            onDayClick : function( $el, $contentEl, dateProperties ) {
-
-                                for( var key in dateProperties ) {
-                                    console.log( key + ' = ' + dateProperties[ key ] );
-                                }
-
-                            },
-                            caldata : codropsEvents
-                        } ),
-                        $month = $( '#custom-month' ).html( cal.getMonthName() ),
-                        $year = $( '#custom-year' ).html( cal.getYear() );
-
-                $( '#custom-next' ).on( 'click', function() {
-                    cal.gotoNextMonth( updateMonthYear );
-                } );
-                $( '#custom-prev' ).on( 'click', function() {
-                    cal.gotoPreviousMonth( updateMonthYear );
-                } );
-                $( '#custom-current' ).on( 'click', function() {
-                    cal.gotoNow( updateMonthYear );
-                } );
-
                 function updateMonthYear() {
-                    $month.html( cal.getMonthName() );
-                    $year.html( cal.getYear() );
+                    $( '#custom-month' ).html( $( '#calendar' ).calendario('getMonthName') );
+                    $( '#custom-year' ).html( $( '#calendar' ).calendario('getYear'));
                 }
 
-                // you can also add more data later on. As an example:
-                /*
-                 someElement.on( 'click', function() {
+                $(document).on('finish.calendar.calendario', function(e){
+                    $( '#custom-month' ).html( $( '#calendar' ).calendario('getMonthName') );
+                    $( '#custom-year' ).html( $( '#calendar' ).calendario('getYear'));
+                    $( '#custom-next' ).on( 'click', function() {
+                        $( '#calendar' ).calendario('gotoNextMonth', updateMonthYear);
+                    } );
+                    $( '#custom-prev' ).on( 'click', function() {
+                        $( '#calendar' ).calendario('gotoPreviousMonth', updateMonthYear);
+                    } );
+                    $( '#custom-current' ).on( 'click', function() {
+                        $( '#calendar' ).calendario('gotoNow', updateMonthYear);
+                    } );
+                });
 
-                 cal.setData( {
-                 '03-01-2013' : '<a href="#">testing</a>',
-                 '03-10-2013' : '<a href="#">testing</a>',
-                 '03-12-2013' : '<a href="#">testing</a>'
-                 } );
-                 // goes to a specific month/year
-                 cal.goto( 3, 2013, updateMonthYear );
-
-                 } );
-                 */
-
+                $( '#calendar' ).calendario({
+                    checkUpdate : false,
+                    caldata : events,
+                    fillEmpty : true,
+                    displayWeekAbbr : true,
+                });
             });
         </script>
     @endsection
