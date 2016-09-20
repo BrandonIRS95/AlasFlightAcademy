@@ -94,14 +94,14 @@
 
             .custom-month{
                 color: #aeb9c3;
-                font-size: 40px;
+                font-size: 45px;
                 letter-spacing: 0;
                 text-transform: none;
                 font-weight: 400;
             }
             
             .custom-year{
-                font-size: 30px;
+                font-size: 35px;
                 color: #b8c3cd;
                 font-weight: 400;
                 letter-spacing: 0;
@@ -123,6 +123,16 @@
                 transform: translateY(-50%);
             }
 
+            #conteiner-nav-calendar{
+                right: 55px;
+            }
+
+            #conteiner-nav-calendar div {
+                position: relative;
+                float: left;
+                font-size: 50px;
+            }
+
 
             #conteiner-events{
                 position: relative;
@@ -130,6 +140,24 @@
                 width: 37%;
                 height: 100%;
                 background: #011a35;
+            }
+
+            #custom-next, #custom-prev{
+                margin-right: 10px;
+                margin-top: 8px;
+                color: #cdd8e2;
+                -webkit-user-select: none;  /* Chrome all / Safari all */
+                -moz-user-select: none;     /* Firefox all */
+                -ms-user-select: none;      /* IE 10+ */
+                user-select: none;
+            }
+
+            #custom-next, #custom-prev, #custom-current{
+                cursor: pointer;
+            }
+
+            #custom-next{
+                margin-right: 25px;
             }
 
 
@@ -147,6 +175,13 @@
                                 <span id="custom-month" class="custom-month"></span>
                                 <span class="custom-month">, </span>
                                 <span id="custom-year" class="custom-year"></span>
+                            </div>
+                            <div id="conteiner-nav-calendar" class="vertical-center">
+                                <div id="custom-prev">&#9664</div>
+                                <div id="custom-next">&#9654</div>
+                                <div id="custom-current" title="Go to current date">
+                                    <img src="{{URL::to('svg/calendar/ic_today_black_48px.svg')}}">
+                                </div>
                             </div>
                             <!--<nav class="vertical-center">
                                 <span id="custom-prev">&25C0</span>
