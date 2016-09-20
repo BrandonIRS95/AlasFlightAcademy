@@ -197,6 +197,30 @@
                 font-size: 22px;
             }
 
+            div .fc-past, div .fc-future{
+                border-radius: 5px;
+            }
+
+            .fc-calendar .fc-row:first-child > div:last-child{
+                border-radius: 5px;
+            }
+
+            .fc-calendar .fc-row:last-child > div:first-child{
+                border-radius: 5px;
+            }
+
+            .fc-calendar .fc-row:first-child > div:first-child{
+                border-radius: 5px;
+            }
+
+            .fc-calendar .fc-row:last-child > div:last-child{
+                border-radius: 5px;
+            }
+
+            .sdfsdf{
+                color: #d6e1eb;
+            }
+
 
         </style>
     @endsection
@@ -263,11 +287,31 @@
                     } );
                 });
 
+                $('#calendar').on('shown.calendar.calendario', function(){
+                    $('div.fc-row > div').on('onDayClick.calendario', function(e, dateprop) {
+
+                        var $element = $(e.target);
+
+                        if($element.find('.fc-emptydate').length === 0) {
+                            var $lastDaySelected = $('#lastDaySelected');
+                            $lastDaySelected.css('background', 'transparent');
+                            $lastDaySelected.find('span').css('color', '#a4afb9');
+                            $lastDaySelected.removeAttr('id');
+
+                            $element.css('background', '#1784c7');
+                            $element.find('span').css('color', '#fff');
+                            $element.attr('id', 'lastDaySelected');
+                        }
+
+                    });
+                });
+
                 $( '#calendar' ).calendario({
                     checkUpdate : false,
                     caldata : events,
                     fillEmpty : true,
                     displayWeekAbbr : true,
+                    events: ['click', 'focus']
                 });
             });
         </script>
