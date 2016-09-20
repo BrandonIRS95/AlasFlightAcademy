@@ -160,6 +160,43 @@
                 margin-right: 25px;
             }
 
+            .fc-calendar .fc-row > div.fc-today{
+                background: #1784c7;
+                border-radius: 5px;
+                color: #fff;
+            }
+
+            .fc-calendar .fc-row > div.fc-today:after{
+                background: none;
+                opacity: 1;
+            }
+
+            .fc-calendar .fc-row > div.fc-today > span.fc-date{
+                color: #fff;
+            }
+
+            .fc-calendar .fc-row > div.fc-content:after {
+                content: '\00B7';
+                text-align: center;
+                width: 20px;
+                margin-left: -10px;
+                position: absolute;
+                color: #DDD;
+                font-size: 70px;
+                line-height: 20px;
+                left: 50%;
+                bottom: 3px;
+            }
+
+            .fc-calendar .fc-row > div.fc-today.fc-content:after {
+                color: #fff;
+            }
+
+            .fc-calendar .fc-row > div > div a, .fc-calendar .fc-row > div > div span {
+                display: none;
+                font-size: 22px;
+            }
+
 
         </style>
     @endsection

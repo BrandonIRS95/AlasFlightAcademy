@@ -10,7 +10,4 @@ var events = {
 	'03-02-2015' : [{content : 'Graduation Exams', repeat: 'INTERVAL', allDay: true, endDate: '03-20-2015'}],
 	'04-01-2015' : [{content : 'MONDAY (WEEKLY)', repeat: 'MON', allDay: true, endDate: '04-30-2015'}]
 },
-t = new Date(),
-//Creation of today event
-today = ((t.getMonth() + 1) < 10 ? '0' + (t.getMonth() + 1) : (t.getMonth() + 1)) + '-' + (t.getDate() < 10 ? '0' + t.getDate() : t.getDate()) + '-' +t.getFullYear();
-events[today] = [{content: 'TODAY', allDay: true}];
+t = new Date();
