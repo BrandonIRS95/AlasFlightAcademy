@@ -159,7 +159,6 @@
           <div class="input-field col s12 m8">
             <label for="birthplace">City and coutry of birth</label>
             <input id="birthplace" type="text" class="ModalForm__input" name="city_country_of_birth">
-            <input type="submit" value="ADDDUMMY">
           </div>
           <div class="input-field col s12 m8">
             <label for="citizenship">Citizenship</label>
