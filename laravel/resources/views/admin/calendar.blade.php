@@ -3,7 +3,9 @@
 @section('individual-styles')
         <link rel="stylesheet" type="text/css" href="{{URL::to('css/calendar/calendar.css')}}" />
         <link rel="stylesheet" type="text/css" href="{{URL::to('css/calendar/custom_1.css')}}" />
+        <link rel="stylesheet" type="text/css" href="{{URL::to('css/calendar/jquery.jscrollpane.css')}}" />
         <script src="{{URL::to('js/calendar/modernizr.custom.63321.js')}}"></script>
+        <!-- Calendar -->
         <style>
             body {
                 background: #cdd8e2;
@@ -134,7 +136,7 @@
             }
 
 
-            #conteiner-events{
+            #content-events{
                 position: relative;
                 float: left;
                 width: 37%;
@@ -223,6 +225,171 @@
 
 
         </style>
+        <!-- Events -->
+        <style>
+            .date-selected, .filtering-status, .conteiner-events{
+                position: relative;
+                float: left;
+            }
+
+            .date-selected{
+                width: 100%;
+                height: 130px;
+            }
+
+            .filtering-status, .date-selected{
+                padding: 0 30px;
+            }
+
+            .date-selected .custom-month{
+                color: white;
+            }
+
+            .date-selected .custom-year{
+                color: #cdd8e2;
+            }
+
+            .date-selected .custom-month, .date-selected .custom-year{
+                font-size: 40px;
+            }
+
+            .filtering-status{
+                width: 100%;
+                justify-content: space-between;
+                display: flex;
+                height: 40px;
+                align-items: center;
+                font-size: 16px;
+                color: #cdd8e2;
+            }
+
+            .filtering-status span{
+                font-size: 20px;
+                padding-left: 5px;
+                padding-bottom: 0px;
+                box-shadow: 0 5px 0px 0px #011a35;
+            }
+
+            .filtering-status div{
+                padding-bottom: 3px;
+            }
+
+            .filtering-status .selected{
+                box-shadow: 0 2px 0px 0px rgba(205, 216, 226, 0.46);
+            }
+
+            .conteiner-events{
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: 190px;
+                bottom: 90px;
+
+            }
+
+            .conteiner-events .event {
+                position: relative;
+                width: 100%;
+                height: 60px;
+                background: rgba(255, 255, 255, 0.1);
+            }
+
+            .conteiner-events .event .info-event{
+                position: absolute;
+                top: 50%;
+                left: 30px;
+                transform: translateY(-50%);
+            }
+
+            .conteiner-events .event .info-event .event-time{
+                color: #cdd8e2;
+                margin-left: 35px;
+                font-size:16px;
+            }
+
+            .conteiner-events .event .info-event .status{
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                margin-top: -2px;
+                font-size: 30px;
+            }
+
+            .conteiner-events .event img{
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                right: 10px;
+                width: 35px;
+                opacity: 0.8;
+            }
+
+            .conteiner-events .event:nth-child(2n+0)
+            {
+                background: transparent;
+            }
+
+            .booked{
+                color: orange;
+            }
+
+            .available{
+                color: green;
+            }
+
+            .canceled {
+                color: red;
+            }
+
+            .jspVerticalBar{
+                background: transparent;
+            }
+
+
+            .jspDrag{
+                background: #1784c7;
+            }
+
+            .jspTrack{
+                background: rgba(255, 255, 255, 0.1);
+            }
+
+            #add-btn{
+                position: absolute;
+                width: 60px;
+                right: 20px;
+                bottom: 15px;
+                cursor: pointer;
+            }
+
+            .conteiner-event-filters{
+                position: absolute;
+                bottom:0;
+                left:30px;
+                height: 90px;
+                right: 80px;
+            }
+
+            .event-filter{
+                position: relative;
+                float: right;
+                margin-top: 18px;
+                opacity: 0.5;
+                margin-right: 20px;
+            }
+
+            .event-filter img{
+                width: 40px;
+            }
+
+            .event-filter div{
+                text-align: center;
+                color: #cdd8e2;
+                font-size: 14px;
+            }
+
+
+        </style>
     @endsection
 
 
@@ -256,8 +423,48 @@
                     <div id="calendar" class="fc-calendar-container"></div>
                 </div>
             </div>
-            <div id="conteiner-events">
+            <div id="content-events">
+                <div class="date-selected" id="date-selected">
+                    <div class="vertical-center">
+                        <span class="custom-month">Wednesday</span>
+                        <span class="custom-month">, </span>
+                        <span class="custom-year">4th</span>
+                    </div>
+                </div>
+                <div id="filtering-status" class="filtering-status">
+                    <div class="selected">All</div>
+                    <div>Available<span class="available">&#9679</span></div>
+                    <div>Booked<span class="booked">&#9679</span></div>
+                    <div>Canceled<span class="canceled">&#9679</span></div>
+                </div>
+                <div class="conteiner-events">
+                    <div class="event">
+                        <div class="info-event">
+                            <span class="status available">&#9679</span>
+                            <span class="event-time">12:15 - 13:30</span>
+                        </div>
+                        <img src="{{URL::to('svg/calendar/ic_airplanemode_active_white_48px.svg')}}">
+                    </div>
+                    <div class="event">
+                        <div class="info-event">
+                            <span class="status booked">&#9679</span>
+                            <span class="event-time">13:50 - 14:30</span>
+                        </div>
+                        <img src="{{URL::to('svg/calendar/ic_content_paste_white_48px.svg')}}">
+                    </div>
 
+                </div>
+                <div class="conteiner-event-filters">
+                    <div class="event-filter">
+                        <img src="{{URL::to('svg/calendar/ic_content_paste_white_48px.svg')}}">
+                        <div>Tests</div>
+                    </div>
+                    <div class="event-filter">
+                        <img src="{{URL::to('svg/calendar/ic_airplanemode_active_white_48px.svg')}}">
+                        <div>Flights</div>
+                    </div>
+                </div>
+                <img id="add-btn" src="{{URL::to('svg/ic_add_circle_white_48px.svg')}}">
             </div>
         </div>
     @endsection
@@ -265,8 +472,16 @@
 @section('javascript')
         <script type="text/javascript" src="{{URL::to('js/calendar/calendario.js')}}"></script>
         <script type="text/javascript" src="{{URL::to('js/calendar/data.js')}}"></script>
+        <script type="text/javascript" src="{{URL::to('js/calendar/jquery.jscrollpane.min.js')}}"></script>
+        <script src="http://jscrollpane.kelvinluck.com/script/jquery.mousewheel.js"></script>
         <script type="text/javascript">
             $(function() {
+
+                $('.conteiner-events').jScrollPane();
+
+                $(window).resize(function () {
+                    $('.conteiner-events').jScrollPane();
+                });
 
                 function updateMonthYear() {
                     $( '#custom-month' ).html( $( '#calendar' ).calendario('getMonthName') );
