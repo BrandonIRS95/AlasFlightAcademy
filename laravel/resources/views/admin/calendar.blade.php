@@ -319,7 +319,7 @@
                 position: absolute;
                 top: 50%;
                 transform: translateY(-50%);
-                right: 10px;
+                right: 30px;
                 width: 35px;
                 opacity: 0.8;
             }
@@ -452,6 +452,48 @@
                         </div>
                         <img src="{{URL::to('svg/calendar/ic_content_paste_white_48px.svg')}}">
                     </div>
+                    <div class="event">
+                        <div class="info-event">
+                            <span class="status available">&#9679</span>
+                            <span class="event-time">12:15 - 13:30</span>
+                        </div>
+                        <img src="{{URL::to('svg/calendar/ic_airplanemode_active_white_48px.svg')}}">
+                    </div>
+                    <div class="event">
+                        <div class="info-event">
+                            <span class="status booked">&#9679</span>
+                            <span class="event-time">13:50 - 14:30</span>
+                        </div>
+                        <img src="{{URL::to('svg/calendar/ic_content_paste_white_48px.svg')}}">
+                    </div>
+                    <div class="event">
+                        <div class="info-event">
+                            <span class="status available">&#9679</span>
+                            <span class="event-time">12:15 - 13:30</span>
+                        </div>
+                        <img src="{{URL::to('svg/calendar/ic_airplanemode_active_white_48px.svg')}}">
+                    </div>
+                    <div class="event">
+                        <div class="info-event">
+                            <span class="status booked">&#9679</span>
+                            <span class="event-time">13:50 - 14:30</span>
+                        </div>
+                        <img src="{{URL::to('svg/calendar/ic_content_paste_white_48px.svg')}}">
+                    </div><div class="event">
+                        <div class="info-event">
+                            <span class="status available">&#9679</span>
+                            <span class="event-time">12:15 - 13:30</span>
+                        </div>
+                        <img src="{{URL::to('svg/calendar/ic_airplanemode_active_white_48px.svg')}}">
+                    </div>
+                    <div class="event">
+                        <div class="info-event">
+                            <span class="status booked">&#9679</span>
+                            <span class="event-time">13:50 - 14:30</span>
+                        </div>
+                        <img src="{{URL::to('svg/calendar/ic_content_paste_white_48px.svg')}}">
+                    </div>
+
 
                 </div>
                 <div class="conteiner-event-filters">
