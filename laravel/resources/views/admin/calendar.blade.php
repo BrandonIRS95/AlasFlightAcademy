@@ -4,6 +4,7 @@
         <link rel="stylesheet" type="text/css" href="{{URL::to('css/calendar/calendar.css')}}" />
         <link rel="stylesheet" type="text/css" href="{{URL::to('css/calendar/custom_1.css')}}" />
         <link rel="stylesheet" type="text/css" href="{{URL::to('css/calendar/jquery.jscrollpane.css')}}" />
+        <link rel="stylesheet" type="text/css" href="{{URL::to('css/jquery.modal.css')}}" />
         <script src="{{URL::to('js/calendar/modernizr.custom.63321.js')}}"></script>
         <!-- Calendar -->
         <style>
@@ -272,6 +273,7 @@
 
             .filtering-status div{
                 padding-bottom: 3px;
+                cursor: pointer;
             }
 
             .filtering-status .selected{
@@ -388,6 +390,25 @@
                 font-size: 14px;
             }
 
+            .event-filter{
+                cursor: pointer;
+            }
+
+            #modalAddEvent .event-filter{
+                float: left;
+                margin: 0 20px;
+                margin-top: 20px;
+                opacity: 0.6;
+            }
+
+            #modalAddEvent .event-filter div{
+                color: black;
+            }
+
+            #modalAddEvent .event-filter img{
+                width: 60px;
+            }
+
 
         </style>
     @endsection
@@ -432,10 +453,10 @@
                     </div>
                 </div>
                 <div id="filtering-status" class="filtering-status">
-                    <div class="selected">All</div>
-                    <div>Available<span class="available">&#9679</span></div>
-                    <div>Booked<span class="booked">&#9679</span></div>
-                    <div>Canceled<span class="canceled">&#9679</span></div>
+                    <div id="selectedStatus" class="selected" data-status="all">All</div>
+                    <div data-status="available">Available<span class="available">&#9679</span></div>
+                    <div data-status="booked">Booked<span class="booked">&#9679</span></div>
+                    <div data-status="canceled">Canceled<span class="canceled">&#9679</span></div>
                 </div>
                 <div class="conteiner-events">
                     <div class="event">
@@ -509,15 +530,48 @@
                 <img id="add-btn" src="{{URL::to('svg/ic_add_circle_white_48px.svg')}}">
             </div>
         </div>
+
+        <div id="modalAddEvent" style="display: none;">
+            <h1>What type of event you want to add?</h1>
+            <div style="display:flex; justify-content: center;">
+                <div class="event-filter">
+                    <img src="{{URL::to('svg/calendar/ic_airplanemode_active_black_48px.svg')}}">
+                    <div>Flight</div>
+                </div>
+                <div class="event-filter">
+                    <img src="{{URL::to('svg/calendar/ic_content_paste_black_48px.svg')}}">
+                    <div>Test</div>
+                </div>
+            </div>
+        </div>
     @endsection
 
 @section('javascript')
         <script type="text/javascript" src="{{URL::to('js/calendar/calendario.js')}}"></script>
+        <script type="text/javascript" src="{{URL::to('js/jquery.modal.js')}}"></script>
+        <script type="text/javascript" src="{{URL::to('js/TweenMax.min.js')}}"></script>
         <script type="text/javascript" src="{{URL::to('js/calendar/data.js')}}"></script>
         <script type="text/javascript" src="{{URL::to('js/calendar/jquery.jscrollpane.min.js')}}"></script>
         <script src="http://jscrollpane.kelvinluck.com/script/jquery.mousewheel.js"></script>
         <script type="text/javascript">
             $(function() {
+
+                $('#add-btn').click(function () {
+                    var $modal = $('#modalAddEvent');
+                    $modal.modal();
+                    TweenMax.set($('.blocker'), {perspective:500});
+                    TweenMax.set($modal, {transformStyle:"preserve-3d"});
+                    TweenMax.from($modal, 0.6, {opacity: 0, rotationY:'0_short', rotationX:'80_short', rotation:'0_short', transformOrigin: 'left 90% -200'});
+                });
+
+                $('.filtering-status > div').click(function (e) {
+                    var $elementClicked = $(e.currentTarget);
+                    var $selectedStatus = $('#selectedStatus');
+                    $selectedStatus.removeAttr('id');
+                    $selectedStatus.attr('class','');
+                    $elementClicked.addClass('selected');
+                    $elementClicked.attr('id','selectedStatus');
+                });
 
                 $('.conteiner-events').jScrollPane();
 
