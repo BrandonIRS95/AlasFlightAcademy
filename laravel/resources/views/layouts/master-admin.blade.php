@@ -75,7 +75,7 @@
     <nav class="cd-side-nav">
         <ul>
             <li class="cd-label">Academy</li>
-            <li class="has-children overview active">
+            <li class="has-children overview{{ (Request::is('aspirants') ? ' active' : '') }}">
                 <a href="#0">Aspirants</a>
 
                 <!--<ul>
@@ -86,7 +86,7 @@
             </li>
 
 
-            <li class="has-children comments">
+            <li class="has-children comments{{ (Request::is('students') ? ' active' : '') }}">
                 <a href="#0">Students</a>
 
                 <ul>
@@ -96,11 +96,11 @@
                 </ul>
             </li>
 
-            <li class="has-children comments">
+            <li class="has-children comments{{ (Request::is('calendar') ? ' active' : '') }}">
                 <a href="{{route('calendar')}}">Calendar</a>
             </li>
 
-            <li class="has-children notifications">
+            <li class="has-children notifications{{ (Request::is('contact') ? ' active' : '') }}">
                 <a href="#0">Contact<span class="count">3</span></a>
 
                 <ul>
@@ -114,7 +114,7 @@
         <ul>
             <li class="cd-label">System</li>
 
-            <li class="has-children users">
+            <li class="has-children users{{ (Request::is('users') ? ' active' : '') }}">
                 <a href="#0">Users</a>
 
                 <ul>

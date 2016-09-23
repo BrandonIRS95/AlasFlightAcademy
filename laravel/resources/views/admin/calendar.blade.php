@@ -1,6 +1,7 @@
 @extends('layouts.master-admin')
 
 @section('individual-styles')
+        <link rel="stylesheet" type="text/css" href="{{URL::to('css/calendar/bootstrap.css')}}" />
         <link rel="stylesheet" type="text/css" href="{{URL::to('css/calendar/calendar.css')}}" />
         <link rel="stylesheet" type="text/css" href="{{URL::to('css/calendar/custom_1.css')}}" />
         <link rel="stylesheet" type="text/css" href="{{URL::to('css/calendar/jquery.jscrollpane.css')}}" />
@@ -409,6 +410,35 @@
                 width: 60px;
             }
 
+            .conteiner-modal-add-event{
+                width: 400px;
+                color: #FFF;
+            }
+            .conteiner-modal-add-event .row{
+                margin-top: 16px;
+            }
+
+            .conteiner-modal-add-event h1{
+                margin-top: 5px;
+                margin-bottom: 5px;
+            }
+
+            .conteiner-modal-add-event h2{
+                font-size: 20px;
+            }
+
+            .modal-principal-icon{
+                position: absolute;
+                right: 20px;
+                top: 20px;
+            }
+
+            .modal {
+                border-radius: 0px;
+                box-shadow: none;
+                -webkit-box-shadow: none;
+            }
+
 
         </style>
     @endsection
@@ -464,66 +494,66 @@
                             <span class="status available">&#9679</span>
                             <span class="event-time">12:15 - 13:30</span>
                         </div>
-                        <img src="{{URL::to('svg/calendar/ic_airplanemode_active_white_48px.svg')}}">
+                        <img src="{{URL::to('svg/calendar/ic_airplanemode_active_light_48px.svg')}}">
                     </div>
                     <div class="event">
                         <div class="info-event">
                             <span class="status booked">&#9679</span>
                             <span class="event-time">13:50 - 14:30</span>
                         </div>
-                        <img src="{{URL::to('svg/calendar/ic_content_paste_white_48px.svg')}}">
+                        <img src="{{URL::to('svg/calendar/ic_content_paste_light_48px.svg')}}">
                     </div>
                     <div class="event">
                         <div class="info-event">
                             <span class="status available">&#9679</span>
                             <span class="event-time">12:15 - 13:30</span>
                         </div>
-                        <img src="{{URL::to('svg/calendar/ic_airplanemode_active_white_48px.svg')}}">
+                        <img src="{{URL::to('svg/calendar/ic_airplanemode_active_light_48px.svg')}}">
                     </div>
                     <div class="event">
                         <div class="info-event">
                             <span class="status booked">&#9679</span>
                             <span class="event-time">13:50 - 14:30</span>
                         </div>
-                        <img src="{{URL::to('svg/calendar/ic_content_paste_white_48px.svg')}}">
+                        <img src="{{URL::to('svg/calendar/ic_content_paste_light_48px.svg')}}">
                     </div>
                     <div class="event">
                         <div class="info-event">
                             <span class="status available">&#9679</span>
                             <span class="event-time">12:15 - 13:30</span>
                         </div>
-                        <img src="{{URL::to('svg/calendar/ic_airplanemode_active_white_48px.svg')}}">
+                        <img src="{{URL::to('svg/calendar/ic_airplanemode_active_light_48px.svg')}}">
                     </div>
                     <div class="event">
                         <div class="info-event">
                             <span class="status booked">&#9679</span>
                             <span class="event-time">13:50 - 14:30</span>
                         </div>
-                        <img src="{{URL::to('svg/calendar/ic_content_paste_white_48px.svg')}}">
+                        <img src="{{URL::to('svg/calendar/ic_content_paste_light_48px.svg')}}">
                     </div><div class="event">
                         <div class="info-event">
                             <span class="status available">&#9679</span>
                             <span class="event-time">12:15 - 13:30</span>
                         </div>
-                        <img src="{{URL::to('svg/calendar/ic_airplanemode_active_white_48px.svg')}}">
+                        <img src="{{URL::to('svg/calendar/ic_airplanemode_active_light_48px.svg')}}">
                     </div>
                     <div class="event">
                         <div class="info-event">
                             <span class="status booked">&#9679</span>
                             <span class="event-time">13:50 - 14:30</span>
                         </div>
-                        <img src="{{URL::to('svg/calendar/ic_content_paste_white_48px.svg')}}">
+                        <img src="{{URL::to('svg/calendar/ic_content_paste_light_48px.svg')}}">
                     </div>
 
 
                 </div>
                 <div class="conteiner-event-filters">
                     <div class="event-filter">
-                        <img src="{{URL::to('svg/calendar/ic_content_paste_white_48px.svg')}}">
+                        <img src="{{URL::to('svg/calendar/ic_content_paste_light_48px.svg')}}">
                         <div>Tests</div>
                     </div>
                     <div class="event-filter">
-                        <img src="{{URL::to('svg/calendar/ic_airplanemode_active_white_48px.svg')}}">
+                        <img src="{{URL::to('svg/calendar/ic_airplanemode_active_light_48px.svg')}}">
                         <div>Flights</div>
                     </div>
                 </div>
@@ -531,17 +561,58 @@
             </div>
         </div>
 
-        <div id="modalAddEvent" style="display: none;">
-            <h1>What type of event you want to add?</h1>
+        <div id="modalAddEvent" style="display: none; background: rgba(1, 173, 239, 1);">
+            {{--<h2>What type of event you want to add?</h2>
             <div style="display:flex; justify-content: center;">
-                <div class="event-filter">
+                <div id="btn-add-flight" class="event-filter">
                     <img src="{{URL::to('svg/calendar/ic_airplanemode_active_black_48px.svg')}}">
                     <div>Flight</div>
                 </div>
-                <div class="event-filter">
+                <div id="btn-add-test" class="event-filter">
                     <img src="{{URL::to('svg/calendar/ic_content_paste_black_48px.svg')}}">
                     <div>Test</div>
                 </div>
+            </div>--}}
+            <div class="conteiner-modal-add-event">
+                <img class="modal-principal-icon" src="{{URL::to('svg/calendar/ic_airplanemode_active_white_48px.svg')}}">
+                <h1>ADD FLIGHT</h1>
+                <h2 style="margin-bottom: 26px;">September 26th, 2016</h2>
+                <form action="">
+                    <div class="row">
+                        <div class="col-xs-12 col-md-8" style="width: 100%;">
+                            <label for="exampleInputEmail1">Destination</label>
+                            <input type="text" name="destination" class="form-control">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <label for="start">Start</label>
+                            <select name="start" class="form-control">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                            </select>
+                        </div>
+                        <div class="col-xs-6">
+                            <label for="finish">Finish</label>
+                            <select name="finish" class="form-control">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <label for="cost">Cost</label>
+                            <input type="text" name="cost" class="form-control">
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     @endsection
@@ -556,12 +627,20 @@
         <script type="text/javascript">
             $(function() {
 
-                $('#add-btn').click(function () {
+                var $addBtn = $('#add-btn');
+
+                $('#btn-add-flight').click(function () {
+                    var $modalAddEvent = $('#modalAddEvent');
+                    $modalAddEvent.find('h2').remove();
+                    $modalAddEvent.find('div').remove();
+                });
+
+                $addBtn.click(function () {
                     var $modal = $('#modalAddEvent');
                     $modal.modal();
                     TweenMax.set($('.blocker'), {perspective:500});
                     TweenMax.set($modal, {transformStyle:"preserve-3d"});
-                    TweenMax.from($modal, 0.6, {opacity: 0, rotationY:'0_short', rotationX:'80_short', rotation:'0_short', transformOrigin: 'left 90% -200'});
+                    TweenMax.from($modal, 0.6, {opacity: 0, rotationY:'0_short', rotationX:'80_short', rotation:'0_short', transformOrigin: 'top 90% -200'});
                 });
 
                 $('.filtering-status > div').click(function (e) {
