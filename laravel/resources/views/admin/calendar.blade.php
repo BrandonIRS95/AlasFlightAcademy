@@ -411,7 +411,7 @@
             }
 
             .conteiner-modal-add-event{
-                width: 400px;
+                width: 700px;
                 color: #FFF;
             }
             .conteiner-modal-add-event .row{
@@ -437,6 +437,11 @@
                 border-radius: 0px;
                 box-shadow: none;
                 -webkit-box-shadow: none;
+            }
+
+            #map12{
+                width: 100%;
+                height: 300px;
             }
 
 
@@ -580,8 +585,9 @@
                 <form action="">
                     <div class="row">
                         <div class="col-xs-12 col-md-8" style="width: 100%;">
-                            <label for="exampleInputEmail1">Destination</label>
-                            <input type="text" name="destination" class="form-control">
+                            <label for="exampleInputEmail1">Route</label>
+                            {{--<input type="text" name="destination" class="form-control">--}}
+                            <div id="map12"></div>
                         </div>
                     </div>
                     <div class="row">
@@ -625,6 +631,40 @@
         <script type="text/javascript" src="{{URL::to('js/calendar/jquery.jscrollpane.min.js')}}"></script>
         <script src="http://jscrollpane.kelvinluck.com/script/jquery.mousewheel.js"></script>
         <script type="text/javascript">
+
+            function initMap() {
+                var chicago = {lat: 41.85, lng: -87.65};
+                var indianapolis = {lat: 39.79, lng: -86.14};
+
+                var map = new google.maps.Map(document.getElementById('map12'), {
+                    center: chicago,
+                    scrollwheel: false,
+                    zoom: 7
+                });
+
+                var directionsDisplay = new google.maps.DirectionsRenderer({
+                    map: map,
+                    draggable:true
+                });
+
+                // Set destination, origin and travel mode.
+                var request = {
+                    destination: indianapolis,
+                    origin: chicago,
+                    travelMode: 'DRIVING',
+                };
+
+                // Pass the directions request to the directions service.
+                var directionsService = new google.maps.DirectionsService();
+                directionsService.route(request, function(response, status) {
+                    if (status == 'OK') {
+                        // Display the route on the map.
+                        directionsDisplay.setDirections(response);
+                    }
+                });
+            }
+
+
             $(function() {
 
                 var $addBtn = $('#add-btn');
@@ -640,7 +680,9 @@
                     $modal.modal();
                     TweenMax.set($('.blocker'), {perspective:500});
                     TweenMax.set($modal, {transformStyle:"preserve-3d"});
-                    TweenMax.from($modal, 0.6, {opacity: 0, rotationY:'0_short', rotationX:'80_short', rotation:'0_short', transformOrigin: 'top 90% -200'});
+                    TweenMax.from($modal, 0.6, {opacity: 0, rotationY:'0_short', rotationX:'80_short', rotation:'0_short', transformOrigin: 'top 90% -200', onComplete: function(){
+                        initMap();
+                    }});
                 });
 
                 $('.filtering-status > div').click(function (e) {
@@ -704,5 +746,8 @@
                     events: ['click', 'focus']
                 });
             });
+        </script>
+        <script async defer
+                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD6KW7B-xPGNZIpgADTsdMfmhv0Yap_BeM&callback=initMap">
         </script>
     @endsection
