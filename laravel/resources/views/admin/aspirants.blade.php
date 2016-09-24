@@ -1,8 +1,8 @@
 @extends('layouts.master-admin')
 
 @section('individual-styles')
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <style>
+    <link rel="stylesheet" href="{{URL::to('css/admin/bootstrap.css')}}" >
+        <style>
         .panel {
             float: left;
             width: 40%;

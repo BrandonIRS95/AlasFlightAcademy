@@ -76,7 +76,7 @@
         <ul>
             <li class="cd-label">Academy</li>
             <li class="has-children overview{{ (Request::is('aspirants') ? ' active' : '') }}">
-                <a href="#0">Aspirants</a>
+                <a href="{{route('aspirants')}}">Aspirants</a>
 
                 <!--<ul>
                     <li><a href="#0">All Data</a></li>

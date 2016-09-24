@@ -38,9 +38,9 @@ Route::get('/calendar', [
     'middleware' => 'auth'
 ]);
 
-Route::get('/aspirant', [
+Route::get('/aspirants', [
     'uses' => 'UserController@getAspirantsView',
-    'as' => 'aspirant',
+    'as' => 'aspirants',
     'middleware' => 'auth'
 ]);
 
