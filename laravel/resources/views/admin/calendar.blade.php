@@ -632,35 +632,91 @@
         <script src="http://jscrollpane.kelvinluck.com/script/jquery.mousewheel.js"></script>
         <script type="text/javascript">
 
-            function initMap() {
-                var chicago = {lat: 41.85, lng: -87.65};
-                var indianapolis = {lat: 39.79, lng: -86.14};
+
+            /*function initMap() {
+                var myLatLng = {lat: -25.363, lng: 131.044};
+                var myLatLng2 = {lat: -18.363, lng: 100.044};
 
                 var map = new google.maps.Map(document.getElementById('map12'), {
-                    center: chicago,
-                    scrollwheel: false,
-                    zoom: 7
+                    zoom: 4,
+                    center: myLatLng
                 });
 
-                var directionsDisplay = new google.maps.DirectionsRenderer({
-                    map: map,
-                    draggable:true
-                });
+                var icon = {
 
-                // Set destination, origin and travel mode.
-                var request = {
-                    destination: indianapolis,
-                    origin: chicago,
-                    travelMode: 'DRIVING',
+                    path: "M-20,0a20,20 0 1,0 40,0a20,20 0 1,0 -40,0",
+                    fillColor: '#FF0000',
+                    fillOpacity: .6,
+                    anchor: new google.maps.Point(0,0),
+                    strokeWeight: 0,
+                    scale: 1
                 };
 
-                // Pass the directions request to the directions service.
-                var directionsService = new google.maps.DirectionsService();
-                directionsService.route(request, function(response, status) {
-                    if (status == 'OK') {
-                        // Display the route on the map.
-                        directionsDisplay.setDirections(response);
-                    }
+                map.addListener('click', function(event) {
+                    var marker = new google.maps.Marker({
+                        position: event.latLng,
+                        map: map
+                    });
+                });
+
+                var marker = new google.maps.Marker({
+                    position: myLatLng,
+                    map: map,
+                    title: 'Hello World!',
+                    draggable: true,
+                    label: 'B',
+                    icon: icon
+                });
+
+                var marker = new google.maps.Marker({
+                    position: myLatLng2,
+                    map: map,
+                    title: 'Hello World2!',
+                    draggable: true,
+                    label: 'A'
+                });
+            }*/
+
+            var poly;
+            var map;
+
+            window.onload = function () {
+                initMap();
+            }
+
+            function initMap() {
+                map = new google.maps.Map(document.getElementById('map12'), {
+                    zoom: 7,
+                    center: {lat: 41.879, lng: -87.624}  // Center the map on Chicago, USA.
+                });
+
+                /*poly = new google.maps.Polyline({
+                    strokeColor: '#000000',
+                    strokeOpacity: 1.0,
+                    strokeWeight: 3
+                });
+                poly.setMap(map);*/
+
+                var drawingManager = new google.maps.drawing.DrawingManager();
+                drawingManager.setMap(map);
+
+                // Add a listener for the click event
+                /*map.addListener('click', addLatLng);*/
+            }
+
+            // Handles click events on a map, and adds a new point to the Polyline.
+            function addLatLng(event) {
+                var path = poly.getPath();
+
+                // Because path is an MVCArray, we can simply append a new coordinate
+                // and it will automatically appear.
+                path.push(event.latLng);
+
+                // Add a new marker at the new plotted point on the polyline.
+                var marker = new google.maps.Marker({
+                    position: event.latLng,
+                    title: '#' + path.getLength(),
+                    map: map
                 });
             }
 
@@ -681,7 +737,8 @@
                     TweenMax.set($('.blocker'), {perspective:500});
                     TweenMax.set($modal, {transformStyle:"preserve-3d"});
                     TweenMax.from($modal, 0.6, {opacity: 0, rotationY:'0_short', rotationX:'80_short', rotation:'0_short', transformOrigin: 'top 90% -200', onComplete: function(){
-                        initMap();
+                        google.maps.event.trigger(map, 'resize');
+                        map.setCenter({lat: 41.879, lng: -87.624});
                     }});
                 });
 
@@ -743,11 +800,12 @@
                     caldata : events,
                     fillEmpty : true,
                     displayWeekAbbr : true,
-                    events: ['click', 'focus']
+                    events: ['click', 'focus'],
+                    sync: false
                 });
             });
         </script>
         <script async defer
-                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD6KW7B-xPGNZIpgADTsdMfmhv0Yap_BeM&callback=initMap">
+                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD6KW7B-xPGNZIpgADTsdMfmhv0Yap_BeM&callback=initMap&libraries=drawing">
         </script>
     @endsection
