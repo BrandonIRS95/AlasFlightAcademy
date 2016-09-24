@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Admission;
 use App\TypeOfUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -78,6 +79,18 @@ class UserController extends Controller
 
         if($type == 'Admin')
             return view('admin.calendar');
+        else
+            return redirect()->route('index');
+
+    }
+
+    public function getAspirantsView()
+    {
+        $type = Auth::user()->typeOfUser->type;
+        if($type =='Admin') {
+            $posts = Admission::all();
+            return view('admin.aspirants',['posts'=>$posts]);
+        }
         else
             return redirect()->route('index');
 
