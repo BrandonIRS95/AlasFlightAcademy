@@ -38,6 +38,12 @@ Route::get('/calendar', [
     'middleware' => 'auth'
 ]);
 
+Route::get('/aspirant', [
+    'uses' => 'UserController@getAspirantsView',
+    'as' => 'aspirant',
+    'middleware' => 'auth'
+]);
+
 
 
 Route::get('/', function () {
