@@ -33,19 +33,18 @@
                    </thead>
                    @foreach($posts as $post)
                    <tr class="posts" onclick="getAspirant().$post = $posts">
-                        <td class="people"> {{$post->Person->last_name }} {{$post->Person->first_name}}</td>
+                        <td class="people">{{$post->Person->last_name }} {{$post->Person->first_name}}</td>
                         <td class="people">{{$post->Person->gender}}</td>
                         <td class="people">{{$post->Person->city_country_of_birth}}</td>
                    </tr>
                    @endforeach
                </table>
-
+            {!! $posts->render() !!}
         </div>
     </section>
 @endsection
 
 @section('javascript')
-    <script src="{{URL::to('js/admin/bootstrap.js')}}"></script>
     <script src="{{URL::to('js/jquery-migrate-1.4.1.min.js')}}"></script>
     <script type="text/javascript">
 

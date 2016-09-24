@@ -88,7 +88,7 @@ class UserController extends Controller
     {
         $type = Auth::user()->typeOfUser->type;
         if($type =='Admin') {
-            $posts = Admission::all();
+            $posts = Admission::paginate(2);
             return view('admin.aspirants',['posts'=>$posts]);
         }
         else
