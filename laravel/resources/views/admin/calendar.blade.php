@@ -591,6 +591,12 @@
                         </div>
                     </div>
                     <div class="row">
+                        <div class="col-xs-12 col-md-8" style="width: 100%;">
+                            <label for="route_description">Route description</label>
+                            <input type="text" name="route_description" class="form-control">
+                        </div>
+                    </div>
+                    <div class="row">
                         <div class="col-xs-6">
                             <label for="start">Start</label>
                             <select name="start" class="form-control">

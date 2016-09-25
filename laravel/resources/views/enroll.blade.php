@@ -382,7 +382,7 @@
       function translateToModalPage(page) {
         var $calendarHolder = $('.ModalForm .picker__holder');
         var pageTranslation = (100/6) - (100/6)*page;
-        var calendarTranslation = -3*(100/6) + (100/6)*page;
+        var calendarTranslation = - 8 -3*(100/6) + (100/6)*page;
         $enrollModalContainer.css('transform', 'translateX('+ pageTranslation +'%)');
         $calendarHolder.css('transform', 'translateX('+ calendarTranslation +'%)');
       }

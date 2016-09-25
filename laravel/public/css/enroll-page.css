@@ -270,6 +270,26 @@
 .ModalForm__input_file {
   padding: 0; }
 
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/ModalForm\/modalform-datepicker\.scss}line{font-family:\000031}}
+.ModalForm__datepicker {
+  margin-top: 1em; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/ModalForm\/modalform-datepicker\.scss}line{font-family:\000035}}
+.ModalForm .picker__frame.picker__frame {
+  top: 5%;
+  border: none; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/ModalForm\/modalform-datepicker\.scss}line{font-family:\0000311}}
+.ModalForm .picker__holder {
+  background: rgba(255, 255, 255, 0.5);
+  will-change: transform;
+  -webkit-transform: translateX(-41.5%);
+          transform: translateX(-41.5%); }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/ModalForm\/modalform-datepicker\.scss}line{font-family:\0000317}}
+.ModalForm .picker__box {
+  border: none; }
+
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/ModalForm\/modalform\.scss}line{font-family:\000038}}
 .ModalForm {
   height: 100%;
@@ -296,32 +316,12 @@
   margin-top: .5em;
   font-size: 3em; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/ModalForm\/modalform\.scss}line{font-family:\0000329}}
-.ModalForm__datepicker {
-  margin-top: 1em; }
-
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/ModalForm\/modalform\.scss}line{font-family:\0000333}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/ModalForm\/modalform\.scss}line{font-family:\0000330}}
 .ModalForm__divider {
   border: 1px dashed #187ac7;
   margin: 3em 0 1em 0; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/ModalForm\/modalform\.scss}line{font-family:\0000339}}
-.ModalForm .picker__frame.picker__frame {
-  top: 5%;
-  border: none; }
-
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/ModalForm\/modalform\.scss}line{font-family:\0000345}}
-.ModalForm .picker__holder {
-  background: rgba(255, 255, 255, 0.5);
-  will-change: transform;
-  -webkit-transform: translateX(-40%);
-          transform: translateX(-40%); }
-
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/ModalForm\/modalform\.scss}line{font-family:\0000351}}
-.ModalForm .picker__box {
-  border: none; }
-
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/ModalForm\/modalform\.scss}line{font-family:\0000355}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/arturocoronel\/Documents\/projects\/alas-academy\/styles\/components\/ModalForm\/modalform\.scss}line{font-family:\0000335}}
 .ModalForm__certification {
   margin-top: 4em; }
 
