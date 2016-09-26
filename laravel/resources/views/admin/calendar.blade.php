@@ -451,6 +451,50 @@
                 background: #1784c7;
                 color: #FFFFFF;
             }
+
+            .modal-add-flight-test .modal-header{
+                border-bottom: none;
+            }
+
+            .modal-add-flight-test .modal-footer{
+                border-top: none;
+            }
+
+            .modal-add-flight-test .custom-btn-primary{
+                background: #FF9410;
+                border-color: transparent;
+                border-radius: 3px;
+            }
+
+            .modal-add-flight-test .custom-btn-default{
+                background: transparent;
+                border-radius: 0px;
+                border: 1px solid #ffffff;
+                -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+                -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+                box-sizing: border-box;
+                color: #fff;
+            }
+
+            .modal-add-flight-test .custom-btn-primary, .modal-add-flight-test .custom-btn-default{
+                width: 100px;
+            }
+
+            .modal-add-flight-test .close span{
+                color: #FFF;
+            }
+
+            #map{
+                width: 100%;
+                height: 200px;
+            }
+
+            .modal-backdrop{
+            }
+
+            #content-modal-add-event{
+
+            }
         </style>
     @endsection
 
@@ -572,9 +616,9 @@
             </div>
         </div>
 
-        <div id="modalAddEvent" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
-            <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content modal-add-flight-test">
+        <div id="modalAddEvent" class="modal bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+            <div id="modalWrapper" class="modal-dialog modal-lg" role="document">
+                <div id="content-modal-add-event" class="modal-content modal-add-flight-test">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         <h2 class="modal-title">ADD FLIGHT TEST</h2>
@@ -585,134 +629,50 @@
                             <div class='row'>
                                 <div class='col-sm-12'>
                                     <div class='form-group'>
-                                        <label for="user_login">Username</label>
-                                        <input class="form-control" id="user_login" name="user[login]" required="true" size="30" type="text" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class='row'>
-                                <div class='col-sm-6'>
-                                    <div class='form-group'>
-                                        <label for="user_password">Password</label>
-                                        <input class="form-control" id="user_password" name="user[password]" size="30" type="password" />
-                                    </div>
-                                </div>
-                                <div class='col-sm-6'>
-                                    <div class='form-group'>
-                                        <label for="user_password_confirmation">Password confirmation</label>
-                                        <input class="form-control" id="user_password_confirmation" name="user[password_confirmation]" size="30" type="password" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class='row'>
-                                <div class='col-sm-4'>
-                                    <div class='form-group'>
-                                        <label for="user_title">Title</label>
-                                        <input class="form-control" id="user_title" name="user[title]" size="30" type="text" />
-                                    </div>
-                                </div>
-                                <div class='col-sm-4'>
-                                    <div class='form-group'>
-                                        <label for="user_firstname">First name</label>
-                                        <input class="form-control" id="user_firstname" name="user[firstname]" required="true" size="30" type="text" />
-                                    </div>
-                                </div>
-                                <div class='col-sm-4'>
-                                    <div class='form-group'>
-                                        <label for="user_lastname">Last name</label>
-                                        <input class="form-control" id="user_lastname" name="user[lastname]" required="true" size="30" type="text" />
+                                        <label>Route</label>
+                                        <div id="map"></div>
                                     </div>
                                 </div>
                             </div>
                             <div class='row'>
                                 <div class='col-sm-12'>
                                     <div class='form-group'>
-
-                                        <label for="user_email">Email</label>
-                                        <input class="form-control required email" id="user_email" name="user[email]" required="true" size="30" type="text" />
+                                        <label for="route_description">Route description</label>
+                                        <input name="route_description" type="text" class="form-control">
                                     </div>
                                 </div>
                             </div>
                             <div class='row'>
-                                <div class='col-sm-12'>
+                                <div class='col-sm-6'>
                                     <div class='form-group'>
-                                        <label for="user_locale">Language</label>
-                                        <select class="form-control" id="user_locale" name="user[locale]"><option value="de" selected="selected">Deutsch</option>
-                                            <option value="en">English</option></select>
+                                        <label for="start">Start</label>
+                                        <select class="form-control" id="user_password" name="start"></select>
+                                    </div>
+                                </div>
+                                <div class='col-sm-6'>
+                                    <div class='form-group'>
+                                        <label for="finish">Finish</label>
+                                        <select class="form-control" id="user_password_confirmation" name="finish"></select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='row'>
+                                <div class='col-sm-6'>
+                                    <div class='form-group'>
+                                        <label for="cost">Cost</label>
+                                        <input class="form-control" id="user_title" name="cost" type="text" />
                                     </div>
                                 </div>
                             </div>
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
+                        <button id="close-modal" type="button" class="btn btn-default custom-btn-default">Cancel</button>
+                        <button type="button" class="btn btn-primary custom-btn-primary">Save</button>
                     </div>
                 </div>
             </div>
         </div>
-
-        <!--<div id="modalAddEvent" class="modal fade bs-example-modal-sm" style="background: rgba(1, 173, 239, 1);" tabindex="-1" role="dialog">
-            <h2>What type of event you want to add?</h2>
-            <div style="display:flex; justify-content: center;">
-                <div id="btn-add-flight" class="event-filter">
-                    <img src="{{URL::to('svg/calendar/ic_airplanemode_active_black_48px.svg')}}">
-                    <div>Flight</div>
-                </div>
-                <div id="btn-add-test" class="event-filter">
-                    <img src="{{URL::to('svg/calendar/ic_content_paste_black_48px.svg')}}">
-                    <div>Test</div>
-                </div>
-            </div>
-            <div class="conteiner-modal-add-event">
-                <img class="modal-principal-icon" src="{{URL::to('svg/calendar/ic_airplanemode_active_white_48px.svg')}}">
-                <h1>ADD FLIGHT</h1>
-                <h2 style="margin-bottom: 26px;">September 26th, 2016</h2>
-                <form action="">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <label for="exampleInputEmail1">Route</label>
-                            {{--<input type="text" name="destination" class="form-control">--}}
-                            <div id="map12"></div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <label for="route_description">Route description</label>
-                            <input type="text" name="route_description" class="form-control">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-6">
-                            <label for="start">Start</label>
-                            <select name="start" class="form-control">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                            </select>
-                        </div>
-                        <div class="col-xs-6">
-                            <label for="finish">Finish</label>
-                            <select name="finish" class="form-control">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-6">
-                            <label for="cost">Cost</label>
-                            <input type="text" name="cost" class="form-control">
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>-->
     @endsection
 
 @section('javascript')
@@ -720,6 +680,7 @@
         <script type="text/javascript" src="{{URL::to('js/TweenMax.min.js')}}"></script>
         <script type="text/javascript" src="{{URL::to('js/calendar/data.js')}}"></script>
         <script type="text/javascript" src="{{URL::to('js/calendar/jquery.jscrollpane.min.js')}}"></script>
+        <script type="text/javascript" src="{{URL::to('js/admin/animations.js')}}"></script>
         <script src="http://jscrollpane.kelvinluck.com/script/jquery.mousewheel.js"></script>
         <script type="text/javascript">
 
@@ -772,11 +733,11 @@
             var map;
 
             window.onload = function () {
-                //initMap();
+                initMap();
             }
 
             function initMap() {
-                map = new google.maps.Map(document.getElementById('map12'), {
+                map = new google.maps.Map(document.getElementById('map'), {
                     zoom: 7,
                     center: {lat: 41.879, lng: -87.624}  // Center the map on Chicago, USA.
                 });
@@ -810,7 +771,7 @@
                     map: map
                 });
             }
-</script>
+        </script>
         <script>
 
             $(function() {
@@ -824,14 +785,15 @@
                 });
 
                 $addBtn.click(function () {
-                    var $modal = $('#modalAddEvent');
-                    $modal.modal();
-                    /*TweenMax.set($('.blocker'), {perspective:500});
-                    TweenMax.set($modal, {transformStyle:"preserve-3d"});
-                    TweenMax.from($modal, 0.6, {opacity: 0, rotationY:'0_short', rotationX:'80_short', rotation:'0_short', transformOrigin: 'top 90% -200', onComplete: function(){
+                    showModalAnimation($('#modalAddEvent'), function(){
                         google.maps.event.trigger(map, 'resize');
                         map.setCenter({lat: 41.879, lng: -87.624});
-                    }});*/
+                        console.log("senos");
+                    });
+                });
+
+                $('#close-modal').click(function () {
+                    hideModalAnimation($('#modalAddEvent'));
                 });
 
                 $('.filtering-status > div').click(function (e) {
