@@ -97,4 +97,17 @@ class AdmissionController extends Controller
             'message' => 'Admission successfully added.'], 200);
 
     }
+
+    public function getAdmissionById(Request $request)
+    {
+        $admission = Admission::find($request['id']);
+        $admission->person;
+        $admission->person->user;
+        $admission->PilotProgram;
+        $admission->person->address;
+        $admission->person->schoolRecords;
+
+        return response()->json(['admission' => $admission,
+            'status' => '0'], 200);
+    }
 }

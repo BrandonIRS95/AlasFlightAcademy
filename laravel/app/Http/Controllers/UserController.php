@@ -96,4 +96,15 @@ class UserController extends Controller
 
     }
 
+    public function getStudentsView()
+    {
+        $type = Auth::user()->typeOfUser->type;
+        if($type =='Admin') {
+            return view('admin.students');
+        }
+        else
+            return redirect()->route('index');
+
+    }
+
 }

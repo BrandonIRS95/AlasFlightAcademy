@@ -43,6 +43,18 @@ Route::get('/aspirants', [
     'as' => 'aspirants',
     'middleware' => 'auth'
 ]);
+Route::get('/students', [
+    'uses' => 'UserController@getStudentsView',
+    'as' => 'students',
+    'middleware' => 'auth'
+]);
+
+Route::get('/getAdmissionById/{id?}', [
+    'uses' => 'AdmissionController@getAdmissionById',
+    'as' => 'getAdmissionById',
+    'middleware' => 'auth'
+]);
+
 
 
 
