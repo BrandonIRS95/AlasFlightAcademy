@@ -103,9 +103,10 @@ class AdmissionController extends Controller
         $admission = Admission::find($request['id']);
         $admission->person;
         $admission->person->user;
-        $admission->PilotProgram;
+        $admission->pilotProgram;
         $admission->person->address;
         $admission->person->schoolRecords;
+        $admission->person->legalInformation;
 
         return response()->json(['admission' => $admission,
             'status' => '0'], 200);

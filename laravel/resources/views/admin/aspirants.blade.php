@@ -14,9 +14,8 @@
         .people{
             cursor: pointer;
         }
-        .modal-dialog {
-            width: 60%;
-        }
+
+
 
     </style>
 
@@ -56,11 +55,36 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="post-body"> Personal information</label>
                         <ul class="list-group">
+                            <li id="person-gender" class="list-group-item"></li>
                             <li id="person-dateOfBirth" class="list-group-item"></li>
                             <li id="person-fullName" class="list-group-item"></li>
-                            <li id="person-FullName" class="list-group-item"></li>
+                            <li id="person-email" class="list-group-item"></li>
+                            <li id="person-address" class="list-group-item"></li>
+                            <li id="person-city" class="list-group-item"></li>
+                            <li id="person-country" class="list-group-item"></li>
+                            <li id="person-phoneNumber" class="list-group-item"></li>
+                            <li id="person-state" class="list-group-item"></li>
+                            <li id="person-zipCode" class="list-group-item"></li>
+                        </ul>
+                    </div>
+                    <div class="form-group">
+                        <ul class="list-group">
+                            <li id="person-cityCountryOfBirth" class="list-group-item"></li>
+                            <li id="person-citizenship" class="list-group-item"></li>
+                            <li id="person-countryOfPassportIssuance" class="list-group-item"></li>
+                            <li id="person-passportNumber" class="list-group-item"></li>
+                            <li id="person-passportExpiration" class="list-group-item"></li>
+
+                            <li id="person-startDate" class="list-group-item"></li>
+                            <li id="person-pilotProgram" class="list-group-item"></li>
+                            <li id="person-requestingFinancialAid" class="list-group-item"></li>
+                            <li id="person-elegibleVaBenefits" class="list-group-item"></li>
+                            <li id="person-englishNativeLanguage" class="list-group-item"></li>
+                            <li id="person-convictedCrime" class="list-group-item"></li>
+                            <li id="person-flightCertificatesRating" class="list-group-item"></li>
+                            <li id="person-schoolsRatingObtained" class="list-group-item"></li>
+                            <li id="person-ffaMedical" class="list-group-item"></li>
                         </ul>
                     </div>
                 </div>
@@ -85,10 +109,24 @@
 
             getAdmissionById(idAdmission).done(function (response) {
                 console.log(response);
+                //Personal Information
+                $('#person-gender').html("<Strong>Gender :</Strong> " + response.admission.person.gender);
                 $('#person-dateOfBirth').html("<Strong>Date of birth :</Strong> " + response.admission.person.date_of_birth);
                 $('#person-fullName').html("<Strong>Name :</Strong> " +  response.admission.person.last_name+" "+response.admission.person.first_name);
-                $('#person-Email').html("<Strong>Name :</Strong> " + response.admission.id);
-                $('#person-Address').html("Id: " + response.admission.id);
+                $('#person-email').html("<Strong>Email :</Strong> " + response.admission.person.user.email);
+                $('#person-address').html("<Strong>Address :</Strong> " + response.admission.person.address.address);
+                $('#person-city').html("<Strong>City :</Strong> " + response.admission.person.address.city);
+                $('#person-country').html("<Strong>Country :</Strong> " + response.admission.person.address.country);
+                $('#person-phoneNumber').html("<Strong>Phone Number :</Strong> " + response.admission.person.address.phone_number);
+                $('#person-state').html("<Strong>State :</Strong> " + response.admission.person.address.state);
+                $('#person-zipCode').html("<Strong>Zip Code :</Strong> " + response.admission.person.address.zip_code);
+                //Student Detail
+                $('#person-cityCountryOfBirth').html("<Strong>City Country Of Birth :</Strong> " + response.admission.person.city_country_of_birth);
+
+                $('#person-startDate').html("<Strong>Start Date :</Strong> " + response.admission.start_date);
+                $('#person-pilotProgram').html("<Strong>Pilot Program :</Strong> " + response.admission.pilot_program.name);
+                $('#person-requestingFinancialAid').html("<Strong>Requesting Financial Aid :</Strong> " + response.admission.requesting_financial_aid);
+
             });
 
            $('#aspirant-modal').modal();
