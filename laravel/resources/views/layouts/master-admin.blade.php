@@ -87,13 +87,13 @@
 
 
             <li class="has-children comments{{ (Request::is('students') ? ' active' : '') }}">
-                <a href="#0">Students</a>
+                <a href="{{route('students')}}">Students</a>
 
-                <ul>
+            <!--<ul>
                     <li><a href="#0">All Comments</a></li>
                     <li><a href="#0">Edit Comment</a></li>
                     <li><a href="#0">Delete Comment</a></li>
-                </ul>
+                </ul>-->
             </li>
 
             <li class="has-children comments{{ (Request::is('calendar') ? ' active' : '') }}">
