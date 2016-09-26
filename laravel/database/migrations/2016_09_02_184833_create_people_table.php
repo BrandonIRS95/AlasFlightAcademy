@@ -19,9 +19,9 @@ class CreatePeopleTable extends Migration
             $table->string('last_name');
             $table->date('date_of_birth');
             $table->string('gender');
-            $table->string('email');
             $table->string('city_country_of_birth');
             $table->timestamps();
+
         });
     }
 

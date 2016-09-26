@@ -11,6 +11,53 @@
 |
 */
 
+Route::post('/signup', [
+    'uses' => 'UserController@postSignUp',
+    'as' => 'signup'
+]);
+
+Route::get('/logout', [
+    'uses' => 'UserController@getLogout',
+    'as' => 'logout'
+]);
+
+Route::post('/addAdmission', [
+    'uses' => 'AdmissionController@postAddAdmission',
+    'as' => 'addAdmission'
+]);
+
+Route::get('/admin', [
+    'uses' => 'UserController@getAdminView',
+    'as' => 'admin',
+    'middleware' => 'auth'
+]);
+
+Route::get('/calendar', [
+    'uses' => 'UserController@getCalendarView',
+    'as' => 'calendar',
+    'middleware' => 'auth'
+]);
+
+Route::get('/aspirants', [
+    'uses' => 'UserController@getAspirantsView',
+    'as' => 'aspirants',
+    'middleware' => 'auth'
+]);
+Route::get('/students', [
+    'uses' => 'UserController@getStudentsView',
+    'as' => 'students',
+    'middleware' => 'auth'
+]);
+
+Route::get('/getAdmissionById/{id?}', [
+    'uses' => 'AdmissionController@getAdmissionById',
+    'as' => 'getAdmissionById',
+    'middleware' => 'auth'
+]);
+
+
+
+
 Route::get('/', function () {
     return view('index');
 })->name('index');
@@ -34,6 +81,15 @@ Route::get('/contact', function () {
 Route::get('/enroll', function () {
     return view('enroll');
 })->name('enroll');
+
+Route::get('/signin', function () {
+    return view('signin');
+})->name('signin');
+
+Route::post('/signin', [
+    'uses' => 'UserController@postSignIn',
+    'as' => 'signin'
+]);
 
 
 Route::get('/addperson', [
