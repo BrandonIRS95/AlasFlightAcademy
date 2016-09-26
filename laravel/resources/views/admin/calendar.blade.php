@@ -1,11 +1,9 @@
 @extends('layouts.master-admin')
 
 @section('individual-styles')
-        <link rel="stylesheet" type="text/css" href="{{URL::to('css/calendar/bootstrap.css')}}" />
         <link rel="stylesheet" type="text/css" href="{{URL::to('css/calendar/calendar.css')}}" />
         <link rel="stylesheet" type="text/css" href="{{URL::to('css/calendar/custom_1.css')}}" />
         <link rel="stylesheet" type="text/css" href="{{URL::to('css/calendar/jquery.jscrollpane.css')}}" />
-        <link rel="stylesheet" type="text/css" href="{{URL::to('css/jquery.modal.css')}}" />
         <script src="{{URL::to('js/calendar/modernizr.custom.63321.js')}}"></script>
         <!-- Calendar -->
         <style>
@@ -26,7 +24,7 @@
 
             #conteiner-calendar-events{
                 position: absolute;
-                left: 20px;
+                left: 220px;
                 top: 75px;
                 bottom: 20px;
                 right: 20px;
@@ -446,6 +444,14 @@
 
 
         </style>
+        <!--Modal add flight test-->
+        <style>
+            .modal-add-flight-test{
+                border-radius: 0;
+                background: #1784c7;
+                color: #FFFFFF;
+            }
+        </style>
     @endsection
 
 
@@ -566,8 +572,88 @@
             </div>
         </div>
 
-        <div id="modalAddEvent" style="display: none; background: rgba(1, 173, 239, 1);">
-            {{--<h2>What type of event you want to add?</h2>
+        <div id="modalAddEvent" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content modal-add-flight-test">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h2 class="modal-title">ADD FLIGHT TEST</h2>
+                        <h4>September 23th, 2016</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form action="#" method="post">
+                            <div class='row'>
+                                <div class='col-sm-12'>
+                                    <div class='form-group'>
+                                        <label for="user_login">Username</label>
+                                        <input class="form-control" id="user_login" name="user[login]" required="true" size="30" type="text" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='row'>
+                                <div class='col-sm-6'>
+                                    <div class='form-group'>
+                                        <label for="user_password">Password</label>
+                                        <input class="form-control" id="user_password" name="user[password]" size="30" type="password" />
+                                    </div>
+                                </div>
+                                <div class='col-sm-6'>
+                                    <div class='form-group'>
+                                        <label for="user_password_confirmation">Password confirmation</label>
+                                        <input class="form-control" id="user_password_confirmation" name="user[password_confirmation]" size="30" type="password" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='row'>
+                                <div class='col-sm-4'>
+                                    <div class='form-group'>
+                                        <label for="user_title">Title</label>
+                                        <input class="form-control" id="user_title" name="user[title]" size="30" type="text" />
+                                    </div>
+                                </div>
+                                <div class='col-sm-4'>
+                                    <div class='form-group'>
+                                        <label for="user_firstname">First name</label>
+                                        <input class="form-control" id="user_firstname" name="user[firstname]" required="true" size="30" type="text" />
+                                    </div>
+                                </div>
+                                <div class='col-sm-4'>
+                                    <div class='form-group'>
+                                        <label for="user_lastname">Last name</label>
+                                        <input class="form-control" id="user_lastname" name="user[lastname]" required="true" size="30" type="text" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='row'>
+                                <div class='col-sm-12'>
+                                    <div class='form-group'>
+
+                                        <label for="user_email">Email</label>
+                                        <input class="form-control required email" id="user_email" name="user[email]" required="true" size="30" type="text" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='row'>
+                                <div class='col-sm-12'>
+                                    <div class='form-group'>
+                                        <label for="user_locale">Language</label>
+                                        <select class="form-control" id="user_locale" name="user[locale]"><option value="de" selected="selected">Deutsch</option>
+                                            <option value="en">English</option></select>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--<div id="modalAddEvent" class="modal fade bs-example-modal-sm" style="background: rgba(1, 173, 239, 1);" tabindex="-1" role="dialog">
+            <h2>What type of event you want to add?</h2>
             <div style="display:flex; justify-content: center;">
                 <div id="btn-add-flight" class="event-filter">
                     <img src="{{URL::to('svg/calendar/ic_airplanemode_active_black_48px.svg')}}">
@@ -577,21 +663,21 @@
                     <img src="{{URL::to('svg/calendar/ic_content_paste_black_48px.svg')}}">
                     <div>Test</div>
                 </div>
-            </div>--}}
+            </div>
             <div class="conteiner-modal-add-event">
                 <img class="modal-principal-icon" src="{{URL::to('svg/calendar/ic_airplanemode_active_white_48px.svg')}}">
                 <h1>ADD FLIGHT</h1>
                 <h2 style="margin-bottom: 26px;">September 26th, 2016</h2>
                 <form action="">
                     <div class="row">
-                        <div class="col-xs-12 col-md-8" style="width: 100%;">
+                        <div class="col-md-12">
                             <label for="exampleInputEmail1">Route</label>
                             {{--<input type="text" name="destination" class="form-control">--}}
                             <div id="map12"></div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-xs-12 col-md-8" style="width: 100%;">
+                        <div class="col-md-12">
                             <label for="route_description">Route description</label>
                             <input type="text" name="route_description" class="form-control">
                         </div>
@@ -626,12 +712,11 @@
                     </div>
                 </form>
             </div>
-        </div>
+        </div>-->
     @endsection
 
 @section('javascript')
         <script type="text/javascript" src="{{URL::to('js/calendar/calendario.js')}}"></script>
-        <script type="text/javascript" src="{{URL::to('js/jquery.modal.js')}}"></script>
         <script type="text/javascript" src="{{URL::to('js/TweenMax.min.js')}}"></script>
         <script type="text/javascript" src="{{URL::to('js/calendar/data.js')}}"></script>
         <script type="text/javascript" src="{{URL::to('js/calendar/jquery.jscrollpane.min.js')}}"></script>
@@ -687,7 +772,7 @@
             var map;
 
             window.onload = function () {
-                initMap();
+                //initMap();
             }
 
             function initMap() {
@@ -725,7 +810,8 @@
                     map: map
                 });
             }
-
+</script>
+        <script>
 
             $(function() {
 
@@ -740,12 +826,12 @@
                 $addBtn.click(function () {
                     var $modal = $('#modalAddEvent');
                     $modal.modal();
-                    TweenMax.set($('.blocker'), {perspective:500});
+                    /*TweenMax.set($('.blocker'), {perspective:500});
                     TweenMax.set($modal, {transformStyle:"preserve-3d"});
                     TweenMax.from($modal, 0.6, {opacity: 0, rotationY:'0_short', rotationX:'80_short', rotation:'0_short', transformOrigin: 'top 90% -200', onComplete: function(){
                         google.maps.event.trigger(map, 'resize');
                         map.setCenter({lat: 41.879, lng: -87.624});
-                    }});
+                    }});*/
                 });
 
                 $('.filtering-status > div').click(function (e) {
