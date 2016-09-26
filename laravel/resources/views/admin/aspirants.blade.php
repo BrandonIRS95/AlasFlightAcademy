@@ -58,6 +58,7 @@
                     <div class='row'>
                         <div class='col-sm-4'>
                             <div class="form-group">
+                                <p><strong>Personal Information</strong></p>
                                 <ul class="list-group">
                                     <li id="person-gender" class="list-group-item"></li>
                                     <li id="person-dateOfBirth" class="list-group-item"></li>
@@ -74,13 +75,13 @@
                         </div>
                         <div class='col-sm-4'>
                             <div class="form-group">
+                                <p><strong>Student Details</strong></p>
                                 <ul class="list-group">
                                     <li id="person-cityCountryOfBirth" class="list-group-item"></li>
                                     <li id="person-citizenship" class="list-group-item"></li>
                                     <li id="person-countryOfPassportIssuance" class="list-group-item"></li>
                                     <li id="person-passportNumber" class="list-group-item"></li>
                                     <li id="person-passportExpiration" class="list-group-item"></li>
-
                                     <li id="person-startDate" class="list-group-item"></li>
                                     <li id="person-pilotProgram" class="list-group-item"></li>
                                     <li id="person-requestingFinancialAid" class="list-group-item"></li>
@@ -95,6 +96,7 @@
                         </div>
                         <div class='col-sm-4'>
                             <div class="form-group">
+                                <p><strong>School Record</strong></p>
                                 <ul class="list-group">
                                     <li id="person-schoolName" class="list-group-item"></li>
                                     <li id="person-schoolInUsa" class="list-group-item"></li>
@@ -103,6 +105,7 @@
                                 </ul>
                             </div>
                             <div class="form-group">
+                                <p><strong>School Record 2</strong></p>
                                 <ul class="list-group">
                                     <li id="person-schoolName1" class="list-group-item"></li>
                                     <li id="person-schoolInUsa1" class="list-group-item"></li>
@@ -111,6 +114,7 @@
                                 </ul>
                             </div>
                             <div class="form-group">
+                                <p><strong>Authentication</strong></p>
                                 <ul class="list-group">
                                     <li id="person-informationApplicationFactual" class="list-group-item"></li>
                                     <li id="person-electronicSignature" class="list-group-item"></li>
