@@ -20,7 +20,7 @@
                         <div class="icon"><img src="{{URL::to('svg/admin/ic_people_outline_black_24px.svg')}}"/></div>
                         <div class="name">Aspirants</div>
                     </div>
-                    <div class="option{{ (Request::is('students') ? ' selected' : '') }}">
+                    <div class="option{{ (Request::is('students') ? ' selected' : '') }}" onclick="window.location='{{route('students')}}'">
                         <div class="icon"><img src="{{URL::to('svg/admin/ic_people_black_24px.svg')}}"/></div>
                         <div class="name">Students</div>
                     </div>

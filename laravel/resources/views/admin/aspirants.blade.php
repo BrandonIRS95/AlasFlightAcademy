@@ -47,7 +47,7 @@
             {!! $posts->render() !!}
         </div>
 
-    <div class="modal fade" tabindex="-1" role="dialog" id="aspirant-modal">
+    <div tabindex="-1" role="dialog" id="aspirant-modal" class="modal bs-example-modal-lg">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -124,6 +124,9 @@
                         </div>
                     </div>
                 </div>
+                <div class="modal-footer">
+                    <button id="close-modal" type="button" class="btn btn-default custom-btn-default">Close</button>
+                </div>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
@@ -131,13 +134,16 @@
 @endsection
 
 @section('javascript')
+    <script src="{{URL::to('js/admin/animations.js')}}"></script>
+    <script src="{{URL::to('js/TweenMax.min.js')}}"></script>
     <script type="text/javascript">
 
-
-
+        $('#close-modal').click(function(){
+            hideModalAnimation($('#aspirant-modal'))
+        });
 
         $('.post').on('click', function(event) {
-            event.preventDefault();
+
 
             var $postBody =  $(event.currentTarget);
             var idAdmission = $postBody.attr('data-id');
@@ -189,8 +195,7 @@
                 $('#person-todaysDate').html("<Strong>Todays Date :</Strong> " + response.admission.todays_date);
 
             });
-
-           $('#aspirant-modal').modal();
+             showModalAnimation($('#aspirant-modal'));
         });
 
         function getAdmissionById(id)
