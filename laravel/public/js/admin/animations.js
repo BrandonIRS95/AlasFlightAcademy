@@ -18,10 +18,7 @@ window.hideModalAnimation = function hideModalAnimation($modalElement, callback)
     var $contentModal = $modalElement.find('.modal-content');
 
     TweenMax.set($('.modal-open .modal'), {overflowY: 'hidden'});
-    TweenMax.to($contentModal, 0.6, {ease: Back.easeIn.config(1), opacity: 0, onComplete: function () {
-       TweenMax.set($contentModal, {clearProps:"all"});
-    }});
-    TweenMax.to($contentModal, 0.6, {ease: Back.easeIn.config(1), scale: 0.5, rotationY:'0_short', rotationX:'80_short', rotation:'0_short', transformOrigin: 'top 90% -870', onComplete: function(){
+    TweenMax.to($contentModal, 0.6, {ease: Back.easeIn.config(1), opacity: 0, scale: 0.5, rotationY:'0_short', rotationX:'80_short', rotation:'0_short', transformOrigin: 'top 90% -870', onComplete: function(){
         TweenMax.set($('.modal-open .modal'), {overflowY: 'auto'});
         TweenMax.set($contentModal, {clearProps:"all"});
         $modalElement.modal('hide');
