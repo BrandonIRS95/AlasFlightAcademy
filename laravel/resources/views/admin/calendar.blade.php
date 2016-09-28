@@ -684,8 +684,16 @@
                                 </div>
                                 <div class='col-sm-6'>
                                     <div class='form-group'>
+                                        <label for="airplane">Airplane</label>
+                                        <input class="form-control" id="user_title" name="airplane" type="text" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
                                         <label for="cost">Cost</label>
-                                        <input class="form-control" id="user_title" name="cost" type="text" />
+                                        <input type="text" name="cost" class="form-control">
                                     </div>
                                 </div>
                             </div>
