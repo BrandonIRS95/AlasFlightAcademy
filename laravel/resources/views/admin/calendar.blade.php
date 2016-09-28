@@ -738,6 +738,12 @@
                     var $modalAddEvent = $('#modalAddEvent');
                     hideModalAnimation($modalAddEvent, function(){
                         $modalAddEvent.find('input, textarea').val('');
+                        for (var i = 0; i < markers.length; i++) {
+                            markers[i].setMap(null);
+                        }
+                        //poly.setMap(null);
+                        poly.getPath().clear();
+                        markers = [];
                     });
                 });
 

@@ -57,8 +57,9 @@ function initMap() {
 
 var poly;
 var map;
-var addMarker = false;
+var addMarker = true;
 var markers = [];
+var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
@@ -112,28 +113,49 @@ function addLatLng(event) {
     // and it will automatically appear.
     path.push(event.latLng);
 
-    console.log(event.latLng);
+    console.log(JSON.parse('{"lng" : "' + path.getArray()[0].lat() + '"}'));
     console.log(poly.getPath().getArray()[poly.getPath().getArray().length - 1]);
 
     // Add a new marker at the new plotted point on the polyline.
-    if(addMarker || poly.getPath().getArray().length === 1) {
+    if(addMarker) {
         var marker = new google.maps.Marker({
             position: event.latLng,
-            title: '#' + path.getLength(),
-            map: map
+            label: 'A',
+            map: map,
+            draggable: true,
+            index: 0
         });
+        addMarker = false;
+        markers.push(marker);
+        console.log(marker.getPosition().lat());
     }
+
 }
 
 function addMarkerLastCoordinates()
 {
-    var marker = new google.maps.Marker({
-        position: poly.getPath().getArray()[poly.getPath().getArray().length - 1],
-        title: 'A',
-        map: map
-    });
+    if(poly.getPath().getArray().length > 0) {
+        var marker = new google.maps.Marker({
+            position: poly.getPath().getArray()[poly.getPath().getArray().length - 1],
+            label: labels.charAt(markers.length),
+            map: map,
+            draggable: true,
+            index: markers[markers.length - 1].index + 1
+        });
 
-    marker.addListener("rightclick", function() {
-        marker.setMap(null);
-    });
+        markers.push(marker);
+
+        marker.addListener("rightclick", function () {
+            if (marker.index < (markers.length - 1)) {
+                markers.splice(marker.index, 1);
+                for (var x = marker.index; x < markers.length; x++) {
+                    var auxMarker = markers[x];
+                    auxMarker.index = x;
+                    auxMarker.setLabel(labels.charAt(x));
+                }
+            }
+            else markers.splice(marker.index, 1);
+            marker.setMap(null);
+        });
+    }
 }
