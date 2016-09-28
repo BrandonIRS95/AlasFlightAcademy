@@ -57,6 +57,8 @@ function initMap() {
 
 var poly;
 var map;
+var addMarker = false;
+var markers = [];
 
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
@@ -110,10 +112,28 @@ function addLatLng(event) {
     // and it will automatically appear.
     path.push(event.latLng);
 
+    console.log(event.latLng);
+    console.log(poly.getPath().getArray()[poly.getPath().getArray().length - 1]);
+
     // Add a new marker at the new plotted point on the polyline.
-    /*var marker = new google.maps.Marker({
-        position: event.latLng,
-        title: '#' + path.getLength(),
+    if(addMarker || poly.getPath().getArray().length === 1) {
+        var marker = new google.maps.Marker({
+            position: event.latLng,
+            title: '#' + path.getLength(),
+            map: map
+        });
+    }
+}
+
+function addMarkerLastCoordinates()
+{
+    var marker = new google.maps.Marker({
+        position: poly.getPath().getArray()[poly.getPath().getArray().length - 1],
+        title: 'A',
         map: map
-    });*/
+    });
+
+    marker.addListener("rightclick", function() {
+        marker.setMap(null);
+    });
 }

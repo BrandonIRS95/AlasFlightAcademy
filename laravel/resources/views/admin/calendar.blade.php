@@ -427,8 +427,8 @@
 
             .modal-principal-icon{
                 position: absolute;
-                right: 20px;
-                top: 20px;
+                right: 30px;
+                top: 30px;
             }
 
             .modal {
@@ -498,6 +498,17 @@
 
             #ta-route-description{
                 resize: vertical;
+            }
+
+            #add-marker-btn{
+                position: absolute;
+                top: 35px;
+                left: 140px;
+                background: #FFF;
+                padding: 3px;
+                border-radius: 3px;
+                box-shadow: 0px 2px 2px rgba(0,0,0,0.2);
+                cursor: pointer;
             }
         </style>
     @endsection
@@ -627,6 +638,7 @@
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         <h2 class="modal-title">ADD FLIGHT TEST</h2>
                         <h4>September 23th, 2016</h4>
+                        <img class="modal-principal-icon" src="{{URL::to('svg/calendar/ic_airplanemode_active_light_48px.svg')}}">
                     </div>
                     <div class="modal-body">
                         <form action="#" method="post">
@@ -635,6 +647,9 @@
                                     <div class='form-group'>
                                         <label>Route</label>
                                         <div id="map"></div>
+                                        <div id="add-marker-btn">
+                                            <img src="{{URL::to('svg/calendar/ic_add_location_black_24px.svg')}}">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -701,6 +716,10 @@
             $(function() {
 
                 var $addBtn = $('#add-btn');
+
+                $('#add-marker-btn').click(function(){
+                    addMarkerLastCoordinates();
+                });
 
                 $('#btn-add-flight').click(function () {
                     var $modalAddEvent = $('#modalAddEvent');
