@@ -547,7 +547,7 @@
             <div id="content-events">
                 <div class="date-selected" id="date-selected">
                     <div class="vertical-center">
-                        <span class="custom-month">Wednesday PRUEBA</span>
+                        <span class="custom-month">Wednesday</span>
                         <span class="custom-month">, </span>
                         <span class="custom-year">4th</span>
                     </div>
