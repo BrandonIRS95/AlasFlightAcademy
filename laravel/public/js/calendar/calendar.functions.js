@@ -2,6 +2,10 @@
  * Created by brandonirs on 28/09/2016.
  */
 
+// TODO Cuando falten menos de 5 minutos para la siguiente hora arreglar bug, igual con los minutos
+// TODO Si no es la hora actual no esconder los minutos
+// TODO Al seleccionar un dia del calendario, actualizar la vista y la variable CURRENT-DAY-SELECTED
+
 $(function() {
 
     var SELECTED_DATE = new Date();
@@ -127,19 +131,15 @@ $(function() {
         showModalAnimation($('#modalAddEvent'), function(){
             google.maps.event.trigger(map, 'resize');
             map.setCenter({lat: -34.397, lng: 150.644});
-        });
-    });
-
-    $('#close-modal').click(function () {
-        var $modalAddEvent = $('#modalAddEvent');
-        hideModalAnimation($modalAddEvent, function(){
-            $modalAddEvent.find('input, textarea').val('');
+        }, function(){
+            $('#modalAddEvent').find('input, textarea').val('');
             for (var i = 0; i < markers.length; i++) {
                 markers[i].setMap(null);
             }
             //poly.setMap(null);
             poly.getPath().clear();
             markers = [];
+            addMarker = true;
         });
     });
 

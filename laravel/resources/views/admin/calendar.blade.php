@@ -761,7 +761,7 @@
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button id="close-modal" type="button" class="btn btn-default custom-btn-default">Cancel</button>
+                        <button id="close-modal" type="button" class="btn btn-default custom-btn-default" data-dismiss="modal">Cancel</button>
                         <button type="button" class="btn btn-primary custom-btn-primary">Save</button>
                     </div>
                 </div>
