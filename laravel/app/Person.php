@@ -30,4 +30,9 @@ class Person extends Model
     public function user(){
         return $this->hasOne('App\User');
     }
+
+    public function instructor(){
+        return $this->hasOne('App\Instructor');
+    }
+
 }

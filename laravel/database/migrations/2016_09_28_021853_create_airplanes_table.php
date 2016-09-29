@@ -16,8 +16,8 @@ class CreateAirplanesTable extends Migration
         Schema::create('airplanes', function (Blueprint $table) {
             $table->increments('id');
             $table->string('plate');
-            $table->string('name');
-            $table->string('photo');
+            $table->string('name')->nulleable();
+            $table->string('photo')->nulleable();
             $table->string('status');
             $table->timestamps();
         });

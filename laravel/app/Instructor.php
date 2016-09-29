@@ -6,5 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Instructor extends Model
 {
-    //
+    public function person(){
+        return $this->belongsTo('App\Person');
+    }
+
+    /*public function scopeLike($query, $field, $value){
+        return $query->where($field, 'LIKE', '%'.$value.'%');
+    }
+
+    public function getFullNameAttribute()
+    {
+        return $this->first_name . " " . $this->last_name;
+    }*/
 }
