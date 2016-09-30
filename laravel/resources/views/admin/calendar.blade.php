@@ -96,7 +96,7 @@
             }
 
             .custom-month{
-                color: #aeb9c3;
+                color: #9aa5af;
                 font-size: 45px;
                 letter-spacing: 0;
                 text-transform: none;
@@ -541,7 +541,7 @@
                 <div class="custom-calendar-wrap custom-calendar-full">
                     <div class="custom-header clearfix">
                         <h3 class="custom-month-year">
-                            <div class="vertical-center">
+                            <div id="month-year-calendar" class="vertical-center">
                                 <span id="custom-month" class="custom-month"></span>
                                 <span class="custom-month">, </span>
                                 <span id="custom-year" class="custom-year"></span>
@@ -568,9 +568,8 @@
             <div id="content-events">
                 <div class="date-selected" id="date-selected">
                     <div class="vertical-center">
-                        <span class="custom-month">Wednesday</span>
-                        <span class="custom-month">, </span>
-                        <span class="custom-year">4th</span>
+                        <span class="custom-month span-selected-date-day-name"></span>
+                        <span class="custom-year span-selected-date-day-number"></span>
                     </div>
                 </div>
                 <div id="filtering-status" class="filtering-status">
@@ -658,7 +657,7 @@
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         <h2 class="modal-title">ADD FLIGHT TEST</h2>
-                        <h4>September 23th, 2016</h4>
+                        <h4><span class="span-selected-date-day-name"></span><span class="span-selected-date-month-name"></span> <span class="span-selected-date-day-number"></span>, <span class="span-selected-date-year"></span></h4>
                         <img class="modal-principal-icon" src="{{URL::to('svg/calendar/ic_airplanemode_active_light_48px.svg')}}">
                     </div>
                     <div class="modal-body">
@@ -716,7 +715,7 @@
                                                 <label for="start">Minute</label>
                                                 <select class="form-control" id="flight_start_minute" name="start">
                                                     @for($x =0; $x < 60; $x+=5)
-                                                        <option value="{{$x}}">{{$x}}</option>
+                                                        <option value="{{($x < 10 ? '0'.$x : $x)}}">{{($x < 10 ? '0'.$x : $x)}}</option>
                                                     @endfor
                                                 </select>
                                             </div>
@@ -741,7 +740,7 @@
                                                 <label for="start">Minute</label>
                                                 <select class="form-control" id="flight_end_minute" name="start">
                                                     @for($x =0; $x < 60; $x+=5)
-                                                        <option value="{{$x}}">{{$x}}</option>
+                                                        <option value="{{($x < 10 ? '0'.$x : $x)}}">{{($x < 10 ? '0'.$x : $x)}}</option>
                                                     @endfor
                                                 </select>
                                             </div>

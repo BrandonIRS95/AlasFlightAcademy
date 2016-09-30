@@ -1,7 +1,7 @@
 
 /*Need add TweenMax.js script in your html to work*/
 
-window.showModalAnimation = function showModalAnimation($modalElement, callback, callback2){
+window.showModalAnimation = function($modalElement, callback, callback2){
     var $modalContainer = $modalElement;
     var $modalWrapper = $modalElement.find('.modal-dialog');
     var $modal = $modalElement.find('.modal-content');
@@ -20,7 +20,7 @@ window.showModalAnimation = function showModalAnimation($modalElement, callback,
 
 }
 
-window.hideModalAnimation = function hideModalAnimation($modalElement, callback){
+window.hideModalAnimation = function($modalElement, callback){
     var $background = $('.modal-backdrop');
     var $contentModal = $modalElement.find('.modal-content');
     TweenMax.set($('.modal-open .modal'), {overflowY: 'hidden'});
@@ -31,4 +31,11 @@ window.hideModalAnimation = function hideModalAnimation($modalElement, callback)
         typeof callback === 'function' && callback();
     }});
     TweenMax.to($background, 0.6, {opacity: 0});
+}
+
+window.slideAndReturnAnimation = function($element, callback){
+    TweenMax.to($element,0.2,{x: 100, opacity: 0, onComplete: function () {
+        typeof callback === 'function' && callback();
+        TweenMax.to($element, 0.2, {opacity: 1, x: 0});
+    }});
 }
