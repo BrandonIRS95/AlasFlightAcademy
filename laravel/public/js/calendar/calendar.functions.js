@@ -175,10 +175,16 @@ $(function() {
         });
 
         if(Date.compare(SELECTED_DATE, Date.today()) === 0) {
-            disableOverdueHours(new Date().getHours(), $selectHour);
-            disableOverdueMinutes(new Date().getMinutes(), $selectMinutes);
-            disableOverdueHours(new Date().getHours(), $selectHourEnd);
-            disableOverdueMinutes(new Date().getMinutes() + RANGE_OF_MINUTES, $selectMinutesEnd);
+            var current = new Date();
+            var hours = current.getHours();
+            var minutes = current.getMinutes();
+
+
+
+            disableOverdueHours(9, $selectHour);
+            disableOverdueMinutes(50, $selectMinutes);
+            disableOverdueHours(9, $selectHourEnd);
+            disableOverdueMinutes(50 + RANGE_OF_MINUTES, $selectMinutesEnd);
         }
         else {
             $([$selectHour, $selectMinutes, $selectHourEnd, $selectMinutesEnd]).each(function () {
@@ -224,6 +230,9 @@ $(function() {
 
         } );
         $( '#custom-current' ).on( 'click', function() {
+
+            SELECTED_DATE = Date.today();
+
             slideAndReturnAnimation($('#month-year-calendar'), function () {
                 $( '#calendar' ).calendario('gotoNow', updateMonthYear);
             });
