@@ -8,6 +8,7 @@ use Illuminate\Contracts\Auth\Authenticatable;
 class User extends Model implements Authenticatable
 {
     use \Illuminate\Auth\Authenticatable;
+    protected $fillable = ['password', 'status', 'type_of_user_id', 'email', 'person_id'];
 
     /*public function posts()
     {

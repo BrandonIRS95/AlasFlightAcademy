@@ -88,7 +88,7 @@ class UserController extends Controller
     {
         $type = Auth::user()->typeOfUser->type;
         if($type =='Admin') {
-            $posts = Admission::paginate(10);
+            $posts = Admission::where('status','=','onhold')->paginate(10);
             return view('admin.aspirants',['posts'=>$posts]);
         }
         else
@@ -100,7 +100,8 @@ class UserController extends Controller
     {
         $type = Auth::user()->typeOfUser->type;
         if($type =='Admin') {
-            return view('admin.students');
+            $posts = Admission::where('status','=','admited')->paginate(10);
+            return view('admin.students',['posts'=>$posts]);
         }
         else
             return redirect()->route('index');

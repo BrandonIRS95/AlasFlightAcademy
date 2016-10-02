@@ -4,6 +4,7 @@
         <link rel="stylesheet" type="text/css" href="{{URL::to('css/calendar/calendar.css')}}" />
         <link rel="stylesheet" type="text/css" href="{{URL::to('css/calendar/custom_1.css')}}" />
         <link rel="stylesheet" type="text/css" href="{{URL::to('css/calendar/jquery.jscrollpane.css')}}" />
+        <link rel="stylesheet" type="text/css" href="{{URL::to('css/jquery-ui.min.css')}}" />
         <script src="{{URL::to('js/calendar/modernizr.custom.63321.js')}}"></script>
         <!-- Calendar -->
         <style>
@@ -95,13 +96,13 @@
             }
 
             .custom-month{
-                color: #aeb9c3;
+                color: #9aa5af;
                 font-size: 45px;
                 letter-spacing: 0;
                 text-transform: none;
                 font-weight: 400;
             }
-            
+
             .custom-year{
                 font-size: 35px;
                 color: #b8c3cd;
@@ -427,8 +428,8 @@
 
             .modal-principal-icon{
                 position: absolute;
-                right: 20px;
-                top: 20px;
+                right: 30px;
+                top: 30px;
             }
 
             .modal {
@@ -495,6 +496,41 @@
             #content-modal-add-event{
 
             }
+
+            #ta-route-description{
+                resize: vertical;
+            }
+
+            #add-marker-btn{
+                position: absolute;
+                top: 35px;
+                left: 140px;
+                background: #FFF;
+                padding: 3px;
+                border-radius: 3px;
+                box-shadow: 0px 2px 2px rgba(0,0,0,0.2);
+                cursor: pointer;
+            }
+
+            #modalAddEvent fieldset legend{
+                color: white;
+            }
+
+            .nopadding-left{
+                padding-left: 0px;
+            }
+
+            .nopadding-right{
+                padding-right: 0px;
+            }
+
+            .nopadding{
+                padding: 0px;
+            }
+
+            #ui-id-1, #ui-id-2{
+                z-index: 1100;
+            }
         </style>
     @endsection
 
@@ -505,7 +541,7 @@
                 <div class="custom-calendar-wrap custom-calendar-full">
                     <div class="custom-header clearfix">
                         <h3 class="custom-month-year">
-                            <div class="vertical-center">
+                            <div id="month-year-calendar" class="vertical-center">
                                 <span id="custom-month" class="custom-month"></span>
                                 <span class="custom-month">, </span>
                                 <span id="custom-year" class="custom-year"></span>
@@ -532,9 +568,8 @@
             <div id="content-events">
                 <div class="date-selected" id="date-selected">
                     <div class="vertical-center">
-                        <span class="custom-month">Wednesday</span>
-                        <span class="custom-month">, </span>
-                        <span class="custom-year">4th</span>
+                        <span class="custom-month span-selected-date-day-name"></span>
+                        <span class="custom-year span-selected-date-day-number"></span>
                     </div>
                 </div>
                 <div id="filtering-status" class="filtering-status">
@@ -622,7 +657,8 @@
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         <h2 class="modal-title">ADD FLIGHT TEST</h2>
-                        <h4>September 23th, 2016</h4>
+                        <h4><span class="span-selected-date-day-name"></span><span class="span-selected-date-month-name"></span> <span class="span-selected-date-day-number"></span>, <span class="span-selected-date-year"></span></h4>
+                        <img class="modal-principal-icon" src="{{URL::to('svg/calendar/ic_airplanemode_active_light_48px.svg')}}">
                     </div>
                     <div class="modal-body">
                         <form action="#" method="post">
@@ -631,6 +667,10 @@
                                     <div class='form-group'>
                                         <label>Route</label>
                                         <div id="map"></div>
+                                        <input type="hidden" name="coordinates" id="coordinates">
+                                        <div id="add-marker-btn">
+                                            <img src="{{URL::to('svg/calendar/ic_add_location_black_24px.svg')}}">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -638,36 +678,89 @@
                                 <div class='col-sm-12'>
                                     <div class='form-group'>
                                         <label for="route_description">Route description</label>
-                                        <input name="route_description" type="text" class="form-control">
+                                        <textarea id="ta-route-description" name="route_description" type="text" class="form-control"></textarea>
                                     </div>
                                 </div>
                             </div>
                             <div class='row'>
                                 <div class='col-sm-6'>
                                     <div class='form-group'>
-                                        <label for="start">Start</label>
-                                        <select class="form-control" id="user_password" name="start"></select>
+                                        <label for="instructor">Instructor</label>
+                                        <input class="form-control" id="flight_instructor" name="instructor" type="text" />
                                     </div>
                                 </div>
                                 <div class='col-sm-6'>
                                     <div class='form-group'>
-                                        <label for="finish">Finish</label>
-                                        <select class="form-control" id="user_password_confirmation" name="finish"></select>
+                                        <label for="airplane">Airplane</label>
+                                        <input class="form-control" id="flight_airplane" name="airplane" type="text" />
                                     </div>
                                 </div>
                             </div>
                             <div class='row'>
                                 <div class='col-sm-6'>
-                                    <div class='form-group'>
+                                    <fieldset class="form-group">
+                                        <legend>Start</legend>
+                                        <div class="col-xs-6 nopadding-left">
+                                            <div class='form-group'>
+                                                <label for="flight_start_hour">Hour</label>
+                                                <select class="form-control" id="flight_start_hour" name="flight_start_hour">
+                                                    @for($x =0; $x < 24; $x++)
+                                                        <option value="{{($x < 10 ? '0'.$x : $x)}}">{{($x < 10 ? '0'.$x : $x)}}</option>
+                                                    @endfor
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-6 nopadding-right">
+                                            <div class='form-group'>
+                                                <label for="start">Minute</label>
+                                                <select class="form-control" id="flight_start_minute" name="start">
+                                                    @for($x =0; $x < 60; $x+=5)
+                                                        <option value="{{($x < 10 ? '0'.$x : $x)}}">{{($x < 10 ? '0'.$x : $x)}}</option>
+                                                    @endfor
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </div>
+                                <div class='col-sm-6'>
+                                    <fieldset class="form-group">
+                                        <legend>Finish</legend>
+                                        <div class="col-xs-6 nopadding-left">
+                                            <div class='form-group'>
+                                                <label for="start">Hour</label>
+                                                <select class="form-control" id="flight_end_hour" name="start">
+                                                    @for($x =0; $x < 24; $x++)
+                                                        <option value="{{($x < 10 ? '0'.$x : $x)}}">{{($x < 10 ? '0'.$x : $x)}}</option>
+                                                    @endfor
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-6 nopadding-right">
+                                            <div class='form-group'>
+                                                <label for="start">Minute</label>
+                                                <select class="form-control" id="flight_end_minute" name="start">
+                                                    @for($x =0; $x < 60; $x+=5)
+                                                        <option value="{{($x < 10 ? '0'.$x : $x)}}">{{($x < 10 ? '0'.$x : $x)}}</option>
+                                                    @endfor
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
                                         <label for="cost">Cost</label>
-                                        <input class="form-control" id="user_title" name="cost" type="text" />
+                                        <input type="text" name="cost" class="form-control">
                                     </div>
                                 </div>
                             </div>
+
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button id="close-modal" type="button" class="btn btn-default custom-btn-default">Cancel</button>
+                        <button id="close-modal" type="button" class="btn btn-default custom-btn-default" data-dismiss="modal">Cancel</button>
                         <button type="button" class="btn btn-primary custom-btn-primary">Save</button>
                     </div>
                 </div>
@@ -676,190 +769,23 @@
     @endsection
 
 @section('javascript')
+        <script>
+            var urlGetInstructors = '{{route('getInstructorsByName')}}';
+            var urlGetAirplanes = '{{route('getAirplanesByPlate')}}';
+        </script>
         <script type="text/javascript" src="{{URL::to('js/calendar/calendario.js')}}"></script>
         <script type="text/javascript" src="{{URL::to('js/TweenMax.min.js')}}"></script>
         <script type="text/javascript" src="{{URL::to('js/calendar/data.js')}}"></script>
         <script type="text/javascript" src="{{URL::to('js/calendar/jquery.jscrollpane.min.js')}}"></script>
         <script type="text/javascript" src="{{URL::to('js/admin/animations.js')}}"></script>
         <script src="http://jscrollpane.kelvinluck.com/script/jquery.mousewheel.js"></script>
-        <script type="text/javascript">
-
-
-            /*function initMap() {
-                var myLatLng = {lat: -25.363, lng: 131.044};
-                var myLatLng2 = {lat: -18.363, lng: 100.044};
-
-                var map = new google.maps.Map(document.getElementById('map12'), {
-                    zoom: 4,
-                    center: myLatLng
-                });
-
-                var icon = {
-
-                    path: "M-20,0a20,20 0 1,0 40,0a20,20 0 1,0 -40,0",
-                    fillColor: '#FF0000',
-                    fillOpacity: .6,
-                    anchor: new google.maps.Point(0,0),
-                    strokeWeight: 0,
-                    scale: 1
-                };
-
-                map.addListener('click', function(event) {
-                    var marker = new google.maps.Marker({
-                        position: event.latLng,
-                        map: map
-                    });
-                });
-
-                var marker = new google.maps.Marker({
-                    position: myLatLng,
-                    map: map,
-                    title: 'Hello World!',
-                    draggable: true,
-                    label: 'B',
-                    icon: icon
-                });
-
-                var marker = new google.maps.Marker({
-                    position: myLatLng2,
-                    map: map,
-                    title: 'Hello World2!',
-                    draggable: true,
-                    label: 'A'
-                });
-            }*/
-
-            var poly;
-            var map;
-
-            window.onload = function () {
-                initMap();
-            }
-
-            function initMap() {
-                map = new google.maps.Map(document.getElementById('map'), {
-                    zoom: 7,
-                    center: {lat: 41.879, lng: -87.624}  // Center the map on Chicago, USA.
-                });
-
-                /*poly = new google.maps.Polyline({
-                    strokeColor: '#000000',
-                    strokeOpacity: 1.0,
-                    strokeWeight: 3
-                });
-                poly.setMap(map);*/
-
-                var drawingManager = new google.maps.drawing.DrawingManager();
-                drawingManager.setMap(map);
-
-                // Add a listener for the click event
-                /*map.addListener('click', addLatLng);*/
-            }
-
-            // Handles click events on a map, and adds a new point to the Polyline.
-            function addLatLng(event) {
-                var path = poly.getPath();
-
-                // Because path is an MVCArray, we can simply append a new coordinate
-                // and it will automatically appear.
-                path.push(event.latLng);
-
-                // Add a new marker at the new plotted point on the polyline.
-                var marker = new google.maps.Marker({
-                    position: event.latLng,
-                    title: '#' + path.getLength(),
-                    map: map
-                });
-            }
+        <script type="text/javascript" src="{{URL::to('js/jquery-ui.min.js')}}"></script>
+        <script type="text/javascript" src="{{URL::to('js/calendar/date.js')}}"></script>
+        <script type="text/javascript" src="{{URL::to('js/calendar/map.functions.js')}}"></script>
+        <script type="text/javascript" src="{{URL::to('js/calendar/calendar.functions.js')}}"> </script>
+        <script
+                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD6KW7B-xPGNZIpgADTsdMfmhv0Yap_BeM&signed_in=true&libraries=drawing&callback=initMap">
         </script>
-        <script>
 
-            $(function() {
 
-                var $addBtn = $('#add-btn');
-
-                $('#btn-add-flight').click(function () {
-                    var $modalAddEvent = $('#modalAddEvent');
-                    $modalAddEvent.find('h2').remove();
-                    $modalAddEvent.find('div').remove();
-                });
-
-                $addBtn.click(function () {
-                    showModalAnimation($('#modalAddEvent'), function(){
-                        google.maps.event.trigger(map, 'resize');
-                        map.setCenter({lat: 41.879, lng: -87.624});
-                        console.log("senos");
-                    });
-                });
-
-                $('#close-modal').click(function () {
-                    hideModalAnimation($('#modalAddEvent'));
-                });
-
-                $('.filtering-status > div').click(function (e) {
-                    var $elementClicked = $(e.currentTarget);
-                    var $selectedStatus = $('#selectedStatus');
-                    $selectedStatus.removeAttr('id');
-                    $selectedStatus.attr('class','');
-                    $elementClicked.addClass('selected');
-                    $elementClicked.attr('id','selectedStatus');
-                });
-
-                $('.conteiner-events').jScrollPane();
-
-                $(window).resize(function () {
-                    $('.conteiner-events').jScrollPane();
-                });
-
-                function updateMonthYear() {
-                    $( '#custom-month' ).html( $( '#calendar' ).calendario('getMonthName') );
-                    $( '#custom-year' ).html( $( '#calendar' ).calendario('getYear'));
-                }
-
-                $(document).on('finish.calendar.calendario', function(e){
-                    $( '#custom-month' ).html( $( '#calendar' ).calendario('getMonthName') );
-                    $( '#custom-year' ).html( $( '#calendar' ).calendario('getYear'));
-                    $( '#custom-next' ).on( 'click', function() {
-                        $( '#calendar' ).calendario('gotoNextMonth', updateMonthYear);
-                    } );
-                    $( '#custom-prev' ).on( 'click', function() {
-                        $( '#calendar' ).calendario('gotoPreviousMonth', updateMonthYear);
-                    } );
-                    $( '#custom-current' ).on( 'click', function() {
-                        $( '#calendar' ).calendario('gotoNow', updateMonthYear);
-                    } );
-                });
-
-                $('#calendar').on('shown.calendar.calendario', function(){
-                    $('div.fc-row > div').on('onDayClick.calendario', function(e, dateprop) {
-
-                        var $element = $(e.target);
-
-                        if($element.find('.fc-emptydate').length === 0) {
-                            var $lastDaySelected = $('#lastDaySelected');
-                            $lastDaySelected.css('background', 'transparent');
-                            $lastDaySelected.find('span').css('color', '#a4afb9');
-                            $lastDaySelected.removeAttr('id');
-
-                            $element.css('background', '#1784c7');
-                            $element.find('span').css('color', '#fff');
-                            $element.attr('id', 'lastDaySelected');
-                        }
-
-                    });
-                });
-
-                $( '#calendar' ).calendario({
-                    checkUpdate : false,
-                    caldata : events,
-                    fillEmpty : true,
-                    displayWeekAbbr : true,
-                    events: ['click', 'focus'],
-                    sync: false
-                });
-            });
-        </script>
-        <script async defer
-                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD6KW7B-xPGNZIpgADTsdMfmhv0Yap_BeM&callback=initMap&libraries=drawing">
-        </script>
     @endsection
