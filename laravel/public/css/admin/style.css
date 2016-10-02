@@ -1,3 +1,7 @@
+body{
+    overflow-x: hidden;
+}
+
 .master-container{
     width: 100%;
     height: 100%;

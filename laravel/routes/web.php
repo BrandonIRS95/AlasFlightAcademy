@@ -61,6 +61,18 @@ Route::get('/getStudentById/{id?}', [
     'middleware' => 'auth'
 ]);
 
+Route::get('/getInstructorsByName/{name?}', [
+    'uses' => 'InstructorController@getInstructorsByName',
+    'as' => 'getInstructorsByName',
+    'middleware' => 'auth'
+]);
+
+Route::get('/getAirplanesByPlate/{plate?}', [
+    'uses' => 'AirplaneController@getAirplanesByPlate',
+    'as' => 'getAirplanesByPlate',
+    'middleware' => 'auth'
+]);
+
 
 
 

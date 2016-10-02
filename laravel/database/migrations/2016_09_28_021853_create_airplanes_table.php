@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTypeOfUsersTable extends Migration
+class CreateAirplanesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,13 @@ class CreateTypeOfUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('type_of_users', function (Blueprint $table) {
+        Schema::create('airplanes', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('type');
+            $table->string('plate');
+            $table->string('name')->nulleable();
+            $table->string('photo')->nulleable();
+            $table->string('status');
+            $table->timestamps();
         });
     }
 
@@ -26,6 +30,6 @@ class CreateTypeOfUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('type_of_users');
+        Schema::dropIfExists('airplanes');
     }
 }

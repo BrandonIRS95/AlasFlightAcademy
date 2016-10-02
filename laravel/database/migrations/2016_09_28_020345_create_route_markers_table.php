@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTypeOfUsersTable extends Migration
+class CreateRouteMarkersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,12 @@ class CreateTypeOfUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('type_of_users', function (Blueprint $table) {
+        Schema::create('route_markers', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('type');
+            $table->string('label');
+            $table->string('lat');
+            $table->string('lng');
+            $table->integer('flight_route_id');
         });
     }
 
@@ -26,6 +29,6 @@ class CreateTypeOfUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('type_of_users');
+        Schema::dropIfExists('route_markers');
     }
 }
