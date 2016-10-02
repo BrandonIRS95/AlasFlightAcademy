@@ -3,6 +3,7 @@
  */
 
 // TODO Cuando falten menos de 5 minutos para la siguiente hora arreglar bug, igual con los minutos
+// TODO Cuando se selecciona un dia que no es el actual y se selecciona una hora final que no sea la actual no se actualizan los minutos finales
 
 $(function() {
 
