@@ -3,7 +3,6 @@
  */
 
 // TODO Cuando falten menos de 5 minutos para la siguiente hora arreglar bug, igual con los minutos
-// TODO Si no es la hora actual no esconder los minutos
 
 $(function() {
 
@@ -16,41 +15,24 @@ $(function() {
 
     /** <!-- FLIGHT TEST ...*/
 
-    $('#flight_start_hour').change(function () {
-        var $select = $('#flight_end_hour');
-        var $minutes = $('#flight_start_minute');
-        var $minutesEnd = $('#flight_end_minute');
+    $('#flight_start_hour, #flight_start_minute').change(function () {
+        updateEndTime($('#flight_start_hour'), $('#flight_start_minute'), $('#flight_end_hour'), $('#flight_end_minute'));
+    });
 
-        $minutes.find('option').css('display','inline');
-        $minutesEnd.find('option').css('display','inline');
-        $select.find('option').css('display','inline');
-
-        if(Date.compare(SELECTED_DATE, Date.today()) === 0) {
-            if(parseInt($(this).val()) === new Date().getHours()){
-                disableOverdueMinutes(new Date().getMinutes(), $minutes);
-                disableOverdueMinutes(new Date().getMinutes() + RANGE_OF_MINUTES, $minutesEnd);
-            }
+    $('#flight_end_hour').change(function () {
+        var $selectEndHour = $('#flight_end_hour');
+        var $selectEndMinute = $('#flight_end_minute');
+        switch (isSelectedNow($selectEndHour, $selectEndMinute)){
+            case 'now':
+                disableOverdueMinutes(parseInt($('#flight_start_minute').val()), $selectEndMinute);
+                $selectEndMinute.attr('data-status', 'currentHour');
+                break;
+            case 'today':
+                $selectEndMinute.attr('data-status', 'noCurrentHour');
+                $selectEndMinute.find('option').css('display', 'inline');
+                break;
         }
-
-
-        disableOverdueHours(parseInt($(this).val()), $select);
     });
-
-    $('#flight_start_minute').change(function(){
-        var $select = $('#flight_end_minute');
-        $select.find('option').css('display','inline');
-        disableOverdueMinutes(parseInt($(this).val()), $select);
-    });
-
-    /*
-    * var $selectHour = $('#flight_start_hour');
-     var $selectMinutes = $('#flight_start_minute');
-     disableOverdueHours(SELECTED_DATE.getHours(), $selectHour);
-     disableOverdueMinutes(SELECTED_DATE.getMinutes(), $selectMinutes);
-     disableOverdueHours(parseInt($selectHour.val()), $('#flight_end_hour'));
-     disableOverdueMinutes(parseInt($selectMinutes.val()), $('#flight_end_minute'));
-    *
-    * */
 
     $( "#flight_instructor" ).autocomplete({
         minLength: 0,
@@ -164,6 +146,21 @@ $(function() {
         });
     });
 
+    function isSelectedNow($selectStartHour, $selectStartMinute){
+        if(Date.compare(SELECTED_DATE, Date.today()) === 0) {
+
+            if(parseInt($selectStartHour.val()) === new Date().getHours()) {
+                if ($selectStartMinute.attr('data-status') !== 'currentHour') {
+                    return 'now';
+                }
+            }else {
+                return 'today'
+            }
+        }
+
+        return 'notToday';
+    }
+
     function settingsFlightModal(){
         var $selectHour = $('#flight_start_hour');
         var $selectMinutes = $('#flight_start_minute');
@@ -179,18 +176,45 @@ $(function() {
             var hours = current.getHours();
             var minutes = current.getMinutes();
 
-
-
-            disableOverdueHours(9, $selectHour);
-            disableOverdueMinutes(50, $selectMinutes);
-            disableOverdueHours(9, $selectHourEnd);
-            disableOverdueMinutes(50 + RANGE_OF_MINUTES, $selectMinutesEnd);
+            disableOverdueHours(hours, $selectHour);
+            disableOverdueMinutes(minutes, $selectMinutes);
+            $selectMinutes.attr('data-status', 'currentHour');
+            $('#flight_start_hour').trigger('change');
         }
         else {
             $([$selectHour, $selectMinutes, $selectHourEnd, $selectMinutesEnd]).each(function () {
                 $(this).find('option:first').prop('selected',true);
             });
         }
+
+    }
+
+    function updateEndTime($selectStartHour, $selectStartMinute, $selectEndHour, $selectEndMinute) {
+        var hours = parseInt($selectStartHour.val());
+        var minutes = parseInt($selectStartMinute.val());
+
+        $([$selectEndMinute, $selectEndHour]).each(function () {
+            $(this).find('option').css('display','inline');
+        });
+
+        console.log(parseInt($selectEndHour.val()) + ' selectEndHour');
+        console.log(new Date().getHours() + ' HOURS');
+
+        disableOverdueHours(hours, $selectEndHour);
+
+        switch (isSelectedNow($selectStartHour, $selectStartMinute)){
+            case 'now':
+                disableOverdueMinutes(new Date().getMinutes(), $selectStartMinute);
+                minutes = parseInt($selectStartMinute.val());
+                $selectStartMinute.attr('data-status', 'currentHour');
+                break;
+            case 'today':
+                $selectStartMinute.attr('data-status', 'noCurrentHour');
+                $selectStartMinute.find('option').css('display', 'inline');
+                break;
+        }
+
+        disableOverdueMinutes(minutes, $selectEndMinute);
 
     }
 
@@ -230,11 +254,9 @@ $(function() {
 
         } );
         $( '#custom-current' ).on( 'click', function() {
-
-            SELECTED_DATE = Date.today();
-
             slideAndReturnAnimation($('#month-year-calendar'), function () {
                 $( '#calendar' ).calendario('gotoNow', updateMonthYear);
+                $('#lastDaySelected').trigger('click');
             });
 
         } );
