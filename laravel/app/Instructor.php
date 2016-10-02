@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Instructor extends Model
 {
+    protected $fillable = ['person_id'];
+
     public function person(){
         return $this->belongsTo('App\Person');
     }
