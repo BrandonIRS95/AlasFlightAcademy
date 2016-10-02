@@ -28,7 +28,7 @@
                         <div class="icon"><img src="{{URL::to('svg/admin/ic_today_black_24px.svg')}}"/></div>
                         <div class="name">Calendar</div>
                     </div>
-                    <div class="option{{ (Request::is('contact') ? ' selected' : '') }}">
+                    <div class="option{{ (Request::is('contact') ? ' selected' : '') }}" onclick="window.location='{{route('contacts')}}'">
                         <div class="icon"><img src="{{URL::to('svg/admin/ic_notifications_black_24px.svg')}}"/></div>
                         <div class="name">Contact</div>
                     </div>
