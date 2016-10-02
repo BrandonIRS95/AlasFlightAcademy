@@ -50,11 +50,18 @@ Route::get('/students', [
     'middleware' => 'auth'
 ]);
 
+Route::get('/contacts', [
+    'uses' => 'ContactController@getContactsView',
+    'as' => 'contacts',
+    'middleware' => 'auth'
+]);
+
 Route::get('/getAdmissionById/{id?}', [
     'uses' => 'AdmissionController@getAdmissionById',
     'as' => 'getAdmissionById',
     'middleware' => 'auth'
 ]);
+
 Route::get('/getStudentById/{id?}', [
     'uses' => 'AdmissionController@getStudentById',
     'as' => 'getStudentById',

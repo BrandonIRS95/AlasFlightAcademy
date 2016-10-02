@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Contact;
 use App\Http\Requests;
+use Illuminate\Support\Facades\Auth;
 
 class ContactController extends Controller
 {
@@ -24,4 +25,17 @@ class ContactController extends Controller
             return response()->json(['status' => 1,
                 'message' => 'Question not sent.'], 200);
     }
+
+
+    public function getContactsView(){
+        $type = Auth::User()->typeOfUser->type;
+        if($type == 'Admin'){
+            $posts = Contact::paginate(10);
+            return view('admin.contacts',['posts'=>$posts]);
+        }
+        else
+            return redirect()->route('index');
+    }
+
+
 }
