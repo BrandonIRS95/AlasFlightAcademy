@@ -10,8 +10,7 @@ use App\User;
 
 class UserController extends Controller
 {
-    public function postSignUp(Request $request)
-    {
+    public function postSignUp(Request $request){
         $this->validate($request, [
             'email' => 'required|email|unique:users',
             'first_name' => 'required|max:120',
@@ -107,5 +106,7 @@ class UserController extends Controller
             return redirect()->route('index');
 
     }
+
+
 
 }

@@ -130,7 +130,6 @@
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
 @endsection
 
 @section('javascript')
@@ -148,8 +147,6 @@
             var $postBody =  $(event.currentTarget);
             var idAdmission = $postBody.attr('data-id');
             console.log(idAdmission);
-            var $SchoolRecords = [];
-            var $SchoolRecords2 = [];
 
             getAdmissionById(idAdmission).done(function (response) {
                 console.log(response);
