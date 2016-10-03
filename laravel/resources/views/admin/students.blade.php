@@ -143,13 +143,9 @@
         });
 
         $('.post').on('click', function(event) {
-
-
             var $postBody =  $(event.currentTarget);
             var idAdmission = $postBody.attr('data-id');
             console.log(idAdmission);
-            var $SchoolRecords = [];
-            var $SchoolRecords2 = [];
 
             getStudentById(idAdmission).done(function (response) {
                 console.log(response);
@@ -198,8 +194,7 @@
             showModalAnimation($('#aspirant-modal'));
         });
 
-        function getStudentById(id)
-        {
+        function getStudentById(id){
             return $.ajax({
                 method: 'get',
                 url: '{{route('getStudentById')}}'+'/id',

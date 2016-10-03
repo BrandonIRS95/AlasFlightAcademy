@@ -32,6 +32,14 @@
                         <div class="icon"><img src="{{URL::to('svg/admin/ic_notifications_black_24px.svg')}}"/></div>
                         <div class="name">Contact</div>
                     </div>
+                    <div class="option{{ (Request::is('contact') ? ' selected' : '') }}">
+                        <div class="icon"><img src="{{URL::to('svg/admin/ic_notifications_black_24px.svg')}}"/></div>
+                        <div class="name">Airplanes </div>
+                    </div>
+                    <div class="option{{ (Request::is('contact') ? ' selected' : '') }}">
+                        <div class="icon"><img src="{{URL::to('svg/admin/ic_notifications_black_24px.svg')}}"/></div>
+                        <div class="name">Instructors</div>
+                    </div>
                 </div>
 
                 <div class="nav-section">
