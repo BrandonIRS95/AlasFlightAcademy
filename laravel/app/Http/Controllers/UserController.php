@@ -83,8 +83,7 @@ class UserController extends Controller
 
     }
 
-    public function getAspirantsView()
-    {
+    public function getAspirantsView(){
         $type = Auth::user()->typeOfUser->type;
         if($type =='Admin') {
             $posts = Admission::where('status','=','onhold')->paginate(10);
@@ -95,8 +94,7 @@ class UserController extends Controller
 
     }
 
-    public function getStudentsView()
-    {
+    public function getStudentsView(){
         $type = Auth::user()->typeOfUser->type;
         if($type =='Admin') {
             $posts = Admission::where('status','=','admited')->paginate(10);
@@ -108,5 +106,5 @@ class UserController extends Controller
     }
 
 
-
+   
 }

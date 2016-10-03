@@ -67,6 +67,11 @@ Route::get('/getStudentById/{id?}', [
     'as' => 'getStudentById',
     'middleware' => 'auth'
 ]);
+Route::get('/getContactById/{id?}', [
+    'uses' => 'ContactController@getContactById',
+    'as' => 'getContactById',
+    'middleware' => 'auth'
+]);
 
 Route::get('/getInstructorsByName/{name?}', [
     'uses' => 'InstructorController@getInstructorsByName',
@@ -74,12 +79,19 @@ Route::get('/getInstructorsByName/{name?}', [
     'middleware' => 'auth'
 ]);
 
-Route::get('/getAirplanesByPlate/{plate?}', [
-    'uses' => 'AirplaneController@getAirplanesByPlate',
-    'as' => 'getAirplanesByPlate',
+Route::get('/contacts', [
+    'uses' => 'ContactController@getContactsView',
+    'as' => 'contacts',
     'middleware' => 'auth'
 ]);
 
+Route::post('/sendmail', function (\Illuminate\Http\Request $request,
+      \Illuminate\Mail\Mailer $mailer){
+    $mailer
+        ->to($request->input('mail'))
+        ->send(new \App\Mail\MyMail($request->input('title')));
+    return redirect()->back();
+})->name('sendmail');
 
 
 
