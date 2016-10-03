@@ -119,10 +119,6 @@ class UserController extends Controller
 
     }
     public function postCrearNuevo(){
-
-<<<<<<< HEAD
     }
-=======
-   
->>>>>>> origin/develop
+
 }

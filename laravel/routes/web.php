@@ -84,13 +84,12 @@ Route::get('/contacts', [
     'as' => 'contacts',
     'middleware' => 'auth'
 ]);
-<<<<<<< HEAD
+
 Route::get('/userCrud', [
-    'uses' => 'userController@getCrudView',
+    'uses' => 'UserController@getCrudView',
     'as' => 'userCrud',
     'middleware' => 'auth'
 ]);
-=======
 
 Route::get('/airplanes', [
     'uses' => 'AirplaneController@getAirplanesView',
@@ -111,8 +110,12 @@ Route::post('/sendmail', function (\Illuminate\Http\Request $request,
         ->send(new \App\Mail\MyMail($request->input('title')));
     return redirect()->back();
 })->name('sendmail');
->>>>>>> origin/develop
 
+Route::get('/getAirplanesByPlate/{plate?}', [
+    'uses' => 'AirplaneController@getAirplanesByPlate',
+    'as' => 'getAirplanesByPlate',
+    'middleware' => 'auth'
+]);
 
 
 Route::get('/', function () {
