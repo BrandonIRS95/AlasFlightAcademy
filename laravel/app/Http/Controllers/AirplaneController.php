@@ -27,7 +27,8 @@ class AirplaneController extends Controller
     public function getAirplanesView(){
         $type = Auth::user()->typeOfUser->type;
         if($type =='Admin') {
-            return view('admin.airplanes');
+            $posts = Airplane::paginate(10);
+            return view('admin.airplanes',['posts'=>$posts]);
         }
         else
             return redirect()->route('index');

@@ -73,7 +73,6 @@
                 console.log(response);
                  $('#toEmail').html(response.contact.email);              
             });
-        
         });
 
         function getContactById(id)

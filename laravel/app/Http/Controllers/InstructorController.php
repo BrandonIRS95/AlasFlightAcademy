@@ -33,7 +33,10 @@ class InstructorController extends Controller
     public function getInstructorsView(){
         $type = Auth::user()->typeOfUser->type;
         if($type =='Admin') {
-            return view('admin.instructors');
+
+            $posts =Instructor::paginate(10);
+
+            return view('admin.instructors',['posts'=>$posts]);
         }
         else
             return redirect()->route('index');
