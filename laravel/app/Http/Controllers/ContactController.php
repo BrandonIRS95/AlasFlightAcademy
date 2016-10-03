@@ -9,8 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 class ContactController extends Controller
 {
-    public function postAddContact(Request $request)
-    {
+    public function postAddContact(Request $request){
         $contact = new Contact();
         $contact->first_name = $request['first_name'];
         $contact->last_name = $request['last_name'];
@@ -27,7 +26,8 @@ class ContactController extends Controller
     }
 
 
-    public function getContactsView(){
+
+     public function getContactsView(){
         $type = Auth::User()->typeOfUser->type;
         if($type == 'Admin'){
             $posts = Contact::paginate(10);
@@ -37,5 +37,11 @@ class ContactController extends Controller
             return redirect()->route('index');
     }
 
+     public function getContactById(Request $request){
+        $contact = Contact::find($request['id']);             
+
+        return response()->json(['contact' => $contact,
+            'status' => '0'], 200);
+    }
 
 }
