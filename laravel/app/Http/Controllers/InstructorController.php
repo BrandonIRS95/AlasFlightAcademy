@@ -7,6 +7,7 @@ use App\Instructor;
 use App\Person;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 use App\Http\Requests;
 
@@ -27,5 +28,15 @@ class InstructorController extends Controller
 
         return response()->json(['instructors' => $instructors,
             'status' => '0'], 200);
+    }
+
+    public function getInstructorsView(){
+        $type = Auth::user()->typeOfUser->type;
+        if($type =='Admin') {
+            return view('admin.instructors');
+        }
+        else
+            return redirect()->route('index');
+
     }
 }

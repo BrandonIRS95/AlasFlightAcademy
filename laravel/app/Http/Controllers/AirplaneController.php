@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Airplane;
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 use Illuminate\Support\Facades\Auth;
 
@@ -24,4 +23,16 @@ class AirplaneController extends Controller
         else
             return redirect()->route('index');
     }
+
+    public function getAirplanesView(){
+        $type = Auth::user()->typeOfUser->type;
+        if($type =='Admin') {
+            return view('admin.airplanes');
+        }
+        else
+            return redirect()->route('index');
+
+    }
+
+
 }

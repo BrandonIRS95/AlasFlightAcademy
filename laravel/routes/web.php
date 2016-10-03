@@ -92,6 +92,18 @@ Route::get('/userCrud', [
 ]);
 =======
 
+Route::get('/airplanes', [
+    'uses' => 'AirplaneController@getAirplanesView',
+    'as' => 'airplanes',
+    'middleware' => 'auth'
+]);
+
+Route::get('/instructors', [
+    'uses' => 'InstructorController@getInstructorsView',
+    'as' => 'instructors',
+    'middleware' => 'auth'
+]);
+
 Route::post('/sendmail', function (\Illuminate\Http\Request $request,
       \Illuminate\Mail\Mailer $mailer){
     $mailer
