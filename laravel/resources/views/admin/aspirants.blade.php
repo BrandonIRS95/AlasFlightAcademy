@@ -23,7 +23,6 @@
 
 @endsection
 @section('content')
-
         <div class="panel panel-default">
                <table class="table table-striped" >
                    <thead>
@@ -131,7 +130,6 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 @endsection
-
 @section('javascript')
     <script src="{{URL::to('js/admin/animations.js')}}"></script>
     <script src="{{URL::to('js/TweenMax.min.js')}}"></script>

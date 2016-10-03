@@ -109,6 +109,7 @@ class UserController extends Controller
         $users = User::orderBy('id','DESC')->get();
         return View::make('users.index')->with('users',$users);
     }
+
     public function getCrudView()
     {
         $type = Auth::user()->typeOfUser->type;

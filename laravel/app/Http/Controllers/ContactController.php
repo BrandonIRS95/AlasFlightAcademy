@@ -38,8 +38,7 @@ class ContactController extends Controller
     }
 
      public function getContactById(Request $request){
-        $contact = Contact::find($request['id']);             
-
+        $contact = Contact::find($request['id']);
         return response()->json(['contact' => $contact,
             'status' => '0'], 200);
     }
