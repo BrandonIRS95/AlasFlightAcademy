@@ -62,21 +62,21 @@
         });
         
         
-     $('.post').on('click', function(event) {            
+     $('.post').on('click', function(event) {
             $('#mailForm').show("fast");
-        
+
             var $postBody =  $(event.currentTarget);
             var idContact = $postBody.attr('data-id');
             console.log(idContact);
 
             getContactById(idContact).done(function (response) {
                 console.log(response);
-                 $('#toEmail').html(response.contact.email);              
+                $('#toEmail').html(response.contact.email);
             });
         });
 
-        function getContactById(id)
-        {
+            function getContactById(id)
+            {
             return $.ajax({
                 method: 'get',
                 url: '{{route('getContactById')}}'+'/id',

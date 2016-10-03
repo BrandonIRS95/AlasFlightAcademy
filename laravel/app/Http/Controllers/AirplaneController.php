@@ -9,6 +9,21 @@ use Illuminate\Support\Facades\Auth;
 
 class AirplaneController extends Controller
 {
+    public function postAddAirplane(Request $request){
+        $airplane = new Airplane();
+        $airplane->name = $request['name'];
+        $airplane->plate = $request['plate'];
+        $airplane->status = $request['status'];
+        $airplane->photo = $request['photo'];
+        if($airplane->save()) {
+            return response()->json(['status' => 0,
+                'message' => 'Airplane successfully added.'], 200);
+        }
+        else
+            return response()->json(['status' => 1,
+                'message' => 'Airplane not added.'], 200);
+    }
+
     public function getAirplanesByPlate($plate)
     {
         $type = Auth::user()->typeOfUser->type;

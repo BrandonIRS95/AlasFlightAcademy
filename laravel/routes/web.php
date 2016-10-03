@@ -172,3 +172,8 @@ Route::post('/addcontact', [
     'uses' => 'ContactController@postAddContact',
     'as' => 'addcontact'
 ]);
+
+Route::post('/addairplane', [
+    'uses' => 'AirplaneController@postAddAirplane',
+    'as' => 'addairplane'
+]);
