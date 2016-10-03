@@ -84,13 +84,24 @@ Route::get('/contacts', [
     'as' => 'contacts',
     'middleware' => 'auth'
 ]);
+/////////////////yisus
+# User Management
 
 Route::get('/userCrud', [
     'uses' => 'UserController@getCrudView',
     'as' => 'userCrud',
     'middleware' => 'auth'
 ]);
-
+Route::post('/CrearNuevaPersona', [
+    'uses' => 'UserController@postCrearNuevaPersona',
+    'as' => 'sCrearNuevaPersona',
+    'middleware' => 'auth'
+]);
+Route::post('/userCrud', [
+    'uses' => 'UserController@postCrearNuevaPersona',
+    'as' => 'userCrud'
+]);
+///////////////////////
 Route::get('/airplanes', [
     'uses' => 'AirplaneController@getAirplanesView',
     'as' => 'airplanes',

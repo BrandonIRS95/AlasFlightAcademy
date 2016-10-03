@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Admission;
+use App\Person;
 use App\TypeOfUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -119,7 +120,36 @@ class UserController extends Controller
             return redirect()->route('index');
 
     }
-    public function postCrearNuevo(){
+    public function getCrear(){
+        return view("admin");
     }
+    public function postCrearNuevaPersona(Request $request){
 
+        $person = new Person();
+        $person->id;
+        $person->first_name = $request->input("first_name");
+        $person->last_name = $request->input("last_name");
+        $person->date_of_birt = $request->input("dob");
+        $person->gender = $request["gender"];
+        $person->city_country_of_birth = null;
+        $person->created_at;
+        $person->updated_at;
+
+        return "ok";
+        /*if($person->save()) {
+            crearNuevoUsuario($request->input("password"),$request->input("email"),6);
+        }*/
+    }
+    public function crearNuevoUsuario($password,$typeUserId,$email,$personId)
+    {
+        $user = new User();
+
+        $user->id;
+        $user->password = $password;
+        $user->status=0;
+        $user->type_of_user_id = $typeUserId;
+        $user->email = $email;
+        $user->person_id = $personId;
+        $user->update_at;
+    }
 }

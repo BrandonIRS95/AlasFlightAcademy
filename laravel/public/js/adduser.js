@@ -47,50 +47,12 @@ $("#commentForm").bootstrapValidator({
                 }
             }
         },
-        bio: {
-            validators: {
-                notEmpty: {
-                    message: 'The first name is required and cannot be empty'
-                }
-            },
-            minlength: 20
-        },
-        state: {
-            validators: {
-                notEmpty: {
-                    message: 'The last name is required and cannot be empty'
-                }
-            }
-        },
-        city: {
-            validators: {
-                notEmpty: {
-                    message: 'The last name is required and cannot be empty'
-                }
-            }
-        },
-        country: {
-            validators: {
-                notEmpty: {
-                    message: 'The last name is required and cannot be empty'
-                }
-            }
-        },
         gender: {
             validators: {
                 notEmpty: {
                     message: 'Please select a gender'
                 }
             }
-        },
-        address: {
-            validators: {
-                notEmpty: {
-                    message: 'The address is required'
-                }
-            },
-            required: true,
-            minlength: 3
         },
         group: {
             validators:{
