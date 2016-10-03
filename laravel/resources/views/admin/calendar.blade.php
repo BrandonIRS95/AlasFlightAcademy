@@ -553,13 +553,6 @@
                                     <img src="{{URL::to('svg/calendar/ic_today_black_48px.svg')}}">
                                 </div>
                             </div>
-                            <!--<nav class="vertical-center">
-                                <span id="custom-prev">&25C0</span>
-                                <span id="custom-next"></span>
-                                <span id="custom-current" title="Got to current date">
-                                    <img src="{{URL::to('svg/calendar/ic_today_black_48px.svg')}}">
-                                </span>
-                            </nav>-->
                         </h3>
                     </div>
                     <div id="calendar" class="fc-calendar-container"></div>

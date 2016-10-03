@@ -124,7 +124,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button id="close-modal" type="button" class="btn btn-default custom-btn-default">Close</button>
+                    <button id="close-modal" type="button" class="btn btn-default custom-btn-default" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div><!-- /.modal-content -->
