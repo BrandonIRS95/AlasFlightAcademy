@@ -36,7 +36,7 @@
 
                 <div class="nav-section">
                     <div class="title">System</div>
-                    <div class="option" onclick="window.location='{{route('logout')}}'">
+                    <div class="option" onclick="window.location='{{route('userCrud')}}'">
                         <div class="icon"><img src="{{URL::to('svg/admin/ic_perm_identity_black_24px.svg')}}"/></div>
                         <div class="name">Users</div>
                     </div>
@@ -52,7 +52,7 @@
             </nav>
             <header id="header">
                 <div class="option">
-                    <div id="user-account-name" class="name">Frank requen</div>
+                    <div id="user-account-name" class="name">Frank requena</div>
                     <div class="icon"><img src="{{URL::to('svg/admin/ic_account_circle_black_24px.svg')}}"></div>
                 </div>
             </header>

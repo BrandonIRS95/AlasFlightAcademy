@@ -79,7 +79,11 @@ Route::get('/getAirplanesByPlate/{plate?}', [
     'as' => 'getAirplanesByPlate',
     'middleware' => 'auth'
 ]);
-
+Route::get('/userCrud', [
+    'uses' => 'userController@getCrudView',
+    'as' => 'userCrud',
+    'middleware' => 'auth'
+]);
 
 
 

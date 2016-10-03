@@ -106,7 +106,21 @@ class UserController extends Controller
             return redirect()->route('index');
 
     }
+    public function getIndex()
+    {
+        $users = User::orderBy('id','DESC')->get();
+        return View::make('users.index')->with('users',$users);
+    }
+    public function getCrudView()
+    {
+        $type = Auth::user()->typeOfUser->type;
+        if ($type == 'Admin') {
+            return view('admin.userCrud');
+        } else
+            return redirect()->route('index');
 
+    }
+    public function postCrearNuevo(){
 
-
+    }
 }
