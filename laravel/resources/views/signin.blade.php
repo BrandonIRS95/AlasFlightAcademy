@@ -20,6 +20,17 @@
         label, input {
             color: white;
         }
+        
+        fieldset {
+            border: 1px solid transparent;
+            text-align: center;
+        }
+       /* fieldset p {
+            text-align: center;
+        }
+        #login form span{
+            float: left;
+        }*/
     </style>
 @endsection
 @section('content')
