@@ -94,7 +94,7 @@ Route::get('/userCrud', [
 ]);
 Route::post('/CrearNuevaPersona', [
     'uses' => 'UserController@postCrearNuevaPersona',
-    'as' => 'sCrearNuevaPersona',
+    'as' => 'CrearNuevaPersona',
     'middleware' => 'auth'
 ]);
 Route::post('/userCrud', [
