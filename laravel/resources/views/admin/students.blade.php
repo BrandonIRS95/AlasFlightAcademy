@@ -134,8 +134,6 @@
 @endsection
 
 @section('javascript')
-    <script src="{{URL::to('js/admin/animations.js')}}"></script>
-    <script src="{{URL::to('js/TweenMax.min.js')}}"></script>
     <script type="text/javascript">
 
         $('#close-modal').click(function(){

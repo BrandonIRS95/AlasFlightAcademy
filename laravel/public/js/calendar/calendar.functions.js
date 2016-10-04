@@ -11,7 +11,6 @@ $(function() {
     var RANGE_OF_MINUTES = 5;
 
     $('document').ready(function(){
-        $('#lastDaySelected').trigger('click');
     });
 
     /** <!-- FLIGHT TEST ...*/
@@ -86,7 +85,7 @@ $(function() {
         }
     }).autocomplete( "instance" )._renderItem = function( ul, item ) {
         return $( "<li>" )
-            .append( "<div>" + item.plate + "</div>" )
+            .append( "<div><h5>" + item.name + "</h5><h6>" + item.plate + "</h6>" + "</div>" )
             .appendTo( ul );
     };
 

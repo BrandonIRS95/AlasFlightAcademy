@@ -114,6 +114,8 @@ body{
     padding-left: 200px;
     padding-top: 55px;
     position: relative;
+    /*left: 600px;*/
+    opacity: 0;
     box-sizing: border-box;
 }
 

@@ -764,13 +764,11 @@
 @section('javascript')
         <script>
             var urlGetInstructors = '{{route('getInstructorsByName')}}';
-            var urlGetAirplanes = '{{route('getAirplanesByPlate')}}';
+            var urlGetAirplanes = '{{route('getAirplanesByPlateAndName')}}';
         </script>
         <script type="text/javascript" src="{{URL::to('js/calendar/calendario.js')}}"></script>
-        <script type="text/javascript" src="{{URL::to('js/TweenMax.min.js')}}"></script>
         <script type="text/javascript" src="{{URL::to('js/calendar/data.js')}}"></script>
         <script type="text/javascript" src="{{URL::to('js/calendar/jquery.jscrollpane.min.js')}}"></script>
-        <script type="text/javascript" src="{{URL::to('js/admin/animations.js')}}"></script>
         <script src="http://jscrollpane.kelvinluck.com/script/jquery.mousewheel.js"></script>
         <script type="text/javascript" src="{{URL::to('js/jquery-ui.min.js')}}"></script>
         <script type="text/javascript" src="{{URL::to('js/calendar/date.js')}}"></script>

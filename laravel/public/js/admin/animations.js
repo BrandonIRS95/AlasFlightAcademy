@@ -39,3 +39,23 @@ window.slideAndReturnAnimation = function($element, callback){
         TweenMax.to($element, 0.2, {opacity: 1, x: 0});
     }});
 }
+
+window.animationForContentConteiner = function(){
+    var $contentConteiner = $('#content-container');
+    var $masterConteiner = $('#master-container');
+    var duration = 0.6;
+
+    var timeLine = new TimelineMax({onComplete: function () {
+        $('#lastDaySelected').trigger('click');
+        $contentConteiner.css('transform','');
+        $contentConteiner.css('transform-style','');
+        $masterConteiner.css('perspective','');
+        $('body').css('overflow-y','auto');
+    }});
+
+    timeLine.set($masterConteiner, {perspective:800});
+    timeLine.set($('body'), {overflowY:'hidden'});
+    timeLine.set($contentConteiner, {transformStyle:"preserve-3d"});
+    timeLine.from($contentConteiner, duration, {scale: 0.5, rotationY:'0_short', rotationX:'-80_short', rotation:'0_short', transformOrigin: 'top 0% -600'});
+    timeLine.to($contentConteiner, duration, {opacity: 1}, 0);
+}

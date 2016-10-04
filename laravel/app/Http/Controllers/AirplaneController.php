@@ -24,13 +24,13 @@ class AirplaneController extends Controller
                 'message' => 'Airplane not added.'], 200);
     }
 
-    public function getAirplanesByPlate($plate)
+    public function getAirplanesByPlateAndName($text)
     {
         $type = Auth::user()->typeOfUser->type;
 
         if($type =='Admin' || $type == 'Instructor') {
 
-            $airplanes = Airplane::where('plate','LIKE','%'.$plate.'%')->get();
+            $airplanes = Airplane::where('plate','LIKE','%'.$text.'%')->orWhere('name','LIKE','%'.$text.'%')->get();
 
             return response()->json(['airplanes' => $airplanes,
                 'status' => '0'], 200);

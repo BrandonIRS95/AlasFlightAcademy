@@ -80,8 +80,6 @@
 
 @endsection
 @section('javascript')
-    <script src="{{URL::to('js/jquery-migrate-1.4.1.min.js')}}" type="text/javascript"></script>
-    <script src="{{URL::to('js/TweenMax.min.js')}}" type="text/javascript"></script>
     <script src="{{URL::to('js/jquery.validate.js')}}" type="text/javascript"></script>
     <script src="{{URL::to('js/additional-methods.js')}}" type="text/javascript"></script>
     <script src="{{URL::to('js/intlTelInput.js')}}" type="text/javascript"></script>

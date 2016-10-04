@@ -122,9 +122,9 @@ Route::post('/sendmail', function (\Illuminate\Http\Request $request,
     return redirect()->back();
 })->name('sendmail');
 
-Route::get('/getAirplanesByPlate/{plate?}', [
-    'uses' => 'AirplaneController@getAirplanesByPlate',
-    'as' => 'getAirplanesByPlate',
+Route::get('/getAirplanesByPlateAndName/{text?}', [
+    'uses' => 'AirplaneController@getAirplanesByPlateAndName',
+    'as' => 'getAirplanesByPlateAndName',
     'middleware' => 'auth'
 ]);
 

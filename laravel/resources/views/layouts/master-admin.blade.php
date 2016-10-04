@@ -9,7 +9,7 @@
     </head>
 
     <body>
-        <div class="master-container">
+        <div id="master-container" class="master-container">
             <nav id="nav">
                 <div class="logo-alas">
                     <span style="color: #fff;">Alas</span><span style="color: #abcff8;">Academy</span>
@@ -64,7 +64,7 @@
                     <div class="icon"><img src="{{URL::to('svg/admin/ic_account_circle_black_24px.svg')}}"></div>
                 </div>
             </header>
-            <div class="content-container">
+            <div id="content-container" class="content-container">
                 <div class="title-view">@yield('title-view')</div>
                 @yield('content')
             </div>
@@ -72,7 +72,13 @@
         <script src="{{URL::to('js/jquery-3.1.1.min.js')}}"></script>
         <!-- Latest compiled and minified JavaScript -->
         <script src="{{URL::to('js/bootstrap.min.js')}}"></script>
-
+        <script src="{{URL::to('js/TweenMax.min.js')}}"></script>
+        <script src="{{URL::to('js/admin/animations.js')}}"></script>
+        <script type="text/javascript">
+            $(window).on('load', function () {
+               animationForContentConteiner();
+            });
+        </script>
         @yield('javascript')
     </body>
 </html>
