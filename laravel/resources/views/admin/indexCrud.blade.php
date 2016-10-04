@@ -49,37 +49,6 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach ($users as $user)
-                            <tr>
-                                <td>{!! $user->id !!}</td>
-                                <td>{!! $user->first_name !!}</td>
-                                <td>{!! $user->last_name !!}</td>
-                                <td>{!! $user->email !!}</td>
-                                <td>
-                                    @if($activation = Activation::completed($user))
-                                        Activated
-                                    @else
-                                        Pending
-                                    @endif
-                                </td>
-
-                                <td>
-                                    <a ><i class="livicon" data-name="info" data-size="18" data-loop="true" data-c="#428BCA" data-hc="#428BCA" title="view user"></i></a>
-
-                                    <a ><i class="livicon" data-name="edit"
-                                                                                            data-size="18" data-loop="true"
-                                                                                            data-c="#428BCA"
-                                                                                            data-hc="#428BCA"
-                                                                                            title="update user"></i></a>
-
-                                    @if ((Sentinel::getUser()->id != $user->id) && ($user->id != 1))
-                                        <a href="{{ route('confirm-delete/user', $user->id) }}" data-toggle="modal" data-target="#delete_confirm"><i class="livicon" data-name="user-remove" data-size="18" data-loop="true" data-c="#f56954" data-hc="#f56954" title="delete user"></i></a>
-                                    @endif
-
-
-                                </td>
-                            </tr>
-                        @endforeach
 
                         </tbody>
                     </table>
