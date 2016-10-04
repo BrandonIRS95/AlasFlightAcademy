@@ -2,6 +2,7 @@
 
 @section('title-view')
 @endsection
+{{-- page level scripts --}}
 @section('content')
     <!--page level css -->
     <link href="{{ asset('/css/select2-bootstrap.css') }}" rel="stylesheet">
@@ -15,6 +16,14 @@
 
     <link href="{{ asset('/css/wizard.css') }}" rel="stylesheet">
     <!--end of page level css-->
+    <script src="{{ asset('/js/jquery-ui.min.js') }}" ></script>
+    <script src="{{ asset('/js/moment.min.js') }}" ></script>
+    <script src="{{ asset('/js/jasny-bootstrap.js') }}"  type="text/javascript"></script>
+    <script src="{{ asset('/js/select2.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('/js/jquery.bootstrap.wizard.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('/js/bootstrapValidator.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('/js/adduser.js') }}"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.9/js/bootstrap.min.js"></script>
     <section class="content-header">
         <h1>Add New User</h1>
         <ol class="breadcrumb">
@@ -24,7 +33,7 @@
                     Dashboard
                 </a>
             </li>
-            <li>Users</li>
+            <li><a href="{{ route('indexCrud') }}">Users</a></li>
             <li class="active">Add New User</li>
         </ol>
     </section>
@@ -92,7 +101,7 @@
                                         <div class="form-group required">
                                             <label for="dob" class="col-sm-2 control-label">Date of Birth</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" name="datetimepicker" id="datepicker" data-date-format="YYYY-MM-DD" />
+                                                <input type="text" class="form-control" name="datepicker" id="datepicker" placeholder="yyyy-mm-dd" data-date-format="YYYY-MM-DD" />
                                             </div>
                                             <span class="help-block">{{ $errors->first('dob', ':message') }}</span>
                                             </div>
@@ -168,7 +177,7 @@
                                             }
                                         }
                                         $("#datepicker").datepicker({
-                                            dateFormat: 'dd/mm/yy'
+                                            dateFormat: 'yy-mm-dd'
                                         });
                                         $("#datepicker").on('changeDate', function (ev) {
                                             $(this).datepicker('hide');
@@ -185,14 +194,6 @@
         <!--row end-->
     </section>
     @endsection
-{{-- page level scripts --}}
 @section('footer_scripts')
-    <script src="{{ asset('/js/moment.min.js') }}" ></script>
-    <script src="{{ asset('/js/jquery-ui.min.js') }}" ></script>
-    <script src="{{ asset('/js/jasny-bootstrap.js') }}"  type="text/javascript"></script>
-    <script src="{{ asset('/js/select2.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('/js/jquery.bootstrap.wizard.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('/js/bootstrapValidator.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('/js/adduser.js') }}"></script>
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.9/js/bootstrap.min.js"></script>
+
 @stop

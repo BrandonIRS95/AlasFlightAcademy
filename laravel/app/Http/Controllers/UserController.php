@@ -146,4 +146,12 @@ class UserController extends Controller
         $user->email = $email;
         $user->person_id = $personId;
     }
+    public function getIndexCrud()
+    {
+        $type = Auth::user()->typeOfUser->type;
+        if ($type == 'Admin') {
+            return view('admin.indexCrud');
+        } else
+            return redirect()->route('index');
+    }
 }

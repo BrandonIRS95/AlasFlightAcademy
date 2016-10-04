@@ -92,9 +92,9 @@ Route::get('/userCrud', [
     'as' => 'userCrud',
     'middleware' => 'auth'
 ]);
-Route::post('/CrearNuevaPersona', [
-    'uses' => 'UserController@postCrearNuevaPersona',
-    'as' => 'CrearNuevaPersona',
+Route::get('/indexCrud', [
+    'uses' => 'UserController@getIndexCrud',
+    'as' => 'indexCrud',
     'middleware' => 'auth'
 ]);
 Route::post('/userCrud', [
