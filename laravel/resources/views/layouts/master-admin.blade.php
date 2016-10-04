@@ -33,11 +33,11 @@
                         <div class="name">Contact</div>
                     </div>
                     <div class="option{{ (Request::is('airplanes') ? ' selected' : '') }}"onclick="window.location='{{route('airplanes')}}'">
-                        <div class="icon"><img src="{{URL::to('svg/admin/ic_notifications_black_24px.svg')}}"/></div>
+                        <div class="icon"><img src="{{URL::to('svg/admin/ic_airplanemode_active_black_24px.svg')}}"/></div>
                         <div class="name">Airplanes </div>
                     </div>
                     <div class="option{{ (Request::is('instructors') ? ' selected' : '') }}"onclick="window.location='{{route('instructors')}}'">
-                        <div class="icon"><img src="{{URL::to('svg/admin/ic_notifications_black_24px.svg')}}"/></div>
+                        <div class="icon"><img src="{{URL::to('svg/admin/ic_record_voice_over_black_24px.svg')}}"/></div>
                         <div class="name">Instructors</div>
                     </div>
                 </div>
