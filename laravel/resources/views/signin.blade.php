@@ -49,6 +49,10 @@
             z-index: 10;
             position: absolute;
         }
+        
+        .Footer{
+            display: none;
+        }
     </style>
 @endsection
 @section('content')
