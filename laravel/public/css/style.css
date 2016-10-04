@@ -124,7 +124,6 @@ p {
 
 #clouds{
 	padding: 50px 0;
-	background: rgba(6, 132, 243, 0.48);
 }
 
 /*Time to finalise the cloud shape*/
@@ -217,9 +216,9 @@ p {
 	transform: scale(0.8);
 	opacity: 0.8; /*opacity proportional to the size*/
 	
-	-webkit-animation: moveclouds 20s linear infinite;
-	-moz-animation: moveclouds 20s linear infinite;
-	-o-animation: moveclouds 20s linear infinite;
+	-webkit-animation: moveclouds 22s linear infinite;
+	-moz-animation: moveclouds 22s linear infinite;
+	-o-animation: moveclouds 22s linear infinite;
 }
  .x6 {
 	 left: -68px; top: -5px;
@@ -229,8 +228,8 @@ p {
 	 transform: scale(0.8);
 	 opacity: 0.8; /*opacity proportional to the size*/
 
-	 -webkit-animation: moveclouds 10s linear infinite;
-	 -moz-animation: moveclouds 15s linear infinite;
+	 -webkit-animation: moveclouds 25s linear infinite;
+	 -moz-animation: moveclouds 25s linear infinite;
 	 -o-animation: moveclouds 25s linear infinite;
  }
  .x7 {
@@ -241,9 +240,9 @@ p {
 	 transform: scale(0.8);
 	 opacity: 0.8; /*opacity proportional to the size*/
 
-	 -webkit-animation: moveclouds 15s linear infinite;
-	 -moz-animation: moveclouds 10s linear infinite;
-	 -o-animation: moveclouds 10s linear infinite;
+	 -webkit-animation: moveclouds 30s linear infinite;
+	 -moz-animation: moveclouds 30s linear infinite;
+	 -o-animation: moveclouds 30s linear infinite;
  }
 
 @-webkit-keyframes moveclouds {
