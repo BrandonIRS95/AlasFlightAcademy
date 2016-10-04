@@ -8,7 +8,7 @@
             height: 100%;
         }
         body, .Application_container{
-            background: url(https://newevolutiondesigns.com/images/freebies/city-wallpaper-18.jpg) no-repeat fixed;
+            /*background: url(https://newevolutiondesigns.com/images/freebies/city-wallpaper-18.jpg) no-repeat fixed;*/
             height: 100%;
         }
         .Footer{
@@ -31,19 +31,41 @@
         #login form span{
             float: left;
         }*/
+        
+        #alas-video{
+            position: absolute;
+              top: 50%; 
+              left: 50%;
+              -webkit-transform: translateX(-50%) translateY(-50%);
+              transform: translateX(-50%) translateY(-50%);
+              min-width: 100%; 
+              min-height: 100%; 
+              width: auto; 
+              height: auto;
+              z-index: 0; 
+              overflow: hidden;
+        }
+        .Navbar{
+            z-index: 10;
+            position: absolute;
+        }
     </style>
 @endsection
 @section('content')
-    <div id="clouds">
+    <video id="alas-video" width="100%" autoplay loop>
+        <source src="{{URL::to('videos/sky.mp4')}}" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    <!--<div id="clouds">
         <div class="cloud x1"></div>
-        <!-- Time for multiple clouds to dance around -->
+        
         <div class="cloud x2"></div>
         <div class="cloud x3"></div>
         <div class="cloud x4"></div>
         <div class="cloud x5"></div>
         <div class="cloud x6"></div>
         <div class="cloud x7"></div>
-    </div>
+    </div>-->
     <div class="container">
         <div id="login">
             <form id="login-form" method="post" action="{{route('signin')}}">
