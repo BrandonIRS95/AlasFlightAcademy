@@ -1,8 +1,7 @@
 @extends('layouts.master-admin')
 
 @section('title-view')
-
-    @endsection
+@endsection
 @section('content')
     <!--page level css -->
     <link href="{{ asset('/css/select2-bootstrap.css') }}" rel="stylesheet">
@@ -12,6 +11,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
     <link href="{{ asset('/css/wizard.css') }}" rel="stylesheet">
     <!--end of page level css-->
     <section class="content-header">
@@ -41,24 +41,14 @@
                                 </span>
                     </div>
                     <div class="panel-body">
-                        <!-- errors -->
-                        <div class="has-error">
-                            {!! $errors->first('first_name', '<span class="help-block">:message</span>') !!}
-                            {!! $errors->first('last_name', '<span class="help-block">:message</span>') !!}
-                            {!! $errors->first('email', '<span class="help-block">:message</span>') !!}
-                            {!! $errors->first('password', '<span class="help-block">:message</span>') !!}
-                            {!! $errors->first('password_confirm', '<span class="help-block">:message</span>') !!}
-                            {!! $errors->first('group', '<span class="help-block">:message</span>') !!}
-                            {!! $errors->first('country', '<span class="help-block">:message</span>') !!}
-                        </div>
                         <!--main content-->
-                        <form id="commentForm"  action="{{url('userCrud')}}" method="POST" role="form"
+                        <form id="commentForm"   method="POST" role="form"
                               enctype="multipart/form-data" class="form-horizontal">
                             <!-- CSRF Token -->
-                            <input type="hidden" name="_token"  />
+                            <input  type="hidden" name="_token" value="{{ Session::token() }}">
                             <div id="rootwizard">
                             <h3><a href="#tab1" data-toggle="tab">User Profile</a></h3>
-                                <div class="tab-content">
+                                <div class="tab-content" id="btn">
                                     <div class="tab-pane" id="tab1">
                                         <h2 class="hidden">&nbsp;</h2>
                                         <div class="form-group">
@@ -101,9 +91,7 @@
                                         <div class="form-group required">
                                             <label for="dob" class="col-sm-2 control-label">Date of Birth</label>
                                             <div class="col-sm-10">
-                                                <input id="dob" name="dob" type="text" class="form-control"
-                                                       data-mask="9999-99-99" value="{!! old('dob') !!}"
-                                                       placeholder="yyyy-mm-dd"/>
+                                                <input type="text" class="form-control" name="datetimepicker" id="datetimepicker" data-date-format="YYYY-MM-DD" />
                                             </div>
                                             <span class="help-block">{{ $errors->first('dob', ':message') }}</span>
                                             </div>
@@ -130,17 +118,65 @@
                                         <div class="form-group required">
                                             <label for="group" class="col-sm-2 control-label">Group *</label>
                                             <div class="col-sm-10">
-                                                <select class="form-control required" title="Select group..." name="group"
+                                                <select onchange="avilitarSubmit()" class="form-control required" title="Select group..." name="group"
                                                         id="group">
                                                     <option value="">Select</option>
-                                                    <option value="Instructor">Instructor</option>
-                                                    <option value="Addmin">Admin</option>
+                                                    <option value="3">Instructor</option>
+                                                    <option value="1">Admin</option>
                                                 </select>
                                             </div>
                                             <span class="help-block">{{ $errors->first('group', ':message') }}</span>
                                         </div>
+                                        <!-- Modal -->
+                                        <div id="myModal" class="modal fade" role="dialog">
+                                            <div class="modal-dialog">
+
+                                                <!-- Modal content-->
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                    </div>
+                                                    <div class="modal-body" style="text-align: center;">
+                                                        <h2> <i class="glyphicon glyphicon-check" style="font-size: 40px;top:5px;margin-right: 30px;"></i>User has been added !!</h2>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="submit" class="btn btn-primary" >Accept</button>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
                                     </div>
-                                    <button type="submit" class="btn btn-primary pull-right">Submit</button>
+                                    <script>
+                                        function avilitarSubmit() {
+                                            var n1 = document.getElementById("first_name").value;
+                                            var n = document.getElementById("group").value;
+                                            var div = document.getElementById("btn");
+                                            var btn = document.createElement("button");
+                                            btn.setAttribute("id","btnSubmit");
+                                            btn.setAttribute("type", "button");
+                                            btn.setAttribute("class", "btn btn-info pull-right");
+                                            btn.setAttribute("data-toggle","modal");
+                                            btn.setAttribute("data-target","#myModal");
+                                            btn.innerHTML = "Submit";
+                                              if (n == 1 || n == 3 ) {
+                                                if(n1 != "")
+                                                {
+                                                    div.appendChild(btn);
+                                                }
+                                            }
+                                        }
+                                        $(function () {
+
+                                            $('#datetimepicker').datepicker({
+
+                                                pickTime: false
+
+                                            });
+
+                                        });
+                                    </script>
+
                                 </div>
                             </div>
                         </form>

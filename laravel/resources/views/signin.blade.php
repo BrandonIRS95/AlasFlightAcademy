@@ -2,13 +2,9 @@
 
 @section('individual-styles')
     <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="css/style.css">
     <style>
         html{
-            background: url({{URL::to('images/clouds-1579565_1920.jpg')}}) no-repeat center center fixed;
-            -webkit-background-size: cover;
-            -moz-background-size: cover;
-            -o-background-size: cover;
-            background-size: cover;
             height: 100%;
         }
         body, .Application_container{
@@ -18,29 +14,35 @@
             position: absolute;
             bottom: 0px;
             width: 100%;
-            display: none;
         }
         label, input {
             color: white;
         }
     </style>
 @endsection
-
 @section('content')
-    <div>
-        <form id="login-form" method="post" action="{{route('signin')}}">
-            <label for="email">Email</label>
-            <input type="text" name="email" id="email">
-            <label for="password">Password</label>
-            <input type="password" name="password" id="password">
-            <input type="hidden" name="_token" value="{{ Session::token() }}">
-            <button type="submit">Sign in</button>
-        </form>
+    <div id="clouds">
+        <div class="cloud x1"></div>
+        <!-- Time for multiple clouds to dance around -->
+        <div class="cloud x2"></div>
+        <div class="cloud x3"></div>
+        <div class="cloud x4"></div>
+        <div class="cloud x5"></div>
     </div>
+    <div class="container">
+        <div id="login">
+            <form id="login-form" method="post" action="{{route('signin')}}">
+                <fieldset class="clearfix">
+                            <p><span class="fontawesome-user"></span><input placeholder="Username" type="text" name="email" id="email"></p>
+                            <p><span class="fontawesome-lock"></span><input placeholder="Password" type="password" name="password" id="password"></p>
+                            <input type="hidden" name="_token" value="{{ Session::token() }}">
+                            <p><input type="submit" value="Sign In"></p>
+                </fieldset>
+            </form>
+        </div> <!-- end login -->
 
-
+    </div>
 @endsection
-
 @section('javascript-functions')
     <script src="{{URL::to('js/jquery-migrate-1.4.1.min.js')}}"></script>
     <script src="{{URL::to('js/jquery.validate.js')}}"></script>
