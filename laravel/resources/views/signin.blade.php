@@ -8,11 +8,13 @@
             height: 100%;
         }
         body, .Application_container{
+            background: url(https://newevolutiondesigns.com/images/freebies/city-wallpaper-18.jpg) no-repeat fixed;
             height: 100%;
         }
         .Footer{
             position: absolute;
             bottom: 0px;
+            height: 15%;
             width: 100%;
         }
         label, input {
@@ -28,6 +30,8 @@
         <div class="cloud x3"></div>
         <div class="cloud x4"></div>
         <div class="cloud x5"></div>
+        <div class="cloud x6"></div>
+        <div class="cloud x7"></div>
     </div>
     <div class="container">
         <div id="login">
