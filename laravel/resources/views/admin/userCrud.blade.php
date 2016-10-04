@@ -5,6 +5,7 @@
 @section('content')
     <!--page level css -->
     <link href="{{ asset('/css/select2-bootstrap.css') }}" rel="stylesheet">
+    <link href="{{ asset('/css/jquery-ui.min.css') }}" rel="stylesheet">
     <link href="{{ asset('/css/jasny-bootstrap.css') }}" rel="stylesheet">
     <link href="{{ asset('/css/select2.min.css') }}" type="text/css" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -91,7 +92,7 @@
                                         <div class="form-group required">
                                             <label for="dob" class="col-sm-2 control-label">Date of Birth</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" name="datetimepicker" id="datetimepicker" data-date-format="YYYY-MM-DD" />
+                                                <input type="text" class="form-control" name="datetimepicker" id="datepicker" data-date-format="YYYY-MM-DD" />
                                             </div>
                                             <span class="help-block">{{ $errors->first('dob', ':message') }}</span>
                                             </div>
@@ -166,14 +167,11 @@
                                                 }
                                             }
                                         }
-                                        $(function () {
-
-                                            $('#datetimepicker').datepicker({
-
-                                                pickTime: false
-
-                                            });
-
+                                        $("#datepicker").datepicker({
+                                            dateFormat: 'dd/mm/yy'
+                                        });
+                                        $("#datepicker").on('changeDate', function (ev) {
+                                            $(this).datepicker('hide');
                                         });
                                     </script>
 
@@ -190,6 +188,7 @@
 {{-- page level scripts --}}
 @section('footer_scripts')
     <script src="{{ asset('/js/moment.min.js') }}" ></script>
+    <script src="{{ asset('/js/jquery-ui.min.js') }}" ></script>
     <script src="{{ asset('/js/jasny-bootstrap.js') }}"  type="text/javascript"></script>
     <script src="{{ asset('/js/select2.js') }}" type="text/javascript"></script>
     <script src="{{ asset('/js/jquery.bootstrap.wizard.js') }}" type="text/javascript"></script>
