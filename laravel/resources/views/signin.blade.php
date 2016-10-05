@@ -23,14 +23,8 @@
         
         fieldset {
             border: 1px solid transparent;
-            text-align: center;
         }
-       /* fieldset p {
-            text-align: center;
-        }
-        #login form span{
-            float: left;
-        }*/
+
         
         #alas-video{
             position: absolute;
@@ -53,6 +47,11 @@
         .Footer{
             display: none;
         }
+
+        .horizontal-center{
+            padding-left: 30px;
+        }
+
     </style>
 @endsection
 @section('content')
@@ -74,10 +73,12 @@
         <div id="login">
             <form id="login-form" method="post" action="{{route('signin')}}">
                 <fieldset class="clearfix">
-                            <p><span class="fontawesome-user"></span><input placeholder="Username" type="text" name="email" id="email"></p>
-                            <p><span class="fontawesome-lock"></span><input placeholder="Password" type="password" name="password" id="password"></p>
+                    <div class="horizontal-center">
+                            <div><p><span class="fontawesome-user"></span><input placeholder="Username" type="text" name="email" id="email"></p></div>
+                            <div><p><span class="fontawesome-lock"></span><input placeholder="Password" type="password" name="password" id="password"></p></div>
                             <input type="hidden" name="_token" value="{{ Session::token() }}">
-                            <p><input type="submit" value="Sign In"></p>
+                            <div><p><input type="submit" value="Sign In"></p></div>
+                    </div>
                 </fieldset>
             </form>
         </div> <!-- end login -->
