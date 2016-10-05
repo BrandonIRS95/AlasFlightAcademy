@@ -54,6 +54,8 @@ function initMap() {
     drawingManager.setMap(map);
 }*/
 
+    // POLY.GETPATH.GETARRAY TRAE TODOS LOS PUNTOS DE LA LINEA
+
 
 var poly;
 var map;
@@ -84,7 +86,7 @@ function initMap() {
     google.maps.event.addListener(poly.getPath(), 'insert_at', function(event) {
         console.log('Vertex insert at from inner path.');
         console.log(event);
-        console.log(poly.getPath().getArray().toString());
+        console.log(poly.getPath().getArray().toString() + ' POLY ARRAY');
     });
 
     google.maps.event.addListener(poly.getPath(), 'remove_at', function(event) {
@@ -144,6 +146,7 @@ function addMarkerLastCoordinates()
         });
 
         markers.push(marker);
+        console.log(markers);
 
         marker.addListener("rightclick", function () {
             if (marker.index < (markers.length - 1)) {

@@ -18,7 +18,7 @@ class CreateFlightTestsTable extends Migration
             $table->date('date');
             $table->time('start');
             $table->time('end');
-            $table->decimal('cost');
+            $table->decimal('cost')->nullable();
             $table->integer('flight_route_id');
             $table->integer('instructor_id');
             $table->integer('airplane_id');

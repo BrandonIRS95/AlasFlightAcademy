@@ -654,7 +654,7 @@
                         <img class="modal-principal-icon" src="{{URL::to('svg/calendar/ic_airplanemode_active_light_48px.svg')}}">
                     </div>
                     <div class="modal-body">
-                        <form action="#" method="post">
+                        <form  id="form-add-flight-test" action="#" method="post">
                             <div class='row'>
                                 <div class='col-sm-12'>
                                     <div class='form-group'>
@@ -771,6 +771,8 @@
         <script type="text/javascript" src="{{URL::to('js/calendar/jquery.jscrollpane.min.js')}}"></script>
         <script src="http://jscrollpane.kelvinluck.com/script/jquery.mousewheel.js"></script>
         <script type="text/javascript" src="{{URL::to('js/jquery-ui.min.js')}}"></script>
+        <script type="text/javascript" src="{{URL::to('js/jquery.validate.js')}}"></script>
+        <script type="text/javascript" src="{{URL::to('js/additional-methods.js')}}"></script>
         <script type="text/javascript" src="{{URL::to('js/calendar/date.js')}}"></script>
         <script type="text/javascript" src="{{URL::to('js/calendar/map.functions.js')}}"></script>
         <script type="text/javascript" src="{{URL::to('js/calendar/calendar.functions.js')}}"> </script>

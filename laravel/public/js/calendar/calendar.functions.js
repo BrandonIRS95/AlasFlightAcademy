@@ -10,7 +10,8 @@ $(function() {
     var SELECTED_DATE = new Date();
     var RANGE_OF_MINUTES = 5;
 
-    $('document').ready(function(){
+    $('#form-add-flight-test').validate({
+
     });
 
     /** <!-- FLIGHT TEST ...*/
@@ -20,8 +21,9 @@ $(function() {
     });
 
     $('#flight_end_hour').change(function () {
-        var $selectEndHour = $('#flight_end_hour');
+        var $selectEndHour = $(this);
         var $selectEndMinute = $('#flight_end_minute');
+
         switch (isSelectedNow($selectEndHour, $selectEndMinute)){
             case 'now':
                 disableOverdueMinutes(parseInt($('#flight_start_minute').val()), $selectEndMinute);
@@ -32,6 +34,9 @@ $(function() {
                 $selectEndMinute.find('option').css('display', 'inline');
                 break;
         }
+        if($selectEndHour.val() >  $('#flight_start_hour').val()){
+            $selectEndMinute.find('option').css('display', 'inline');
+        }
     });
 
     $( "#flight_instructor" ).autocomplete({
@@ -41,7 +46,7 @@ $(function() {
                 url: urlGetInstructors + '/' + request.term,
                 method: "GET",
                 success: function( data ) {
-                    console.log(data);
+
                     response(data.instructors);
                 }
             } );
@@ -68,7 +73,7 @@ $(function() {
                 url: urlGetAirplanes + '/' + request.term,
                 method: "GET",
                 success: function( data ) {
-                    console.log(data);
+
                     response(data.airplanes);
                 }
             } );
@@ -196,9 +201,6 @@ $(function() {
         $([$selectEndMinute, $selectEndHour]).each(function () {
             $(this).find('option').css('display','inline');
         });
-
-        console.log(parseInt($selectEndHour.val()) + ' selectEndHour');
-        console.log(new Date().getHours() + ' HOURS');
 
         disableOverdueHours(hours, $selectEndHour);
 
