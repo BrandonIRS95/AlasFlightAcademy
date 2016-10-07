@@ -63,13 +63,10 @@ $(function() {
 
             stringMarkers += ']';
 
-            console.log(stringMarkers);
-
             var jsonPoints =  JSON.parse(stringPoints);
             var jsonMarkers = JSON.parse(stringMarkers);
 
             vm().addFlight(jsonPoints, jsonMarkers).done(function (response) {
-                console.log(response);
             });
         }
     });

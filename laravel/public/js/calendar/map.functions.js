@@ -78,21 +78,21 @@ function initMap() {
     poly.setMap(map);
 
     google.maps.event.addListener(poly.getPath(), 'set_at', function(event) {
-        console.log('Vertex moved on outer path.');
-        console.log(event);
-        console.log(poly.getPath().getArray().toString());
+
+
+
     });
 
     google.maps.event.addListener(poly.getPath(), 'insert_at', function(event) {
-        console.log('Vertex insert at from inner path.');
-        console.log(event);
-        console.log(poly.getPath().getArray().toString() + ' POLY ARRAY');
+
+
+
     });
 
     google.maps.event.addListener(poly.getPath(), 'remove_at', function(event) {
-        console.log('Vertex remove at from inner path.');
-        console.log(event);
-        console.log(poly.getPath().getArray().toString());
+
+
+
     });
 
     google.maps.event.addListener(poly, 'rightclick', deleteNode);
@@ -115,8 +115,8 @@ function addLatLng(event) {
     // and it will automatically appear.
     path.push(event.latLng);
 
-    console.log(JSON.parse('{"lng" : "' + path.getArray()[0].lat() + '"}'));
-    console.log(poly.getPath().getArray()[poly.getPath().getArray().length - 1]);
+
+
 
     // Add a new marker at the new plotted point on the polyline.
     if(addMarker) {
@@ -129,7 +129,6 @@ function addLatLng(event) {
         });
         addMarker = false;
         markers.push(marker);
-        console.log(marker.getPosition().lat());
     }
 
 }
@@ -146,7 +145,6 @@ function addMarkerLastCoordinates()
         });
 
         markers.push(marker);
-        console.log(markers);
 
         marker.addListener("rightclick", function () {
             if (marker.index < (markers.length - 1)) {
