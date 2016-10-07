@@ -531,6 +531,10 @@
             #ui-id-1, #ui-id-2{
                 z-index: 1100;
             }
+
+            #flight_cost{
+                text-align: right;
+            }
         </style>
     @endsection
 
@@ -653,8 +657,9 @@
                         <h4><span class="span-selected-date-day-name"></span><span class="span-selected-date-month-name"></span> <span class="span-selected-date-day-number"></span>, <span class="span-selected-date-year"></span></h4>
                         <img class="modal-principal-icon" src="{{URL::to('svg/calendar/ic_airplanemode_active_light_48px.svg')}}">
                     </div>
+                    <form  id="form-add-flight-test">
                     <div class="modal-body">
-                        <form  id="form-add-flight-test" action="#" method="post">
+
                             <div class='row'>
                                 <div class='col-sm-12'>
                                     <div class='form-group'>
@@ -744,18 +749,19 @@
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <label for="cost">Cost</label>
-                                        <input type="text" name="cost" class="form-control">
+                                        <label for="cost">Cost (USD)</label>
+                                        <input id="flight_cost" type="text" name="cost" class="form-control">
                                     </div>
                                 </div>
                             </div>
 
-                        </form>
+
                     </div>
                     <div class="modal-footer">
                         <button id="close-modal" type="button" class="btn btn-default custom-btn-default" data-dismiss="modal">Cancel</button>
-                        <button type="button" class="btn btn-primary custom-btn-primary">Save</button>
+                        <button type="submit" class="btn btn-primary custom-btn-primary">Save</button>
                     </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -765,6 +771,8 @@
         <script>
             var urlGetInstructors = '{{route('getInstructorsByName')}}';
             var urlGetAirplanes = '{{route('getAirplanesByPlateAndName')}}';
+            var urlAddFlightTest = '{{route('addFlightTest')}}';
+            var TOKEN = '{{ Session::token() }}';
         </script>
         <script type="text/javascript" src="{{URL::to('js/calendar/calendario.js')}}"></script>
         <script type="text/javascript" src="{{URL::to('js/calendar/data.js')}}"></script>
@@ -773,6 +781,7 @@
         <script type="text/javascript" src="{{URL::to('js/jquery-ui.min.js')}}"></script>
         <script type="text/javascript" src="{{URL::to('js/jquery.validate.js')}}"></script>
         <script type="text/javascript" src="{{URL::to('js/additional-methods.js')}}"></script>
+        <script type="text/javascript" src="{{URL::to('js/knockout-3.4.0.js')}}"></script>
         <script type="text/javascript" src="{{URL::to('js/calendar/date.js')}}"></script>
         <script type="text/javascript" src="{{URL::to('js/calendar/map.functions.js')}}"></script>
         <script type="text/javascript" src="{{URL::to('js/calendar/calendar.functions.js')}}"> </script>

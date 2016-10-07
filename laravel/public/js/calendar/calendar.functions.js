@@ -3,15 +3,48 @@
  */
 
 // TODO Cuando falten menos de 5 minutos para la siguiente hora arreglar bug, igual con los minutos
-// TODO Cuando se selecciona un dia que no es el actual y se selecciona una hora final que no sea la actual no se actualizan los minutos finales
 
 $(function() {
 
-    var SELECTED_DATE = new Date();
+    window.SELECTED_DATE = new Date();
     var RANGE_OF_MINUTES = 5;
 
     $('#form-add-flight-test').validate({
+        submitHandler: function (form) {
+            var arrayPoints = poly.getPath().getArray();
+            var stringMarkers = '[';
+            var stringPoints = '[';
+            var first = true;
 
+            for(var x = 0; x< arrayPoints.length; x++)
+            {
+                if(first) first = false; else stringPoints += ',';
+                stringPoints += '{ "lat": "' + arrayPoints[x].lat() + '", "lng": "' + arrayPoints[x].lng() + '" }';
+            }
+
+            stringPoints += ']';
+
+            first = true;
+
+            for(var x = 0; x < markers.length; x++)
+            {
+                if(first) first = false; else stringMarkers += ',';
+                var marker = markers[x];
+                var position = marker.getPosition();
+                stringMarkers += '{ "label": "' + marker.getLabel() + '", "lat": "' + position.lat() + '", "lng": "' + position.lng() + '" }';
+            }
+
+            stringMarkers += ']';
+
+            console.log(stringMarkers);
+
+            var jsonPoints =  JSON.parse(stringPoints);
+            var jsonMarkers = JSON.parse(stringMarkers);
+
+            vm().addFlight(jsonPoints, jsonMarkers).done(function (response) {
+                console.log(response);
+            });
+        }
     });
 
     /** <!-- FLIGHT TEST ...*/
@@ -328,3 +361,61 @@ $(function() {
 
     }
 });
+
+
+// TODO al usar el autocomplete de jquery simplemente asigno el valor seleccionado a la variable del viewmodel (en el metodo select o change de autocomplete)
+
+var vm = function CalendarViewModel() {
+    var self = this;
+    self.newFlightTest = null;
+    self.newFlightRoute = null;
+    self.addFlight = function (points, markers) {
+        var start = $('#flight_start_hour').val() + ':' + $('#flight_start_minute').val();
+        var end = $('#flight_end_hour').val() + ':' + $('#flight_end_minute').val();
+        return $.ajax({
+            url : urlAddFlightTest,
+            type: 'POST',
+            data : ko.toJSON({
+                date: SELECTED_DATE.toString('yyyy-M-d'),
+                start: start,
+                end: end,
+                cost: $('#flight_cost').val(),
+                route: {
+                    name: 'La concha',
+                    description: 'La concha el mejor lugar para bailar en tijuana',
+                    points: points,
+                    markers: markers
+                },
+                _token : TOKEN
+            }),
+            contentType: "application/json"
+        });
+    };
+    self.addFlightRoute = function () {
+
+    };
+
+    return self;
+};
+
+
+function FlightTest(data) {
+    this.date = data.date;
+    this.start = data.start;
+    this.end = data.end;
+    this.cost = data.cost;
+    this.flight_route = new FlightRoute(data.flight_route);
+    this.instructor = data.instructor;
+    this.airplane = data.airplane;
+}
+
+function FlightRoute(data) {
+    this.name = data.name;
+    this.description = data.description;
+    this.points = data.points;
+    this.markers = data.markers;
+}
+
+ko.applyBindings(vm);
+
+

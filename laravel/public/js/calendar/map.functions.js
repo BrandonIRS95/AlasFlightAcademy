@@ -105,7 +105,7 @@ var deleteNode = function(mev) {
         poly.getPath().removeAt(mev.vertex);
     }
     //poly.set('editable',false);
-}
+};
 
 // Handles click events on a map, and adds a new point to the Polyline.
 function addLatLng(event) {

@@ -128,6 +128,12 @@ Route::get('/getAirplanesByPlateAndName/{text?}', [
     'middleware' => 'auth'
 ]);
 
+Route::post('/addFlightTest', [
+    'uses' => 'FlightTestController@postAddFlightTest',
+    'as' => 'addFlightTest',
+    'middleware' => 'auth'
+]);
+
 
 Route::get('/', function () {
     return view('index');
