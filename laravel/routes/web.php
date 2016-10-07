@@ -73,6 +73,12 @@ Route::get('/getContactById/{id?}', [
     'middleware' => 'auth'
 ]);
 
+Route::get('/getAirplaneById/{id?}', [
+    'uses' => 'AirplaneController@getAirplaneById',
+    'as' => 'getAirplaneById',
+    'middleware' => 'auth'
+]);
+
 Route::get('/getInstructorsByName/{name?}', [
     'uses' => 'InstructorController@getInstructorsByName',
     'as' => 'getInstructorsByName',
@@ -182,4 +188,9 @@ Route::post('/addcontact', [
 Route::post('/addairplane', [
     'uses' => 'AirplaneController@postAddAirplane',
     'as' => 'addairplane'
+]);
+
+Route::post('/edit',[
+    'uses' => 'AirplaneController@postEditPost',
+    'as' => 'edit'
 ]);
