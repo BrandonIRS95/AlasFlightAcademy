@@ -16,5 +16,11 @@ class InstructorTableSeeder extends Seeder
         ]);
 
         $instructor->save();
+
+        $instructor = new \App\Instructor([
+            'person_id' => '4'
+        ]);
+
+        $instructor->save();
     }
 }

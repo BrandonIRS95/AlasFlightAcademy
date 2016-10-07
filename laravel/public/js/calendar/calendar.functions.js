@@ -9,7 +9,34 @@ $(function() {
     window.SELECTED_DATE = new Date();
     var RANGE_OF_MINUTES = 5;
 
+    $.validator.addMethod("elementSelected", function (value, element) {
+
+        return this.optional(element) || ($(element).attr("data-id") > 0);
+    }, "Select an element from the drop down.");
+
     $('#form-add-flight-test').validate({
+        rules: {
+            instructor: {
+                required: true,
+                elementSelected: true
+            },
+            airplane: {
+                required: true,
+                elementSelected: true
+            },
+            cost: {
+                required: true,
+                number: true
+            }
+        },
+        messages: {
+            instructor: {
+                elementSelected: 'Please, select an instructor.'
+            },
+            airplane: {
+                elementSelected: 'Please, select an airplane.'
+            }
+        },
         submitHandler: function (form) {
             var arrayPoints = poly.getPath().getArray();
             var stringMarkers = '[';
@@ -91,7 +118,12 @@ $(function() {
             var $input = $( "#flight_instructor" );
             $input.val( ui.item.person.first_name + ' ' + ui.item.person.last_name);
             $input.attr('data-id',ui.item.id);
+            $(this).valid();
             return false;
+        }
+    }).keydown(function (event) {
+        if (event.keyCode == 8) {
+            $(this).attr('data-id','0');
         }
     }).autocomplete( "instance" )._renderItem = function( ul, item ) {
         return $( "<li>" )
@@ -119,7 +151,12 @@ $(function() {
             var $input = $( "#flight_airplane" );
             $input.val( ui.item.plate);
             $input.attr('data-id',ui.item.id);
+            $(this).valid();
             return false;
+        }
+    }).keydown(function (event) {
+        if (event.keyCode == 8) {
+            $(this).attr('data-id','0');
         }
     }).autocomplete( "instance" )._renderItem = function( ul, item ) {
         return $( "<li>" )
@@ -386,6 +423,8 @@ var vm = function CalendarViewModel() {
                     points: points,
                     markers: markers
                 },
+                instructor: $('#flight_instructor').attr('data-id'),
+                airplane: $('#flight_airplane').attr('data-id'),
                 _token : TOKEN
             }),
             contentType: "application/json"

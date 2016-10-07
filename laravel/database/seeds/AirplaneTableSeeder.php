@@ -18,5 +18,13 @@ class AirplaneTableSeeder extends Seeder
             'status' => 'active'
         ]);
         $airplane->save();
+
+        $airplane = new \App\Airplane([
+            'plate' => 'ES-5SV4E',
+            'name' => 'Superman',
+            'photo' => '2.png',
+            'status' => 'active'
+        ]);
+        $airplane->save();
     }
 }

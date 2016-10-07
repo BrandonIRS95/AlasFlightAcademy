@@ -535,6 +535,12 @@
             #flight_cost{
                 text-align: right;
             }
+
+            label.error {
+                color: #FF9410;
+                margin-top: 5px;
+                font-size: 12px;
+            }
         </style>
     @endsection
 
@@ -684,13 +690,13 @@
                                 <div class='col-sm-6'>
                                     <div class='form-group'>
                                         <label for="instructor">Instructor</label>
-                                        <input class="form-control" id="flight_instructor" name="instructor" type="text" />
+                                        <input class="form-control" id="flight_instructor" name="instructor" type="text" data-id="0"/>
                                     </div>
                                 </div>
                                 <div class='col-sm-6'>
                                     <div class='form-group'>
                                         <label for="airplane">Airplane</label>
-                                        <input class="form-control" id="flight_airplane" name="airplane" type="text" />
+                                        <input class="form-control" id="flight_airplane" name="airplane" type="text" data-id="0"/>
                                     </div>
                                 </div>
                             </div>

@@ -37,5 +37,13 @@ class PersonTableSeeder extends Seeder
             'gender' => 'female',
             'city_country_of_birth' => 'Guadalajara, Mexico']);
         $person->save();
+
+        $person = new \App\Person([
+            'first_name' => 'Robert',
+            'last_name' => 'Jackson',
+            'date_of_birth' => '1960-12-12',
+            'gender' => 'male',
+            'city_country_of_birth' => 'England']);
+        $person->save();
     }
 }

@@ -19,8 +19,8 @@ class FlightTestController extends Controller
         $flightTest->start = $request['start'];
         $flightTest->end = $request['end'];
         $flightTest->cost = $request['cost'];
-        $flightTest->instructor_id = '1';
-        $flightTest->airplane_id = '1';
+        $flightTest->instructor_id = $request['instructor'];
+        $flightTest->airplane_id = $request['airplane'];
 
         $routeJson = $request['route'];
         $flightRoute = new FlightRoute();
