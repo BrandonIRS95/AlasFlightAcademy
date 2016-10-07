@@ -57,7 +57,7 @@ return [
 
     'from' => [
         'address' => 'alasflyacademy@gmail.com',
-        'name' => 'AlasFlyAcademy',
+        'name' => 'alasflyacademy123',
     ],
 
     /*
