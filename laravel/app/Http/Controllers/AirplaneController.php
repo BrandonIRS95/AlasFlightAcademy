@@ -50,5 +50,31 @@ class AirplaneController extends Controller
 
     }
 
+    public function getAirplaneById(Request $request){
+        $airplane = Airplane::find($request['id']);
+        return response()->json(['airplane' => $airplane,
+            'status' => '0'], 200);
+    }
+
+    public function postEditPost(Request $request){
+        $this->validate($request,[
+            'name' => 'required',
+            'plate'=> 'required',
+            'status'=>'required'
+        ]);
+        $post = Airplane::find($request['postId']);
+        $post->name = $request['name'];
+        $post->plate = $request['plate'];
+        $post->photo = $request['photo'];
+        $post->status = $request['status'];
+        $post->update();
+        return response()->json(['new_body' =>
+            $post->name,
+            $post->plate,
+            $post->photo,
+            $post->status],200);
+
+    }
+
 
 }

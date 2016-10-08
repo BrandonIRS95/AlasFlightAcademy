@@ -36,9 +36,9 @@
     </section>
     <section>
         <div class="col-md-6 col-md-offset-3" id="mailForm">
-            <form action="{{route('sendmail')}}" method="post" class="formSend">
+            <form action="{{ route('sendmail' )}}" method="post" class="formSend">
               <div class="form-group">
-                  <p type="email" name="mail" class="form-control" id="toEmail"></p>
+                  <input type="email" name="mail" class="form-control" id="toEmail">
               </div>                
               <div class="form-group">
                 <input name="title" type="text" class="form-control" >
@@ -69,7 +69,7 @@
 
             getContactById(idContact).done(function (response) {
                 console.log(response);
-                $('#toEmail').html(response.contact.email);
+                $('#toEmail').val(response.contact.email);
             });
         });
 
