@@ -134,6 +134,12 @@ Route::post('/addFlightTest', [
     'middleware' => 'auth'
 ]);
 
+Route::get('/getRoutesByName/{name?}', [
+    'uses' => 'FlightRouteController@getRoutesByName',
+    'as' => 'getRoutesByName',
+    'middleware' => 'auth'
+]);
+
 
 Route::get('/', function () {
     return view('index');

@@ -503,7 +503,7 @@
 
             #add-marker-btn{
                 position: absolute;
-                top: 35px;
+                top: 10px;
                 left: 140px;
                 background: #FFF;
                 padding: 3px;
@@ -528,7 +528,11 @@
                 padding: 0px;
             }
 
-            #ui-id-1, #ui-id-2{
+            /*#ui-id-1, #ui-id-2{
+                z-index: 1100;
+            }*/
+
+            .ui-menu{
                 z-index: 1100;
             }
 
@@ -540,6 +544,34 @@
                 color: #FF9410;
                 margin-top: 5px;
                 font-size: 12px;
+            }
+
+            #add-new-route, #cancel-new-route{
+                width: auto;
+                position: absolute;
+                top: 25px;
+                left: 0px;
+                right: 15px;
+            }
+
+            .newRoute {
+                display: none;
+            }
+
+            .noNewRoute{
+                display: block;
+            }
+
+            legend{
+                border-bottom: 1px dotted #e5e5e5;
+            }
+
+            @media (max-width: 360px) {
+                #add-new-route {
+                    font-size: 10px;
+                    height: 34px;
+                    line-height: 22px;
+                }
             }
         </style>
     @endsection
@@ -654,8 +686,8 @@
             </div>
         </div>
 
-        <div id="modalAddEvent" class="modal bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
-            <div id="modalWrapper" class="modal-dialog modal-lg" role="document">
+        <div id="modalAddEvent" class="modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+            <div id="modalWrapper" class="modal-dialog" role="document">
                 <div id="content-modal-add-event" class="modal-content modal-add-flight-test">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -665,39 +697,47 @@
                     </div>
                     <form  id="form-add-flight-test">
                     <div class="modal-body">
-
-                            <div class='row'>
+                            <div class="row">
                                 <div class='col-sm-12'>
-                                    <div class='form-group'>
-                                        <label>Route</label>
-                                        <div id="map"></div>
-                                        <input type="hidden" name="coordinates" id="coordinates">
-                                        <div id="add-marker-btn">
-                                            <img src="{{URL::to('svg/calendar/ic_add_location_black_24px.svg')}}">
+                                    <fieldset class="form-group">
+                                        <legend>Route</legend>
+                                        <div class="row">
+                                            <div class="col-xs-8">
+                                                <div class="form-group">
+                                                    <label for="search-route" class="noNewRoute">Search route</label>
+                                                    <input id="search-route" name="search_route" class="form-control noNewRoute" type="text">
+                                                    <label for="route-name" class="newRoute">Route name</label>
+                                                    <input id="route-name" name="route_name" class="form-control newRoute" type="text">
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-4" style="height: 74px;">
+                                                <div class="form-group">
+                                                    <div id="add-new-route" class="btn btn-primary custom-btn-primary noNewRoute">New route</div>
+                                                    <div id="cancel-new-route" class="btn btn-primary custom-btn-primary newRoute">Cancel route</div>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class='row'>
-                                <div class='col-sm-12'>
-                                    <div class='form-group'>
-                                        <label for="route_description">Route description</label>
-                                        <textarea id="ta-route-description" name="route_description" type="text" class="form-control"></textarea>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class='row'>
-                                <div class='col-sm-6'>
-                                    <div class='form-group'>
-                                        <label for="instructor">Instructor</label>
-                                        <input class="form-control" id="flight_instructor" name="instructor" type="text" data-id="0"/>
-                                    </div>
-                                </div>
-                                <div class='col-sm-6'>
-                                    <div class='form-group'>
-                                        <label for="airplane">Airplane</label>
-                                        <input class="form-control" id="flight_airplane" name="airplane" type="text" data-id="0"/>
-                                    </div>
+                                        <div class='row'>
+                                            <div class='col-sm-12'>
+                                                <label class="newRoute">Draw the route</label>
+                                                <div class='form-group' style="position:relative;">
+                                                    <div id="map"></div>
+                                                    <div id="add-marker-btn">
+                                                        <img src="{{URL::to('svg/calendar/ic_add_location_black_24px.svg')}}">
+                                                    </div>
+                                                    <input type="hidden" name="coordinates" id="coordinates">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class='row'>
+                                            <div class='col-sm-12 newRoute'>
+                                                <div class='form-group'>
+                                                    <label for="route_description">Route description</label>
+                                                    <textarea id="ta-route-description" name="route_description" type="text" class="form-control"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </fieldset>
                                 </div>
                             </div>
                             <div class='row'>
@@ -753,14 +793,34 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <label for="cost">Cost (USD)</label>
-                                        <input id="flight_cost" type="text" name="cost" class="form-control">
-                                    </div>
+                                <div class="col-sm-12">
+                                    <fieldset class="form-group">
+                                        <legend>Information</legend>
+                                        <div class='row'>
+                                            <div class='col-sm-6'>
+                                                <div class='form-group'>
+                                                    <label for="instructor">Instructor</label>
+                                                    <input class="form-control" id="flight_instructor" name="instructor" type="text" data-id="0"/>
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-6'>
+                                                <div class='form-group'>
+                                                    <label for="airplane">Airplane</label>
+                                                    <input class="form-control" id="flight_airplane" name="airplane" type="text" data-id="0"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label for="cost">Cost (USD)</label>
+                                                    <input id="flight_cost" type="text" name="cost" class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </fieldset>
                                 </div>
                             </div>
-
 
                     </div>
                     <div class="modal-footer">
@@ -778,6 +838,7 @@
             var urlGetInstructors = '{{route('getInstructorsByName')}}';
             var urlGetAirplanes = '{{route('getAirplanesByPlateAndName')}}';
             var urlAddFlightTest = '{{route('addFlightTest')}}';
+            var urlGetRoutes = '{{route('getRoutesByName')}}';
             var TOKEN = '{{ Session::token() }}';
         </script>
         <script type="text/javascript" src="{{URL::to('js/calendar/calendario.js')}}"></script>

@@ -129,9 +129,15 @@ function addLatLng(event) {
         });
         addMarker = false;
         markers.push(marker);
+        $('#coordinates').val('1').valid();
     }
 
 }
+
+window.drawMarkers = function(markers)
+{
+    
+};
 
 function addMarkerLastCoordinates()
 {
@@ -145,6 +151,7 @@ function addMarkerLastCoordinates()
         });
 
         markers.push(marker);
+
 
         marker.addListener("rightclick", function () {
             if (marker.index < (markers.length - 1)) {

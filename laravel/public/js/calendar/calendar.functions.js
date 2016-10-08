@@ -7,6 +7,7 @@
 $(function() {
 
     window.SELECTED_DATE = new Date();
+    window.NEW_ROUTE = false;
     var RANGE_OF_MINUTES = 5;
 
     $.validator.addMethod("elementSelected", function (value, element) {
@@ -15,6 +16,7 @@ $(function() {
     }, "Select an element from the drop down.");
 
     $('#form-add-flight-test').validate({
+        ignore: ':hidden:not("#coordinates")',
         rules: {
             instructor: {
                 required: true,
@@ -27,6 +29,20 @@ $(function() {
             cost: {
                 required: true,
                 number: true
+            },
+            search_route: {
+                elementSelected: true,
+                required: true
+            },
+            route_name: {
+                required: true
+            },
+            coordinates: {
+                required: {
+                  depends : function () {
+                      return NEW_ROUTE;
+                  }
+                }
             }
         },
         messages: {
@@ -35,6 +51,12 @@ $(function() {
             },
             airplane: {
                 elementSelected: 'Please, select an airplane.'
+            },
+            search_route: {
+                elementSelected: 'Please, select a route.'
+            },
+            coordinates: {
+                required: 'Please, draw the route.'
             }
         },
         submitHandler: function (form) {
@@ -67,11 +89,30 @@ $(function() {
             var jsonMarkers = JSON.parse(stringMarkers);
 
             vm().addFlight(jsonPoints, jsonMarkers).done(function (response) {
+                if(response.status === 0)
+                {
+
+                }
             });
         }
     });
 
     /** <!-- FLIGHT TEST ...*/
+
+    $('#add-new-route').click(function () {
+        NEW_ROUTE = true;
+        $('.noNewRoute').css('display','none');
+        $('.newRoute').css('display','block');
+        $('#search-route-error').remove();
+    });
+
+    $('#cancel-new-route').click(function () {
+        NEW_ROUTE = false;
+        $('#coordinates-error').remove();
+        $('#route-name-error').remove();
+        $('.newRoute').css('display','none');
+        $('.noNewRoute').css('display','block');
+    });
 
     $('#flight_start_hour, #flight_start_minute').change(function () {
         updateEndTime($('#flight_start_hour'), $('#flight_start_minute'), $('#flight_end_hour'), $('#flight_end_minute'));
@@ -95,6 +136,37 @@ $(function() {
             $selectEndMinute.find('option').css('display', 'inline');
         }
     });
+
+    $('#search-route').autocomplete({
+        minLength: 0,
+        source: function( request, response ) {
+            if(request.term !== '') $.ajax( {
+                url: urlGetRoutes + '/' + request.term,
+                method: "GET",
+                success: function( data ) {
+                    response(data.routes);
+                }
+            } );
+        },
+        focus: function( event, ui ) {
+            return false;
+        },
+        select: function( event, ui ) {
+            var $input = $(this);
+            $input.val( ui.item.name);
+            $input.attr('data-id',ui.item.id);
+            $input.valid();
+            return false;
+        }
+    }).keydown(function (event) {
+        if (event.keyCode == 8) {
+            $(this).attr('data-id','0');
+        }
+    }).autocomplete( "instance" )._renderItem = function( ul, item ) {
+        return $( "<li>" )
+            .append( "<div>" + item.name + "</div>" )
+            .appendTo( ul );
+    };
 
     $( "#flight_instructor" ).autocomplete({
         minLength: 0,
@@ -406,24 +478,32 @@ var vm = function CalendarViewModel() {
     self.addFlight = function (points, markers) {
         var start = $('#flight_start_hour').val() + ':' + $('#flight_start_minute').val();
         var end = $('#flight_end_hour').val() + ':' + $('#flight_end_minute').val();
+        var data = {
+            date: SELECTED_DATE.toString('yyyy-M-d'),
+            start: start,
+            end: end,
+            cost: $('#flight_cost').val(),
+            instructor: $('#flight_instructor').attr('data-id'),
+            airplane: $('#flight_airplane').attr('data-id'),
+            _token : TOKEN
+        };
+
+        if(NEW_ROUTE) {
+            data.route = {
+                name: $('#route-name').val(),
+                description: $('#ta-route-description').val(),
+                points: points,
+                markers: markers
+            };
+        }
+        else {
+            data.route_id = $('#search-route').attr('data-id');
+        }
+
         return $.ajax({
             url : urlAddFlightTest,
             type: 'POST',
-            data : ko.toJSON({
-                date: SELECTED_DATE.toString('yyyy-M-d'),
-                start: start,
-                end: end,
-                cost: $('#flight_cost').val(),
-                route: {
-                    name: 'La concha',
-                    description: 'La concha el mejor lugar para bailar en tijuana',
-                    points: points,
-                    markers: markers
-                },
-                instructor: $('#flight_instructor').attr('data-id'),
-                airplane: $('#flight_airplane').attr('data-id'),
-                _token : TOKEN
-            }),
+            data : ko.toJSON(data),
             contentType: "application/json"
         });
     };
