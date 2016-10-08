@@ -115,7 +115,7 @@ function addLatLng(event) {
     // and it will automatically appear.
     path.push(event.latLng);
 
-
+    console.log(event.latLng);
 
 
     // Add a new marker at the new plotted point on the polyline.
@@ -136,7 +136,26 @@ function addLatLng(event) {
 
 window.drawMarkers = function(markers)
 {
-    
+    console.log(markers);
+    for(var x=0; x < markers.length; x++){
+        var markerObj = markers[x];
+        var marker = new google.maps.Marker({
+            position: { lat: parseFloat(markerObj.lat), lng: parseFloat(markerObj.lng) },
+            label: markerObj.label,
+            map: map,
+            draggable: false
+        });
+        // markers.push(marker);
+        // $('#coordinates').val('1').valid();
+    }
+};
+
+window.drawPoints = function(points){
+    for(var x = 0; x < points.length; x++){
+        var point = points[x];
+        var path = poly.getPath();
+        path.push(new google.maps.LatLng(parseFloat(point.lat),parseFloat(point.lng)));
+    }
 };
 
 function addMarkerLastCoordinates()

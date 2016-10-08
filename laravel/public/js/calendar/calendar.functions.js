@@ -156,6 +156,8 @@ $(function() {
             $input.val( ui.item.name);
             $input.attr('data-id',ui.item.id);
             $input.valid();
+            drawMarkers(ui.item.markers);
+            drawPoints(ui.item.points);
             return false;
         }
     }).keydown(function (event) {

@@ -541,7 +541,7 @@
             }
 
             label.error {
-                color: #FF9410;
+                color: yellow;
                 margin-top: 5px;
                 font-size: 12px;
             }
