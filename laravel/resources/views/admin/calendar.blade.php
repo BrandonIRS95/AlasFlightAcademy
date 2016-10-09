@@ -574,6 +574,22 @@
                 }
             }
 
+            #flight_cost-error{
+                position: absolute;
+                left: 0px;
+                top: 33px;
+            }
+
+            .backgroundModalProcess {
+                z-index: 4000;
+                background: rgba(0, 0, 0, 0.62);
+                position: fixed;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                top: 0;
+            }
+
             @media (max-width: 412px) {
                 #cancel-new-route {
                     font-size: 10px;
@@ -821,7 +837,10 @@
                                             <div class="col-sm-6">
                                                 <div class="form-group">
                                                     <label for="cost">Cost (USD)</label>
-                                                    <input id="flight_cost" type="text" name="cost" class="form-control">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon">$</span>
+                                                        <input id="flight_cost" type="text" name="cost" class="form-control">
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -838,6 +857,7 @@
                 </div>
             </div>
         </div>
+
     @endsection
 
 @section('javascript')

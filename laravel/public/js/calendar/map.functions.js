@@ -61,7 +61,9 @@ var poly;
 var map;
 var addMarker = true;
 var MARKERS = [];
+window.NEW_ROUTE = false;
 var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+var MAP_CLICK_EVENT;
 
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
@@ -97,7 +99,6 @@ function initMap() {
 
     google.maps.event.addListener(poly, 'rightclick', deleteNode);
     // Add a listener for the click event
-    map.addListener('click', addLatLng);
 }
 
 var deleteNode = function(mev) {

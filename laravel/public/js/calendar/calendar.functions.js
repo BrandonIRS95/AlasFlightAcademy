@@ -7,7 +7,6 @@
 $(function() {
 
     window.SELECTED_DATE = new Date();
-    window.NEW_ROUTE = false;
     var RANGE_OF_MINUTES = 5;
 
     $.validator.addMethod("elementSelected", function (value, element) {
@@ -101,6 +100,7 @@ $(function() {
 
     $('#add-new-route').click(function () {
         cleanDataInMap();
+        MAP_CLICK_EVENT = map.addListener('click', addLatLng);
         poly.setEditable(true);
         NEW_ROUTE = true;
         $('.noNewRoute').css('display','none');
@@ -110,6 +110,7 @@ $(function() {
 
     $('#cancel-new-route').click(function () {
         cleanDataInMap();
+        google.maps.event.removeListener(MAP_CLICK_EVENT);
         poly.setEditable(false);
         NEW_ROUTE = false;
         $('#coordinates-error').remove();
@@ -289,7 +290,14 @@ $(function() {
             $('#modalAddEvent').find('input, textarea').val('');
             cleanDataInMap();
         });
+
+        var backgroundAnimation = '<div id="backgroundModalProcess" class="backgroundModalProcess"></div>';
+        $('body').append(backgroundAnimation);
     });
+    
+    function showModalProcess() {
+        
+    }
 
     function isSelectedNow($selectStartHour, $selectStartMinute){
         if(Date.compare(SELECTED_DATE, Date.today()) === 0) {
