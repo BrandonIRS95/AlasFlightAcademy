@@ -59,6 +59,9 @@ $(function() {
             }
         },
         submitHandler: function (form) {
+            
+            LOADING_ANIMATION.show('Saving flight test');
+            
             var arrayPoints = poly.getPath().getArray();
             var stringMarkers = '[';
             var stringPoints = '[';
@@ -90,7 +93,7 @@ $(function() {
             vm().addFlight(jsonPoints, jsonMarkers).done(function (response) {
                 if(response.status === 0)
                 {
-
+                    LOADING_ANIMATION.done('Flight test successfully added!');
                 }
             });
         }
@@ -285,14 +288,14 @@ $(function() {
 
             google.maps.event.trigger(map, 'resize');
             map.setCenter({lat: -34.397, lng: 150.644});
+            
+
 
         }, function(){
             $('#modalAddEvent').find('input, textarea').val('');
             cleanDataInMap();
         });
-
-        var backgroundAnimation = '<div id="backgroundModalProcess" class="backgroundModalProcess"></div>';
-        $('body').append(backgroundAnimation);
+        
     });
     
     function showModalProcess() {

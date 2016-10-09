@@ -5,6 +5,54 @@
 
         <link rel="stylesheet" href="{{URL::to('css/admin/style.css')}}"/>
 
+        <style>
+            .backgroundModalProcess {
+                z-index: 4000;
+                background: rgba(0, 0, 0, 0.62);
+                position: fixed;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                top: 0;
+            }
+            
+            .airplaneLoadingProcess {
+                position: absolute;
+                left: -50%;
+                top: -50%;
+                width: 60px;
+                transform: rotate(45deg);
+            }
+            
+            .conteinerAirplaneLoadingProcess, .doneAirplaneLoadingProcess{
+                position: absolute;
+                width: 60px;
+                height: 60px;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%,-50%);
+            }
+            
+            .doneAirplaneLoadingProcess{
+                width: 130px;
+                height: auto;
+            }
+            
+            .textAirplaneLoadingProcess{
+                position: absolute;
+                color: white;
+                font-size: 20px;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, 90px);
+            }
+            .doneProcessButton{
+                background: transparent;
+                border: transparent;
+                transform: translate(-50%, 90px);
+                font-size: 20px;
+            }
+        </style>
         @yield('individual-styles')
     </head>
 
@@ -69,6 +117,9 @@
                 @yield('content')
             </div>
         </div>
+        <script>
+            var urlSvgImages = '{{URL::to('svg/')}}';
+        </script>
         <script src="{{URL::to('js/jquery-3.1.1.min.js')}}"></script>
         <!-- Latest compiled and minified JavaScript -->
         <script src="{{URL::to('js/bootstrap.min.js')}}"></script>

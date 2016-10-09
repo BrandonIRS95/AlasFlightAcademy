@@ -1,6 +1,7 @@
 
 /*Need add TweenMax.js script in your html to work*/
 
+
 window.showModalAnimation = function($modalElement, callback, callback2){
     var $modalContainer = $modalElement;
     var $modalWrapper = $modalElement.find('.modal-dialog');
@@ -18,7 +19,7 @@ window.showModalAnimation = function($modalElement, callback, callback2){
         typeof callback === 'function' && callback();
     }});
 
-}
+};
 
 window.hideModalAnimation = function($modalElement, callback){
     var $background = $('.modal-backdrop');
@@ -31,14 +32,14 @@ window.hideModalAnimation = function($modalElement, callback){
         typeof callback === 'function' && callback();
     }});
     TweenMax.to($background, 0.6, {opacity: 0});
-}
+};
 
 window.slideAndReturnAnimation = function($element, callback){
     TweenMax.to($element,0.2,{x: 100, opacity: 0, onComplete: function () {
         typeof callback === 'function' && callback();
         TweenMax.to($element, 0.2, {opacity: 1, x: 0});
     }});
-}
+};
 
 window.animationForContentConteiner = function(){
     var $contentConteiner = $('#content-container');
@@ -58,4 +59,47 @@ window.animationForContentConteiner = function(){
     timeLine.set($contentConteiner, {transformStyle:"preserve-3d"});
     timeLine.from($contentConteiner, duration, {scale: 0.5, rotationY:'0_short', rotationX:'-80_short', rotation:'0_short', transformOrigin: 'top 0% -600'});
     timeLine.to($contentConteiner, duration, {opacity: 1}, 0);
-}
+};
+
+window.loadingProcessAnimation = function()
+{   
+    var $airplaneSvg = $('<image class="airplaneLoadingProcess" src="'+ urlSvgImages + '/' + 'ic_airplanemode_active_white_48px.svg' + '"/>');
+    var $backgroundAnimation = $('<div>', { class: 'backgroundModalProcess'});
+    var $divAirplane = $('<div>', { class: 'conteinerAirplaneLoadingProcess'});
+    var $divText = $('<div>', { class: 'textAirplaneLoadingProcess'});
+    var $body = $('body');
+    
+    this.show = function(text){
+        
+        $divText.html(text + '...');
+
+        $divAirplane.append($airplaneSvg);
+
+        $backgroundAnimation.append($divAirplane);
+        $backgroundAnimation.append($divText);
+
+        $body.append($backgroundAnimation);
+
+        TweenMax.to($divAirplane, 2, {rotation:360, repeat:-1, ease:Linear.easeNone});  
+    };
+    
+    this.done = function(text){
+        var $doneSvg = $('<img>',{ src: urlSvgImages + '/' + 'ic_done_white_1024px.svg', class: 'doneAirplaneLoadingProcess'});
+        var $btnDone = $('<button>', { class: "textAirplaneLoadingProcess doneProcessButton", html: text});
+        
+        $($btnDone, $backgroundAnimation).click(function(){
+            TweenMax.set($backgroundAnimation, {position: 'absolute'}); 
+            TweenMax.to($backgroundAnimation, 0.6, {y: '-100%'}); 
+        });
+        
+        TweenMax.to($divAirplane, 1, {scale: 0, ease:Linear.easeNone, onComplete: function(){
+            $backgroundAnimation.append($doneSvg);
+            $backgroundAnimation.append($btnDone);
+            $divText.remove();
+            TweenMax.from($doneSvg, 1, {scale: 0, rotation: 360});
+        }});
+    }
+    
+};
+
+var LOADING_ANIMATION = new loadingProcessAnimation();
