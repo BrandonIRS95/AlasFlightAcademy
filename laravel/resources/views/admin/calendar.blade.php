@@ -467,7 +467,7 @@
                 border-radius: 3px;
             }
 
-            .modal-add-flight-test .custom-btn-default{
+            .modal-add-flight-test .custom-btn-default, #cancel-new-route{
                 background: transparent;
                 border-radius: 0px;
                 border: 1px solid #ffffff;
@@ -567,10 +567,17 @@
             }
 
             @media (max-width: 360px) {
-                #add-new-route {
+                #add-new-route{
                     font-size: 10px;
                     height: 34px;
                     line-height: 22px;
+                }
+            }
+
+            @media (max-width: 412px) {
+                #cancel-new-route {
+                    font-size: 10px;
+                    line-height: 20px;
                 }
             }
         </style>
@@ -695,7 +702,7 @@
                         <h4><span class="span-selected-date-day-name"></span><span class="span-selected-date-month-name"></span> <span class="span-selected-date-day-number"></span>, <span class="span-selected-date-year"></span></h4>
                         <img class="modal-principal-icon" src="{{URL::to('svg/calendar/ic_airplanemode_active_light_48px.svg')}}">
                     </div>
-                    <form  id="form-add-flight-test">
+                    <form  id="form-add-flight-test" autocomplete="off">
                     <div class="modal-body">
                             <div class="row">
                                 <div class='col-sm-12'>
@@ -706,7 +713,7 @@
                                                 <div class="form-group">
                                                     <label for="search-route" class="noNewRoute">Search route</label>
                                                     <input id="search-route" name="search_route" class="form-control noNewRoute" type="text">
-                                                    <label for="route-name" class="newRoute">Route name</label>
+                                                    <label for="route-name" class="newRoute">Name for the new route</label>
                                                     <input id="route-name" name="route_name" class="form-control newRoute" type="text">
                                                 </div>
                                             </div>

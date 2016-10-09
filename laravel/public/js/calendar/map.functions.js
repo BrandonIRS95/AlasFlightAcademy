@@ -60,12 +60,12 @@ function initMap() {
 var poly;
 var map;
 var addMarker = true;
-var markers = [];
+var MARKERS = [];
 var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 7,
+        zoom: 10,
         center: {lat: 41.879, lng: -87.624}  // Center the map on Chicago, USA.
     });
 
@@ -128,7 +128,7 @@ function addLatLng(event) {
             index: 0
         });
         addMarker = false;
-        markers.push(marker);
+        MARKERS.push(marker);
         $('#coordinates').val('1').valid();
     }
 
@@ -136,7 +136,8 @@ function addLatLng(event) {
 
 window.drawMarkers = function(markers)
 {
-    console.log(markers);
+    map.setCenter(new google.maps.LatLng(parseFloat(markers[0].lat),parseFloat(markers[0].lng)));
+
     for(var x=0; x < markers.length; x++){
         var markerObj = markers[x];
         var marker = new google.maps.Marker({
@@ -145,7 +146,7 @@ window.drawMarkers = function(markers)
             map: map,
             draggable: false
         });
-        // markers.push(marker);
+        MARKERS.push(marker);
         // $('#coordinates').val('1').valid();
     }
 };
@@ -156,6 +157,19 @@ window.drawPoints = function(points){
         var path = poly.getPath();
         path.push(new google.maps.LatLng(parseFloat(point.lat),parseFloat(point.lng)));
     }
+
+    poly.setEditable(false);
+};
+
+window.cleanDataInMap = function(){
+    for (var i = 0; i < MARKERS.length; i++) {
+        console.log(i);
+        MARKERS[i].setMap(null);
+    }
+    //poly.setMap(null);
+    poly.getPath().clear();
+    MARKERS = [];
+    addMarker = true;
 };
 
 function addMarkerLastCoordinates()
@@ -163,25 +177,25 @@ function addMarkerLastCoordinates()
     if(poly.getPath().getArray().length > 0) {
         var marker = new google.maps.Marker({
             position: poly.getPath().getArray()[poly.getPath().getArray().length - 1],
-            label: labels.charAt(markers.length),
+            label: labels.charAt(MARKERS.length),
             map: map,
             draggable: true,
-            index: markers[markers.length - 1].index + 1
+            index: MARKERS[MARKERS.length - 1].index + 1
         });
 
-        markers.push(marker);
+        MARKERS.push(marker);
 
 
         marker.addListener("rightclick", function () {
-            if (marker.index < (markers.length - 1)) {
-                markers.splice(marker.index, 1);
-                for (var x = marker.index; x < markers.length; x++) {
-                    var auxMarker = markers[x];
+            if (marker.index < (MARKERS.length - 1)) {
+                MARKERS.splice(marker.index, 1);
+                for (var x = marker.index; x < MARKERS.length; x++) {
+                    var auxMarker = MARKERS[x];
                     auxMarker.index = x;
                     auxMarker.setLabel(labels.charAt(x));
                 }
             }
-            else markers.splice(marker.index, 1);
+            else MARKERS.splice(marker.index, 1);
             marker.setMap(null);
         });
     }

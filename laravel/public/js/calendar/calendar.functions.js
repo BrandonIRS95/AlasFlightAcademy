@@ -75,10 +75,10 @@ $(function() {
 
             first = true;
 
-            for(var x = 0; x < markers.length; x++)
+            for(var x = 0; x < MARKERS.length; x++)
             {
                 if(first) first = false; else stringMarkers += ',';
-                var marker = markers[x];
+                var marker = MARKERS[x];
                 var position = marker.getPosition();
                 stringMarkers += '{ "label": "' + marker.getLabel() + '", "lat": "' + position.lat() + '", "lng": "' + position.lng() + '" }';
             }
@@ -100,6 +100,8 @@ $(function() {
     /** <!-- FLIGHT TEST ...*/
 
     $('#add-new-route').click(function () {
+        cleanDataInMap();
+        poly.setEditable(true);
         NEW_ROUTE = true;
         $('.noNewRoute').css('display','none');
         $('.newRoute').css('display','block');
@@ -107,6 +109,8 @@ $(function() {
     });
 
     $('#cancel-new-route').click(function () {
+        cleanDataInMap();
+        poly.setEditable(false);
         NEW_ROUTE = false;
         $('#coordinates-error').remove();
         $('#route-name-error').remove();
@@ -156,6 +160,7 @@ $(function() {
             $input.val( ui.item.name);
             $input.attr('data-id',ui.item.id);
             $input.valid();
+            cleanDataInMap();
             drawMarkers(ui.item.markers);
             drawPoints(ui.item.points);
             return false;
@@ -282,13 +287,7 @@ $(function() {
 
         }, function(){
             $('#modalAddEvent').find('input, textarea').val('');
-            for (var i = 0; i < markers.length; i++) {
-                markers[i].setMap(null);
-            }
-            //poly.setMap(null);
-            poly.getPath().clear();
-            markers = [];
-            addMarker = true;
+            cleanDataInMap();
         });
     });
 
