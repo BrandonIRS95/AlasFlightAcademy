@@ -94,7 +94,7 @@ window.loadingProcessAnimation = function()
         $backgroundAnimation.css('cursor','pointer');
         $backgroundAnimation.click(function(){
             TweenMax.set($backgroundAnimation, {position: 'absolute'}); 
-            TweenMax.to($backgroundAnimation, 0.4, {y: '-100%', onComplete: function () {
+            TweenMax.to($backgroundAnimation, 0.2, {y: '-100%', ease: Power0.easeNone, onComplete: function () {
                 $backgroundAnimation.remove();
             }});
 

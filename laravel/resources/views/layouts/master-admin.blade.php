@@ -61,10 +61,9 @@
 
             .modalAirplaneLoadingProcess{
                 position: absolute;
-                background: #011a35;
+                background: #1784c7;
                 height: 240px;
                 width: 400px;
-                border-radius: 10px;
                 left: 50%;
                 top: 50%;
                 transform: translate(-50%,-50%);

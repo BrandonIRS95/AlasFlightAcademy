@@ -60,6 +60,9 @@ $(function() {
         },
         submitHandler: function () {
 
+            var $submitButton = $('#addflightsubmit');
+            $submitButton.prop('disabled', true);
+
             var loadingAnimation = new loadingProcessAnimation();
 
             loadingAnimation.show('Saving flight test');
@@ -97,6 +100,7 @@ $(function() {
                 {
                     loadingAnimation.done('Flight test successfully added!', function () {
                         $('#modalAddEvent').modal('hide');
+                        $submitButton.prop('disabled', false);
                     });
                 }
             });
@@ -161,6 +165,7 @@ $(function() {
             } );
         },
         focus: function( event, ui ) {
+            $(this).valid();
             return false;
         },
         select: function( event, ui ) {
@@ -196,6 +201,7 @@ $(function() {
             } );
         },
         focus: function( event, ui ) {
+            $(this).valid();
             return false;
         },
         select: function( event, ui ) {
@@ -228,7 +234,7 @@ $(function() {
             } );
         },
         focus: function( event, ui ) {
-            /*$( "#project" ).val( ui.item.label );*/
+            $(this).valid();
             return false;
         },
         select: function( event, ui ) {
@@ -286,7 +292,9 @@ $(function() {
 
     $addBtn.click(function () {
 
-        settingsFlightModal();
+        showModalSelectOption();
+
+        /*settingsFlightModal();
 
         showModalAnimation($('#modalAddEvent'), function(){
 
@@ -298,12 +306,74 @@ $(function() {
         }, function(){
             $('#modalAddEvent').find('input, textarea').val('');
             cleanDataInMap();
-        });
+            google.maps.event.removeListener(MAP_CLICK_EVENT);
+            poly.setEditable(false);
+            NEW_ROUTE = false;
+            $('#coordinates-error').remove();
+            $('#route-name-error').remove();
+            $('.newRoute').css('display','none');
+            $('.noNewRoute').css('display','block');
+        });*/
         
     });
     
-    function showModalProcess() {
-        
+    function showModalSelectOption() {
+        var $divBackground = $('<div>', {class: 'backgroundModalProcess'});
+        var $divContentModal = $('<div>', {class: 'contentModalOptions'});
+        var $title = $('<h4>', {html: 'Select an option:'});
+        var $body = $('body');
+        var $airplaneSvg = $('<img>', { class: 'iconOptions', src: urlSvgImages + '/calendar/' + 'ic_airplanemode_active_white_48px.svg'});
+        var $testSvg = $('<img>', { class: 'iconOptions', src: urlSvgImages + '/calendar/' + 'ic_content_paste_white_48px.svg'});
+        var $flightTitle = $('<div>', { class: 'optionTitle', html: 'Flight'});
+        var $testTitle = $('<div>', { class: 'optionTitle', html: 'Test'});
+        var $divContainer1 = $('<div>',{ id: 'btnAddFlight', class: 'optionConteiner'});
+        var $divContainer2 = $('<div>',{ id: 'btnAddTest', class: 'optionConteiner'});
+
+        $divContainer1.click(function () {
+
+            $divBackground.remove();
+
+            settingsFlightModal();
+
+            showModalAnimation($('#modalAddEvent'), function(){
+
+                google.maps.event.trigger(map, 'resize');
+                map.setCenter({lat: -34.397, lng: 150.644});
+
+
+
+            }, function(){
+                $('#modalAddEvent').find('input, textarea').val('');
+                cleanDataInMap();
+                google.maps.event.removeListener(MAP_CLICK_EVENT);
+                poly.setEditable(false);
+                NEW_ROUTE = false;
+                $('#coordinates-error').remove();
+                $('#route-name-error').remove();
+                $('.newRoute').css('display','none');
+                $('.noNewRoute').css('display','block');
+            });
+        });
+
+        $divBackground.click(function () {
+            TweenMax.to($divBackground, 0.2, {y: '-100%', ease: Power0.easeNone, onComplete: function () {
+                $divBackground.remove();
+            }});
+        });
+
+        $divContainer1.append($airplaneSvg);
+        $divContainer1.append($flightTitle);
+        $divContainer2.append($testSvg);
+        $divContainer2.append($testTitle);
+
+        $divContentModal.append($title);
+        $divContentModal.append($divContainer1);
+        $divContentModal.append($divContainer2);
+        $divBackground.append($divContentModal);
+        $body.append($divBackground);
+        TweenMax.set($divBackground, {perspective:300});
+        TweenMax.set($divContentModal, {transformStyle:"preserve-3d"});
+        TweenMax.from($divContentModal, 0.6, {scale: 0.5, rotationY:'0_short', opacity: 0, rotationX:'80_short', rotation:'0_short', transformOrigin: 'top 90% -600'});
     }
 
     function isSelectedNow($selectStartHour, $selectStartMinute){

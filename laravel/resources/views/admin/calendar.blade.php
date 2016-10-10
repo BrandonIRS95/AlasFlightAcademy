@@ -580,6 +580,35 @@
                 top: 33px;
             }
 
+            .contentModalOptions{
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%,-50%);
+                width: 300px;
+                height: 200px;
+                background: #1784c7;
+                padding: 10px 20px;
+                color: white;
+            }
+
+            .optionConteiner{
+                width: 70px;
+                position: relative;
+                float: left;
+                margin-top: 25px;
+                margin-left: 40px;
+                cursor: pointer;
+            }
+
+            .iconOptions{
+                width: 100%;
+            }
+
+            .optionTitle{
+                text-align: center;
+            }
+
             @media (max-width: 412px) {
                 #cancel-new-route {
                     font-size: 10px;
@@ -706,7 +735,7 @@
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         <h2 class="modal-title">ADD FLIGHT TEST</h2>
                         <h4><span class="span-selected-date-day-name"></span><span class="span-selected-date-month-name"></span> <span class="span-selected-date-day-number"></span>, <span class="span-selected-date-year"></span></h4>
-                        <img class="modal-principal-icon" src="{{URL::to('svg/calendar/ic_airplanemode_active_light_48px.svg')}}">
+                        <img class="modal-principal-icon" src="{{URL::to('svg/calendar/ic_airplanemode_active_white_48px.svg')}}">
                     </div>
                     <form  id="form-add-flight-test" autocomplete="off">
                     <div class="modal-body">
@@ -841,7 +870,7 @@
                     </div>
                     <div class="modal-footer">
                         <button id="close-modal" type="button" class="btn btn-default custom-btn-default" data-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-primary custom-btn-primary">Save</button>
+                        <button id="addflightsubmit" type="submit" class="btn btn-primary custom-btn-primary">Save</button>
                     </div>
                     </form>
                 </div>
