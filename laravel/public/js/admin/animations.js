@@ -67,39 +67,46 @@ window.loadingProcessAnimation = function()
     var $backgroundAnimation = $('<div>', { class: 'backgroundModalProcess'});
     var $divAirplane = $('<div>', { class: 'conteinerAirplaneLoadingProcess'});
     var $divText = $('<div>', { class: 'textAirplaneLoadingProcess'});
+    var $divModal = $('<div>', { class: 'modalAirplaneLoadingProcess'});
     var $body = $('body');
+
+    var self = this;
     
-    this.show = function(text){
+    self.show = function(text){
         
         $divText.html(text + '...');
 
         $divAirplane.append($airplaneSvg);
 
-        $backgroundAnimation.append($divAirplane);
-        $backgroundAnimation.append($divText);
+        $divModal.append($divAirplane);
+        $divModal.append($divText);
+
+        $backgroundAnimation.append($divModal);
 
         $body.append($backgroundAnimation);
 
         TweenMax.to($divAirplane, 2, {rotation:360, repeat:-1, ease:Linear.easeNone});  
     };
     
-    this.done = function(text){
+    self.done = function(text, callback){
         var $doneSvg = $('<img>',{ src: urlSvgImages + '/' + 'ic_done_white_1024px.svg', class: 'doneAirplaneLoadingProcess'});
-        var $btnDone = $('<button>', { class: "textAirplaneLoadingProcess doneProcessButton", html: text});
-        
-        $($btnDone, $backgroundAnimation).click(function(){
+        var $btnDone = $('<button>', { class: "textAirplaneLoadingProcess doneProcessButton", html: text, style: 'top: 170px;'});
+        $backgroundAnimation.css('cursor','pointer');
+        $backgroundAnimation.click(function(){
             TweenMax.set($backgroundAnimation, {position: 'absolute'}); 
-            TweenMax.to($backgroundAnimation, 0.6, {y: '-100%'}); 
+            TweenMax.to($backgroundAnimation, 0.4, {y: '-100%', onComplete: function () {
+                $backgroundAnimation.remove();
+            }});
+
+            typeof callback === 'function' && callback();
         });
         
         TweenMax.to($divAirplane, 1, {scale: 0, ease:Linear.easeNone, onComplete: function(){
-            $backgroundAnimation.append($doneSvg);
-            $backgroundAnimation.append($btnDone);
+            $divModal.append($doneSvg);
+            $divModal.append($btnDone);
             $divText.remove();
             TweenMax.from($doneSvg, 1, {scale: 0, rotation: 360});
         }});
     }
     
 };
-
-var LOADING_ANIMATION = new loadingProcessAnimation();

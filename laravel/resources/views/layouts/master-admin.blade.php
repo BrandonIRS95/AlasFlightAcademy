@@ -29,13 +29,17 @@
                 width: 60px;
                 height: 60px;
                 left: 50%;
-                top: 50%;
-                transform: translate(-50%,-50%);
+                transform: translateX(-50%);
             }
             
             .doneAirplaneLoadingProcess{
-                width: 130px;
+                width: 150px;
                 height: auto;
+                top: 20px;
+            }
+
+            .conteinerAirplaneLoadingProcess{
+                top: 70px;
             }
             
             .textAirplaneLoadingProcess{
@@ -43,14 +47,27 @@
                 color: white;
                 font-size: 20px;
                 left: 50%;
-                top: 50%;
-                transform: translate(-50%, 90px);
+                text-align: center;
+                width: 90%;
+                top: 190px;
+                transform: translateX(-50%);
             }
             .doneProcessButton{
                 background: transparent;
                 border: transparent;
-                transform: translate(-50%, 90px);
+                transform: translateX(-50%);
                 font-size: 20px;
+            }
+
+            .modalAirplaneLoadingProcess{
+                position: absolute;
+                background: #011a35;
+                height: 240px;
+                width: 400px;
+                border-radius: 10px;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%,-50%);
             }
         </style>
         @yield('individual-styles')

@@ -58,9 +58,11 @@ $(function() {
                 required: 'Please, draw the route.'
             }
         },
-        submitHandler: function (form) {
-            
-            LOADING_ANIMATION.show('Saving flight test');
+        submitHandler: function () {
+
+            var loadingAnimation = new loadingProcessAnimation();
+
+            loadingAnimation.show('Saving flight test');
             
             var arrayPoints = poly.getPath().getArray();
             var stringMarkers = '[';
@@ -93,7 +95,9 @@ $(function() {
             vm().addFlight(jsonPoints, jsonMarkers).done(function (response) {
                 if(response.status === 0)
                 {
-                    LOADING_ANIMATION.done('Flight test successfully added!');
+                    loadingAnimation.done('Flight test successfully added!', function () {
+                        $('#modalAddEvent').modal('hide');
+                    });
                 }
             });
         }
