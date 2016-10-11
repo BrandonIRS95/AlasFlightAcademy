@@ -101,7 +101,7 @@ window.loadingProcessAnimation = function()
             typeof callback === 'function' && callback();
         });
         
-        TweenMax.to($divAirplane, 1, {scale: 0, ease:Linear.easeNone, onComplete: function(){
+        TweenMax.to($divAirplane, 0.6, {autoAlpha: 0, ease:Linear.easeNone, onComplete: function(){
             $divModal.append($doneSvg);
             $divModal.append($btnDone);
             $divText.remove();

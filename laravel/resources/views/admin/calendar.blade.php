@@ -394,18 +394,18 @@
                 cursor: pointer;
             }
 
-            #modalAddEvent .event-filter{
+            #modalAddFlight .event-filter{
                 float: left;
                 margin: 0 20px;
                 margin-top: 20px;
                 opacity: 0.6;
             }
 
-            #modalAddEvent .event-filter div{
+            #modalAddFlight .event-filter div{
                 color: black;
             }
 
-            #modalAddEvent .event-filter img{
+            #modalAddFlight .event-filter img{
                 width: 60px;
             }
 
@@ -447,27 +447,27 @@
         </style>
         <!--Modal add flight test-->
         <style>
-            .modal-add-flight-test{
+            .custom-modal-content{
                 border-radius: 0;
                 background: #1784c7;
                 color: #FFFFFF;
             }
 
-            .modal-add-flight-test .modal-header{
+            .custom-modal-content .modal-header{
                 border-bottom: none;
             }
 
-            .modal-add-flight-test .modal-footer{
+            .custom-modal-content .modal-footer{
                 border-top: none;
             }
 
-            .modal-add-flight-test .custom-btn-primary{
+            .custom-modal-content .custom-btn-primary{
                 background: #FF9410;
                 border-color: transparent;
                 border-radius: 3px;
             }
 
-            .modal-add-flight-test .custom-btn-default, #cancel-new-route{
+            .custom-modal-content .custom-btn-default, #cancel-new-route{
                 background: transparent;
                 border-radius: 0px;
                 border: 1px solid #ffffff;
@@ -477,11 +477,11 @@
                 color: #fff;
             }
 
-            .modal-add-flight-test .custom-btn-primary, .modal-add-flight-test .custom-btn-default{
+            .custom-modal-content .custom-btn-primary, .custom-modal-content .custom-btn-default{
                 width: 100px;
             }
 
-            .modal-add-flight-test .close span{
+            .custom-modal-content .close span{
                 color: #FFF;
             }
 
@@ -497,7 +497,7 @@
 
             }
 
-            #ta-route-description{
+            #ta-route-description, #flight_description, #test_description{
                 resize: vertical;
             }
 
@@ -512,7 +512,7 @@
                 cursor: pointer;
             }
 
-            #modalAddEvent fieldset legend{
+            #modalAddFlight fieldset legend, #modalAddTest fieldset legend{
                 color: white;
             }
 
@@ -590,6 +590,7 @@
                 background: #1784c7;
                 padding: 10px 20px;
                 color: white;
+                box-shadow: 0 5px 15px rgba(0,0,0,.3);
             }
 
             .optionConteiner{
@@ -728,9 +729,9 @@
             </div>
         </div>
 
-        <div id="modalAddEvent" class="modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+        <div id="modalAddFlight" class="modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
             <div id="modalWrapper" class="modal-dialog" role="document">
-                <div id="content-modal-add-event" class="modal-content modal-add-flight-test">
+                <div id="content-modal-add-event" class="modal-content custom-modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         <h2 class="modal-title">ADD FLIGHT TEST</h2>
@@ -782,62 +783,10 @@
                                     </fieldset>
                                 </div>
                             </div>
-                            <div class='row'>
-                                <div class='col-sm-6'>
-                                    <fieldset class="form-group">
-                                        <legend>Start</legend>
-                                        <div class="col-xs-6 nopadding-left">
-                                            <div class='form-group'>
-                                                <label for="flight_start_hour">Hour</label>
-                                                <select class="form-control" id="flight_start_hour" name="flight_start_hour">
-                                                    @for($x =0; $x < 24; $x++)
-                                                        <option value="{{($x < 10 ? '0'.$x : $x)}}">{{($x < 10 ? '0'.$x : $x)}}</option>
-                                                    @endfor
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-6 nopadding-right">
-                                            <div class='form-group'>
-                                                <label for="start">Minute</label>
-                                                <select class="form-control" id="flight_start_minute" name="start">
-                                                    @for($x =0; $x < 60; $x+=5)
-                                                        <option value="{{($x < 10 ? '0'.$x : $x)}}">{{($x < 10 ? '0'.$x : $x)}}</option>
-                                                    @endfor
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </fieldset>
-                                </div>
-                                <div class='col-sm-6'>
-                                    <fieldset class="form-group">
-                                        <legend>Finish</legend>
-                                        <div class="col-xs-6 nopadding-left">
-                                            <div class='form-group'>
-                                                <label for="start">Hour</label>
-                                                <select class="form-control" id="flight_end_hour" name="start">
-                                                    @for($x =0; $x < 24; $x++)
-                                                        <option value="{{($x < 10 ? '0'.$x : $x)}}">{{($x < 10 ? '0'.$x : $x)}}</option>
-                                                    @endfor
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-6 nopadding-right">
-                                            <div class='form-group'>
-                                                <label for="start">Minute</label>
-                                                <select class="form-control" id="flight_end_minute" name="start">
-                                                    @for($x =0; $x < 60; $x+=5)
-                                                        <option value="{{($x < 10 ? '0'.$x : $x)}}">{{($x < 10 ? '0'.$x : $x)}}</option>
-                                                    @endfor
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </fieldset>
-                                </div>
-                            </div>
+                        <fieldset class="form-group">
+                            <legend>Flight information</legend>
                             <div class="row">
                                 <div class="col-sm-12">
-                                    <fieldset class="form-group">
-                                        <legend>Information</legend>
                                         <div class='row'>
                                             <div class='col-sm-6'>
                                                 <div class='form-group'>
@@ -853,6 +802,66 @@
                                             </div>
                                         </div>
                                         <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="form-group">
+                                                    <label for="flight_description">Description</label>
+                                                    <textarea id="flight_description" name="flight_description" class="form-control"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class='row'>
+                                            <div class='col-sm-6'>
+                                                <fieldset class="form-group">
+                                                    <legend>Start</legend>
+                                                    <div class="col-xs-6 nopadding-left">
+                                                        <div class='form-group'>
+                                                            <label for="flight_start_hour">Hour</label>
+                                                            <select class="form-control" id="flight_start_hour" name="flight_start_hour">
+                                                                @for($x =0; $x < 24; $x++)
+                                                                    <option value="{{($x < 10 ? '0'.$x : $x)}}">{{($x < 10 ? '0'.$x : $x)}}</option>
+                                                                @endfor
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xs-6 nopadding-right">
+                                                        <div class='form-group'>
+                                                            <label for="start">Minute</label>
+                                                            <select class="form-control" id="flight_start_minute" name="start">
+                                                                @for($x =0; $x < 60; $x+=5)
+                                                                    <option value="{{($x < 10 ? '0'.$x : $x)}}">{{($x < 10 ? '0'.$x : $x)}}</option>
+                                                                @endfor
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </fieldset>
+                                            </div>
+                                            <div class='col-sm-6'>
+                                                <fieldset class="form-group">
+                                                    <legend>Finish</legend>
+                                                    <div class="col-xs-6 nopadding-left">
+                                                        <div class='form-group'>
+                                                            <label for="start">Hour</label>
+                                                            <select class="form-control" id="flight_end_hour" name="start">
+                                                                @for($x =0; $x < 24; $x++)
+                                                                    <option value="{{($x < 10 ? '0'.$x : $x)}}">{{($x < 10 ? '0'.$x : $x)}}</option>
+                                                                @endfor
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xs-6 nopadding-right">
+                                                        <div class='form-group'>
+                                                            <label for="start">Minute</label>
+                                                            <select class="form-control" id="flight_end_minute" name="start">
+                                                                @for($x =0; $x < 60; $x+=5)
+                                                                    <option value="{{($x < 10 ? '0'.$x : $x)}}">{{($x < 10 ? '0'.$x : $x)}}</option>
+                                                                @endfor
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </fieldset>
+                                            </div>
+                                        </div>
+                                        <div class="row">
                                             <div class="col-sm-6">
                                                 <div class="form-group">
                                                     <label for="cost">Cost (USD)</label>
@@ -863,10 +872,9 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </fieldset>
                                 </div>
                             </div>
-
+                        </fieldset>
                     </div>
                     <div class="modal-footer">
                         <button id="close-modal" type="button" class="btn btn-default custom-btn-default" data-dismiss="modal">Cancel</button>
@@ -877,6 +885,103 @@
             </div>
         </div>
 
+        <div id="modalAddTest" class="modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content custom-modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h2 class="modal-title">ADD TEST</h2>
+                        <h4><span class="span-selected-date-day-name"></span><span class="span-selected-date-month-name"></span> <span class="span-selected-date-day-number"></span>, <span class="span-selected-date-year"></span></h4>
+                        <img class="modal-principal-icon" src="{{URL::to('svg/calendar/ic_content_paste_white_48px.svg')}}">
+                    </div>
+                    <form id="form-add-test">
+                        <div class="modal-body">
+                            <fieldset class="form-group">
+                                <legend>Information</legend>
+                            <div class="row">
+                                <div class='col-sm-6'>
+                                    <div class="form-group">
+                                        <label for="subject">Subject</label>
+                                        <input type="text" class="form-control" id="subject" name="subject">
+                                    </div>
+                                </div>
+                                <div class='col-sm-6'>
+                                    <div class="form-group">
+                                        <label for="test_instructor">Instructor</label>
+                                        <input type="text" class="form-control" id="test_instructor" name="test_instructor">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class='col-sm-12'>
+                                    <div class="form-group">
+                                        <label for="test_description">Description</label>
+                                        <textarea class="form-control" id="test_description" name="test_description"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <fieldset class="form-group">
+                                        <legend>Start</legend>
+                                        <div class="col-xs-6 nopadding-left">
+                                            <div class="form-group">
+                                                <label for="test_start_hour">Hour</label>
+                                                <select name="test_start_hour" id="test_start_hour" class="form-control">
+                                                    @for($x =0; $x < 24; $x++)
+                                                        <option value="{{($x < 10 ? '0'.$x : $x)}}">{{($x < 10 ? '0'.$x : $x)}}</option>
+                                                    @endfor
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-6 nopadding-right">
+                                            <div class="form-group">
+                                                <label for="test_start_minute">Minute</label>
+                                                <select name="test_start_minute" id="test_start_minute" class="form-control">
+                                                    @for($x =0; $x < 60; $x+=5)
+                                                        <option value="{{($x < 10 ? '0'.$x : $x)}}">{{($x < 10 ? '0'.$x : $x)}}</option>
+                                                    @endfor
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </div>
+                                <div class="col-sm-6">
+                                    <fieldset class="form-group">
+                                        <legend>End</legend>
+                                        <div class="col-xs-6 nopadding-left">
+                                            <div class="form-group">
+                                                <label for="test_end_hour">Hour</label>
+                                                <select name="test_end_hour" id="test_end_hour" class="form-control">
+                                                    @for($x =0; $x < 24; $x++)
+                                                        <option value="{{($x < 10 ? '0'.$x : $x)}}">{{($x < 10 ? '0'.$x : $x)}}</option>
+                                                    @endfor
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-6 nopadding-right">
+                                            <div class="form-group">
+                                                <label for="test_end_minute">Minute</label>
+                                                <select name="test_end_minute" id="test_end_minute" class="form-control">
+                                                    @for($x =0; $x < 60; $x+=5)
+                                                        <option value="{{($x < 10 ? '0'.$x : $x)}}">{{($x < 10 ? '0'.$x : $x)}}</option>
+                                                    @endfor
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            </fieldset>
+                        </div>
+                        <div class="modal-footer">
+                            <button id="close-modal" type="button" class="btn btn-default custom-btn-default" data-dismiss="modal">Cancel</button>
+                            <button id="addTestSubmit" type="submit" class="btn btn-primary custom-btn-primary">Save</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     @endsection
 
 @section('javascript')
@@ -885,6 +990,7 @@
             var urlGetAirplanes = '{{route('getAirplanesByPlateAndName')}}';
             var urlAddFlightTest = '{{route('addFlightTest')}}';
             var urlGetRoutes = '{{route('getRoutesByName')}}';
+            var urlAddTest = '{{route('addTest')}}';
             var TOKEN = '{{ Session::token() }}';
         </script>
         <script type="text/javascript" src="{{URL::to('js/calendar/calendario.js')}}"></script>

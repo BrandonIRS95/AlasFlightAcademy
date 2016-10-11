@@ -116,7 +116,6 @@ function addLatLng(event) {
     // and it will automatically appear.
     path.push(event.latLng);
 
-    console.log(event.latLng);
 
 
     // Add a new marker at the new plotted point on the polyline.
@@ -164,7 +163,6 @@ window.drawPoints = function(points){
 
 window.cleanDataInMap = function(){
     for (var i = 0; i < MARKERS.length; i++) {
-        console.log(i);
         MARKERS[i].setMap(null);
     }
     //poly.setMap(null);

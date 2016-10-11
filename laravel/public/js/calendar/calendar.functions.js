@@ -99,7 +99,42 @@ $(function() {
                 if(response.status === 0)
                 {
                     loadingAnimation.done('Flight test successfully added!', function () {
-                        $('#modalAddEvent').modal('hide');
+                        $('#modalAddFlight').modal('hide');
+                        $submitButton.prop('disabled', false);
+                    });
+                }
+            });
+        }
+    });
+
+    $('#form-add-test').validate({
+        rules: {
+            subject: {
+                required: true
+            },
+            test_instructor: {
+                required: true,
+                elementSelected: true
+            }
+        },
+        messages: {
+            test_instructor: {
+                elementSelected: 'Please, select an instructor.'
+            }
+        },
+        submitHandler: function () {
+            var loadingAnimation = new loadingProcessAnimation();
+            var $submitButton = $('#addTestSubmit');
+
+            $submitButton.prop('disabled', true);
+
+            loadingAnimation.show('Saving test');
+
+            vm().addTest().done(function (response) {
+                if(response.status === 0)
+                {
+                    loadingAnimation.done('Test successfully added!', function () {
+                        $('#modalAddTest').modal('hide');
                         $submitButton.prop('disabled', false);
                     });
                 }
@@ -110,16 +145,18 @@ $(function() {
     /** <!-- FLIGHT TEST ...*/
 
     $('#add-new-route').click(function () {
+        var $newRoute = $('.newRoute');
         cleanDataInMap();
         MAP_CLICK_EVENT = map.addListener('click', addLatLng);
         poly.setEditable(true);
         NEW_ROUTE = true;
         $('.noNewRoute').css('display','none');
-        $('.newRoute').css('display','block');
+        $newRoute.css('display','block');
         $('#search-route-error').remove();
     });
 
     $('#cancel-new-route').click(function () {
+        var $noNewRoute = $('.noNewRoute');
         cleanDataInMap();
         google.maps.event.removeListener(MAP_CLICK_EVENT);
         poly.setEditable(false);
@@ -127,11 +164,15 @@ $(function() {
         $('#coordinates-error').remove();
         $('#route-name-error').remove();
         $('.newRoute').css('display','none');
-        $('.noNewRoute').css('display','block');
+        $noNewRoute.css('display','block');
     });
 
     $('#flight_start_hour, #flight_start_minute').change(function () {
         updateEndTime($('#flight_start_hour'), $('#flight_start_minute'), $('#flight_end_hour'), $('#flight_end_minute'));
+    });
+
+    $('#test_start_hour, #test_start_minute').change(function () {
+        updateEndTime($('#test_start_hour'), $('#test_start_minute'), $('#test_end_hour'), $('#test_end_minute'));
     });
 
     $('#flight_end_hour').change(function () {
@@ -149,6 +190,25 @@ $(function() {
                 break;
         }
         if($selectEndHour.val() >  $('#flight_start_hour').val()){
+            $selectEndMinute.find('option').css('display', 'inline');
+        }
+    });
+
+    $('#test_end_hour').change(function () {
+        var $selectEndHour = $(this);
+        var $selectEndMinute = $('#test_end_minute');
+
+        switch (isSelectedNow($selectEndHour, $selectEndMinute)){
+            case 'now':
+                disableOverdueMinutes(parseInt($('#test_start_minute').val()), $selectEndMinute);
+                $selectEndMinute.attr('data-status', 'currentHour');
+                break;
+            case 'today':
+                $selectEndMinute.attr('data-status', 'noCurrentHour');
+                $selectEndMinute.find('option').css('display', 'inline');
+                break;
+        }
+        if($selectEndHour.val() >  $('#test_start_hour').val()){
             $selectEndMinute.find('option').css('display', 'inline');
         }
     });
@@ -206,6 +266,39 @@ $(function() {
         },
         select: function( event, ui ) {
             var $input = $( "#flight_instructor" );
+            $input.val( ui.item.person.first_name + ' ' + ui.item.person.last_name);
+            $input.attr('data-id',ui.item.id);
+            $(this).valid();
+            return false;
+        }
+    }).keydown(function (event) {
+        if (event.keyCode == 8) {
+            $(this).attr('data-id','0');
+        }
+    }).autocomplete( "instance" )._renderItem = function( ul, item ) {
+        return $( "<li>" )
+            .append( "<div>" + item.person.first_name + ' ' + item.person.last_name + "</div>" )
+            .appendTo( ul );
+    };
+
+    $( "#test_instructor" ).autocomplete({
+        minLength: 0,
+        source: function( request, response ) {
+            if(request.term !== '') $.ajax( {
+                url: urlGetInstructors + '/' + request.term,
+                method: "GET",
+                success: function( data ) {
+
+                    response(data.instructors);
+                }
+            } );
+        },
+        focus: function( event, ui ) {
+            $(this).valid();
+            return false;
+        },
+        select: function( event, ui ) {
+            var $input = $( "#test_instructor" );
             $input.val( ui.item.person.first_name + ' ' + ui.item.person.last_name);
             $input.attr('data-id',ui.item.id);
             $(this).valid();
@@ -285,36 +378,13 @@ $(function() {
     });
 
     $('#btn-add-flight').click(function () {
-        var $modalAddEvent = $('#modalAddEvent');
-        $modalAddEvent.find('h2').remove();
-        $modalAddEvent.find('div').remove();
+        var $modalAddFlight = $('#modalAddFlight');
+        $modalAddFlight.find('h2').remove();
+        $modalAddFlight.find('div').remove();
     });
 
     $addBtn.click(function () {
-
         showModalSelectOption();
-
-        /*settingsFlightModal();
-
-        showModalAnimation($('#modalAddEvent'), function(){
-
-            google.maps.event.trigger(map, 'resize');
-            map.setCenter({lat: -34.397, lng: 150.644});
-            
-
-
-        }, function(){
-            $('#modalAddEvent').find('input, textarea').val('');
-            cleanDataInMap();
-            google.maps.event.removeListener(MAP_CLICK_EVENT);
-            poly.setEditable(false);
-            NEW_ROUTE = false;
-            $('#coordinates-error').remove();
-            $('#route-name-error').remove();
-            $('.newRoute').css('display','none');
-            $('.noNewRoute').css('display','block');
-        });*/
-        
     });
     
     function showModalSelectOption() {
@@ -335,7 +405,7 @@ $(function() {
 
             settingsFlightModal();
 
-            showModalAnimation($('#modalAddEvent'), function(){
+            showModalAnimation($('#modalAddFlight'), function(){
 
                 google.maps.event.trigger(map, 'resize');
                 map.setCenter({lat: -34.397, lng: 150.644});
@@ -343,7 +413,7 @@ $(function() {
 
 
             }, function(){
-                $('#modalAddEvent').find('input, textarea').val('');
+                $('#modalAddFlight').find('input, textarea').val('');
                 cleanDataInMap();
                 google.maps.event.removeListener(MAP_CLICK_EVENT);
                 poly.setEditable(false);
@@ -353,6 +423,17 @@ $(function() {
                 $('.newRoute').css('display','none');
                 $('.noNewRoute').css('display','block');
             });
+        });
+
+        $divContainer2.click(function () {
+            $divBackground.remove();
+
+            settingsTestModal();
+
+            showModalAnimation($('#modalAddTest'), null, function () {
+                $('#modalAddTest').find('input, textarea').val('');
+            });
+
         });
 
         $divBackground.click(function () {
@@ -410,6 +491,34 @@ $(function() {
             disableOverdueMinutes(minutes, $selectMinutes);
             $selectMinutes.attr('data-status', 'currentHour');
             $('#flight_start_hour').trigger('change');
+        }
+        else {
+            $([$selectHour, $selectMinutes, $selectHourEnd, $selectMinutesEnd]).each(function () {
+                $(this).find('option:first').prop('selected',true);
+            });
+        }
+
+    }
+
+    function settingsTestModal(){
+        var $selectHour = $('#test_start_hour');
+        var $selectMinutes = $('#test_start_minute');
+        var $selectHourEnd = $('#test_end_hour');
+        var $selectMinutesEnd = $('#test_end_minute');
+
+        $([$selectHour, $selectMinutes, $selectHourEnd, $selectMinutesEnd]).each(function () {
+            $(this).find('option').css('display','inline');
+        });
+
+        if(Date.compare(SELECTED_DATE, Date.today()) === 0) {
+            var current = new Date();
+            var hours = current.getHours();
+            var minutes = current.getMinutes();
+
+            disableOverdueHours(hours, $selectHour);
+            disableOverdueMinutes(minutes, $selectMinutes);
+            $selectMinutes.attr('data-status', 'currentHour');
+            $selectHour.trigger('change');
         }
         else {
             $([$selectHour, $selectMinutes, $selectHourEnd, $selectMinutesEnd]).each(function () {
@@ -568,6 +677,7 @@ var vm = function CalendarViewModel() {
             date: SELECTED_DATE.toString('yyyy-M-d'),
             start: start,
             end: end,
+            description: $('#flight_description').val(),
             cost: $('#flight_cost').val(),
             instructor: $('#flight_instructor').attr('data-id'),
             airplane: $('#flight_airplane').attr('data-id'),
@@ -593,8 +703,22 @@ var vm = function CalendarViewModel() {
             contentType: "application/json"
         });
     };
-    self.addFlightRoute = function () {
-
+    self.addTest = function () {
+        var data = {
+            subject: $('#subject').val(),
+            description: $('#test_description').val(),
+            date: SELECTED_DATE.toString('yyyy-M-d'),
+            start: $('#test_start_hour').val() + ':' + $('#test_start_minute').val(),
+            end: $('#test_end_hour').val() + ':' + $('#test_end_minute').val(),
+            instructor_id: $('#test_instructor').attr('data-id'),
+            _token : TOKEN
+        };
+        return $.ajax({
+            url : urlAddTest,
+            type: 'POST',
+            data : ko.toJSON(data),
+            contentType: "application/json"
+        });
     };
 
     return self;

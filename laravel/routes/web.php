@@ -140,6 +140,12 @@ Route::post('/addFlightTest', [
     'middleware' => 'auth'
 ]);
 
+Route::post('/addTest', [
+    'uses' => 'TestController@postAddTest',
+    'as' => 'addTest',
+    'middleware' => 'auth'
+]);
+
 Route::get('/getRoutesByName/{name?}', [
     'uses' => 'FlightRouteController@getRoutesByName',
     'as' => 'getRoutesByName',
