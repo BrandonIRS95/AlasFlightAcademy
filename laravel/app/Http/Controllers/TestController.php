@@ -17,11 +17,11 @@ class TestController extends Controller
         $event->start = $request['start'];
         $event->end = $request['end'];
         $event->status = 'available';
+        $event->instructor_id = $request['instructor_id'];
 
         $test = new Test();
         $test->subject = $request['subject'];
         $test->description = $request['description'];
-        $test->instructor_id = $request['instructor_id'];
 
         $test->save();
 

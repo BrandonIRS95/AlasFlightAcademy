@@ -8,6 +8,7 @@ $(function() {
 
     window.SELECTED_DATE = new Date();
     var RANGE_OF_MINUTES = 5;
+    var CALENDAR_EVENTS;
 
     $.validator.addMethod("elementSelected", function (value, element) {
 
@@ -572,6 +573,9 @@ $(function() {
     function updateMonthYear() {
         $( '#custom-month' ).html( $( '#calendar' ).calendario('getMonthName') );
         $( '#custom-year' ).html( $( '#calendar' ).calendario('getYear'));
+        vm().getEventsByMonth().done(function (response) {
+            $('#calendar').calendario('setData', JSON.parse(response));
+        });
     }
 
     $(document).on('finish.calendar.calendario', function(e){
@@ -593,15 +597,23 @@ $(function() {
             slideAndReturnAnimation($('#month-year-calendar'), function () {
                 $( '#calendar' ).calendario('gotoNow', updateMonthYear);
                 $('#lastDaySelected').trigger('click');
+                vm().getEventsByMonth().done(function (response) {
+                    $('#calendar').calendario('setData', JSON.parse(response));
+                });
             });
 
         } );
+        vm().getEventsByMonth().done(function (response) {
+            $('#calendar').calendario('setData', JSON.parse(response));
+        });
     });
 
     $('#calendar').on('shown.calendar.calendario', function(){
         $('div.fc-row > div').on('onDayClick.calendario', function(e, dateprop) {
 
             var $element = $(e.target);
+
+            console.log('HOLA');
 
             if($element.find('.fc-emptydate').length === 0) {
 
@@ -619,7 +631,6 @@ $(function() {
 
     var $calendar = $( '#calendar' ).calendario({
         checkUpdate : false,
-        caldata : events,
         fillEmpty : true,
         displayWeekAbbr : true,
         events: ['click', 'focus'],
@@ -719,6 +730,14 @@ var vm = function CalendarViewModel() {
             type: 'POST',
             data : ko.toJSON(data),
             contentType: "application/json"
+        });
+    };
+
+    self.getEventsByMonth = function(){
+        var $calendar = $('#calendar');
+        return $.ajax({
+            url : urlGetEventsByMonth + $calendar.calendario('getMonth') + '/year/' + $calendar.calendario('getYear') + '/instructor/null',
+            type: 'GET'
         });
     };
 

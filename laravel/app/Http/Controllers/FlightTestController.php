@@ -20,11 +20,11 @@ class FlightTestController extends Controller
         $event->start = $request['start'];
         $event->end = $request['end'];
         $event->status = 'available';
+        $event->instructor_id = $request['instructor'];
 
         $flightTest = new FlightTest();
         $flightTest->cost = $request['cost'];
         $flightTest->description = $request['description'];
-        $flightTest->instructor_id = $request['instructor'];
         $flightTest->airplane_id = $request['airplane'];
 
         if($request->has('route'))

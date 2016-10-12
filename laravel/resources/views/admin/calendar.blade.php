@@ -346,11 +346,11 @@
             }
 
             .available{
-                color: green;
+                color: #0DD16D;
             }
 
             .canceled {
-                color: red;
+                color: #FF3739;
             }
 
             .jspVerticalBar{
@@ -616,9 +616,19 @@
                 width: 100%;
             }
 
+            .calendar-points{
+                position: relative;
+                float: left;
+                font-size: 30px;
+            }
+
             .optionTitle{
                 text-align: center;
             }
+            .fc-calendar .fc-row > div > div{
+                text-align: center;
+            }
+
 
             @media (max-width: 412px) {
                 #cancel-new-route {
@@ -1001,6 +1011,7 @@
             var urlAddFlightTest = '{{route('addFlightTest')}}';
             var urlGetRoutes = '{{route('getRoutesByName')}}';
             var urlAddTest = '{{route('addTest')}}';
+            var urlGetEventsByMonth = '{{URL::to('/')}}' + '/getEventsByMonth/';
             var TOKEN = '{{ Session::token() }}';
         </script>
         <script type="text/javascript" src="{{URL::to('js/calendar/calendario.js')}}"></script>

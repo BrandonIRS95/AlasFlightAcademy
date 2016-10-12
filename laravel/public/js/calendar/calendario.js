@@ -33,7 +33,7 @@
     checkUpdate: true,
     weekdays: 'MON, TUE, WED, THU, FRI',
     weekends: 'SAT, SUN',
-    format: 'MM-DD-YYYY',
+    format: 'YYYY-MM-DD',
     feed: 'http://calendario.t15.org/sync/'
   }
 

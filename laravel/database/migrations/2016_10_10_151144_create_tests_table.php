@@ -21,7 +21,7 @@ class CreateTestsTable extends Migration
             $table->time('start');
             $table->time('end');
             $table->string('status');*/
-            $table->integer('instructor_id');
+            /*$table->integer('instructor_id');*/
             $table->timestamps();
         });
     }

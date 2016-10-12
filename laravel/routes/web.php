@@ -140,7 +140,7 @@ Route::get('/getEventsByDate/{date?}', [
     //'middleware' => 'auth'
 ]);
 
-Route::get('/getEventsByMonth/{month?}/year/{year?}', [
+Route::get('/getEventsByMonth/{month?}/year/{year?}/instructor/{instructor?}', [
     'uses' => 'EventController@getEventsByMonth',
     'as' => 'getEventsByMonth'
     //'middleware' => 'auth'
