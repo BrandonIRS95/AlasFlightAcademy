@@ -134,6 +134,18 @@ Route::get('/getAirplanesByPlateAndName/{text?}', [
     'middleware' => 'auth'
 ]);
 
+Route::get('/getEventsByDate/{date?}', [
+    'uses' => 'EventController@getEventsByDate',
+    'as' => 'getEventsByDate'
+    //'middleware' => 'auth'
+]);
+
+Route::get('/getEventsByMonth/{month?}/year/{year?}', [
+    'uses' => 'EventController@getEventsByMonth',
+    'as' => 'getEventsByMonth'
+    //'middleware' => 'auth'
+]);
+
 Route::post('/addFlightTest', [
     'uses' => 'FlightTestController@postAddFlightTest',
     'as' => 'addFlightTest',

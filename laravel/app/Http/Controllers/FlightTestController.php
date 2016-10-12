@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Event;
 use App\FlightRoute;
 use App\FlightTest;
 use App\RouteMarker;
@@ -14,12 +15,14 @@ class FlightTestController extends Controller
 {
     public function postAddFlightTest(Request $request){
 
+        $event = new Event();
+        $event->date = $request['date'];
+        $event->start = $request['start'];
+        $event->end = $request['end'];
+        $event->status = 'available';
+
         $flightTest = new FlightTest();
-        $flightTest->date = $request['date'];
-        $flightTest->start = $request['start'];
-        $flightTest->end = $request['end'];
         $flightTest->cost = $request['cost'];
-        $flightTest->status = 'available';
         $flightTest->description = $request['description'];
         $flightTest->instructor_id = $request['instructor'];
         $flightTest->airplane_id = $request['airplane'];
@@ -59,6 +62,10 @@ class FlightTestController extends Controller
             $flightTest->flight_route_id = $request['route_id'];
             $flightTest->save();
         }
+
+        $event->eventable_id = $flightTest->id;
+        $event->eventable_type = 'App\FlightTest';
+        $event->save();
 
         return response()->json(['status' => 0,
             'message' => 'Flight test successfully added.'], 200);

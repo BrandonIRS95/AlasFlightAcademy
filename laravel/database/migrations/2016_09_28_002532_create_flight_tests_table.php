@@ -15,12 +15,12 @@ class CreateFlightTestsTable extends Migration
     {
         Schema::create('flight_tests', function (Blueprint $table) {
             $table->increments('id');
-            $table->date('date');
-            $table->time('start');
-            $table->time('end');
+//            $table->date('date');
+//            $table->time('start');
+//            $table->time('end');
             $table->text('description')->nullable();
             $table->decimal('cost')->nullable();
-            $table->string('status');
+            /*$table->string('status');*/
             $table->integer('flight_route_id');
             $table->integer('instructor_id');
             $table->integer('airplane_id');
