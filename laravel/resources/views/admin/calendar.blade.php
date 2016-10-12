@@ -178,7 +178,7 @@
                 color: #fff;
             }
 
-            .fc-calendar .fc-row > div.fc-content:after {
+            /*.fc-calendar .fc-row > div.fc-content:after {
                 content: '\00B7';
                 text-align: center;
                 width: 20px;
@@ -189,15 +189,25 @@
                 line-height: 20px;
                 left: 50%;
                 bottom: 3px;
+            }*/
+
+            .fc-calendar .fc-row > div > div a, .fc-calendar .fc-row > div > div span{
+                color: rgba(255,255,255,0.7);
+                font-size: 12px;
+                text-transform: uppercase;
+                display: inline-block;
+                padding: 3px 5px;
+                border-radius: 3px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                max-width: 100%;
+                margin-bottom: 1px;
+                background: transparent;
             }
 
             .fc-calendar .fc-row > div.fc-today.fc-content:after {
                 color: #fff;
-            }
-
-            .fc-calendar .fc-row > div > div a, .fc-calendar .fc-row > div > div span {
-                display: none;
-                font-size: 22px;
             }
 
             div .fc-past, div .fc-future{

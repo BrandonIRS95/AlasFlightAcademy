@@ -54,8 +54,8 @@
 
   Calendario.prototype.sync = function (data) {
     var self = this
-    $.post(self.options.feed, {info: self.INFO, caldata: data, domain: document.domain}, function(d){ self.syncData = d }, 'json')
-    return true
+    //$.post(self.options.feed, {info: self.INFO, caldata: data, domain: document.domain}, function(d){ self.syncData = d }, 'json')
+    return data
   }
 
   Calendario.prototype.initEvents = function () {

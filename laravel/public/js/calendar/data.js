@@ -5,9 +5,9 @@ var events = {
 	'11-04-2013' : [{content: 'Islamic New Year', repeat: 'YEARLY', allDay: true, endDate: '12-31-2100'}],
 	'12-25-1970' : [{content: 'Christmas Day', repeat: 'YEARLY', allDay: true, endDate: '12-31-2100'}],
 	'01-01-1970' : [{content: 'New Year\'s', repeat: 'YEARLY', allDay: true, endDate: '12-31-2100'}],
-	'03-02-2015' : [{content: 'Yeah Monthly', repeat: 'MONTHLY', allDay: true, endDate: '07-02-2015'}],
-	'01-07-2012' : [{content: 'Monthly And Yearly', repeat: 'MONTHLY', allDay: true, endDate: '02-07-2015'}],
-	'03-02-2015' : [{content : 'Graduation Exams', repeat: 'INTERVAL', allDay: true, endDate: '03-20-2015'}],
-	'04-01-2015' : [{content : 'MONDAY (WEEKLY)', repeat: 'MON', allDay: true, endDate: '04-30-2015'}]
+	'03-02-2016' : [{content: 'Yeah Monthly', repeat: 'MONTHLY', allDay: true, endDate: '07-02-2016'}],
+	'10-07-2016' : [{content: '<div style="position: relative; float: left;">A</div><div style="position: relative; float: left;">B</div><div style="position: relative; float: left;">C</div>', allDay: true}],
+	'10-06-2016' : [{content : 'Graduation Exams', allDay: true}],
+	'04-01-2016' : [{content : 'MONDAY (WEEKLY)', repeat: 'MON', allDay: true, endDate: '04-30-2016'}]
 },
 t = new Date();

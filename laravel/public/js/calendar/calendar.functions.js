@@ -622,7 +622,8 @@ $(function() {
         caldata : events,
         fillEmpty : true,
         displayWeekAbbr : true,
-        events: ['click', 'focus']
+        events: ['click', 'focus'],
+        feed: ''
     });
 
     function parseDateCalendarToJsDate(year, month, day){
