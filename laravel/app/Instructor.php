@@ -12,6 +12,10 @@ class Instructor extends Model
         return $this->belongsTo('App\Person');
     }
 
+    public function events(){
+        return $this->hasMany('App\Event');
+    }
+
     /*public function scopeLike($query, $field, $value){
         return $query->where($field, 'LIKE', '%'.$value.'%');
     }

@@ -4,6 +4,108 @@
 
 // TODO Cuando falten menos de 5 minutos para la siguiente hora arreglar bug, igual con los minutos
 
+function CalendarViewModel() {
+    var self = this;
+    self.currentEvents = ko.observableArray([]);
+    self.newFlightTest = null;
+    self.newFlightRoute = null;
+    self.addFlight = function (points, markers) {
+        var start = $('#flight_start_hour').val() + ':' + $('#flight_start_minute').val();
+        var end = $('#flight_end_hour').val() + ':' + $('#flight_end_minute').val();
+        var data = {
+            date: SELECTED_DATE.toString('yyyy-M-d'),
+            start: start,
+            end: end,
+            description: $('#flight_description').val(),
+            cost: $('#flight_cost').val(),
+            instructor: $('#flight_instructor').attr('data-id'),
+            airplane: $('#flight_airplane').attr('data-id'),
+            _token : TOKEN
+        };
+
+        if(NEW_ROUTE) {
+            data.route = {
+                name: $('#route-name').val(),
+                description: $('#ta-route-description').val(),
+                points: points,
+                markers: markers
+            };
+        }
+        else {
+            data.route_id = $('#search-route').attr('data-id');
+        }
+
+        return $.ajax({
+            url : urlAddFlightTest,
+            type: 'POST',
+            data : ko.toJSON(data),
+            contentType: "application/json"
+        });
+    };
+    self.addTest = function () {
+        var data = {
+            subject: $('#subject').val(),
+            description: $('#test_description').val(),
+            date: SELECTED_DATE.toString('yyyy-M-d'),
+            start: $('#test_start_hour').val() + ':' + $('#test_start_minute').val(),
+            end: $('#test_end_hour').val() + ':' + $('#test_end_minute').val(),
+            instructor_id: $('#test_instructor').attr('data-id'),
+            _token : TOKEN
+        };
+        return $.ajax({
+            url : urlAddTest,
+            type: 'POST',
+            data : ko.toJSON(data),
+            contentType: "application/json"
+        });
+    };
+    self.getClass = function (entry) {
+        return 'status ' + entry.status.toString();
+    };
+    self.getIcon = function (entry) {
+        return entry.type === 'App\\FlightTest' ? urlSvgCalendar + 'ic_airplanemode_active_light_48px.svg' : urlSvgCalendar + 'ic_content_paste_light_48px.svg';
+    };
+    self.getEventsByMonth = function(){
+        var $calendar = $('#calendar');
+        return $.ajax({
+            url : urlGetEventsByMonth + $calendar.calendario('getMonth') + '/year/' + $calendar.calendario('getYear') + '/instructor/null',
+            type: 'GET'
+        });
+    };
+
+    self.getEventsByDate = function () {
+        return $.ajax({
+            url : urlGetEventsByDate + SELECTED_DATE.toString('yyyy-M-d') + '/instructor/null',
+            type: 'GET'
+        });
+    };
+
+    self.updateCalendarEvents = function () {
+        self.getEventsByMonth().done(function (response) {
+            $('#calendar').calendario('setData', JSON.parse(response));
+        });
+    };
+
+    return self;
+}
+
+function EventCalendar(data){
+    this.date = data.date;
+    this.start = data.start;
+    this.end = data.end;
+    this.status = data.status;
+    this.instructor = data.instructor;
+    this.eventable = data.eventable;
+    this.type = data.eventable_type;
+    this.timeFormat = function(){
+        return this.start.substring(0,5) + ' - ' + this.end.substring(0,5);
+    }
+}
+
+var vm = new CalendarViewModel();
+
+ko.applyBindings(vm);
+
 $(function() {
 
     window.SELECTED_DATE = new Date();
@@ -96,9 +198,10 @@ $(function() {
             var jsonPoints =  JSON.parse(stringPoints);
             var jsonMarkers = JSON.parse(stringMarkers);
 
-            vm().addFlight(jsonPoints, jsonMarkers).done(function (response) {
+            vm.addFlight(jsonPoints, jsonMarkers).done(function (response) {
                 if(response.status === 0)
                 {
+                    vm.updateCalendarEvents();
                     loadingAnimation.done('Flight test successfully added!', function () {
                         $('#modalAddFlight').modal('hide');
                         $submitButton.prop('disabled', false);
@@ -131,9 +234,10 @@ $(function() {
 
             loadingAnimation.show('Saving test');
 
-            vm().addTest().done(function (response) {
+            vm.addTest().done(function (response) {
                 if(response.status === 0)
                 {
+                    vm.updateCalendarEvents();
                     loadingAnimation.done('Test successfully added!', function () {
                         $('#modalAddTest').modal('hide');
                         $submitButton.prop('disabled', false);
@@ -573,9 +677,7 @@ $(function() {
     function updateMonthYear() {
         $( '#custom-month' ).html( $( '#calendar' ).calendario('getMonthName') );
         $( '#custom-year' ).html( $( '#calendar' ).calendario('getYear'));
-        vm().getEventsByMonth().done(function (response) {
-            $('#calendar').calendario('setData', JSON.parse(response));
-        });
+        vm.updateCalendarEvents();
     }
 
     $(document).on('finish.calendar.calendario', function(e){
@@ -597,15 +699,11 @@ $(function() {
             slideAndReturnAnimation($('#month-year-calendar'), function () {
                 $( '#calendar' ).calendario('gotoNow', updateMonthYear);
                 $('#lastDaySelected').trigger('click');
-                vm().getEventsByMonth().done(function (response) {
-                    $('#calendar').calendario('setData', JSON.parse(response));
-                });
+                vm.updateCalendarEvents();
             });
 
         } );
-        vm().getEventsByMonth().done(function (response) {
-            $('#calendar').calendario('setData', JSON.parse(response));
-        });
+        vm.updateCalendarEvents();
     });
 
     $('#calendar').on('shown.calendar.calendario', function(){
@@ -624,6 +722,22 @@ $(function() {
                 slideAndReturnAnimation($('#date-selected'), function () {
                     updateDateInfo(dateprop);
                 });
+
+
+
+                vm.getEventsByDate().done(function (response) {
+
+                    var mappedEvents = $.map(response.events, function(item) {
+                        return new EventCalendar(item);
+                    });
+
+                    vm.currentEvents(mappedEvents);
+
+
+                    console.log(vm.currentEvents());
+
+                });
+
             }
 
         });
@@ -678,90 +792,6 @@ $(function() {
 
 // TODO al usar el autocomplete de jquery simplemente asigno el valor seleccionado a la variable del viewmodel (en el metodo select o change de autocomplete)
 
-var vm = function CalendarViewModel() {
-    var self = this;
-    self.newFlightTest = null;
-    self.newFlightRoute = null;
-    self.addFlight = function (points, markers) {
-        var start = $('#flight_start_hour').val() + ':' + $('#flight_start_minute').val();
-        var end = $('#flight_end_hour').val() + ':' + $('#flight_end_minute').val();
-        var data = {
-            date: SELECTED_DATE.toString('yyyy-M-d'),
-            start: start,
-            end: end,
-            description: $('#flight_description').val(),
-            cost: $('#flight_cost').val(),
-            instructor: $('#flight_instructor').attr('data-id'),
-            airplane: $('#flight_airplane').attr('data-id'),
-            _token : TOKEN
-        };
 
-        if(NEW_ROUTE) {
-            data.route = {
-                name: $('#route-name').val(),
-                description: $('#ta-route-description').val(),
-                points: points,
-                markers: markers
-            };
-        }
-        else {
-            data.route_id = $('#search-route').attr('data-id');
-        }
-
-        return $.ajax({
-            url : urlAddFlightTest,
-            type: 'POST',
-            data : ko.toJSON(data),
-            contentType: "application/json"
-        });
-    };
-    self.addTest = function () {
-        var data = {
-            subject: $('#subject').val(),
-            description: $('#test_description').val(),
-            date: SELECTED_DATE.toString('yyyy-M-d'),
-            start: $('#test_start_hour').val() + ':' + $('#test_start_minute').val(),
-            end: $('#test_end_hour').val() + ':' + $('#test_end_minute').val(),
-            instructor_id: $('#test_instructor').attr('data-id'),
-            _token : TOKEN
-        };
-        return $.ajax({
-            url : urlAddTest,
-            type: 'POST',
-            data : ko.toJSON(data),
-            contentType: "application/json"
-        });
-    };
-
-    self.getEventsByMonth = function(){
-        var $calendar = $('#calendar');
-        return $.ajax({
-            url : urlGetEventsByMonth + $calendar.calendario('getMonth') + '/year/' + $calendar.calendario('getYear') + '/instructor/null',
-            type: 'GET'
-        });
-    };
-
-    return self;
-};
-
-
-function FlightTest(data) {
-    this.date = data.date;
-    this.start = data.start;
-    this.end = data.end;
-    this.cost = data.cost;
-    this.flight_route = new FlightRoute(data.flight_route);
-    this.instructor = data.instructor;
-    this.airplane = data.airplane;
-}
-
-function FlightRoute(data) {
-    this.name = data.name;
-    this.description = data.description;
-    this.points = data.points;
-    this.markers = data.markers;
-}
-
-ko.applyBindings(vm);
 
 

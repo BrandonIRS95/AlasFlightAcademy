@@ -342,7 +342,7 @@
             }
 
             .booked{
-                color: orange;
+                color: #FFBF10;
             }
 
             .available{
@@ -629,6 +629,16 @@
                 text-align: center;
             }
 
+            .fc-calendar .fc-row > div > div {
+                text-align: center;
+                MARGIN-TOP: 0px;
+                LEFT: 50%;
+                bottom: 0px;
+                transform: translateX(-50%);
+                position: absolute;
+                line-height: 15px;
+            }
+
 
             @media (max-width: 412px) {
                 #cancel-new-route {
@@ -676,15 +686,15 @@
                     <div data-status="booked">Booked<span class="booked">&#9679</span></div>
                     <div data-status="canceled">Canceled<span class="canceled">&#9679</span></div>
                 </div>
-                <div class="conteiner-events">
+                <div class="conteiner-events" data-bind="foreach: currentEvents">
                     <div class="event">
                         <div class="info-event">
-                            <span class="status available">&#9679</span>
-                            <span class="event-time">12:15 - 13:30</span>
+                            <span data-bind="attr: { 'class': $parent.getClass($data) }">&#9679</span>
+                            <span class="event-time" data-bind="text: timeFormat()"></span>
                         </div>
-                        <img src="{{URL::to('svg/calendar/ic_airplanemode_active_light_48px.svg')}}">
+                        <img data-bind="attr: { 'src': $parent.getIcon($data) }">
                     </div>
-                    <div class="event">
+                    <!--<div class="event">
                         <div class="info-event">
                             <span class="status booked">&#9679</span>
                             <span class="event-time">13:50 - 14:30</span>
@@ -731,7 +741,7 @@
                             <span class="event-time">13:50 - 14:30</span>
                         </div>
                         <img src="{{URL::to('svg/calendar/ic_content_paste_light_48px.svg')}}">
-                    </div>
+                    </div>-->
 
 
                 </div>
@@ -1007,11 +1017,13 @@
 @section('javascript')
         <script>
             var urlGetInstructors = '{{route('getInstructorsByName')}}';
+            var urlSvgCalendar = urlSvgImages + '/calendar/';
             var urlGetAirplanes = '{{route('getAirplanesByPlateAndName')}}';
             var urlAddFlightTest = '{{route('addFlightTest')}}';
             var urlGetRoutes = '{{route('getRoutesByName')}}';
             var urlAddTest = '{{route('addTest')}}';
             var urlGetEventsByMonth = '{{URL::to('/')}}' + '/getEventsByMonth/';
+            var urlGetEventsByDate = '{{URL::to('/')}}' + '/getEventsByDate/';
             var TOKEN = '{{ Session::token() }}';
         </script>
         <script type="text/javascript" src="{{URL::to('js/calendar/calendario.js')}}"></script>
