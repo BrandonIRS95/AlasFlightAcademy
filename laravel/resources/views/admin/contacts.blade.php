@@ -38,10 +38,10 @@
         <div class="col-md-6 col-md-offset-3" id="mailForm">
             <form action="{{ route('sendmail' )}}" method="post" class="formSend">
               <div class="form-group">
-                  <input type="email" name="mail" class="form-control" id="toEmail">
+                  <input type="email" name="mail" class="form-control" id="toEmail" disabled>
               </div>                
               <div class="form-group">
-                <input name="title" type="text" class="form-control" >
+                <textarea name="title" type="text" class="form-control" ></textarea>
               </div>                   
               <button type="submit" id="submit" class="btn btn-default">Submit</button>
                 {{csrf_field()}}

@@ -62,7 +62,7 @@
                     </select>
                     <div class="form-footer">
                         <button id="cancel-add" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button id="add-airplane-btn" type="submit" class="btn btn-default">Submit</button>
+                        <button id="add-airplane-btn" type="submit" class="btn btn-default">Save</button>
                         <input type="hidden" value="{{Session::token()}}" name="_token">
                     </div>
                 </form>
@@ -217,8 +217,6 @@
         });
 
         //Edit Airplane
-
-
         $('.edit').on('click', function(event) {
 
 
