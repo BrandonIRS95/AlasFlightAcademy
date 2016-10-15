@@ -669,6 +669,11 @@
             #conteiner-calendar-options img{
                 width: 30px;
                 cursor: pointer;
+                margin-left: 20px;
+            }
+            #conteiner-calendar-options img:nth-child(1)
+            {
+                margin-left: 0;
             }
 
 
