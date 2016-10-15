@@ -43,9 +43,16 @@ Route::get('/aspirants', [
     'as' => 'aspirants',
     'middleware' => 'auth'
 ]);
+
 Route::get('/students', [
     'uses' => 'UserController@getStudentsView',
     'as' => 'students',
+    'middleware' => 'auth'
+]);
+
+Route::get('/contacts', [
+    'uses' => 'ContactController@getContactsView',
+    'as' => 'contacts',
     'middleware' => 'auth'
 ]);
 
@@ -55,7 +62,107 @@ Route::get('/getAdmissionById/{id?}', [
     'middleware' => 'auth'
 ]);
 
+Route::get('/getStudentById/{id?}', [
+    'uses' => 'AdmissionController@getStudentById',
+    'as' => 'getStudentById',
+    'middleware' => 'auth'
+]);
+Route::get('/getContactById/{id?}', [
+    'uses' => 'ContactController@getContactById',
+    'as' => 'getContactById',
+    'middleware' => 'auth'
+]);
 
+Route::get('/getAirplaneById/{id?}', [
+    'uses' => 'AirplaneController@getAirplaneById',
+    'as' => 'getAirplaneById',
+    'middleware' => 'auth'
+]);
+
+Route::get('/getInstructorsByName/{name?}', [
+    'uses' => 'InstructorController@getInstructorsByName',
+    'as' => 'getInstructorsByName',
+    'middleware' => 'auth'
+]);
+
+Route::get('/contacts', [
+    'uses' => 'ContactController@getContactsView',
+    'as' => 'contacts',
+    'middleware' => 'auth'
+]);
+/////////////////yisus
+# User Management
+
+Route::get('/userCrud', [
+    'uses' => 'UserController@getCrudView',
+    'as' => 'userCrud',
+    'middleware' => 'auth'
+]);
+Route::get('/indexCrud', [
+    'uses' => 'UserController@getIndexCrud',
+    'as' => 'indexCrud',
+    'middleware' => 'auth'
+]);
+Route::post('/userCrud', [
+    'uses' => 'UserController@postCrearNuevaPersona',
+    'as' => 'userCrud'
+]);
+///////////////////////
+Route::get('/airplanes', [
+    'uses' => 'AirplaneController@getAirplanesView',
+    'as' => 'airplanes',
+    'middleware' => 'auth'
+]);
+
+Route::get('/instructors', [
+    'uses' => 'InstructorController@getInstructorsView',
+    'as' => 'instructors',
+    'middleware' => 'auth'
+]);
+
+Route::post('/sendmail', function (\Illuminate\Http\Request $request,
+      \Illuminate\Mail\Mailer $mailer){
+    $mailer
+        ->to($request->input('mail'))
+        ->send(new \App\Mail\MyMail($request->input('title')));
+    return redirect()->back();
+})->name('sendmail');
+
+Route::get('/getAirplanesByPlateAndName/{text?}', [
+    'uses' => 'AirplaneController@getAirplanesByPlateAndName',
+    'as' => 'getAirplanesByPlateAndName',
+    'middleware' => 'auth'
+]);
+
+Route::get('/getEventsByDate/{date?}/instructor/{instructor?}', [
+    'uses' => 'EventController@getEventsByDate',
+    'as' => 'getEventsByDate'
+    //'middleware' => 'auth'
+]);
+
+Route::get('/getEventsByMonth/{month?}/year/{year?}/instructor/{instructor?}', [
+    'uses' => 'EventController@getEventsByMonth',
+    'as' => 'getEventsByMonth'
+    //'middleware' => 'auth'
+]);
+
+Route::post('/addFlightTest', [
+    'uses' => 'FlightTestController@postAddFlightTest',
+    'as' => 'addFlightTest',
+    'middleware' => 'auth'
+]);
+
+Route::post('/addTest', [
+    'uses' => 'TestController@postAddTest',
+    'as' => 'addTest',
+    'middleware' => 'auth'
+]);
+
+Route::get('/getRoutesByName/{name?}', [
+    'uses' => 'FlightRouteController@getRoutesByName',
+    'as' => 'getRoutesByName',
+    'middleware' => 'auth'
+]);
 
 
 Route::get('/', function () {
@@ -100,4 +207,14 @@ Route::get('/addperson', [
 Route::post('/addcontact', [
     'uses' => 'ContactController@postAddContact',
     'as' => 'addcontact'
+]);
+
+Route::post('/addairplane', [
+    'uses' => 'AirplaneController@postAddAirplane',
+    'as' => 'addairplane'
+]);
+
+Route::post('/edit',[
+    'uses' => 'AirplaneController@postEditPost',
+    'as' => 'edit'
 ]);

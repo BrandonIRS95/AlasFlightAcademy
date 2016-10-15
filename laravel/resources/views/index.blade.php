@@ -49,7 +49,7 @@
         <figcaption class="Landing__section__title">Contact</figcaption>
       </figure></a></div>
   <div id="land-section-6" class="Landing__description">
-    <h2 class="Landing__description__title">Alas Flight Academy</h2>
+    <h3 class="Landing__description__title">ALAS | Regional Airline Academy</h3>
     <p class="Landing__description__text"> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex cumque ipsa recusandae vitae optio, nesciunt placeat ipsum, eaque eveniet obcaecati doloremque, cum amet. Ullam expli enim amet quod pariatur modi! Lorem ipsum dolor sit amet, consectetur, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis dolor exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et</p>
   </div>
   <div class="Landing__cta parallax-container">

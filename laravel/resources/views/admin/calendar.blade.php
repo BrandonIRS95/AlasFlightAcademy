@@ -4,6 +4,7 @@
         <link rel="stylesheet" type="text/css" href="{{URL::to('css/calendar/calendar.css')}}" />
         <link rel="stylesheet" type="text/css" href="{{URL::to('css/calendar/custom_1.css')}}" />
         <link rel="stylesheet" type="text/css" href="{{URL::to('css/calendar/jquery.jscrollpane.css')}}" />
+        <link rel="stylesheet" type="text/css" href="{{URL::to('css/jquery-ui.min.css')}}" />
         <script src="{{URL::to('js/calendar/modernizr.custom.63321.js')}}"></script>
         <!-- Calendar -->
         <style>
@@ -49,7 +50,7 @@
             }
 
             .fc-calendar-container{
-                top:120px;
+                top:130px;
             }
 
             .fc-calendar .fc-head{
@@ -95,13 +96,13 @@
             }
 
             .custom-month{
-                color: #aeb9c3;
+                color: #9aa5af;
                 font-size: 45px;
                 letter-spacing: 0;
                 text-transform: none;
                 font-weight: 400;
             }
-            
+
             .custom-year{
                 font-size: 35px;
                 color: #b8c3cd;
@@ -114,7 +115,7 @@
             }
 
             .custom-header {
-                height: 130px;
+                height: 100px;
                 padding:0 40px;
 
             }
@@ -177,7 +178,7 @@
                 color: #fff;
             }
 
-            .fc-calendar .fc-row > div.fc-content:after {
+            /*.fc-calendar .fc-row > div.fc-content:after {
                 content: '\00B7';
                 text-align: center;
                 width: 20px;
@@ -188,15 +189,25 @@
                 line-height: 20px;
                 left: 50%;
                 bottom: 3px;
+            }*/
+
+            .fc-calendar .fc-row > div > div a, .fc-calendar .fc-row > div > div span{
+                color: rgba(255,255,255,0.7);
+                font-size: 12px;
+                text-transform: uppercase;
+                display: inline-block;
+                padding: 3px 5px;
+                border-radius: 3px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                max-width: 100%;
+                margin-bottom: 1px;
+                background: transparent;
             }
 
             .fc-calendar .fc-row > div.fc-today.fc-content:after {
                 color: #fff;
-            }
-
-            .fc-calendar .fc-row > div > div a, .fc-calendar .fc-row > div > div span {
-                display: none;
-                font-size: 22px;
             }
 
             div .fc-past, div .fc-future{
@@ -331,15 +342,15 @@
             }
 
             .booked{
-                color: orange;
+                color: #FFBF10;
             }
 
             .available{
-                color: green;
+                color: #0DD16D;
             }
 
             .canceled {
-                color: red;
+                color: #FF3739;
             }
 
             .jspVerticalBar{
@@ -393,18 +404,18 @@
                 cursor: pointer;
             }
 
-            #modalAddEvent .event-filter{
+            #modalAddFlight .event-filter{
                 float: left;
                 margin: 0 20px;
                 margin-top: 20px;
                 opacity: 0.6;
             }
 
-            #modalAddEvent .event-filter div{
+            #modalAddFlight .event-filter div{
                 color: black;
             }
 
-            #modalAddEvent .event-filter img{
+            #modalAddFlight .event-filter img{
                 width: 60px;
             }
 
@@ -427,8 +438,8 @@
 
             .modal-principal-icon{
                 position: absolute;
-                right: 20px;
-                top: 20px;
+                right: 30px;
+                top: 30px;
             }
 
             .modal {
@@ -446,27 +457,27 @@
         </style>
         <!--Modal add flight test-->
         <style>
-            .modal-add-flight-test{
+            .custom-modal-content{
                 border-radius: 0;
                 background: #1784c7;
                 color: #FFFFFF;
             }
 
-            .modal-add-flight-test .modal-header{
+            .custom-modal-content .modal-header{
                 border-bottom: none;
             }
 
-            .modal-add-flight-test .modal-footer{
+            .custom-modal-content .modal-footer{
                 border-top: none;
             }
 
-            .modal-add-flight-test .custom-btn-primary{
+            .custom-modal-content .custom-btn-primary{
                 background: #FF9410;
                 border-color: transparent;
                 border-radius: 3px;
             }
 
-            .modal-add-flight-test .custom-btn-default{
+            .custom-modal-content .custom-btn-default, #cancel-new-route{
                 background: transparent;
                 border-radius: 0px;
                 border: 1px solid #ffffff;
@@ -476,11 +487,11 @@
                 color: #fff;
             }
 
-            .modal-add-flight-test .custom-btn-primary, .modal-add-flight-test .custom-btn-default{
+            .custom-modal-content .custom-btn-primary, .custom-modal-content .custom-btn-default{
                 width: 100px;
             }
 
-            .modal-add-flight-test .close span{
+            .custom-modal-content .close span{
                 color: #FFF;
             }
 
@@ -495,9 +506,180 @@
             #content-modal-add-event{
 
             }
+
+            #ta-route-description, #flight_description, #test_description{
+                resize: vertical;
+            }
+
+            #add-marker-btn{
+                position: absolute;
+                top: 10px;
+                left: 140px;
+                background: #FFF;
+                padding: 3px;
+                border-radius: 3px;
+                box-shadow: 0px 2px 2px rgba(0,0,0,0.2);
+                cursor: pointer;
+            }
+
+            #modalAddFlight fieldset legend, #modalAddTest fieldset legend{
+                color: white;
+            }
+
+            .nopadding-left{
+                padding-left: 0px;
+            }
+
+            .nopadding-right{
+                padding-right: 0px;
+            }
+
+            .nopadding{
+                padding: 0px;
+            }
+
+            /*#ui-id-1, #ui-id-2{
+                z-index: 1100;
+            }*/
+
+            .ui-menu{
+                z-index: 1100;
+            }
+
+            #flight_cost{
+                text-align: right;
+            }
+
+            label.error {
+                color: yellow;
+                margin-top: 5px;
+                font-size: 12px;
+            }
+
+            #add-new-route, #cancel-new-route{
+                width: auto;
+                position: absolute;
+                top: 25px;
+                left: 0px;
+                right: 15px;
+            }
+
+            .newRoute {
+                display: none;
+            }
+
+            .noNewRoute{
+                display: block;
+            }
+
+            legend{
+                border-bottom: 1px dotted #e5e5e5;
+            }
+
+            @media (max-width: 360px) {
+                #add-new-route{
+                    font-size: 10px;
+                    height: 34px;
+                    line-height: 22px;
+                }
+            }
+
+            #flight_cost-error{
+                position: absolute;
+                left: 0px;
+                top: 33px;
+            }
+
+            .contentModalOptions{
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%,-50%);
+                width: 300px;
+                height: 200px;
+                background: #1784c7;
+                padding: 10px 20px;
+                color: white;
+                box-shadow: 0 5px 15px rgba(0,0,0,.3);
+            }
+
+            .optionConteiner{
+                width: 70px;
+                position: relative;
+                float: left;
+                margin-top: 25px;
+                margin-left: 40px;
+                cursor: pointer;
+            }
+
+            .iconOptions{
+                width: 100%;
+            }
+
+            .calendar-points{
+                position: relative;
+                float: left;
+                font-size: 30px;
+            }
+
+            .optionTitle{
+                text-align: center;
+            }
+            .fc-calendar .fc-row > div > div{
+                text-align: center;
+            }
+
+            .fc-calendar .fc-row > div > div {
+                text-align: center;
+                MARGIN-TOP: 0px;
+                LEFT: 50%;
+                bottom: 0px;
+                transform: translateX(-50%);
+                position: absolute;
+                line-height: 15px;
+                top: 0px;
+                width: 100%;
+            }
+
+            .calendarIcons{
+                position: absolute;
+                bottom: 5px;
+                width: 20px;
+                opacity: 0.4;
+                right: 5px;
+            }
+            .calendarIcons.airplane{
+                display: none;
+            }
+            
+            .calendarIcons.test{
+                display: none;
+            }
+
+            .calendar-default{
+                height: 100%;
+            }
+
+            #conteiner-calendar-options{
+                position: absolute;
+                bottom: -20px;
+                left: 50px;
+            }
+
+            #conteiner-calendar-options img{
+                width: 30px;
+                cursor: pointer;
+            }
+
+
+            @media (max-width: 412px) {
+                #cancel-new-route {
+                    font-size: 10px;
+                    line-height: 20px;
+                }
+            }
         </style>
     @endsection
-
 
 @section('content')
         <div id="conteiner-calendar-events">
@@ -505,7 +687,7 @@
                 <div class="custom-calendar-wrap custom-calendar-full">
                     <div class="custom-header clearfix">
                         <h3 class="custom-month-year">
-                            <div class="vertical-center">
+                            <div id="month-year-calendar" class="vertical-center">
                                 <span id="custom-month" class="custom-month"></span>
                                 <span class="custom-month">, </span>
                                 <span id="custom-year" class="custom-year"></span>
@@ -517,14 +699,11 @@
                                     <img src="{{URL::to('svg/calendar/ic_today_black_48px.svg')}}">
                                 </div>
                             </div>
-                            <!--<nav class="vertical-center">
-                                <span id="custom-prev">&25C0</span>
-                                <span id="custom-next"></span>
-                                <span id="custom-current" title="Got to current date">
-                                    <img src="{{URL::to('svg/calendar/ic_today_black_48px.svg')}}">
-                                </span>
-                            </nav>-->
                         </h3>
+                        <div id="conteiner-calendar-options">
+                            <img id="showFlights" src="{{URL::to('svg/calendar/ic_airplanemode_active_light_48px.svg')}}">
+                            <img id="showTests" src="{{URL::to('svg/calendar/ic_content_paste_light_48px.svg')}}">
+                        </div>
                     </div>
                     <div id="calendar" class="fc-calendar-container"></div>
                 </div>
@@ -532,9 +711,8 @@
             <div id="content-events">
                 <div class="date-selected" id="date-selected">
                     <div class="vertical-center">
-                        <span class="custom-month">Wednesday</span>
-                        <span class="custom-month">, </span>
-                        <span class="custom-year">4th</span>
+                        <span class="custom-month span-selected-date-day-name"></span>
+                        <span class="custom-year span-selected-date-day-number"></span>
                     </div>
                 </div>
                 <div id="filtering-status" class="filtering-status">
@@ -543,15 +721,15 @@
                     <div data-status="booked">Booked<span class="booked">&#9679</span></div>
                     <div data-status="canceled">Canceled<span class="canceled">&#9679</span></div>
                 </div>
-                <div class="conteiner-events">
+                <div class="conteiner-events" data-bind="foreach: currentEvents">
                     <div class="event">
                         <div class="info-event">
-                            <span class="status available">&#9679</span>
-                            <span class="event-time">12:15 - 13:30</span>
+                            <span data-bind="attr: { 'class': $parent.getClass($data) }">&#9679</span>
+                            <span class="event-time" data-bind="text: timeFormat()"></span>
                         </div>
-                        <img src="{{URL::to('svg/calendar/ic_airplanemode_active_light_48px.svg')}}">
+                        <img data-bind="attr: { 'src': $parent.getIcon($data) }">
                     </div>
-                    <div class="event">
+                    <!--<div class="event">
                         <div class="info-event">
                             <span class="status booked">&#9679</span>
                             <span class="event-time">13:50 - 14:30</span>
@@ -598,7 +776,7 @@
                             <span class="event-time">13:50 - 14:30</span>
                         </div>
                         <img src="{{URL::to('svg/calendar/ic_content_paste_light_48px.svg')}}">
-                    </div>
+                    </div>-->
 
 
                 </div>
@@ -616,250 +794,287 @@
             </div>
         </div>
 
-        <div id="modalAddEvent" class="modal bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
-            <div id="modalWrapper" class="modal-dialog modal-lg" role="document">
-                <div id="content-modal-add-event" class="modal-content modal-add-flight-test">
+        <div id="modalAddFlight" class="modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+            <div id="modalWrapper" class="modal-dialog" role="document">
+                <div id="content-modal-add-event" class="modal-content custom-modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         <h2 class="modal-title">ADD FLIGHT TEST</h2>
-                        <h4>September 23th, 2016</h4>
+                        <h4><span class="span-selected-date-day-name"></span><span class="span-selected-date-month-name"></span> <span class="span-selected-date-day-number"></span>, <span class="span-selected-date-year"></span></h4>
+                        <img class="modal-principal-icon" src="{{URL::to('svg/calendar/ic_airplanemode_active_white_48px.svg')}}">
                     </div>
+                    <form  id="form-add-flight-test" autocomplete="off">
                     <div class="modal-body">
-                        <form action="#" method="post">
-                            <div class='row'>
+                            <div class="row">
                                 <div class='col-sm-12'>
-                                    <div class='form-group'>
-                                        <label>Route</label>
-                                        <div id="map"></div>
-                                    </div>
+                                    <fieldset class="form-group">
+                                        <legend>Route</legend>
+                                        <div class="row">
+                                            <div class="col-xs-8">
+                                                <div class="form-group">
+                                                    <label for="search-route" class="noNewRoute">Search route</label>
+                                                    <input id="search-route" name="search_route" class="form-control noNewRoute" type="text">
+                                                    <label for="route-name" class="newRoute">Name for the new route</label>
+                                                    <input id="route-name" name="route_name" class="form-control newRoute" type="text">
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-4" style="height: 74px;">
+                                                <div class="form-group">
+                                                    <div id="add-new-route" class="btn btn-primary custom-btn-primary noNewRoute">New route</div>
+                                                    <div id="cancel-new-route" class="btn btn-primary custom-btn-primary newRoute">Cancel route</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class='row'>
+                                            <div class='col-sm-12'>
+                                                <label class="newRoute">Draw the route</label>
+                                                <div class='form-group' style="position:relative;">
+                                                    <div id="map"></div>
+                                                    <div id="add-marker-btn">
+                                                        <img src="{{URL::to('svg/calendar/ic_add_location_black_24px.svg')}}">
+                                                    </div>
+                                                    <input type="hidden" name="coordinates" id="coordinates">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class='row'>
+                                            <div class='col-sm-12 newRoute'>
+                                                <div class='form-group'>
+                                                    <label for="route_description">Route description</label>
+                                                    <textarea id="ta-route-description" name="route_description" type="text" class="form-control"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </fieldset>
                                 </div>
                             </div>
-                            <div class='row'>
-                                <div class='col-sm-12'>
-                                    <div class='form-group'>
-                                        <label for="route_description">Route description</label>
-                                        <input name="route_description" type="text" class="form-control">
-                                    </div>
+                        <fieldset class="form-group">
+                            <legend>Flight information</legend>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                        <div class='row'>
+                                            <div class='col-sm-6'>
+                                                <div class='form-group'>
+                                                    <label for="instructor">Instructor</label>
+                                                    <input class="form-control" id="flight_instructor" name="instructor" type="text" data-id="0"/>
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-6'>
+                                                <div class='form-group'>
+                                                    <label for="airplane">Airplane</label>
+                                                    <input class="form-control" id="flight_airplane" name="airplane" type="text" data-id="0"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="form-group">
+                                                    <label for="flight_description">Description</label>
+                                                    <textarea id="flight_description" name="flight_description" class="form-control"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class='row'>
+                                            <div class='col-sm-6'>
+                                                <fieldset class="form-group">
+                                                    <legend>Start</legend>
+                                                    <div class="col-xs-6 nopadding-left">
+                                                        <div class='form-group'>
+                                                            <label for="flight_start_hour">Hour</label>
+                                                            <select class="form-control" id="flight_start_hour" name="flight_start_hour">
+                                                                @for($x =0; $x < 24; $x++)
+                                                                    <option value="{{($x < 10 ? '0'.$x : $x)}}">{{($x < 10 ? '0'.$x : $x)}}</option>
+                                                                @endfor
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xs-6 nopadding-right">
+                                                        <div class='form-group'>
+                                                            <label for="start">Minute</label>
+                                                            <select class="form-control" id="flight_start_minute" name="start">
+                                                                @for($x =0; $x < 60; $x+=5)
+                                                                    <option value="{{($x < 10 ? '0'.$x : $x)}}">{{($x < 10 ? '0'.$x : $x)}}</option>
+                                                                @endfor
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </fieldset>
+                                            </div>
+                                            <div class='col-sm-6'>
+                                                <fieldset class="form-group">
+                                                    <legend>Finish</legend>
+                                                    <div class="col-xs-6 nopadding-left">
+                                                        <div class='form-group'>
+                                                            <label for="start">Hour</label>
+                                                            <select class="form-control" id="flight_end_hour" name="start">
+                                                                @for($x =0; $x < 24; $x++)
+                                                                    <option value="{{($x < 10 ? '0'.$x : $x)}}">{{($x < 10 ? '0'.$x : $x)}}</option>
+                                                                @endfor
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xs-6 nopadding-right">
+                                                        <div class='form-group'>
+                                                            <label for="start">Minute</label>
+                                                            <select class="form-control" id="flight_end_minute" name="start">
+                                                                @for($x =0; $x < 60; $x+=5)
+                                                                    <option value="{{($x < 10 ? '0'.$x : $x)}}">{{($x < 10 ? '0'.$x : $x)}}</option>
+                                                                @endfor
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </fieldset>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label for="cost">Cost (USD)</label>
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon">$</span>
+                                                        <input id="flight_cost" type="text" name="cost" class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                 </div>
                             </div>
-                            <div class='row'>
-                                <div class='col-sm-6'>
-                                    <div class='form-group'>
-                                        <label for="start">Start</label>
-                                        <select class="form-control" id="user_password" name="start"></select>
-                                    </div>
-                                </div>
-                                <div class='col-sm-6'>
-                                    <div class='form-group'>
-                                        <label for="finish">Finish</label>
-                                        <select class="form-control" id="user_password_confirmation" name="finish"></select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class='row'>
-                                <div class='col-sm-6'>
-                                    <div class='form-group'>
-                                        <label for="cost">Cost</label>
-                                        <input class="form-control" id="user_title" name="cost" type="text" />
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
+                        </fieldset>
                     </div>
                     <div class="modal-footer">
-                        <button id="close-modal" type="button" class="btn btn-default custom-btn-default">Cancel</button>
-                        <button type="button" class="btn btn-primary custom-btn-primary">Save</button>
+                        <button id="close-modal" type="button" class="btn btn-default custom-btn-default" data-dismiss="modal">Cancel</button>
+                        <button id="addflightsubmit" type="submit" class="btn btn-primary custom-btn-primary">Save</button>
                     </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div id="modalAddTest" class="modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content custom-modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h2 class="modal-title">ADD TEST</h2>
+                        <h4><span class="span-selected-date-day-name"></span><span class="span-selected-date-month-name"></span> <span class="span-selected-date-day-number"></span>, <span class="span-selected-date-year"></span></h4>
+                        <img class="modal-principal-icon" src="{{URL::to('svg/calendar/ic_content_paste_white_48px.svg')}}">
+                    </div>
+                    <form id="form-add-test">
+                        <div class="modal-body">
+                            <fieldset class="form-group">
+                                <legend>Information</legend>
+                            <div class="row">
+                                <div class='col-sm-6'>
+                                    <div class="form-group">
+                                        <label for="subject">Subject</label>
+                                        <input type="text" class="form-control" id="subject" name="subject">
+                                    </div>
+                                </div>
+                                <div class='col-sm-6'>
+                                    <div class="form-group">
+                                        <label for="test_instructor">Instructor</label>
+                                        <input type="text" class="form-control" id="test_instructor" name="test_instructor">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class='col-sm-12'>
+                                    <div class="form-group">
+                                        <label for="test_description">Description</label>
+                                        <textarea class="form-control" id="test_description" name="test_description"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <fieldset class="form-group">
+                                        <legend>Start</legend>
+                                        <div class="col-xs-6 nopadding-left">
+                                            <div class="form-group">
+                                                <label for="test_start_hour">Hour</label>
+                                                <select name="test_start_hour" id="test_start_hour" class="form-control">
+                                                    @for($x =0; $x < 24; $x++)
+                                                        <option value="{{($x < 10 ? '0'.$x : $x)}}">{{($x < 10 ? '0'.$x : $x)}}</option>
+                                                    @endfor
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-6 nopadding-right">
+                                            <div class="form-group">
+                                                <label for="test_start_minute">Minute</label>
+                                                <select name="test_start_minute" id="test_start_minute" class="form-control">
+                                                    @for($x =0; $x < 60; $x+=5)
+                                                        <option value="{{($x < 10 ? '0'.$x : $x)}}">{{($x < 10 ? '0'.$x : $x)}}</option>
+                                                    @endfor
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </div>
+                                <div class="col-sm-6">
+                                    <fieldset class="form-group">
+                                        <legend>End</legend>
+                                        <div class="col-xs-6 nopadding-left">
+                                            <div class="form-group">
+                                                <label for="test_end_hour">Hour</label>
+                                                <select name="test_end_hour" id="test_end_hour" class="form-control">
+                                                    @for($x =0; $x < 24; $x++)
+                                                        <option value="{{($x < 10 ? '0'.$x : $x)}}">{{($x < 10 ? '0'.$x : $x)}}</option>
+                                                    @endfor
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-6 nopadding-right">
+                                            <div class="form-group">
+                                                <label for="test_end_minute">Minute</label>
+                                                <select name="test_end_minute" id="test_end_minute" class="form-control">
+                                                    @for($x =0; $x < 60; $x+=5)
+                                                        <option value="{{($x < 10 ? '0'.$x : $x)}}">{{($x < 10 ? '0'.$x : $x)}}</option>
+                                                    @endfor
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            </fieldset>
+                        </div>
+                        <div class="modal-footer">
+                            <button id="close-modal" type="button" class="btn btn-default custom-btn-default" data-dismiss="modal">Cancel</button>
+                            <button id="addTestSubmit" type="submit" class="btn btn-primary custom-btn-primary">Save</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     @endsection
 
 @section('javascript')
+        <script>
+            var urlGetInstructors = '{{route('getInstructorsByName')}}';
+            var urlSvgCalendar = urlSvgImages + '/calendar/';
+            var urlGetAirplanes = '{{route('getAirplanesByPlateAndName')}}';
+            var urlAddFlightTest = '{{route('addFlightTest')}}';
+            var urlGetRoutes = '{{route('getRoutesByName')}}';
+            var urlAddTest = '{{route('addTest')}}';
+            var urlGetEventsByMonth = '{{URL::to('/')}}' + '/getEventsByMonth/';
+            var urlGetEventsByDate = '{{URL::to('/')}}' + '/getEventsByDate/';
+            var TOKEN = '{{ Session::token() }}';
+        </script>
         <script type="text/javascript" src="{{URL::to('js/calendar/calendario.js')}}"></script>
-        <script type="text/javascript" src="{{URL::to('js/TweenMax.min.js')}}"></script>
         <script type="text/javascript" src="{{URL::to('js/calendar/data.js')}}"></script>
         <script type="text/javascript" src="{{URL::to('js/calendar/jquery.jscrollpane.min.js')}}"></script>
-        <script type="text/javascript" src="{{URL::to('js/admin/animations.js')}}"></script>
         <script src="http://jscrollpane.kelvinluck.com/script/jquery.mousewheel.js"></script>
-        <script type="text/javascript">
-
-
-            /*function initMap() {
-                var myLatLng = {lat: -25.363, lng: 131.044};
-                var myLatLng2 = {lat: -18.363, lng: 100.044};
-
-                var map = new google.maps.Map(document.getElementById('map12'), {
-                    zoom: 4,
-                    center: myLatLng
-                });
-
-                var icon = {
-
-                    path: "M-20,0a20,20 0 1,0 40,0a20,20 0 1,0 -40,0",
-                    fillColor: '#FF0000',
-                    fillOpacity: .6,
-                    anchor: new google.maps.Point(0,0),
-                    strokeWeight: 0,
-                    scale: 1
-                };
-
-                map.addListener('click', function(event) {
-                    var marker = new google.maps.Marker({
-                        position: event.latLng,
-                        map: map
-                    });
-                });
-
-                var marker = new google.maps.Marker({
-                    position: myLatLng,
-                    map: map,
-                    title: 'Hello World!',
-                    draggable: true,
-                    label: 'B',
-                    icon: icon
-                });
-
-                var marker = new google.maps.Marker({
-                    position: myLatLng2,
-                    map: map,
-                    title: 'Hello World2!',
-                    draggable: true,
-                    label: 'A'
-                });
-            }*/
-
-            var poly;
-            var map;
-
-            window.onload = function () {
-                initMap();
-            }
-
-            function initMap() {
-                map = new google.maps.Map(document.getElementById('map'), {
-                    zoom: 7,
-                    center: {lat: 41.879, lng: -87.624}  // Center the map on Chicago, USA.
-                });
-
-                /*poly = new google.maps.Polyline({
-                    strokeColor: '#000000',
-                    strokeOpacity: 1.0,
-                    strokeWeight: 3
-                });
-                poly.setMap(map);*/
-
-                var drawingManager = new google.maps.drawing.DrawingManager();
-                drawingManager.setMap(map);
-
-                // Add a listener for the click event
-                /*map.addListener('click', addLatLng);*/
-            }
-
-            // Handles click events on a map, and adds a new point to the Polyline.
-            function addLatLng(event) {
-                var path = poly.getPath();
-
-                // Because path is an MVCArray, we can simply append a new coordinate
-                // and it will automatically appear.
-                path.push(event.latLng);
-
-                // Add a new marker at the new plotted point on the polyline.
-                var marker = new google.maps.Marker({
-                    position: event.latLng,
-                    title: '#' + path.getLength(),
-                    map: map
-                });
-            }
+        <script type="text/javascript" src="{{URL::to('js/jquery-ui.min.js')}}"></script>
+        <script type="text/javascript" src="{{URL::to('js/jquery.validate.js')}}"></script>
+        <script type="text/javascript" src="{{URL::to('js/additional-methods.js')}}"></script>
+        <script type="text/javascript" src="{{URL::to('js/knockout-3.4.0.js')}}"></script>
+        <script type="text/javascript" src="{{URL::to('js/calendar/date.js')}}"></script>
+        <script type="text/javascript" src="{{URL::to('js/calendar/map.functions.js')}}"></script>
+        <script type="text/javascript" src="{{URL::to('js/calendar/calendar.functions.js')}}"> </script>
+        <script
+                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD6KW7B-xPGNZIpgADTsdMfmhv0Yap_BeM&signed_in=true&libraries=drawing&callback=initMap">
         </script>
-        <script>
 
-            $(function() {
 
-                var $addBtn = $('#add-btn');
-
-                $('#btn-add-flight').click(function () {
-                    var $modalAddEvent = $('#modalAddEvent');
-                    $modalAddEvent.find('h2').remove();
-                    $modalAddEvent.find('div').remove();
-                });
-
-                $addBtn.click(function () {
-                    showModalAnimation($('#modalAddEvent'), function(){
-                        google.maps.event.trigger(map, 'resize');
-                        map.setCenter({lat: 41.879, lng: -87.624});
-                        console.log("senos");
-                    });
-                });
-
-                $('#close-modal').click(function () {
-                    hideModalAnimation($('#modalAddEvent'));
-                });
-
-                $('.filtering-status > div').click(function (e) {
-                    var $elementClicked = $(e.currentTarget);
-                    var $selectedStatus = $('#selectedStatus');
-                    $selectedStatus.removeAttr('id');
-                    $selectedStatus.attr('class','');
-                    $elementClicked.addClass('selected');
-                    $elementClicked.attr('id','selectedStatus');
-                });
-
-                $('.conteiner-events').jScrollPane();
-
-                $(window).resize(function () {
-                    $('.conteiner-events').jScrollPane();
-                });
-
-                function updateMonthYear() {
-                    $( '#custom-month' ).html( $( '#calendar' ).calendario('getMonthName') );
-                    $( '#custom-year' ).html( $( '#calendar' ).calendario('getYear'));
-                }
-
-                $(document).on('finish.calendar.calendario', function(e){
-                    $( '#custom-month' ).html( $( '#calendar' ).calendario('getMonthName') );
-                    $( '#custom-year' ).html( $( '#calendar' ).calendario('getYear'));
-                    $( '#custom-next' ).on( 'click', function() {
-                        $( '#calendar' ).calendario('gotoNextMonth', updateMonthYear);
-                    } );
-                    $( '#custom-prev' ).on( 'click', function() {
-                        $( '#calendar' ).calendario('gotoPreviousMonth', updateMonthYear);
-                    } );
-                    $( '#custom-current' ).on( 'click', function() {
-                        $( '#calendar' ).calendario('gotoNow', updateMonthYear);
-                    } );
-                });
-
-                $('#calendar').on('shown.calendar.calendario', function(){
-                    $('div.fc-row > div').on('onDayClick.calendario', function(e, dateprop) {
-
-                        var $element = $(e.target);
-
-                        if($element.find('.fc-emptydate').length === 0) {
-                            var $lastDaySelected = $('#lastDaySelected');
-                            $lastDaySelected.css('background', 'transparent');
-                            $lastDaySelected.find('span').css('color', '#a4afb9');
-                            $lastDaySelected.removeAttr('id');
-
-                            $element.css('background', '#1784c7');
-                            $element.find('span').css('color', '#fff');
-                            $element.attr('id', 'lastDaySelected');
-                        }
-
-                    });
-                });
-
-                $( '#calendar' ).calendario({
-                    checkUpdate : false,
-                    caldata : events,
-                    fillEmpty : true,
-                    displayWeekAbbr : true,
-                    events: ['click', 'focus'],
-                    sync: false
-                });
-            });
-        </script>
-        <script async defer
-                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD6KW7B-xPGNZIpgADTsdMfmhv0Yap_BeM&callback=initMap&libraries=drawing">
-        </script>
     @endsection

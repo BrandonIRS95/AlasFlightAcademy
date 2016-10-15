@@ -33,7 +33,7 @@
     checkUpdate: true,
     weekdays: 'MON, TUE, WED, THU, FRI',
     weekends: 'SAT, SUN',
-    format: 'MM-DD-YYYY',
+    format: 'YYYY-MM-DD',
     feed: 'http://calendario.t15.org/sync/'
   }
 
@@ -54,7 +54,7 @@
 
   Calendario.prototype.sync = function (data) {
     var self = this
-    $.post(self.options.feed, {info: self.INFO, caldata: data, domain: document.domain}, function(d){ self.syncData = d }, 'json')
+    //$.post(self.options.feed, {info: self.INFO, caldata: data, domain: document.domain}, function(d){ self.syncData = d }, 'json')
     return data
   }
 

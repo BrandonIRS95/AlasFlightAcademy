@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Person extends Model
 {
+    protected $fillable = ['first_name', 'last_name', 'date_of_birth', 'gender', 'city_country_of_birth'];
+
     public function address()
     {
         return $this->hasOne('App\Address');
@@ -30,4 +32,9 @@ class Person extends Model
     public function user(){
         return $this->hasOne('App\User');
     }
+
+    public function instructor(){
+        return $this->hasOne('App\Instructor');
+    }
+
 }

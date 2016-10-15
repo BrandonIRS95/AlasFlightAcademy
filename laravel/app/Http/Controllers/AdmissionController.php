@@ -111,4 +111,18 @@ class AdmissionController extends Controller
         return response()->json(['admission' => $admission,
             'status' => '0'], 200);
     }
+
+    public function getStudentById(Request $request)
+    {
+        $admission = Admission::find($request['id']);
+        $admission->person;
+        $admission->person->user;
+        $admission->pilotProgram;
+        $admission->person->address;
+        $admission->person->schoolRecords;
+        $admission->person->legalInformation;
+
+        return response()->json(['student' => $admission,
+            'status' => '0'], 200);
+    }
 }
