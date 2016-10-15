@@ -7,6 +7,7 @@ use App\Person;
 use App\TypeOfUser;
 use Faker\Provider\cs_CZ\DateTime;
 use Illuminate\Http\Request;
+use App\Http\Requests;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 
@@ -148,9 +149,10 @@ class UserController extends Controller
     }
     public function getIndexCrud()
     {
-        $type = Auth::user()->typeOfUser->type;
+        $type = Auth::User()->typeOfUser->type;
         if ($type == 'Admin') {
-            return view('admin.indexCrud');
+            $posts = User::paginate(10);
+            return view('admin.indexCrud',['posts'=>$posts]);
         } else
             return redirect()->route('index');
     }

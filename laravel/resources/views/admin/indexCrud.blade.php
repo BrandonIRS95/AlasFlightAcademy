@@ -16,14 +16,12 @@
     <section class="content-header">
         <h1>Users</h1>
         <ol class="breadcrumb">
-            <li>
+            <li>Users</li>
+            <li class="active">
                 <a href="{{ route('userCrud') }}">
-                    <i class="livicon" data-name="home" data-size="14" data-color="#000"></i>
-                    Dashboard
+                    Add New User
                 </a>
             </li>
-            <li><a href="{{ route('indexCrud') }}">Users</a></li>
-            <li class="active">Add New User</li>
         </ol>
     </section>
     <section class="content paddingleft_right15">
@@ -47,10 +45,14 @@
                             <th>Created At</th>
                             <th>Actions</th>
                         </tr>
-                        </thead>
-                        <tbody>
-
-                        </tbody>
+                        @foreach($posts as $post)
+                            <tr class="post" data-id="{{$post->User -> id}}">
+                                <td class="people">{{$post->User->email}}</td>
+                                <td class="people">{{$post->User->status}}</td>
+                                <td class="people">{{$post->User->created_at}}</td>
+                            </tr>
+                        @endforeach
+                    {!! $posts->render() !!}
                     </table>
                 </div>
             </div>
@@ -59,3 +61,6 @@
         <!--row end-->
     </section>
     @endsection
+@section('javascript')
+
+@endsection
