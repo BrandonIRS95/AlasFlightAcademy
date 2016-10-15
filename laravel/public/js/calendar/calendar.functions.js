@@ -82,6 +82,7 @@ function CalendarViewModel() {
 
     self.updateCalendarEvents = function () {
         self.getEventsByMonth().done(function (response) {
+            console.log(response);
             $('#calendar').calendario('setData', JSON.parse(response));
         });
     };
@@ -111,6 +112,16 @@ $(function() {
     window.SELECTED_DATE = new Date();
     var RANGE_OF_MINUTES = 5;
     var CALENDAR_EVENTS;
+
+    $('#showFlights').click(function () {
+        $('.calendarIcons.airplane').css('display','inline');
+        $('.calendarIcons.test').css('display','none');
+    });
+
+    $('#showTests').click(function () {
+        $('.calendarIcons.airplane').css('display','none');
+        $('.calendarIcons.test').css('display','inline');
+    });
 
     $.validator.addMethod("elementSelected", function (value, element) {
 
@@ -743,7 +754,7 @@ $(function() {
         });
     });
 
-    var $calendar = $( '#calendar' ).calendario({
+    var cal = $( '#calendar' ).calendario({
         checkUpdate : false,
         fillEmpty : true,
         displayWeekAbbr : true,

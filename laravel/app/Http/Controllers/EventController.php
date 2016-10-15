@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Event;
 use Illuminate\Http\Request;
-
+use URL;
 use App\Http\Requests;
 
 class EventController extends Controller
@@ -34,6 +34,7 @@ class EventController extends Controller
 
         foreach ($dateGroup as $index => $group){
 
+            //echo $group;
             if($first) $first = false; else $data .= ',';
 
             $data .= '"'.$index.'" : [{ "content" : "';
@@ -41,6 +42,8 @@ class EventController extends Controller
             if($group->contains('status', 'available')) $data .= "<div class='calendar-points available'>&#8226;</div>";
             if($group->contains('status', 'booked')) $data .= "<div class='calendar-points booked'>&#8226;</div>";
             if($group->contains('status', 'canceled')) $data .= "<div class='calendar-points canceled'>&#8226;</div>";
+            if($group->contains('eventable_type', 'App\FlightTest')) $data .= "<img class='calendarIcons airplane' src='".URL::to('svg/calendar/ic_airplanemode_active_black_48px.svg')."' />";
+            if($group->contains('eventable_type', 'App\Test')) $data .= "<img class='calendarIcons test' src='".URL::to('svg/calendar/ic_content_paste_black_48px.svg')."' />";
 
             $data .= '", "allDay" : "true"}]';
 

@@ -50,7 +50,7 @@
             }
 
             .fc-calendar-container{
-                top:120px;
+                top:130px;
             }
 
             .fc-calendar .fc-head{
@@ -115,7 +115,7 @@
             }
 
             .custom-header {
-                height: 130px;
+                height: 100px;
                 padding:0 40px;
 
             }
@@ -637,6 +637,38 @@
                 transform: translateX(-50%);
                 position: absolute;
                 line-height: 15px;
+                top: 0px;
+                width: 100%;
+            }
+
+            .calendarIcons{
+                position: absolute;
+                bottom: 5px;
+                width: 20px;
+                opacity: 0.4;
+                right: 5px;
+            }
+            .calendarIcons.airplane{
+                display: none;
+            }
+            
+            .calendarIcons.test{
+                display: none;
+            }
+
+            .calendar-default{
+                height: 100%;
+            }
+
+            #conteiner-calendar-options{
+                position: absolute;
+                bottom: -20px;
+                left: 50px;
+            }
+
+            #conteiner-calendar-options img{
+                width: 30px;
+                cursor: pointer;
             }
 
 
@@ -648,7 +680,6 @@
             }
         </style>
     @endsection
-
 
 @section('content')
         <div id="conteiner-calendar-events">
@@ -669,6 +700,10 @@
                                 </div>
                             </div>
                         </h3>
+                        <div id="conteiner-calendar-options">
+                            <img id="showFlights" src="{{URL::to('svg/calendar/ic_airplanemode_active_light_48px.svg')}}">
+                            <img id="showTests" src="{{URL::to('svg/calendar/ic_content_paste_light_48px.svg')}}">
+                        </div>
                     </div>
                     <div id="calendar" class="fc-calendar-container"></div>
                 </div>
