@@ -46,10 +46,10 @@
                             <th>Actions</th>
                         </tr>
                         @foreach($posts as $post)
-                            <tr class="post" data-id="{{$post->User -> id}}">
-                                <td class="people">{{$post->User->email}}</td>
-                                <td class="people">{{$post->User->status}}</td>
-                                <td class="people">{{$post->User->created_at}}</td>
+                            <tr class="post" data-id="{{$post-> id}}">
+                                <td class="people">{{$post->email}}</td>
+                                <td class="people">{{$post->status}}</td>
+                                <td class="people">{{$post->created_at}}</td>
                             </tr>
                         @endforeach
                     {!! $posts->render() !!}
