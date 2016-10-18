@@ -134,7 +134,7 @@ Route::get('/getAirplanesByPlateAndName/{text?}', [
     'middleware' => 'auth'
 ]);
 
-Route::get('/getEventsByDate/{date?}/instructor/{instructor?}', [
+Route::get('/getEventsByDate/{date?}/instructor/{instructor?}/status/{status?}/type/{type?}', [
     'uses' => 'EventController@getEventsByDate',
     'as' => 'getEventsByDate'
     //'middleware' => 'auth'

@@ -74,8 +74,9 @@ function CalendarViewModel() {
     };
 
     self.getEventsByDate = function () {
+        console.log(urlGetEventsByDate + SELECTED_DATE.toString('yyyy-M-d') + '/instructor/null/status/' + $('.filtering-status .selected').attr('data-status') + '/type/' + $('.event-filter.selected').attr('data-event'));
         return $.ajax({
-            url : urlGetEventsByDate + SELECTED_DATE.toString('yyyy-M-d') + '/instructor/null',
+            url : urlGetEventsByDate + SELECTED_DATE.toString('yyyy-M-d') + '/instructor/null/status/' + $('.filtering-status .selected').attr('data-status') + '/type/' + $('.event-filter.selected').attr('data-event'),
             type: 'GET'
         });
     };
@@ -89,6 +90,9 @@ function CalendarViewModel() {
 
     self.showEvent = function(data){
         var event = data.eventable;
+        $('.add').css('display','none');
+        $('.detail').css('display', 'block');
+
         if(data.type === 'App\\FlightTest')
         {
             settingsFlightModal();
@@ -100,6 +104,7 @@ function CalendarViewModel() {
             var $startMinute = $('#flight_start_minute');
             var $endHour = $('#flight_end_hour');
             var $endMinute = $('#flight_end_minute');
+            var $status = $('#flight_status');
             var $cost = $('#flight_cost');
             var airplane = event.airplane;
             var route = event.flight_route;
@@ -115,7 +120,7 @@ function CalendarViewModel() {
             $startMinute.val(data.startMinute());
             $endHour.val(data.endHour());
             $endMinute.val(data.endMinute());
-            console.log(data.startMinute());
+            $status.find('option[value="' + data.status + '"]').prop('selected',true);
             showModalAnimation($('#modalAddFlight'), function () {
                 google.maps.event.trigger(map, 'resize');
                 drawMarkers(route.markers);
@@ -143,6 +148,7 @@ function CalendarViewModel() {
             var $startMinute = $('#test_start_minute');
             var $endHour = $('#test_end_hour');
             var $endMinute = $('#test_end_minute');
+            var $status = $('#test_status');
             $subject.val(event.subject);
             $instructor.val(data.instructorFullName());
             $instructor.attr('data-id', data.instructor.id);
@@ -151,6 +157,7 @@ function CalendarViewModel() {
             $startMinute.val(data.startMinute());
             $endHour.val(data.endHour());
             $endMinute.val(data.endMinute());
+            $status.find('option[value="' + data.status + '"]').prop('selected',true);
             showModalAnimation($('#modalAddTest'), null, function () {
                 $('#modalAddTest').find('input, textarea').val('');
             });
@@ -343,6 +350,27 @@ $(function() {
                 }
             });
         }
+    });
+    
+    $('.event-filter').click(function (e) {
+        var $elementClicked = $(e.currentTarget);
+        if($elementClicked.attr('class') === 'event-filter selected')
+        {
+            var $all = $('#allEvents');
+            $elementClicked.removeAttr('id');
+            $elementClicked.attr('class','event-filter');
+            $all.addClass('selected');
+        }
+        else{
+            var $selectedStatus = $('#selectedEvent');
+            if($selectedStatus){
+                $selectedStatus.removeAttr('id');
+                $selectedStatus.attr('class','event-filter');
+            }
+            $elementClicked.addClass('selected');
+            $elementClicked.attr('id','selectedEvent');
+        }
+        showEventsByDate();
     });
 
     /** <!-- FLIGHT TEST ...*/
@@ -603,7 +631,8 @@ $(function() {
         var $divContainer2 = $('<div>',{ id: 'btnAddTest', class: 'optionConteiner'});
 
         $divContainer1.click(function () {
-
+            $('.add').css('display','block');
+            $('.detail').css('display', 'none');
             $divBackground.remove();
 
             settingsFlightModal();
@@ -629,6 +658,8 @@ $(function() {
         });
 
         $divContainer2.click(function () {
+            $('.add').css('display','block');
+            $('.detail').css('display', 'none');
             $divBackground.remove();
 
             settingsTestModal();
@@ -764,6 +795,7 @@ $(function() {
         $selectedStatus.attr('class','');
         $elementClicked.addClass('selected');
         $elementClicked.attr('id','selectedStatus');
+        showEventsByDate();
     });
 
     $('.conteiner-events').jScrollPane();
@@ -823,18 +855,7 @@ $(function() {
 
 
 
-                vm.getEventsByDate().done(function (response) {
-
-                    var mappedEvents = $.map(response.events, function(item) {
-                        return new EventCalendar(item);
-                    });
-
-                    vm.currentEvents(mappedEvents);
-
-
-                    console.log(vm.currentEvents());
-
-                });
+                showEventsByDate();
 
             }
 
@@ -848,6 +869,21 @@ $(function() {
         events: ['click', 'focus'],
         feed: ''
     });
+
+    function showEventsByDate(){
+        vm.getEventsByDate().done(function (response) {
+
+            var mappedEvents = $.map(response.events, function(item) {
+                return new EventCalendar(item);
+            });
+
+            vm.currentEvents(mappedEvents);
+
+
+            console.log(vm.currentEvents());
+
+        });
+    }
 
     function parseDateCalendarToJsDate(year, month, day){
         return new Date(year, (month - 1), parseInt(day));

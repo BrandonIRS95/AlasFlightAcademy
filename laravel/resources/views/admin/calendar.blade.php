@@ -462,6 +462,26 @@
                 color: #b7c2cc;
                 font-size: 14px;
             }
+
+            .detail {
+                display: none;
+            }
+
+            .event-filter.selected:before{
+                content: "";
+                position: absolute;
+                height: 100%;
+                width: 20px;
+                top: 0px;
+                background-image: radial-gradient(circle at center, #cdd8e2 3px, transparent 3px);
+                background-size: 20px 20px;
+                background-position: top center, bottom center;
+                background-repeat: no-repeat;
+            }
+            .event-filter.selected:before{
+                margin-left: -10px;
+                margin-top: -10px;
+            }
         </style>
         <!--Modal add flight test-->
         <style>
@@ -729,7 +749,7 @@
                     </div>
                 </div>
                 <div id="filtering-status" class="filtering-status">
-                    <div id="selectedStatus" class="selected" data-status="all">All</div>
+                    <div id="selectedStatus" class="selected" data-status="null">All</div>
                     <div data-status="available">Available<span class="available">&#9679</span></div>
                     <div data-status="booked">Booked<span class="booked">&#9679</span></div>
                     <div data-status="canceled">Canceled<span class="canceled">&#9679</span></div>
@@ -797,13 +817,15 @@
 
                 </div>
                 <div class="conteiner-event-filters">
-                    <div class="event-filter">
+                    <div class="event-filter" data-event="Test">
                         <img src="{{URL::to('svg/calendar/ic_content_paste_light_48px.svg')}}">
                         <div>Tests</div>
                     </div>
-                    <div class="event-filter">
+                    <div class="event-filter" data-event="FlightTest">
                         <img src="{{URL::to('svg/calendar/ic_airplanemode_active_light_48px.svg')}}">
                         <div>Flights</div>
+                    </div>
+                    <div id="allEvents" class="event-filter selected" data-event="null" style="display: none;">
                     </div>
                 </div>
                 <img id="add-btn" src="{{URL::to('svg/ic_add_circle_white_48px.svg')}}">
@@ -815,7 +837,8 @@
                 <div id="content-modal-add-event" class="modal-content custom-modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h2 class="modal-title">ADD FLIGHT TEST</h2>
+                        <h2 class="modal-title add">ADD FLIGHT TEST</h2>
+                        <h2 class="modal-title detail">FLIGHT TEST DETAIL</h2>
                         <h4><span class="span-selected-date-day-name"></span><span class="span-selected-date-month-name"></span> <span class="span-selected-date-day-number"></span>, <span class="span-selected-date-year"></span></h4>
                         <img class="modal-principal-icon" src="{{URL::to('svg/calendar/ic_airplanemode_active_white_48px.svg')}}">
                     </div>
@@ -952,6 +975,16 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div class="col-sm-6 detail">
+                                                <div class="form-group">
+                                                    <label for="status">Status</label>
+                                                    <select id="flight_status" name="status" class="form-control">
+                                                        <option value="available">Available</option>
+                                                        <option value="booked">Booked</option>
+                                                        <option value="canceled">Canceled</option>
+                                                    </select>
+                                                </div>
+                                            </div>
                                         </div>
                                 </div>
                             </div>
@@ -971,7 +1004,8 @@
                 <div class="modal-content custom-modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h2 class="modal-title">ADD TEST</h2>
+                        <h2 class="modal-title add">ADD TEST</h2>
+                        <h2 class="modal-title detail">TEST DETAIL</h2>
                         <h4><span class="span-selected-date-day-name"></span><span class="span-selected-date-month-name"></span> <span class="span-selected-date-day-number"></span>, <span class="span-selected-date-year"></span></h4>
                         <img class="modal-principal-icon" src="{{URL::to('svg/calendar/ic_content_paste_white_48px.svg')}}">
                     </div>
@@ -1051,6 +1085,17 @@
                                             </div>
                                         </div>
                                     </fieldset>
+                                </div>
+                            </div>
+                            <div class="row detail">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="test_status">Status</label>
+                                        <select id="test_status" name="test_status" class="form-control">
+                                            <option value="available">Available</option>
+                                            <option value="canceled">Canceled</option>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
                             </fieldset>
