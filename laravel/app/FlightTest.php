@@ -6,8 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class FlightTest extends Model
 {
-    public function route(){
-        return $this->hasOne('App\FlightRoute');
+    protected $with = ['flightRoute', 'airplane'];
+
+    public function flightRoute(){
+        return $this->belongsTo('App\FlightRoute');
+    }
+
+    public function airplane(){
+        return $this->belongsTo('App\Airplane');
     }
 
     public function event()

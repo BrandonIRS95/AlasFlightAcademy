@@ -302,8 +302,9 @@
             .conteiner-events .event {
                 position: relative;
                 width: 100%;
-                height: 60px;
+                height: 80px;
                 background: rgba(255, 255, 255, 0.1);
+                cursor: pointer;
             }
 
             .conteiner-events .event .info-event{
@@ -311,6 +312,7 @@
                 top: 50%;
                 left: 30px;
                 transform: translateY(-50%);
+                margin-top: -10px;
             }
 
             .conteiner-events .event .info-event .event-time{
@@ -453,7 +455,13 @@
                 height: 300px;
             }
 
-
+            .instructor-event{
+                position: absolute;
+                bottom: 18px;
+                left: 65px;
+                color: #b7c2cc;
+                font-size: 14px;
+            }
         </style>
         <!--Modal add flight test-->
         <style>
@@ -727,10 +735,13 @@
                     <div data-status="canceled">Canceled<span class="canceled">&#9679</span></div>
                 </div>
                 <div class="conteiner-events" data-bind="foreach: currentEvents">
-                    <div class="event">
+                    <div class="event" data-bind="click: $parent.showEvent">
                         <div class="info-event">
                             <span data-bind="attr: { 'class': $parent.getClass($data) }">&#9679</span>
                             <span class="event-time" data-bind="text: timeFormat()"></span>
+                        </div>
+                        <div class="instructor-event">
+                            Instructor: <span data-bind="text: instructorFullName()"></span>
                         </div>
                         <img data-bind="attr: { 'src': $parent.getIcon($data) }">
                     </div>

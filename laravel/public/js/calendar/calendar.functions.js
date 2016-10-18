@@ -87,6 +87,77 @@ function CalendarViewModel() {
         });
     };
 
+    self.showEvent = function(data){
+        var event = data.eventable;
+        if(data.type === 'App\\FlightTest')
+        {
+            settingsFlightModal();
+            var $flightInstructor = $('#flight_instructor');
+            var $airplane = $('#flight_airplane');
+            var $route = $('#search-route');
+            var $description = $('#flight_description');
+            var $startHour = $('#flight_start_hour');
+            var $startMinute = $('#flight_start_minute');
+            var $endHour = $('#flight_end_hour');
+            var $endMinute = $('#flight_end_minute');
+            var $cost = $('#flight_cost');
+            var airplane = event.airplane;
+            var route = event.flight_route;
+            $flightInstructor.val(data.instructorFullName());
+            $flightInstructor.attr('data-id', data.instructor.id);
+            $airplane.val(airplane.name);
+            $airplane.attr('data-id', airplane.id);
+            $route.val(route.name);
+            $route.attr('data-id', route.id);
+            $description.val(event.description);
+            $cost.val(event.cost);
+            $startHour.val(data.startHour());
+            $startMinute.val(data.startMinute());
+            $endHour.val(data.endHour());
+            $endMinute.val(data.endMinute());
+            console.log(data.startMinute());
+            showModalAnimation($('#modalAddFlight'), function () {
+                google.maps.event.trigger(map, 'resize');
+                drawMarkers(route.markers);
+                drawPoints(route.points);
+
+            }, function () {
+                $('#modalAddFlight').find('input, textarea').val('');
+                cleanDataInMap();
+                google.maps.event.removeListener(MAP_CLICK_EVENT);
+                poly.setEditable(false);
+                NEW_ROUTE = false;
+                $('#coordinates-error').remove();
+                $('#route-name-error').remove();
+                $('.newRoute').css('display','none');
+                $('.noNewRoute').css('display','block');
+            });
+        }
+        if (data.type === 'App\\Test')
+        {
+            settingsTestModal();
+            var $subject = $('#subject');
+            var $instructor = $('#test_instructor');
+            var $description = $('#test_description');
+            var $startHour = $('#test_start_hour');
+            var $startMinute = $('#test_start_minute');
+            var $endHour = $('#test_end_hour');
+            var $endMinute = $('#test_end_minute');
+            $subject.val(event.subject);
+            $instructor.val(data.instructorFullName());
+            $instructor.attr('data-id', data.instructor.id);
+            $description.val(event.description);
+            $startHour.val(data.startHour());
+            $startMinute.val(data.startMinute());
+            $endHour.val(data.endHour());
+            $endMinute.val(data.endMinute());
+            showModalAnimation($('#modalAddTest'), null, function () {
+                $('#modalAddTest').find('input, textarea').val('');
+            });
+        }
+
+    };
+
     return self;
 }
 
@@ -100,7 +171,23 @@ function EventCalendar(data){
     this.type = data.eventable_type;
     this.timeFormat = function(){
         return this.start.substring(0,5) + ' - ' + this.end.substring(0,5);
-    }
+    };
+    this.instructorFullName = function() {
+        var person = this.instructor.person;
+        return person.first_name + ' ' + person.last_name;
+    };
+    this.startHour = function(){
+      return this.start.substring(0,2);
+    };
+    this.endHour = function(){
+        return this.end.substring(0,2);
+    };
+    this.startMinute = function () {
+        return this.start.substring(3,5);
+    };
+    this.endMinute = function () {
+        return this.end.substring(3,5);
+    };
 }
 
 var vm = new CalendarViewModel();
@@ -448,7 +535,7 @@ $(function() {
         },
         select: function( event, ui ) {
             var $input = $( "#flight_airplane" );
-            $input.val( ui.item.plate);
+            $input.val( ui.item.name);
             $input.attr('data-id',ui.item.id);
             $(this).valid();
             return false;
@@ -588,7 +675,7 @@ $(function() {
         return 'notToday';
     }
 
-    function settingsFlightModal(){
+    window.settingsFlightModal = function (){
         var $selectHour = $('#flight_start_hour');
         var $selectMinutes = $('#flight_start_minute');
         var $selectHourEnd = $('#flight_end_hour');
@@ -614,9 +701,9 @@ $(function() {
             });
         }
 
-    }
+    };
 
-    function settingsTestModal(){
+    window.settingsTestModal = function (){
         var $selectHour = $('#test_start_hour');
         var $selectMinutes = $('#test_start_minute');
         var $selectHourEnd = $('#test_end_hour');
@@ -642,7 +729,7 @@ $(function() {
             });
         }
 
-    }
+    };
 
     function updateEndTime($selectStartHour, $selectStartMinute, $selectEndHour, $selectEndMinute) {
         var hours = parseInt($selectStartHour.val());
