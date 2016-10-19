@@ -214,6 +214,11 @@ Route::post('/addairplane', [
     'as' => 'addairplane'
 ]);
 
+Route::post('/addinstructor', [
+    'uses' => 'InstructorController@postAddInstructor',
+    'as' => 'addinstructor'
+]);
+
 Route::post('/edit',[
     'uses' => 'AirplaneController@postEditPost',
     'as' => 'edit'

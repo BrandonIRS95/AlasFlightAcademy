@@ -17,7 +17,7 @@ class CreatePeopleTable extends Migration
             $table->increments('id');
             $table->string('first_name');
             $table->string('last_name');
-            $table->date('date_of_birth');
+            $table->date('date_of_birth')->nullable();
             $table->string('gender');
             $table->string('city_country_of_birth')->nullable();
             $table->timestamps();
