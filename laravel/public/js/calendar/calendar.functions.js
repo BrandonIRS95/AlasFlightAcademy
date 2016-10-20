@@ -20,6 +20,7 @@ function CalendarViewModel() {
             status: $('#flight_status').val(),
             option: $('#flight-option').val(),
             description: $('#flight_description').val(),
+            cancellation: $('#flight_cancellation').val(),
             cost: $('#flight_cost').val(),
             instructor: $('#flight_instructor').attr('data-id'),
             airplane: $('#flight_airplane').attr('data-id'),
@@ -52,6 +53,7 @@ function CalendarViewModel() {
             date: SELECTED_DATE.toString('yyyy-M-d'),
             id: $('#id-test').val(),
             status: $('#test_status').val(),
+            cancellation: $('#test_cancellation').val(),
             option: $('#test-option').val(),
             start: $('#test_start_hour').val() + ':' + $('#test_start_minute').val(),
             end: $('#test_end_hour').val() + ':' + $('#test_end_minute').val(),
@@ -89,7 +91,7 @@ function CalendarViewModel() {
     self.updateCalendarEvents = function () {
         self.getEventsByMonth().done(function (response) {
             $('#calendar').calendario('setData', JSON.parse(response));
-            $('.fc-body').find("[data-id='" + DAY_ELEMENT_SELECTED + "']").trigger('click');
+            if (DAY_ELEMENT_SELECTED !== null)$('.fc-body').find("[data-id='" + DAY_ELEMENT_SELECTED + "']").trigger('click');
         });
     };
 
@@ -97,9 +99,12 @@ function CalendarViewModel() {
         var event = data.eventable;
         $('.add').css('display','none');
         $('.detail').css('display', 'block');
-
+        $('#conteiner-cancellation-flight').css('display', 'none');
+        $('#conteiner-cancellation-test').css('display', 'none');
+        
         if(data.type === 'App\\FlightTest')
         {
+            console.log(data);
             settingsFlightModal();
             PROCESS_MESSAGE = 'Editing flight test';
             DONE_MESSAGE = 'Flight test successfully edited!';
@@ -117,6 +122,7 @@ function CalendarViewModel() {
             var route = event.flight_route;
             $('#id-flight').val(data.id);
             $('#flight-option').val('edit');
+            $('#flight_cancellation').val(data.cancellation);
             $flightInstructor.val(data.instructorFullName());
             $flightInstructor.attr('data-id', data.instructor.id);
             $airplane.val(airplane.name);
@@ -130,6 +136,7 @@ function CalendarViewModel() {
             $endHour.val(data.endHour());
             $endMinute.val(data.endMinute());
             $status.find('option[value="' + data.status + '"]').prop('selected',true);
+            if(data.status === 'canceled') $('#conteiner-cancellation-flight').css('display', 'inline');
             showModalAnimation($('#modalAddFlight'), function () {
                 google.maps.event.trigger(map, 'resize');
                 drawMarkers(route.markers);
@@ -162,6 +169,7 @@ function CalendarViewModel() {
             var $status = $('#test_status');
             $('#id-test').val(data.id);
             $('#test-option').val('edit');
+            $('#test_cancellation').val(data.cancellation);
             $subject.val(event.subject);
             $instructor.val(data.instructorFullName());
             $instructor.attr('data-id', data.instructor.id);
@@ -171,6 +179,7 @@ function CalendarViewModel() {
             $endHour.val(data.endHour());
             $endMinute.val(data.endMinute());
             $status.find('option[value="' + data.status + '"]').prop('selected',true);
+            if(data.status === 'canceled') $('#conteiner-cancellation-test').css('display', 'inline');
             showModalAnimation($('#modalAddTest'), null, function () {
                 $('#modalAddTest').find('input, textarea').val('');
             });
@@ -189,6 +198,7 @@ function EventCalendar(data){
     this.status = data.status;
     this.instructor = data.instructor;
     this.eventable = data.eventable;
+    this.cancellation = data.cancellation_description;
     this.type = data.eventable_type;
     this.timeFormat = function(){
         return this.start.substring(0,5) + ' - ' + this.end.substring(0,5);
@@ -222,8 +232,25 @@ $(function() {
     var CALENDAR_EVENTS;
     window.PROCESS_MESSAGE;
     window.DONE_MESSAGE;
-    window.DAY_ELEMENT_SELECTED;
+    window.DAY_ELEMENT_SELECTED = null;
 
+    $('#flight_status').change(function () {
+        var $cancel = $('#conteiner-cancellation-flight');
+        if($(this).val() === 'canceled')
+            $cancel.css('display','inline');
+        else{
+            $cancel.css('display','none');
+        }
+    });
+
+    $('#test_status').change(function () {
+        var $cancel = $('#conteiner-cancellation-test');
+        if($(this).val() === 'canceled')
+            $cancel.css('display','inline');
+        else{
+            $cancel.css('display','none');
+        }
+    });
 
     $('#showFlights').click(function () {
         $('.calendarIcons.airplane').css('display','inline');
@@ -260,6 +287,9 @@ $(function() {
                 required: true
             },
             route_name: {
+                required: true
+            },
+            cancellation: {
                 required: true
             },
             coordinates: {
@@ -342,6 +372,9 @@ $(function() {
             test_instructor: {
                 required: true,
                 elementSelected: true
+            },
+            cancellation: {
+                required: true
             }
         },
         messages: {
@@ -647,6 +680,8 @@ $(function() {
         var $testTitle = $('<div>', { class: 'optionTitle', html: 'Test'});
         var $divContainer1 = $('<div>',{ id: 'btnAddFlight', class: 'optionConteiner'});
         var $divContainer2 = $('<div>',{ id: 'btnAddTest', class: 'optionConteiner'});
+        $('#conteiner-cancellation-flight').css('display', 'none');
+        $('#conteiner-cancellation-test').css('display', 'none');
 
         $divContainer1.click(function () {
             $('.add').css('display','block');
@@ -872,8 +907,6 @@ $(function() {
                 slideAndReturnAnimation($('#date-selected'), function () {
                     updateDateInfo(dateprop);
                 });
-
-
 
                 showEventsByDate();
 

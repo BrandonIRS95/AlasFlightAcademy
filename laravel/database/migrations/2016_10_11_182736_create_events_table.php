@@ -19,6 +19,7 @@ class CreateEventsTable extends Migration
             $table->time('start');
             $table->time('end');
             $table->string('status');
+            $table->text('cancellation_description')->nullable();
             $table->integer('instructor_id');
             $table->integer('eventable_id');
             $table->string('eventable_type');

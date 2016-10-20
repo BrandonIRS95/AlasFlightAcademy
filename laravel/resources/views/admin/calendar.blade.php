@@ -536,7 +536,7 @@
 
             }
 
-            #ta-route-description, #flight_description, #test_description{
+            #ta-route-description, #flight_description, #test_description, #flight_cancellation{
                 resize: vertical;
             }
 
@@ -802,7 +802,7 @@
                                         <div class="row">
                                             <div class="col-xs-8">
                                                 <div class="form-group">
-                                                    <label for="search-route" class="noNewRoute">Search route</label>
+                                                    <label for="search-route" class="noNewRoute">Search route *</label>
                                                     <input id="search-route" name="search_route" class="form-control noNewRoute" type="text">
                                                     <label for="route-name" class="newRoute">Name for the new route</label>
                                                     <input id="route-name" name="route_name" class="form-control newRoute" type="text">
@@ -845,13 +845,13 @@
                                         <div class='row'>
                                             <div class='col-sm-6'>
                                                 <div class='form-group'>
-                                                    <label for="instructor">Instructor</label>
+                                                    <label for="instructor">Instructor *</label>
                                                     <input class="form-control" id="flight_instructor" name="instructor" type="text" data-id="0"/>
                                                 </div>
                                             </div>
                                             <div class='col-sm-6'>
                                                 <div class='form-group'>
-                                                    <label for="airplane">Airplane</label>
+                                                    <label for="airplane">Airplane *</label>
                                                     <input class="form-control" id="flight_airplane" name="airplane" type="text" data-id="0"/>
                                                 </div>
                                             </div>
@@ -919,7 +919,7 @@
                                         <div class="row">
                                             <div class="col-sm-6">
                                                 <div class="form-group">
-                                                    <label for="cost">Cost (USD)</label>
+                                                    <label for="cost">Cost (USD) *</label>
                                                     <div class="input-group">
                                                         <span class="input-group-addon">$</span>
                                                         <input id="flight_cost" type="text" name="cost" class="form-control">
@@ -934,6 +934,10 @@
                                                         <option value="booked">Booked</option>
                                                         <option value="canceled">Canceled</option>
                                                     </select>
+                                                </div>
+                                                <div id="conteiner-cancellation-flight" class="form-group" style="display: none;">
+                                                    <label for="cancellation">Reason for cancellation *</label>
+                                                    <textarea id="flight_cancellation" name="cancellation" class="form-control"></textarea>
                                                 </div>
                                             </div>
                                         </div>
@@ -973,13 +977,13 @@
                             <div class="row">
                                 <div class='col-sm-6'>
                                     <div class="form-group">
-                                        <label for="subject">Subject</label>
+                                        <label for="subject">Subject *</label>
                                         <input type="text" class="form-control" id="subject" name="subject">
                                     </div>
                                 </div>
                                 <div class='col-sm-6'>
                                     <div class="form-group">
-                                        <label for="test_instructor">Instructor</label>
+                                        <label for="test_instructor">Instructor *</label>
                                         <input type="text" class="form-control" id="test_instructor" name="test_instructor">
                                     </div>
                                 </div>
@@ -1052,6 +1056,10 @@
                                             <option value="available">Available</option>
                                             <option value="canceled">Canceled</option>
                                         </select>
+                                    </div>
+                                    <div id="conteiner-cancellation-test" class="form-group" style="display: none;">
+                                        <label for="cancellation">Reason for cancellation *</label>
+                                        <textarea id="test_cancellation" name="cancellation" class="form-control"></textarea>
                                     </div>
                                 </div>
                             </div>

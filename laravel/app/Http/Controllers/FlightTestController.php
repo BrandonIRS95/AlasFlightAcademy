@@ -87,6 +87,7 @@ class FlightTestController extends Controller
         $event->start = $request['start'];
         $event->end = $request['end'];
         $event->status = $request['status'];
+        $event->cancellation_description = $request['cancellation'];
         $event->instructor_id = $request['instructor'];
 
         $flightTest = $event->eventable;
