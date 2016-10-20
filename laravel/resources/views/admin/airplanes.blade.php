@@ -204,7 +204,6 @@
 
                     if(response.status === 0)
                     {
-
                         $form.empty();
                         location.reload();
                     }
@@ -218,8 +217,6 @@
 
         //Edit Airplane
         $('.edit').on('click', function(event) {
-
-
 
             var $postBody =  $(event.currentTarget);
              idAirplane = $postBody.attr('data-id');
@@ -260,6 +257,7 @@
            })
            .done(function (msg) {
                 $(postBodyElement).text(msg['new_body']);
+                location.reload();
 
            });
         });

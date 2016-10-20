@@ -38,7 +38,7 @@
         <div class="col-md-6 col-md-offset-3" id="mailForm">
             <form action="{{ route('sendmail' )}}" method="post" class="formSend">
               <div class="form-group">
-                  <input type="email" name="mail" class="form-control" id="toEmail" disabled>
+                  <input type="email" name="mail" class="form-control" id="toEmail" >
               </div>                
               <div class="form-group">
                 <textarea name="title" type="text" class="form-control" ></textarea>
