@@ -290,7 +290,7 @@
 
         cellClasses = (today ? 'fc-today ' : (past ? 'fc-past ' : 'fc-future ')) + (content !== '' ? 'fc-content' : '');
         var idToday = (today ? 'id="lastDaySelected"' : '');
-        html += (cellClasses !== '' ? '<div class="' + cellClasses.trim() + '" '+ idToday +'>' : '<div>') + inner + '</div>';
+        html += (cellClasses !== '' ? '<div class="' + cellClasses.trim() + '" '+ idToday +' data-id="calendarDay'+ day +'">' : '<div>') + inner + '</div>';
       }
 
       if(day > monthLength) {

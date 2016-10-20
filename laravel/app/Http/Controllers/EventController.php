@@ -55,4 +55,5 @@ class EventController extends Controller
 
         echo $data;
     }
+
 }

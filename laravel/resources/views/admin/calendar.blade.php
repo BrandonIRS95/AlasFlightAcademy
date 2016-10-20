@@ -3,7 +3,7 @@
 @section('individual-styles')
         <link rel="stylesheet" type="text/css" href="{{URL::to('css/calendar/calendar.css')}}" />
         <link rel="stylesheet" type="text/css" href="{{URL::to('css/calendar/custom_1.css')}}" />
-        <link rel="stylesheet" type="text/css" href="{{URL::to('css/calendar/jquery.jscrollpane.css')}}" />
+        {{--<link rel="stylesheet" type="text/css" href="{{URL::to('css/calendar/jquery.jscrollpane.css')}}" />--}}
         <link rel="stylesheet" type="text/css" href="{{URL::to('css/jquery-ui.min.css')}}" />
         <script src="{{URL::to('js/calendar/modernizr.custom.63321.js')}}"></script>
         <!-- Calendar -->
@@ -296,7 +296,8 @@
                 right: 0;
                 top: 190px;
                 bottom: 90px;
-
+                overflow-x: hidden;
+                overflow-y: auto;
             }
 
             .conteiner-events .event {
@@ -754,7 +755,7 @@
                     <div data-status="booked">Booked<span class="booked">&#9679</span></div>
                     <div data-status="canceled">Canceled<span class="canceled">&#9679</span></div>
                 </div>
-                <div class="conteiner-events" data-bind="foreach: currentEvents">
+                <div id="conteiner-events" class="conteiner-events" data-bind="foreach: currentEvents">
                     <div class="event" data-bind="click: $parent.showEvent">
                         <div class="info-event">
                             <span data-bind="attr: { 'class': $parent.getClass($data) }">&#9679</span>
@@ -765,56 +766,6 @@
                         </div>
                         <img data-bind="attr: { 'src': $parent.getIcon($data) }">
                     </div>
-                    <!--<div class="event">
-                        <div class="info-event">
-                            <span class="status booked">&#9679</span>
-                            <span class="event-time">13:50 - 14:30</span>
-                        </div>
-                        <img src="{{URL::to('svg/calendar/ic_content_paste_light_48px.svg')}}">
-                    </div>
-                    <div class="event">
-                        <div class="info-event">
-                            <span class="status available">&#9679</span>
-                            <span class="event-time">12:15 - 13:30</span>
-                        </div>
-                        <img src="{{URL::to('svg/calendar/ic_airplanemode_active_light_48px.svg')}}">
-                    </div>
-                    <div class="event">
-                        <div class="info-event">
-                            <span class="status booked">&#9679</span>
-                            <span class="event-time">13:50 - 14:30</span>
-                        </div>
-                        <img src="{{URL::to('svg/calendar/ic_content_paste_light_48px.svg')}}">
-                    </div>
-                    <div class="event">
-                        <div class="info-event">
-                            <span class="status available">&#9679</span>
-                            <span class="event-time">12:15 - 13:30</span>
-                        </div>
-                        <img src="{{URL::to('svg/calendar/ic_airplanemode_active_light_48px.svg')}}">
-                    </div>
-                    <div class="event">
-                        <div class="info-event">
-                            <span class="status booked">&#9679</span>
-                            <span class="event-time">13:50 - 14:30</span>
-                        </div>
-                        <img src="{{URL::to('svg/calendar/ic_content_paste_light_48px.svg')}}">
-                    </div><div class="event">
-                        <div class="info-event">
-                            <span class="status available">&#9679</span>
-                            <span class="event-time">12:15 - 13:30</span>
-                        </div>
-                        <img src="{{URL::to('svg/calendar/ic_airplanemode_active_light_48px.svg')}}">
-                    </div>
-                    <div class="event">
-                        <div class="info-event">
-                            <span class="status booked">&#9679</span>
-                            <span class="event-time">13:50 - 14:30</span>
-                        </div>
-                        <img src="{{URL::to('svg/calendar/ic_content_paste_light_48px.svg')}}">
-                    </div>-->
-
-
                 </div>
                 <div class="conteiner-event-filters">
                     <div class="event-filter" data-event="Test">
@@ -990,9 +941,15 @@
                             </div>
                         </fieldset>
                     </div>
-                    <div class="modal-footer">
+                    <input type="hidden" id="id-flight">
+                    <input type="hidden" id="flight-option">
+                    <div class="modal-footer add">
                         <button id="close-modal" type="button" class="btn btn-default custom-btn-default" data-dismiss="modal">Cancel</button>
                         <button id="addflightsubmit" type="submit" class="btn btn-primary custom-btn-primary">Save</button>
+                    </div>
+                    <div class="modal-footer detail">
+                        <button id="close-modal" type="button" class="btn btn-default custom-btn-default" data-dismiss="modal">Cancel</button>
+                        <button id="editFlight" class="btn btn-primary custom-btn-primary">Edit</button>
                     </div>
                     </form>
                 </div>
@@ -1100,9 +1057,15 @@
                             </div>
                             </fieldset>
                         </div>
-                        <div class="modal-footer">
+                        <input type="hidden" id="id-test">
+                        <input type="hidden" id="test-option">
+                        <div class="modal-footer add">
                             <button id="close-modal" type="button" class="btn btn-default custom-btn-default" data-dismiss="modal">Cancel</button>
                             <button id="addTestSubmit" type="submit" class="btn btn-primary custom-btn-primary">Save</button>
+                        </div>
+                        <div class="modal-footer detail">
+                            <button id="close-modal" type="button" class="btn btn-default custom-btn-default" data-dismiss="modal">Cancel</button>
+                            <button id="editTest" class="btn btn-primary custom-btn-primary">Edit</button>
                         </div>
                     </form>
                 </div>
@@ -1124,8 +1087,8 @@
         </script>
         <script type="text/javascript" src="{{URL::to('js/calendar/calendario.js')}}"></script>
         <script type="text/javascript" src="{{URL::to('js/calendar/data.js')}}"></script>
-        <script type="text/javascript" src="{{URL::to('js/calendar/jquery.jscrollpane.min.js')}}"></script>
-        <script src="http://jscrollpane.kelvinluck.com/script/jquery.mousewheel.js"></script>
+        {{--<script type="text/javascript" src="{{URL::to('js/calendar/jquery.jscrollpane.min.js')}}"></script>--}}
+        {{--<script src="http://jscrollpane.kelvinluck.com/script/jquery.mousewheel.js"></script>--}}
         <script type="text/javascript" src="{{URL::to('js/jquery-ui.min.js')}}"></script>
         <script type="text/javascript" src="{{URL::to('js/jquery.validate.js')}}"></script>
         <script type="text/javascript" src="{{URL::to('js/additional-methods.js')}}"></script>
