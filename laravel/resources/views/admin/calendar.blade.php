@@ -536,7 +536,7 @@
 
             }
 
-            #ta-route-description, #flight_description, #test_description, #flight_cancellation{
+            #ta-route-description, #flight_description, #test_description, #flight_cancellation, #test_cancellation{
                 resize: vertical;
             }
 
