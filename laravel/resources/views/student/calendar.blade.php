@@ -705,6 +705,10 @@
             margin-left: 0;
         }
 
+        #form-add-test > input > textarea > select {
+
+        }
+
 
         @media (max-width: 412px) {
             #cancel-new-route {
@@ -798,30 +802,11 @@
                             <div class='col-sm-12'>
                                 <fieldset class="form-group">
                                     <legend>Route</legend>
-                                    <div class="row" style="display: none;">
-                                        <div class="col-xs-8">
-                                            <div class="form-group">
-                                                <label for="search-route" class="noNewRoute">Search route *</label>
-                                                <input id="search-route" name="search_route" class="form-control noNewRoute" type="text">
-                                                <label for="route-name" class="newRoute">Name for the new route</label>
-                                                <input id="route-name" name="route_name" class="form-control newRoute" type="text">
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-4" style="height: 74px;">
-                                            <div class="form-group">
-                                                <div id="add-new-route" class="btn btn-primary custom-btn-primary noNewRoute">New route</div>
-                                                <div id="cancel-new-route" class="btn btn-primary custom-btn-primary newRoute">Cancel route</div>
-                                            </div>
-                                        </div>
-                                    </div>
                                     <div class='row'>
                                         <div class='col-sm-12'>
                                             <label class="newRoute">Draw the route</label>
                                             <div class='form-group' style="position:relative;">
                                                 <div id="map"></div>
-                                                <div id="add-marker-btn">
-                                                    <img src="{{URL::to('svg/calendar/ic_add_location_black_24px.svg')}}">
-                                                </div>
                                                 <input type="hidden" name="coordinates" id="coordinates">
                                             </div>
                                         </div>
@@ -830,7 +815,7 @@
                                         <div class='col-sm-12 newRoute'>
                                             <div class='form-group'>
                                                 <label for="route_description">Route description</label>
-                                                <textarea id="ta-route-description" name="route_description" type="text" class="form-control"></textarea>
+                                                <textarea id="ta-route-description" name="route_description" type="text" class="form-control" readonly></textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -845,13 +830,13 @@
                                         <div class='col-sm-6'>
                                             <div class='form-group'>
                                                 <label for="instructor">Instructor</label>
-                                                <input class="form-control" id="flight_instructor" name="instructor" type="text" data-id="0"/>
+                                                <input class="form-control" id="flight_instructor" name="instructor" type="text" data-id="0" readonly/>
                                             </div>
                                         </div>
                                         <div class='col-sm-6'>
                                             <div class='form-group'>
                                                 <label for="airplane">Airplane</label>
-                                                <input class="form-control" id="flight_airplane" name="airplane" type="text" data-id="0"/>
+                                                <input class="form-control" id="flight_airplane" name="airplane" type="text" data-id="0" readonly/>
                                             </div>
                                         </div>
                                     </div>
@@ -859,7 +844,7 @@
                                         <div class="col-sm-12">
                                             <div class="form-group">
                                                 <label for="flight_description">Description</label>
-                                                <textarea id="flight_description" name="flight_description" class="form-control"></textarea>
+                                                <textarea id="flight_description" name="flight_description" class="form-control" readonly></textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -870,7 +855,7 @@
                                                 <div class="col-xs-6 nopadding-left">
                                                     <div class='form-group'>
                                                         <label for="flight_start_hour">Hour</label>
-                                                        <select class="form-control" id="flight_start_hour" name="flight_start_hour">
+                                                        <select class="form-control" id="flight_start_hour" name="flight_start_hour" disabled="true">
                                                             @for($x =0; $x < 24; $x++)
                                                                 <option value="{{($x < 10 ? '0'.$x : $x)}}">{{($x < 10 ? '0'.$x : $x)}}</option>
                                                             @endfor
@@ -880,7 +865,7 @@
                                                 <div class="col-xs-6 nopadding-right">
                                                     <div class='form-group'>
                                                         <label for="start">Minute</label>
-                                                        <select class="form-control" id="flight_start_minute" name="start">
+                                                        <select class="form-control" id="flight_start_minute" name="start" disabled="true">
                                                             @for($x =0; $x < 60; $x+=5)
                                                                 <option value="{{($x < 10 ? '0'.$x : $x)}}">{{($x < 10 ? '0'.$x : $x)}}</option>
                                                             @endfor
@@ -895,7 +880,7 @@
                                                 <div class="col-xs-6 nopadding-left">
                                                     <div class='form-group'>
                                                         <label for="start">Hour</label>
-                                                        <select class="form-control" id="flight_end_hour" name="start">
+                                                        <select class="form-control" id="flight_end_hour" name="start" disabled="true">
                                                             @for($x =0; $x < 24; $x++)
                                                                 <option value="{{($x < 10 ? '0'.$x : $x)}}">{{($x < 10 ? '0'.$x : $x)}}</option>
                                                             @endfor
@@ -905,7 +890,7 @@
                                                 <div class="col-xs-6 nopadding-right">
                                                     <div class='form-group'>
                                                         <label for="start">Minute</label>
-                                                        <select class="form-control" id="flight_end_minute" name="start">
+                                                        <select class="form-control" id="flight_end_minute" name="start" disabled="true">
                                                             @for($x =0; $x < 60; $x+=5)
                                                                 <option value="{{($x < 10 ? '0'.$x : $x)}}">{{($x < 10 ? '0'.$x : $x)}}</option>
                                                             @endfor
@@ -921,14 +906,14 @@
                                                 <label for="cost">Cost (USD)</label>
                                                 <div class="input-group">
                                                     <span class="input-group-addon">$</span>
-                                                    <input id="flight_cost" type="text" name="cost" class="form-control">
+                                                    <input id="flight_cost" type="text" name="cost" class="form-control" readonly>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-sm-6 detail">
                                             <div class="form-group">
                                                 <label for="status">Status</label>
-                                                <select id="flight_status" name="status" class="form-control">
+                                                <select id="flight_status" name="status" class="form-control" disabled="true">
                                                     <option value="available">Available</option>
                                                     <option value="booked">Booked</option>
                                                     <option value="canceled">Canceled</option>
@@ -936,7 +921,7 @@
                                             </div>
                                             <div id="conteiner-cancellation-flight" class="form-group" style="display: none;">
                                                 <label for="cancellation">Reason for cancellation</label>
-                                                <textarea id="flight_cancellation" name="cancellation" class="form-control"></textarea>
+                                                <textarea id="flight_cancellation" name="cancellation" class="form-control" readonly></textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -946,10 +931,7 @@
                     </div>
                     <input type="hidden" id="id-flight">
                     <input type="hidden" id="flight-option">
-                    <div class="modal-footer add">
-                        <button id="close-modal" type="button" class="btn btn-default custom-btn-default" data-dismiss="modal">Close</button>
-                    </div>
-                    <div class="modal-footer detail">
+                    <div class="modal-footer">
                         <button id="close-modal" type="button" class="btn btn-default custom-btn-default" data-dismiss="modal">Close</button>
                     </div>
                 </form>
@@ -975,13 +957,13 @@
                                 <div class='col-sm-6'>
                                     <div class="form-group">
                                         <label for="subject">Subject</label>
-                                        <input type="text" class="form-control" id="subject" name="subject">
+                                        <input type="text" class="form-control" id="subject" name="subject" readonly>
                                     </div>
                                 </div>
                                 <div class='col-sm-6'>
                                     <div class="form-group">
                                         <label for="test_instructor">Instructor</label>
-                                        <input type="text" class="form-control" id="test_instructor" name="test_instructor">
+                                        <input type="text" class="form-control" id="test_instructor" name="test_instructor" readonly>
                                     </div>
                                 </div>
                             </div>
@@ -989,7 +971,7 @@
                                 <div class='col-sm-12'>
                                     <div class="form-group">
                                         <label for="test_description">Description</label>
-                                        <textarea class="form-control" id="test_description" name="test_description"></textarea>
+                                        <textarea class="form-control" id="test_description" name="test_description" readonly></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -1000,7 +982,7 @@
                                         <div class="col-xs-6 nopadding-left">
                                             <div class="form-group">
                                                 <label for="test_start_hour">Hour</label>
-                                                <select name="test_start_hour" id="test_start_hour" class="form-control">
+                                                <select name="test_start_hour" id="test_start_hour" class="form-control" disabled="true">
                                                     @for($x =0; $x < 24; $x++)
                                                         <option value="{{($x < 10 ? '0'.$x : $x)}}">{{($x < 10 ? '0'.$x : $x)}}</option>
                                                     @endfor
@@ -1010,7 +992,7 @@
                                         <div class="col-xs-6 nopadding-right">
                                             <div class="form-group">
                                                 <label for="test_start_minute">Minute</label>
-                                                <select name="test_start_minute" id="test_start_minute" class="form-control">
+                                                <select name="test_start_minute" id="test_start_minute" class="form-control" disabled="true">
                                                     @for($x =0; $x < 60; $x+=5)
                                                         <option value="{{($x < 10 ? '0'.$x : $x)}}">{{($x < 10 ? '0'.$x : $x)}}</option>
                                                     @endfor
@@ -1025,7 +1007,7 @@
                                         <div class="col-xs-6 nopadding-left">
                                             <div class="form-group">
                                                 <label for="test_end_hour">Hour</label>
-                                                <select name="test_end_hour" id="test_end_hour" class="form-control">
+                                                <select name="test_end_hour" id="test_end_hour" class="form-control" disabled="true">
                                                     @for($x =0; $x < 24; $x++)
                                                         <option value="{{($x < 10 ? '0'.$x : $x)}}">{{($x < 10 ? '0'.$x : $x)}}</option>
                                                     @endfor
@@ -1035,7 +1017,7 @@
                                         <div class="col-xs-6 nopadding-right">
                                             <div class="form-group">
                                                 <label for="test_end_minute">Minute</label>
-                                                <select name="test_end_minute" id="test_end_minute" class="form-control">
+                                                <select name="test_end_minute" id="test_end_minute" class="form-control" disabled="true">
                                                     @for($x =0; $x < 60; $x+=5)
                                                         <option value="{{($x < 10 ? '0'.$x : $x)}}">{{($x < 10 ? '0'.$x : $x)}}</option>
                                                     @endfor
@@ -1049,14 +1031,14 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="test_status">Status</label>
-                                        <select id="test_status" name="test_status" class="form-control">
+                                        <select id="test_status" name="test_status" class="form-control" disabled="true">
                                             <option value="available">Available</option>
                                             <option value="canceled">Canceled</option>
                                         </select>
                                     </div>
                                     <div id="conteiner-cancellation-test" class="form-group" style="display: none;">
                                         <label for="cancellation">Reason for cancellation</label>
-                                        <textarea id="test_cancellation" name="cancellation" class="form-control"></textarea>
+                                        <textarea id="test_cancellation" name="cancellation" class="form-control" readonly></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -1064,10 +1046,7 @@
                     </div>
                     <input type="hidden" id="id-test">
                     <input type="hidden" id="test-option">
-                    <div class="modal-footer add">
-                        <button id="close-modal" type="button" class="btn btn-default custom-btn-default" data-dismiss="modal">Close</button>
-                    </div>
-                    <div class="modal-footer detail">
+                    <div class="modal-footer">
                         <button id="close-modal" type="button" class="btn btn-default custom-btn-default" data-dismiss="modal">Close</button>
                     </div>
                 </form>
@@ -1081,15 +1060,12 @@
         var urlGetInstructors = '{{route('getInstructorsByName')}}';
         var urlSvgCalendar = urlSvgImages + '/calendar/';
         var urlGetAirplanes = '{{route('getAirplanesByPlateAndName')}}';
-        var urlAddFlightTest = '{{route('addFlightTest')}}';
         var urlGetRoutes = '{{route('getRoutesByName')}}';
-        var urlAddTest = '{{route('addTest')}}';
         var urlGetEventsByMonth = '{{URL::to('/')}}' + '/getEventsByMonth/';
         var urlGetEventsByDate = '{{URL::to('/')}}' + '/getEventsByDate/';
         var TOKEN = '{{ Session::token() }}';
     </script>
     <script type="text/javascript" src="{{URL::to('js/calendar/calendario.js')}}"></script>
-    <script type="text/javascript" src="{{URL::to('js/calendar/data.js')}}"></script>
     {{--<script type="text/javascript" src="{{URL::to('js/calendar/jquery.jscrollpane.min.js')}}"></script>--}}
     {{--<script src="http://jscrollpane.kelvinluck.com/script/jquery.mousewheel.js"></script>--}}
     <script type="text/javascript" src="{{URL::to('js/jquery-ui.min.js')}}"></script>
@@ -1098,7 +1074,7 @@
     <script type="text/javascript" src="{{URL::to('js/knockout-3.4.0.js')}}"></script>
     <script type="text/javascript" src="{{URL::to('js/calendar/date.js')}}"></script>
     <script type="text/javascript" src="{{URL::to('js/calendar/map.functions.js')}}"></script>
-    <script type="text/javascript" src="{{URL::to('js/calendar/calendar.functions.js')}}"> </script>
+    <script type="text/javascript" src="{{URL::to('js/student/calendar.functions.js')}}"> </script>
     <script
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD6KW7B-xPGNZIpgADTsdMfmhv0Yap_BeM&signed_in=true&libraries=drawing&callback=initMap">
     </script>
