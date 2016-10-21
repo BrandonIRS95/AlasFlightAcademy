@@ -46,14 +46,7 @@ class UserController extends Controller
 
         if(Auth::attempt(['email' => $request['email'], 'password' => $request['password'] ]))
         {
-            //$type = Auth::user()->typeOfUser->type;
-
-            $type = Auth::user()->typeOfUser->type;
-
-            if($type == 'Admin')
-                return redirect()->route('admin');
-            else
-                return redirect()->route('index'); //cambiar cuando tengamos el dashboard de los estudiantes
+            return redirect()->route('dashboard');
         }
         return redirect()->back();
     }
@@ -64,12 +57,14 @@ class UserController extends Controller
         return redirect()->route('index');
     }
 
-    public function getAdminView()
+    public function getDashboardView()
     {
         $type = Auth::user()->typeOfUser->type;
 
         if($type == 'Admin')
             return view('admin.dashboard');
+        if($type == 'Student')
+            return view('student.dashboard');
         else
             return redirect()->route('index');
 
