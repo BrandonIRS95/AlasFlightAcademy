@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Admission;
+use App\Student;
 use App\Person;
 use App\TypeOfUser;
 use Faker\Provider\cs_CZ\DateTime;
@@ -86,7 +86,7 @@ class UserController extends Controller
     public function getAspirantsView(){
         $type = Auth::user()->typeOfUser->type;
         if($type =='Admin') {
-            $posts = Admission::where('status','=','onhold')->paginate(10);
+            $posts = Student::where('status','=','onhold')->paginate(10);
             return view('admin.aspirants',['posts'=>$posts]);
         }
         else
@@ -97,7 +97,7 @@ class UserController extends Controller
     public function getStudentsView(){
         $type = Auth::user()->typeOfUser->type;
         if($type =='Admin') {
-            $posts = Admission::where('status','=','admited')->paginate(10);
+            $posts = Student::where('status','=','admited')->paginate(10);
             return view('admin.students',['posts'=>$posts]);
         }
         else

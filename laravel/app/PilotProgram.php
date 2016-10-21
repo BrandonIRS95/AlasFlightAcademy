@@ -10,6 +10,6 @@ class PilotProgram extends Model
 
     public function admissions()
     {
-        return $this->hasMany('App\Admission');
+        return $this->hasMany('App\Student');
     }
 }
