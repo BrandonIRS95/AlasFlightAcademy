@@ -76,6 +76,8 @@ class UserController extends Controller
 
         if($type == 'Admin')
             return view('admin.calendar');
+        if($type == 'Student')
+            return view('student.calendar');
         else
             return redirect()->route('index');
 
