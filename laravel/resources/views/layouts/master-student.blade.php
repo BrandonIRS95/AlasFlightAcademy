@@ -97,7 +97,7 @@
             </nav>
             <header id="header">
                 <div class="option">
-                    <div id="user-account-name" class="name">Frank requena</div>
+                    <div id="user-account-name" class="name">{{Auth::user()->person->first_name }} {{ Auth::user()->person->last_name }}</div>
                     <div class="icon"><img src="{{URL::to('svg/admin/ic_account_circle_black_24px.svg')}}"></div>
                 </div>
             </header>
