@@ -26,9 +26,9 @@ Route::post('/addAdmission', [
     'as' => 'addAdmission'
 ]);
 
-Route::get('/admin', [
-    'uses' => 'UserController@getAdminView',
-    'as' => 'admin',
+Route::get('/dashboard', [
+    'uses' => 'UserController@getDashboardView',
+    'as' => 'dashboard',
     'middleware' => 'auth'
 ]);
 
