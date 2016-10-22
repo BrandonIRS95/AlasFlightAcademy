@@ -22,7 +22,7 @@ function CalendarViewModel() {
             description: $('#flight_description').val(),
             cancellation: $('#flight_cancellation').val(),
             cost: $('#flight_cost').val(),
-            instructor: $('#flight_instructor').attr('data-id'),
+            instructor: 'current',
             airplane: $('#flight_airplane').attr('data-id'),
             _token : TOKEN
         };
@@ -57,7 +57,7 @@ function CalendarViewModel() {
             option: $('#test-option').val(),
             start: $('#test_start_hour').val() + ':' + $('#test_start_minute').val(),
             end: $('#test_end_hour').val() + ':' + $('#test_end_minute').val(),
-            instructor_id: $('#test_instructor').attr('data-id'),
+            instructor_id: 'current',
             _token : TOKEN
         };
         return $.ajax({
@@ -541,72 +541,6 @@ $(function() {
     }).autocomplete( "instance" )._renderItem = function( ul, item ) {
         return $( "<li>" )
             .append( "<div>" + item.name + "</div>" )
-            .appendTo( ul );
-    };
-
-    $( "#flight_instructor" ).autocomplete({
-        minLength: 0,
-        source: function( request, response ) {
-            if(request.term !== '') $.ajax( {
-                url: urlGetInstructors + '/' + request.term,
-                method: "GET",
-                success: function( data ) {
-
-                    response(data.instructors);
-                }
-            } );
-        },
-        focus: function( event, ui ) {
-            $(this).valid();
-            return false;
-        },
-        select: function( event, ui ) {
-            var $input = $( "#flight_instructor" );
-            $input.val( ui.item.person.first_name + ' ' + ui.item.person.last_name);
-            $input.attr('data-id',ui.item.id);
-            $(this).valid();
-            return false;
-        }
-    }).keydown(function (event) {
-        if (event.keyCode == 8) {
-            $(this).attr('data-id','0');
-        }
-    }).autocomplete( "instance" )._renderItem = function( ul, item ) {
-        return $( "<li>" )
-            .append( "<div>" + item.person.first_name + ' ' + item.person.last_name + "</div>" )
-            .appendTo( ul );
-    };
-
-    $( "#test_instructor" ).autocomplete({
-        minLength: 0,
-        source: function( request, response ) {
-            if(request.term !== '') $.ajax( {
-                url: urlGetInstructors + '/' + request.term,
-                method: "GET",
-                success: function( data ) {
-
-                    response(data.instructors);
-                }
-            } );
-        },
-        focus: function( event, ui ) {
-            $(this).valid();
-            return false;
-        },
-        select: function( event, ui ) {
-            var $input = $( "#test_instructor" );
-            $input.val( ui.item.person.first_name + ' ' + ui.item.person.last_name);
-            $input.attr('data-id',ui.item.id);
-            $(this).valid();
-            return false;
-        }
-    }).keydown(function (event) {
-        if (event.keyCode == 8) {
-            $(this).attr('data-id','0');
-        }
-    }).autocomplete( "instance" )._renderItem = function( ul, item ) {
-        return $( "<li>" )
-            .append( "<div>" + item.person.first_name + ' ' + item.person.last_name + "</div>" )
             .appendTo( ul );
     };
 

@@ -843,13 +843,7 @@
                             <div class="row">
                                 <div class="col-sm-12">
                                         <div class='row'>
-                                            <div class='col-sm-6'>
-                                                <div class='form-group'>
-                                                    <label for="instructor">Instructor *</label>
-                                                    <input class="form-control" id="flight_instructor" name="instructor" type="text" data-id="0"/>
-                                                </div>
-                                            </div>
-                                            <div class='col-sm-6'>
+                                            <div class='col-sm-12'>
                                                 <div class='form-group'>
                                                     <label for="airplane">Airplane *</label>
                                                     <input class="form-control" id="flight_airplane" name="airplane" type="text" data-id="0"/>
@@ -979,16 +973,10 @@
                             <fieldset class="form-group">
                                 <legend>Information</legend>
                             <div class="row">
-                                <div class='col-sm-6'>
+                                <div class='col-sm-12'>
                                     <div class="form-group">
                                         <label for="subject">Subject *</label>
                                         <input type="text" class="form-control" id="subject" name="subject">
-                                    </div>
-                                </div>
-                                <div class='col-sm-6'>
-                                    <div class="form-group">
-                                        <label for="test_instructor">Instructor *</label>
-                                        <input type="text" class="form-control" id="test_instructor" name="test_instructor">
                                     </div>
                                 </div>
                             </div>

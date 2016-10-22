@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Event;
 use App\Test;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 use App\Http\Requests;
 
@@ -26,7 +27,10 @@ class TestController extends Controller
         $event->start = $request['start'];
         $event->end = $request['end'];
         $event->status = 'available';
-        $event->instructor_id = $request['instructor_id'];
+        if($request['instructor_id'] == 'current')
+            $event->instructor_id = Auth::user()->person->instructor->id;
+        else
+            $event->instructor_id = $request['instructor_id'];
 
         $test = new Test();
         $test->subject = $request['subject'];
@@ -49,7 +53,10 @@ class TestController extends Controller
         $event->end = $request['end'];
         $event->status = $request['status'];
         $event->cancellation_description = $request['cancellation'];
-        $event->instructor_id = $request['instructor_id'];
+        if($request['instructor_id'] == 'current')
+            $event->instructor_id = Auth::user()->person->instructor->id;
+        else
+            $event->instructor_id = $request['instructor_id'];
 
         $test = $event->eventable;
         $test->subject = $request['subject'];
