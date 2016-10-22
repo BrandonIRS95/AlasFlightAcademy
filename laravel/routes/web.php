@@ -90,6 +90,13 @@ Route::get('/contacts', [
     'as' => 'contacts',
     'middleware' => 'auth'
 ]);
+
+Route::post('/bookFlight', [
+    'uses' => 'FlightTestController@postBookFlight',
+    'as' => 'bookFlight',
+    'middleware' => 'auth'
+]);
+
 /////////////////yisus
 # User Management
 

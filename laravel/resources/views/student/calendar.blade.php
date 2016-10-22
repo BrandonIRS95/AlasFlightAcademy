@@ -791,7 +791,6 @@
             <div id="content-modal-add-event" class="modal-content custom-modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h2 class="modal-title add">ADD FLIGHT TEST</h2>
                     <h2 class="modal-title detail">FLIGHT TEST DETAIL</h2>
                     <h4><span class="span-selected-date-day-name"></span><span class="span-selected-date-month-name"></span> <span class="span-selected-date-day-number"></span>, <span class="span-selected-date-year"></span></h4>
                     <img class="modal-principal-icon" src="{{URL::to('svg/calendar/ic_airplanemode_active_white_48px.svg')}}">
@@ -804,7 +803,6 @@
                                     <legend>Route</legend>
                                     <div class='row'>
                                         <div class='col-sm-12'>
-                                            <label class="newRoute">Draw the route</label>
                                             <div class='form-group' style="position:relative;">
                                                 <div id="map"></div>
                                                 <input type="hidden" name="coordinates" id="coordinates">
@@ -933,6 +931,7 @@
                     <input type="hidden" id="flight-option">
                     <div class="modal-footer">
                         <button id="close-modal" type="button" class="btn btn-default custom-btn-default" data-dismiss="modal">Close</button>
+                        <button id="btnBookFlight" type="button" class="btn btn-primary custom-btn-primary">Book</button>
                     </div>
                 </form>
             </div>
@@ -1061,8 +1060,10 @@
         var urlSvgCalendar = urlSvgImages + '/calendar/';
         var urlGetAirplanes = '{{route('getAirplanesByPlateAndName')}}';
         var urlGetRoutes = '{{route('getRoutesByName')}}';
+        var urlBookFlight = '{{route('bookFlight')}}';
         var urlGetEventsByMonth = '{{URL::to('/')}}' + '/getEventsByMonth/';
         var urlGetEventsByDate = '{{URL::to('/')}}' + '/getEventsByDate/';
+        var studentId = '{{ Auth::user()->person->student->id }}';
         var TOKEN = '{{ Session::token() }}';
     </script>
     <script type="text/javascript" src="{{URL::to('js/calendar/calendario.js')}}"></script>

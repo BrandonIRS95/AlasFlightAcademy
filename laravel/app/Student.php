@@ -15,4 +15,8 @@ class Student extends Model
     {
         return $this->belongsTo('App\PilotProgram');
     }
+
+    public function flightTests() {
+    	return $this->hasMany('App\FlightTests');
+    }
 }

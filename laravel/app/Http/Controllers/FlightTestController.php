@@ -136,4 +136,22 @@ class FlightTestController extends Controller
         return response()->json(['status' => 0,
             'message' => 'Flight test successfully edited.'], 200);
     }
+
+    public function postBookFlight(Request $request) {
+        $flight = FlightTest::find($request['flight']);
+        if ($flight->student_id == null) {
+            $flight->student_id = $request['student'];
+            $event = $flight->event;
+            $event->status = 'booked';
+            $event->update();
+            $flight->update();
+
+            return response()->json(['status' => 0,
+                'message' => 'Flight test successfully booked.'], 200);
+        }
+
+        return response()->json(['status' => 1,
+                'message' => 'Flight already booked.'], 200);
+
+    }
 }

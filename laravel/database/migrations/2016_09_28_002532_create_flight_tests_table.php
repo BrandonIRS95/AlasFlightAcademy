@@ -22,6 +22,7 @@ class CreateFlightTestsTable extends Migration
             $table->decimal('cost')->nullable();
             /*$table->string('status');*/
             $table->integer('flight_route_id');
+            $table->integer('student_id')->nullable();
             /*$table->integer('instructor_id');*/
             $table->integer('airplane_id');
             $table->timestamps();

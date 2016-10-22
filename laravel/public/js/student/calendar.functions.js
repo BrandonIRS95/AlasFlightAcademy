@@ -37,6 +37,7 @@ function CalendarViewModel() {
 
     self.showEvent = function(data){
         var event = data.eventable;
+        console.log(data);
         $('.add').css('display','none');
         $('.detail').css('display', 'block');
         $('#conteiner-cancellation-flight').css('display', 'none');
@@ -56,7 +57,7 @@ function CalendarViewModel() {
             var $cost = $('#flight_cost');
             var airplane = event.airplane;
             var route = event.flight_route;
-            $('#id-flight').val(data.id);
+            $('#id-flight').val(data.eventable.id);
             $('#flight-option').val('edit');
             $('#flight_cancellation').val(data.cancellation);
             $flightInstructor.val(data.instructorFullName());
@@ -73,6 +74,9 @@ function CalendarViewModel() {
             $endMinute.val(data.endMinute());
             $status.find('option[value="' + data.status + '"]').prop('selected',true);
             if(data.status === 'canceled') $('#conteiner-cancellation-flight').css('display', 'inline');
+            if (data.status === 'booked' || data.status === 'canceled') {
+                $('#btnBookFlight').css('display','none');
+            }
             showModalAnimation($('#modalAddFlight'), function () {
                 google.maps.event.trigger(map, 'resize');
                 drawMarkers(route.markers);
@@ -88,6 +92,7 @@ function CalendarViewModel() {
                 $('#route-name-error').remove();
                 $('.newRoute').css('display','none');
                 $('.noNewRoute').css('display','block');
+                $('#btnBookFlight').css('display','inline');
             });
         }
         if (data.type === 'App\\Test')
@@ -118,6 +123,20 @@ function CalendarViewModel() {
             });
         }
 
+    };
+
+    self.bookFlight = function () {
+        var data = {
+            student: studentId,
+            flight: $('#id-flight').val(),
+            _token: TOKEN
+        };
+
+        return $.ajax({
+            url : urlBookFlight,
+            type: 'POST',
+            data: data
+        });
     };
 
     return self;
@@ -154,6 +173,7 @@ function EventCalendar(data){
     };
 }
 
+
 var vm = new CalendarViewModel();
 
 ko.applyBindings(vm);
@@ -166,6 +186,22 @@ $(function() {
     window.PROCESS_MESSAGE;
     window.DONE_MESSAGE;
     window.DAY_ELEMENT_SELECTED = null;
+
+    $('#btnBookFlight').click(function(){
+
+        var loadingAnimation = new loadingProcessAnimation();
+
+        loadingAnimation.show('Booking flight test');
+
+        vm.bookFlight().done(function(response){
+            if(response.status === 0) {
+                vm.updateCalendarEvents();
+                loadingAnimation.done('Flight test successfully booked!',function () {
+                        $('#modalAddFlight').modal('hide');
+                });
+            }
+        });
+    });
 
     $('#showFlights').click(function () {
         $('.calendarIcons.airplane').css('display','inline');
