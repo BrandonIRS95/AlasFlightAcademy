@@ -118,6 +118,9 @@ function CalendarViewModel() {
             var $endMinute = $('#flight_end_minute');
             var $status = $('#flight_status');
             var $cost = $('#flight_cost');
+            var $conteinerBooked = $('#conteiner-booked');
+            var $availableOption = $('#available-option');
+            var $bookedOption = $('#booked-option');
             var airplane = event.airplane;
             var route = event.flight_route;
             $('#id-flight').val(data.id);
@@ -136,7 +139,18 @@ function CalendarViewModel() {
             $endHour.val(data.endHour());
             $endMinute.val(data.endMinute());
             $status.find('option[value="' + data.status + '"]').prop('selected',true);
-            if(data.status === 'canceled') $('#conteiner-cancellation-flight').css('display', 'inline');
+            if(data.status === 'canceled') {$('#conteiner-cancellation-flight').css('display', 'block');}
+            if(event.student_id >= 1) {
+                var person = event.student.person;
+                $conteinerBooked.css('display', 'block'); 
+                $('#student').val(person.first_name + ' ' + person.last_name);
+                $availableOption.css('display','none');
+                $bookedOption.css('display','inline'); 
+            } else {
+                $conteinerBooked.css('display','none');
+                $availableOption.css('display','inline');
+                $bookedOption.css('display','none');  
+            }
             showModalAnimation($('#modalAddFlight'), function () {
                 google.maps.event.trigger(map, 'resize');
                 drawMarkers(route.markers);
@@ -237,7 +251,7 @@ $(function() {
     $('#flight_status').change(function () {
         var $cancel = $('#conteiner-cancellation-flight');
         if($(this).val() === 'canceled')
-            $cancel.css('display','inline');
+            $cancel.css('display','block');
         else{
             $cancel.css('display','none');
         }

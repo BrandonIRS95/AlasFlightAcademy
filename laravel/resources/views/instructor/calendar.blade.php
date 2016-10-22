@@ -1,4 +1,4 @@
-@extends('layouts.master-admin')
+@extends('layouts.master-instructor')
 
 @section('individual-styles')
         <link rel="stylesheet" type="text/css" href="{{URL::to('css/calendar/calendar.css')}}" />

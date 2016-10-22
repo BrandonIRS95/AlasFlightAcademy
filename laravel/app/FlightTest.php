@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class FlightTest extends Model
 {
-    protected $with = ['flightRoute', 'airplane'];
+    protected $with = ['flightRoute', 'airplane', 'student'];
 
     public function flightRoute(){
         return $this->belongsTo('App\FlightRoute');
@@ -14,6 +14,10 @@ class FlightTest extends Model
 
     public function airplane(){
         return $this->belongsTo('App\Airplane');
+    }
+
+    public function student() {
+        return $this->belongsTo('App\Student');
     }
 
     public function event()

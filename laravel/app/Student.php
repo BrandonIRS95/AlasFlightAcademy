@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Student extends Model
 {
+    protected $with = ['person'];
+
     public function person()
     {
         return $this->belongsTo('App\Person');

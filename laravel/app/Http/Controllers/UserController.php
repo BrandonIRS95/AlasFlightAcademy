@@ -65,6 +65,8 @@ class UserController extends Controller
             return view('admin.dashboard');
         if($type == 'Student')
             return view('student.dashboard');
+        if($type == 'Instructor')
+            return view('instructor.dashboard');
         else
             return redirect()->route('index');
 
@@ -78,6 +80,8 @@ class UserController extends Controller
             return view('admin.calendar');
         if($type == 'Student')
             return view('student.calendar');
+        if($type == 'Instructor')
+            return view('instructor.calendar');
         else
             return redirect()->route('index');
 
