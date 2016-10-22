@@ -6,6 +6,7 @@ use App\Event;
 use Illuminate\Http\Request;
 use URL;
 use App\Http\Requests;
+use Illuminate\Support\Facades\Auth;
 
 class EventController extends Controller
 {
@@ -15,7 +16,8 @@ class EventController extends Controller
                 $query->select('id','first_name', 'last_name');
             }));
         }))->get();
-        if($instructor != 'null') $events = $events->where('instructor_id','=', $instructor);
+        if($instructor == 'current') $events = $events->where('instructor_id','=', Auth::user()->person->instructor->id);
+        if($instructor >= 1) $events = $events->where('instructor_id','=', $instructor);
         if($status != 'null') $events = $events->where('status','=', $status);
         if($type != 'null') $events = $events->where('eventable_type','=', 'App\\'.$type);
 
@@ -29,7 +31,8 @@ class EventController extends Controller
         if($month == 12) { $month = 1; $year += 1; } else $month += 1;
         $end = $year.'-'.$month.'-'.'1';
         $events = Event::where('date','>=', $start)->where('date','<', $end)->get();
-        if($instructor != 'null') $events = $events->where('instructor_id','=', $instructor);
+        if($instructor == 'current') $events = $events->where('instructor_id','=', Auth::user()->person->instructor->id);
+        if($instructor >= 1) $events = $events->where('instructor_id','=', $instructor);
         $dateGroup = $events->groupBy('date');
 
         $first = true;
