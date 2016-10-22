@@ -15,7 +15,7 @@ class EventController extends Controller
             $query->with(array('person' => function($query){
                 $query->select('id','first_name', 'last_name');
             }));
-        }))->get();
+        }))->orderBy('start', 'asc')->get();
         if($instructor == 'current') $events = $events->where('instructor_id','=', Auth::user()->person->instructor->id);
         if($instructor >= 1) $events = $events->where('instructor_id','=', $instructor);
         if($status != 'null') $events = $events->where('status','=', $status);
