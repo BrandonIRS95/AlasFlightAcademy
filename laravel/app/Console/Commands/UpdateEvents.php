@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use DB;
 use Carbon\Carbon;
+use Log;
 
 class UpdateEvents extends Command
 {
@@ -40,7 +41,7 @@ class UpdateEvents extends Command
     public function handle()
     {
         $current = Carbon::now()->format('Y-m-d');
-        $time = Carbon::now()->format('H:m:s');
+        $time = Carbon::now()->toTimeString();
         DB::table('events')
         ->where('date', '<', $current)
         ->update(array('status' => 'canceled', 'cancellation_description' => 'Date has expired.'));
