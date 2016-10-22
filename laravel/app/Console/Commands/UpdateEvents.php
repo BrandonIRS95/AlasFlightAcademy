@@ -43,10 +43,10 @@ class UpdateEvents extends Command
         $current = Carbon::now()->format('Y-m-d');
         $time = Carbon::now()->toTimeString();
         DB::table('events')
-        ->where('date', '<', $current)
+        ->where([['date', '<', $current], ['status', '!=', 'canceled']])
         ->update(array('status' => 'canceled', 'cancellation_description' => 'Date has expired.'));
         DB::table('events')
-        ->where([['date', '=', $current], ['start', '<=', $time]])
+        ->where([['date', '=', $current], ['start', '<=', $time], ['status', '!=', 'canceled']])
         ->update(array('status' => 'canceled', 'cancellation_description' => 'Date has expired.'));
     }
 }
