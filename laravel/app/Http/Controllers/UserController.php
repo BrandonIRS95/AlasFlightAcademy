@@ -150,11 +150,7 @@ class UserController extends Controller
     }
     public function getIndexCrud()
     {
-        $type = Auth::User()->typeOfUser->type;
-        if ($type == 'Admin') {
             $posts = User::paginate(10);
             return view('admin.indexCrud',['posts'=>$posts]);
-        } else
-            return redirect()->route('index');
     }
 }
