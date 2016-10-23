@@ -85,6 +85,12 @@ Route::get('/getInstructorsByName/{name?}', [
     'middleware' => 'auth'
 ]);
 
+Route::get('/getNextFlights', [
+    'uses' => 'StudentController@getNextFlights',
+    'as' => 'getNextFlights',
+    'middleware' => 'auth'
+]);
+
 Route::get('/contacts', [
     'uses' => 'ContactController@getContactsView',
     'as' => 'contacts',
