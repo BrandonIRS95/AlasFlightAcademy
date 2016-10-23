@@ -23,15 +23,6 @@
                 position: relative;
             }
 
-            #conteiner-calendar-events{
-                position: absolute;
-                left: 220px;
-                top: 75px;
-                bottom: 20px;
-                right: 20px;
-                box-shadow: 0px 5px 5px rgba(0,0,0,0.1);
-            }
-
             .container{
                 position: relative;
                 float: left;

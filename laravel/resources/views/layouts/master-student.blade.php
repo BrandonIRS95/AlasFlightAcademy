@@ -6,6 +6,20 @@
         <link rel="stylesheet" href="{{URL::to('css/admin/style.css')}}"/>
 
         <style>
+            body {
+                    background: #cdd8e2;
+            }
+
+            #conteiner-calendar-events{
+                position: absolute;
+                left: 220px;
+                top: 75px;
+                bottom: 20px;
+                right: 20px;
+                box-shadow: 0px 5px 5px rgba(0,0,0,0.1);
+                background: #fff;
+            }
+
             .backgroundModalProcess {
                 z-index: 4000;
                 background: rgba(0, 0, 0, 0.62);
@@ -84,6 +98,10 @@
                     <div class="option{{ (Request::is('calendar') ? ' selected' : '') }}" onclick="window.location='{{route('calendar')}}'">
                         <div class="icon"><img src="{{URL::to('svg/admin/ic_today_black_24px.svg')}}"/></div>
                         <div class="name">Calendar</div>
+                    </div>
+                    <div class="option{{ (Request::is('myflights') ? ' selected' : '') }}" onclick="window.location='{{route('myflights')}}'">
+                        <div class="icon"><img src="{{URL::to('svg/admin/ic_airplanemode_active_black_24px.svg')}}"/></div>
+                        <div class="name">My flights</div>
                     </div>
                 </div>
 

@@ -97,6 +97,12 @@ Route::post('/bookFlight', [
     'middleware' => 'auth'
 ]);
 
+Route::get('/myflights', [
+    'uses' => 'StudentController@getMyFlightsView',
+    'as' => 'myflights',
+    'middleware' => 'auth'
+]);
+
 /////////////////yisus
 # User Management
 
