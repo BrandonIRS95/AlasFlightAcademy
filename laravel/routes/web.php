@@ -91,6 +91,12 @@ Route::get('/getNextFlights', [
     'middleware' => 'auth'
 ]);
 
+Route::get('/getPreviousFlights', [
+    'uses' => 'StudentController@getPreviousFlights',
+    'as' => 'getPreviousFlights',
+    'middleware' => 'auth'
+]);
+
 Route::get('/contacts', [
     'uses' => 'ContactController@getContactsView',
     'as' => 'contacts',

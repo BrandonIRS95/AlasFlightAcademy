@@ -20,9 +20,20 @@ class StudentController extends Controller
     public function getNextFlights() {
       $now = Carbon::now();
       $student = Auth::user()->person->student;
-      $tests = FlightTest::where('student_id','=', $student->id)->with(array('event'=>function($query) use ($now){
-          $query->where('date','>=', $now->toDateString());
-      }))->get();
+      $tests = FlightTest::where('student_id','=', $student->id)->whereHas('event', function($query) use ($now) {
+        $query->where([['date', '=', $now->toDateString()], ['start', '>=', $now->toTimeString()]])->orWhere('date', '>', $now->toDateString());
+      })->with('event', 'event.instructor.person')->get();
+
+      return response()->json(['status' => 0,
+          'tests' => $tests], 200);
+    }
+
+    public function getPreviousFlights() {
+      $now = Carbon::now();
+      $student = Auth::user()->person->student;
+      $tests = FlightTest::where('student_id','=', $student->id)->whereHas('event', function($query) use ($now) {
+        $query->where('date', '<', $now->toDateString());
+      })->with('event', 'event.instructor.person')->get();
 
       return response()->json(['status' => 0,
           'tests' => $tests], 200);

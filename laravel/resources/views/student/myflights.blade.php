@@ -16,25 +16,23 @@
           <h4>Next flights</h4>
         </div>
         <div class="panel-body">
-          <table class="table">
+          <table class="table" id="nextFlights">
             <thead>
               <tr>
-                <th>Date</th>
+                <th data-defaultsort="desc">Date</th>
                 <th>Time</th>
                 <th>Instructor</th>
                 <th>Airplane</th>
                 <th>Status</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody data-bind="foreach: nextFlights">
               <tr>
-                <td>2016-05-12</td>
-                <td>22:05 - 22:30</td>
-                <td>Maria Guadalupe</td>
-                <td>Superman</td>
-                <td>
-                  Available
-                </td>
+                <td data-bind="text: event.date"></td>
+                <td data-bind="text: timeFormat()"></td>
+                <td data-bind="text: instructorFullName()"></td>
+                <td data-bind="text: airplane.name"></td>
+                <td data-bind="text: event.status" style="text-transform: capitalize;"></td>
               </tr>
             </tbody>
           </table>
@@ -56,15 +54,13 @@
                 <th>Status</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody data-bind="foreach: previousFlights">
               <tr>
-                <td>2016-05-12</td>
-                <td>22:05 - 22:30</td>
-                <td>Maria Guadalupe</td>
-                <td>Superman</td>
-                <td>
-                  Canceled
-                </td>
+                <td data-bind="text: event.date"></td>
+                <td data-bind="text: timeFormat()"></td>
+                <td data-bind="text: instructorFullName()"></td>
+                <td data-bind="text: airplane.name"></td>
+                <td data-bind="text: event.status" style="text-transform: capitalize;"></td>
               </tr>
             </tbody>
           </table>
@@ -76,25 +72,82 @@
 
 @section('javascript')
   <script src="{{URL::to('js/knockout-3.4.0.js')}}" type="text/javascript"></script>
+  <script src="{{URL::to('js/moment.min.js')}}" type="text/javascript"></script>
+  <script src="{{URL::to('js/bootstrap-sortable.js')}}" type="text/javascript"></script>
   <script type="text/javascript">
     var urlGetNextFlights = '{{route('getNextFlights')}}';
+    var urlGetPreviousFlights = '{{route('getPreviousFlights')}}';
 
     function MyFlightsVM() {
       var self = this;
+      self.nextFlights = ko.observableArray();
+      self.previousFlights = ko.observableArray();
       self.getNextFlights = function () {
         return $.ajax({
             url : urlGetNextFlights,
             type: 'GET'
         });
       };
+
+      self.getPreviousFlights = function () {
+        return $.ajax({
+            url : urlGetPreviousFlights,
+            type: 'GET'
+        });
+      }
+
+      self.getNextFlights().done(function (response) {
+        console.log(response);
+        var mappedFlights = $.map(response.tests, function(item) {
+            return new FlightTest(item);
+        });
+
+        self.nextFlights(mappedFlights);
+      });
+
+      self.getPreviousFlights().done(function (response) {
+        console.log(response);
+        var mappedFlights = $.map(response.tests, function(item) {
+            return new FlightTest(item);
+        });
+
+        self.previousFlights(mappedFlights);
+      });
     }
 
     var vm = new MyFlightsVM();
 
-    vm.getNextFlights().done(function (response) {
-      console.log(response);
-    });
+    ko.applyBindings(vm);
 
+    function FlightTest(data) {
+      this.id = data.id;
+      this.airplane = data.airplane;
+      this.cost = data.cost;
+      this.description = data.description;
+      this.event = data.event;
+      this.flight_route = data.flight_route;
+      this.timeFormat = function(){
+          return this.event.start.substring(0,5) + ' - ' + this.event.end.substring(0,5);
+      };
+      this.instructorFullName = function() {
+          var person = this.event.instructor.person;
+          return person.first_name + ' ' + person.last_name;
+      };
+      this.startHour = function(){
+        return this.event.start.substring(0,2);
+      };
+      this.endHour = function(){
+          return this.event.end.substring(0,2);
+      };
+      this.startMinute = function () {
+          return this.event.start.substring(3,5);
+      };
+      this.endMinute = function () {
+          return this.event.end.substring(3,5);
+      };
 
+    }
+
+    $.bootstrapSortable({ applyLast: true });
   </script>
 @endsection
