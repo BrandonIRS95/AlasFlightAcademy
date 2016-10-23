@@ -101,7 +101,7 @@ function CalendarViewModel() {
         $('.detail').css('display', 'block');
         $('#conteiner-cancellation-flight').css('display', 'none');
         $('#conteiner-cancellation-test').css('display', 'none');
-        
+
         if(data.type === 'App\\FlightTest')
         {
             console.log(data);
@@ -142,14 +142,14 @@ function CalendarViewModel() {
             if(data.status === 'canceled') {$('#conteiner-cancellation-flight').css('display', 'block');}
             if(event.student_id >= 1) {
                 var person = event.student.person;
-                $conteinerBooked.css('display', 'block'); 
+                $conteinerBooked.css('display', 'block');
                 $('#student').val(person.first_name + ' ' + person.last_name);
                 $availableOption.css('display','none');
-                $bookedOption.css('display','inline'); 
+                $bookedOption.css('display','inline');
             } else {
                 $conteinerBooked.css('display','none');
                 $availableOption.css('display','inline');
-                $bookedOption.css('display','none');  
+                $bookedOption.css('display','none');
             }
             showModalAnimation($('#modalAddFlight'), function () {
                 google.maps.event.trigger(map, 'resize');
@@ -336,7 +336,7 @@ $(function() {
             var loadingAnimation = new loadingProcessAnimation();
 
             loadingAnimation.show(PROCESS_MESSAGE);
-            
+
             var arrayPoints = poly.getPath().getArray();
             var stringMarkers = '[';
             var stringPoints = '[';
@@ -416,7 +416,7 @@ $(function() {
             });
         }
     });
-    
+
     $('.event-filter').click(function (e) {
         var $elementClicked = $(e.currentTarget);
         if($elementClicked.attr('class') === 'event-filter selected')
@@ -682,7 +682,7 @@ $(function() {
     $addBtn.click(function () {
         showModalSelectOption();
     });
-    
+
     function showModalSelectOption() {
         var $divBackground = $('<div>', {class: 'backgroundModalProcess'});
         var $divContentModal = $('<div>', {class: 'contentModalOptions'});
@@ -988,7 +988,3 @@ $(function() {
 
 
 // TODO al usar el autocomplete de jquery simplemente asigno el valor seleccionado a la variable del viewmodel (en el metodo select o change de autocomplete)
-
-
-
-
