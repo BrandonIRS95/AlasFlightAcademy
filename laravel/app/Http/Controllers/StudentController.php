@@ -36,7 +36,7 @@ class StudentController extends Controller
       $student = Auth::user()->person->student;
 
       $events = Event::where([['eventable_type', '=', 'App\FlightTest'], ['date', '<=', $now->toDateString()], ['start', '<=', $now->toTimeString()]])
-      ->orWhere('date', '<', $now->toDateString())->with('eventable')->orderBy('date', 'asc')->get();
+      ->orWhere('date', '<', $now->toDateString())->with('eventable')->orderBy('date', 'desc')->get();
       $events2 = $events->where('eventable.student_id', '=', $student->id)->load('instructor', 'instructor.person', 'eventable.airplane');
 
       /*$events = Event::where([['eventable_type', '=', 'App\FlightTest'], ['date', '<', $now->toDateString()]])->with('eventable')->orderBy('date', 'desc')->get();
