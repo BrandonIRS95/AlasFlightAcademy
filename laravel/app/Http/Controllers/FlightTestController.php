@@ -161,4 +161,23 @@ class FlightTestController extends Controller
                 'message' => 'Flight already booked.'], 200);
 
     }
+
+    public function postCancelBookFlight(Request $request) {
+      $flight = FlightTest::find($request['flight']);
+      if($flight->student_id == Auth::user()->person->student->id)
+      {
+        $flight->student_id = NULL;
+        $event = $flight->event;
+        $event->status = 'available';
+
+        $flight->update();
+        $event->update();
+
+        return response()->json(['status' => 0,
+                'message' => 'Flight cancel booking.'], 200);
+      }
+
+      return response()->json(['status' => 1,
+              'message' => 'Access denied.'], 200);
+    }
 }

@@ -87,7 +87,7 @@
             }
 
             .custom-month{
-                color: #9aa5af;
+                color: #87939e;
                 font-size: 45px;
                 letter-spacing: 0;
                 text-transform: none;
@@ -671,7 +671,7 @@
             .calendarIcons.airplane{
                 display: none;
             }
-            
+
             .calendarIcons.test{
                 display: none;
             }

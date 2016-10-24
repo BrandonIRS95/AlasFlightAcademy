@@ -109,6 +109,12 @@ Route::post('/bookFlight', [
     'middleware' => 'auth'
 ]);
 
+Route::post('/cancelBookFlight', [
+    'uses' => 'FlightTestController@postCancelBookFlight',
+    'as' => 'cancelBookFlight',
+    'middleware' => 'auth'
+]);
+
 Route::get('/myflights', [
     'uses' => 'StudentController@getMyFlightsView',
     'as' => 'myflights',
