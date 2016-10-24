@@ -73,6 +73,10 @@
       h1 {
         color: #87939e;
       }
+
+      #date-modal{
+        color: #fff;
+      }
     </style>
     @endsection
 @section('content')
