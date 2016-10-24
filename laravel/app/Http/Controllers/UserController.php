@@ -44,7 +44,7 @@ class UserController extends Controller
             'password' => 'required'
         ]);
 
-        if(Auth::attempt(['email' => $request['email'], 'password' => $request['password'] ]))
+        if(Auth::attempt(['email' => $request['boxy-input'], 'password' => $request['boxy-password'] ]))
         {
             return redirect()->route('dashboard');
         }
