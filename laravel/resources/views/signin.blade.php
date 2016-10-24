@@ -1,6 +1,12 @@
 @extends('layouts.master-layout')
 
 @section('individual-styles')
+        <meta charset="UTF-8">
+        <title>boxy-login</title>
+        <script src="http://s.codepen.io/assets/libs/modernizr.js" type="text/javascript"></script>
+        <link rel='stylesheet prefetch' href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css'>
+        <link rel='stylesheet prefetch' href='https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css'>
+        <link rel="stylesheet" href="css/styleLogin.css">
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="css/style.css">
     <style>
@@ -69,20 +75,6 @@
         <div class="cloud x6"></div>
         <div class="cloud x7"></div>
     </div>-->
-    <!DOCTYPE html>
-    <html >
-    <head>
-        <meta charset="UTF-8">
-        <title>boxy-login</title>
-        <script src="http://s.codepen.io/assets/libs/modernizr.js" type="text/javascript"></script>
-        <link rel='stylesheet prefetch' href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css'>
-        <link rel='stylesheet prefetch' href='https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css'>
-        <link rel="stylesheet" href="css/styleLogin.css">
-
-    </head>
-
-    <body>
-
     <div id="wrapper">
 
         <div id="boxy-login-wrapper">
@@ -91,48 +83,30 @@
 
                 <fieldset>
                     <div class="boxy-form-inner rotateFirst3d">
-
+                        <!-- CSRF Token -->
+                        <input  type="hidden" name="_token" value="{{ Session::token() }}">
                         <span class="end-cap left"><span class="glyphicon glyphicon-user" data-toggle="tooltip" title="click to login"></span></span>
 
                         <span class="side front">
                                   <span class="glyphicon glyphicon-user" data-toggle="tooltip" title="enter your username"></span>
-                                  <input id="boxy-input"  type="input" name="username" class="rotate" placeholder="username" required />
+                                  <input id="email"  type="input" name="email" class="rotate" placeholder="username" required />
                                   <button class="boxy-button next-field" data-step="0"></button>
                             </span>
-
                         <span class="side bottom">
                                   <span class="glyphicon glyphicon-asterisk" data-toggle="tooltip" title="enter your password"></span>
-                                  <input style="padding: 0px 0px 0px 20px;" id="boxy-password" step="2" type="password" name="password" class="rotate" placeholder="password" required />
-                                  <button type="submit" onclick="login();" class="btn-primary" data-step="1"></button>
+                                  <input style="padding: 0px 0px 0px 20px;" id="password" step="2" type="password" name="password" class="rotate" placeholder="password" required />
+                                  <button type="submit" class="btn-primary" data-step="1"></button>
                             </span>
+
                     </div>
                 </fieldset>
             </form>
         </div>
     </div>
-    <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-    <script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js'></script>
-    <script src='http://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.2.0/bootbox.min.js'></script>
-    <script src='http://s3-us-west-2.amazonaws.com/s.cdpn.io/1251/bootstrap.glyphs.js'></script>
-
-    <script src="js/indexLogin.js"></script>
-
-
-
-    </body>
-    </html>
-
 @endsection
 @section('javascript-functions')
     <script src="{{URL::to('js/jquery-migrate-1.4.1.min.js')}}"></script>
     <script src="{{URL::to('js/jquery.validate.js')}}"></script>
     <script src="{{URL::to('js/additional-methods.js')}}"></script>
-    <script>
-        function login(){
-            var email = document.getElementById("boxy-input").value;
-            var password = document.getElementById("boxy-password").value;
-            alert(email +" : "+password);
-        }
-        
-    </script>
+    <script src="js/indexLogin.js"></script>
 @endsection

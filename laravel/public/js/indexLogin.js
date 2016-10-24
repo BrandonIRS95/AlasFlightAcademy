@@ -59,7 +59,7 @@ var _toolTipOps = {'placement' : 'top',
 					'selector' : '[data-toggle=tooltip]',
 					'trigger' : 'hover',
 					'delay' : { 'show': 250,
-								'hide': 150 
+								'hide': 150
 							}
 					};
 
@@ -68,17 +68,17 @@ $(_boxyWrap).tooltip( _toolTipOps );
 
 
 // Sets focus on next available input field
-$(_boxyFormInner).on('keydown', '#boxy-input , #boxy-password', function(evt) { 
-	  
-	  var keyCode = evt.keyCode || evt.which; 
+$(_boxyFormInner).on('keydown', '#boxy-input , #boxy-password', function(evt) {
+
+	  var keyCode = evt.keyCode || evt.which;
 
 	  if (keyCode == 9) {
-      evt.preventDefault(); 
+      evt.preventDefault();
 
 	    $(this).next('button').click();
 
       $(this).parent().next('.side').find('input').focus();
-	  } 
+	  }
 });
 
 
@@ -109,7 +109,7 @@ $(_toLogin).on('click', function(evt){
 	// OK button -- check login and submit
 	_boxyButtonC.on('click', function(evt){
 		var _stepVal = Math.floor( $(this).attr('data-step') );
-		
+
 		$(_boxyFormInner).addClass('rotate3d');
 
 		evt.preventDefault();
@@ -126,9 +126,9 @@ $(_toLogin).on('click', function(evt){
 
 function validateForm(_step){
 
-	_boxyInput = document.forms['boxy-login-form']['username'];
+	_boxyInput = document.forms['boxy-login-form']['email'];
 	_boxyPassword = document.forms['boxy-login-form']['password'];
-	_boxyEmail = document.forms['boxy-login-form']['email'];
+
 
 	if( $(_boxyWrap).hasClass('shake') ){
 				$(_boxyWrap).removeClass('shake');
@@ -139,16 +139,15 @@ function validateForm(_step){
 /****************************************************************************************/
 	// Checks to make sure we are passing a value for the username field
 	if( !_boxyInput.value ){
-    
-    if( $(_boxyWrap).hasClass('shake') ){ 
+
+    if( $(_boxyWrap).hasClass('shake') ){
         $(_boxyWrap).removeClass('shake');
       }
-				
 			$(_boxyWrap).addClass('shake');
 			$(_boxyMessage).fadeIn('slow');
-			
-			document.getElementsByName('username')[0].placeholder = 'enter your username to continue';
-			
+
+			document.getElementsByName('email')[0].placeholder = 'enter your username to continue';
+
 	}else if( _boxyInput.value ){
 
 			$(_boxyLoginForm).find('.boxy-form-inner').addClass('rotated90');
@@ -159,18 +158,18 @@ function validateForm(_step){
 		case 1:
 /****************************************************************************************/
 	if( !_boxyPassword.value ){
-				
-    if( $(_boxyWrap).hasClass('shake') ){ 
+
+    if( $(_boxyWrap).hasClass('shake') ){
         $(_boxyWrap).removeClass('shake');
       }
 		$(_boxyWrap).addClass('shake');
 		$(_boxyMessage).fadeIn('slow');
 		$(_boxyRefreshButton).fadeIn('slow');
 		document.getElementsByName('password')[0].placeholder = 'enter your password to continue';
-			
+
 	}else if( _boxyPassword.value ){
-    
-    if( $(_boxyWrap).hasClass('shake') ){ 
+
+    if( $(_boxyWrap).hasClass('shake') ){
         $(_boxyWrap).removeClass('shake');
       }
 
@@ -180,30 +179,24 @@ function validateForm(_step){
 /****************************************************************************************/
 		break;
 		case 2:
-
-		var _valUser = _boxyInput.value;
-		var _valPass = _boxyPassword.value;
-
-			testLogin( _valUser, _valPass );
-		//console.log('testing login creds');
-
+alert("nose por que aqui");
 		break;
 		case 9:
 /****************************************************************************************/
 	if( !_boxyEmail.value ){
-    
-      if( $(_boxyWrap).hasClass('shake') ){ 
+
+      if( $(_boxyWrap).hasClass('shake') ){
         $(_boxyWrap).removeClass('shake');
       }
-    
+
 		$(_boxyWrap).addClass('shake');
 		$(_boxyRefreshButton).fadeIn('slow');
-				
+
 		document.getElementsByName('email')[0].placeholder = 'enter your email for instructions';
-			
+
 	}else if( _boxyEmail.value ){
-    
-    if( $(_boxyWrap).hasClass('shake') ){ 
+
+    if( $(_boxyWrap).hasClass('shake') ){
         $(_boxyWrap).removeClass('shake');
       }
 
@@ -217,41 +210,37 @@ function validateForm(_step){
 		break;
 	}
 }
-
-
 			$(_boxyRefreshButton).on('click',function(evt){
 
 				if( $(this).hasClass('animate-refresh') ){
 							$(this).removeClass('animate-refresh');
 						}
 
-				var _usernameInput = document.getElementsByName('username')[0];
+				var _usernameInput = document.getElementsByName('email')[0];
 				var _passwordInput = document.getElementsByName('password')[0];
-				var _emailInput = document.getElementsByName('email')[0];
 
 
 				_boxyEndCaps.removeClass('boxy-failure').removeClass('boxy-success');
-						
-					$(this).addClass('animate-refresh');
-				
-					_usernameInput.placeholder = 'username';
-					_passwordInput.placeholder = 'password';
-					_emailInput.placeholder = 'email';
 
+					$(this).addClass('animate-refresh');
+
+					_usernameInput.placeholder = 'email';
+					_passwordInput.placeholder = 'password';
+				alert("entro en limpiar inputs");
 					_usernameInput.value = '';
 					_passwordInput.value = '';
 					_emailInput.value = '';
-				
+
 					$(_boxyFormInner).removeClass('rotated90');
 					$(_boxyFormInner).removeClass('rotated180');
 					$(_boxyFormInner).removeClass('rotatedBack90');
 					$(_boxyFormInner).removeClass('rotatedBack180');
 					$(_boxyFormInner).removeClass('rotate3d');
 
-					if( $(_boxyWrap).hasClass('shake') ){ 
+					if( $(_boxyWrap).hasClass('shake') ){
                   $(_boxyWrap).removeClass('shake');
                 }
-					
+
 					$(_boxyMessage).fadeOut('slow');
 					$(_boxyRefreshButton).fadeOut('slow');
 
@@ -261,21 +250,13 @@ function validateForm(_step){
 					evt.preventDefault();
 				});
 
-$(_boxyForgot).on('click',function(evt){
-				evt.preventDefault();
-
-				$(_boxyMessage).fadeOut('slow');
-				$(_boxyRefreshButton).fadeOut('slow');
-				$(_boxyFormInner).addClass('rotatedBack90');
-
-			});
 
 });
 
 
 $('.glyphicon-user, .glyphicon-asterisk, .glyphicon-question-sign').on('click',function(evt){
-			evt.preventDefault();		
+			evt.preventDefault();
 			var _setFocusInput = $(this).parent().find('input');
 
-			return _setFocusInput.focus();	
+			return _setFocusInput.focus();
 			});

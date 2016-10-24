@@ -39,16 +39,8 @@ class UserController extends Controller
 
     public function postSignIn(Request $request)
     {
-        $this->validate($request, [
-            'email' => 'required|email',
-            'password' => 'required'
-        ]);
 
-        if(Auth::attempt(['email' => $request['boxy-input'], 'password' => $request['boxy-password'] ]))
-        {
             return redirect()->route('dashboard');
-        }
-        return redirect()->back();
     }
 
     public function getLogout()
