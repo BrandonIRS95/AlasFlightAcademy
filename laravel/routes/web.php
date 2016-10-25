@@ -197,6 +197,7 @@ Route::get('/getRoutesByName/{name?}', [
 
 
 Route::get('/', function () {
+    App::setLocale('es');
     return view('index');
 })->name('index');
 
