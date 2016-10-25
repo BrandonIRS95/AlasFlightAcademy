@@ -3,6 +3,17 @@
 @section('individual-styles')
   <link rel="stylesheet" href="{{ URL::to('css/landing-page.css') }}">
   <style>
+    .content_flags {
+      position: absolute;
+      right: 750px;
+      top: 50px;
+      z-index: 5;
+    }
+
+    .content_flags img {
+      margin-left: 10px;
+      cursor: pointer;
+    }
     @media only screen and (max-width:725px){
       #text-header{
         font-size: 30px;
@@ -17,6 +28,10 @@
 @endsection
 
 @section('content')
+  <div class="content_flags">
+    <a href="{{url('/changeLanguage?lang=es')}}"><img src="{{URL::to('images\flags\Spain.png')}}" alt="Español" title="Español" data-id="es"/></a>
+    <a href="{{url('/changeLanguage?lang=en')}}"><img src="{{URL::to('images\flags\United States of America(USA).png')}}" alt="English" title="English" data-id="en"/></a>
+  </div>
   <div id="parent-video"  class="Page__header--landing Page__header parallax-container">
     <div class="parallax" id="header-video">
       <video id="alas-video" width="100%" autoplay loop>

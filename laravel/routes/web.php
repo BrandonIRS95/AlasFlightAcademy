@@ -11,6 +11,9 @@
 |
 */
 
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
+
 Route::post('/signup', [
     'uses' => 'UserController@postSignUp',
     'as' => 'signup'
@@ -196,9 +199,8 @@ Route::get('/getRoutesByName/{name?}', [
 ]);
 
 
-Route::get('/', function () {
-    App::setLocale('es');
-    return view('index');
+Route::get('/', function (Request $request) {
+  return view("index");
 })->name('index');
 
 Route::get('/login', function () {
@@ -235,6 +237,11 @@ Route::get('/addperson', [
     'uses' => 'PersonController@getAddPerson',
     'as' => 'addperson'
 ]);
+
+Route::get('/changeLanguage', function (Request $request) {
+  LanguageSwitcher::setLanguage(Input::get("lang"));
+  return redirect()->route('index');
+})->name('changeLanguage');
 
 Route::post('/addcontact', [
     'uses' => 'ContactController@postAddContact',

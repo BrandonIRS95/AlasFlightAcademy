@@ -7,28 +7,12 @@
     <title>Alas Academy</title>
     @include('includes.styles-shared')
     @yield('individual-styles')
-    <style media="screen">
-      .content_flags {
-        position: absolute;
-        right: 670px;
-        top: 7px;
-      }
-
-      .content_flags img {
-        margin-left: 10px;
-        cursor: pointer;
-      }
-    </style>
 </head>
 <body>
 <div class="Application_container">
     <nav class="Navbar{{ (Request::is('/') ? '--transparent' : '') }}">
         <div class="Navbar__wrapper nav-wrapper"><a href="{{route('index')}}" class="Navbar__logo brand-logo"><span class="Navbar__logo--alas">Alas</span><span class="Navbar__logo--academy">Academy</span></a><a id="menu-button" href="#" data-activates="side-nav" class="Navbar__menu_button button-collapse"><i class="material-icons">menu</i></a>
             <ul class="Navbar__link_list right hide-on-med-and-down">
-                <div class="content_flags">
-                  <img src="{{URL::to('images\flags\Spain.png')}}" alt="Español" title="Español" />
-                  <img src="{{URL::to('images\flags\United States of America(USA).png')}}" alt="English" title="English" />
-                </div>
                 <li class="Navbar__item{{ (Request::is('about') ? '--active' : '') }}"><a href="{{route('about')}}" class="Navbar__item_link"><span class="Navbar__item_text">{{ trans('messages.about') }}</span></a></li>
                 <li class="Navbar__item{{ (Request::is('pilot-programs') ? '--active' : '') }}"><a href="{{route('pilot-programs')}}" class="Navbar__item_link"><span class="Navbar__item_text">{{ trans('messages.pilot_programs') }}</span></a></li>
                 <li class="Navbar__item{{ (Request::is('contact') ? '--active' : '') }}"><a href="{{route('contact')}}" class="Navbar__item_link"><span class="Navbar__item_text">{{ trans('messages.contact') }}</span></a></li>
