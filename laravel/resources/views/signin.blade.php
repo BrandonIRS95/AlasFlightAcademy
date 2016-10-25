@@ -31,25 +31,25 @@
             border: 1px solid transparent;
         }
 
-        
+
         #alas-video{
             position: absolute;
-              top: 50%; 
+              top: 50%;
               left: 50%;
               -webkit-transform: translateX(-50%) translateY(-50%);
               transform: translateX(-50%) translateY(-50%);
-              min-width: 100%; 
-              min-height: 100%; 
-              width: auto; 
+              min-width: 100%;
+              min-height: 100%;
+              width: auto;
               height: auto;
-              z-index: 0; 
+              z-index: 0;
               overflow: hidden;
         }
         .Navbar{
             z-index: 10;
             position: absolute;
         }
-        
+
         .Footer{
             display: none;
         }
@@ -67,7 +67,7 @@
       </video>
     <!--<div id="clouds">
         <div class="cloud x1"></div>
-        
+
         <div class="cloud x2"></div>
         <div class="cloud x3"></div>
         <div class="cloud x4"></div>
@@ -79,7 +79,7 @@
 
         <div id="boxy-login-wrapper">
 
-            <form id="boxy-login-form" name="boxy-login-form" >
+            <form id="boxy-login-form" name="boxy-login-form" action="{{route('signin')}}" method="POST">
 
                 <fieldset>
                     <div class="boxy-form-inner rotateFirst3d">
