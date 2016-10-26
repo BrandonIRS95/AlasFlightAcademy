@@ -1,7 +1,7 @@
 <?php
 
 return [
-  'steps_enroll' => 'Pasos para inscrib&iacute;rte',
+  'steps_enroll' => 'Pasos para inscribirte',
   'step1_description' => 'Completa la solicitud de inscripci&oacute;n.',
   'step2_description' => 'Presentar una cuota de $150 d&oacute;lares. Aceptamos Visa, Mastercard, American Express, Discover o transferencia bancaria. (Por favor, p&oacute;ngase en contacto con Admisiones para instrucciones de pago).',
   'step3_description' => 'Presentar un dep&oacute;sito de alojamiento de $300 d&oacute;lares. S&oacute;lo para aquellos que quieren un dormitorio en el campus. Disponibilidad limitada.',
