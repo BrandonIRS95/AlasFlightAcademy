@@ -111,7 +111,7 @@
         <div class="Map__triangle"></div>
     </div>
     <div class="Contact">
-        <h2 class="Contact__title">We'll be glad to help you becoming a pilot</h2>
+        <h2 class="Contact__title">{{trans('messages.title_contact')}}</h2>
         <div class="Contact__content">
             <div class="Contact__info">
                 <h2 class="Contact__info__brand"><span class="Contact__info__brand--alas">Alas</span><span class="Contact__info__brand--academy">Academy</span></h2>
@@ -122,27 +122,27 @@
             </div>
             <form id="form-add-contact" class="Contact__form" autocomplete="off">
                 <div class="input-field">
-                    <label for="firstName">First Name *</label>
+                    <label for="firstName">{{trans('messages.first_name')}} *</label>
                     <input id="firstName" name="first_name" type="text">
                 </div>
                 <div class="input-field">
-                    <label for="lastName">Last Name (optional)</label>
+                    <label for="lastName">{{trans('messages.last_name')}} ({{trans('messages.optional')}})</label>
                     <input id="lastName" name="last_name" type="text">
                 </div>
                 <div class="input-field">
-                    <label id="phone-number-label">Phone Number (optional)</label>
+                    <label id="phone-number-label">{{trans('messages.phone_number')}} ({{trans('messages.optional')}})</label>
                     <input id="phoneNumber" name="phone_number" type="tel">
                 </div>
                 <div id="content-email" class="input-field">
-                    <label for="email">E-mail *</label>
+                    <label for="email">{{trans('messages.email')}} *</label>
                     <input id="email" name="email" type="text">
                 </div>
                 <div class="input-field">
-                    <label for="comments">Comments or questions *</label>
+                    <label for="comments">{{trans('messages.comments_or_questions')}} *</label>
                     <textarea id="comments" name="question" type="text" rows="2"></textarea>
                 </div>
                 <input type="hidden" name="_token" value="{{ Session::token() }}">
-                <button id="add-contact-btn" class="btn-warning" type="submit">send</button>
+                <button id="add-contact-btn" class="btn-warning" type="submit">{{trans('messages.send')}}</button>
             </form>
         </div>
     </div>

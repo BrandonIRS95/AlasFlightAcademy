@@ -41,43 +41,37 @@
   <div class="Page__header parallax-container">
     <div class="parallax"><img src="{{URL::to('images/enroll.jpg')}}" width="100%"></div>
     <div class="Page__header__filter"></div>
-    <div class="Page__header__text">Enroll now</div>
+    <div class="Page__header__text">{{trans('messages.enroll_now')}}</div>
   </div>
   <div class="CTA_bar">
-    <h3 class="CTA_bar__text">Have questions?</h3>
-    <button class="CTA_bar__button" onclick="window.location.href = '{{URL::to('contact')}}'">Contact us!</button>
+    <h3 class="CTA_bar__text">{{trans('messages.have_questions')}}</h3>
+    <button class="CTA_bar__button" onclick="window.location.href = '{{URL::to('contact')}}'">{{trans('messages.contact')}}!</button>
   </div>
   <div class="Enroll">
-    <h2 class="Enroll__title">Steps to enroll</h2>
+    <h2 class="Enroll__title">{{trans('enrollform.steps_enroll')}}</h2>
     <ul class="Enroll__step_list">
       <li class="Enroll__step">
         <h3 class="Enroll__step__number">1.</h3>
         <div class="Enroll__step__divider"></div>
-        <p class="Enroll__step__description">Complete the Enrollment Application.</p>
+        <p class="Enroll__step__description">{{trans('enrollform.step1_description')}}</p>
       </li>
       <li class="Enroll__step">
         <h3 class="Enroll__step__number">2.</h3>
         <div class="Enroll__step__divider"></div>
-        <p class="Enroll__step__description">Submit a $150 USD application fee. We accept VISA, Master Card, American Express, Discover or Wire Transfer. (Please contact Admissions for payment instructions)</p>
+        <p class="Enroll__step__description">{{trans('enrollform.step2_description')}}</p>
       </li>
       <li class="Enroll__step">
         <h3 class="Enroll__step__number">3.</h3>
         <div class="Enroll__step__divider"></div>
-        <p class="Enroll__step__description">Submit a $300 USD housing deposit. Only for those who choose the Alas Academy on-campus dormitory. Limited availability.</p>
+        <p class="Enroll__step__description">{{trans('enrollform.step3_description')}}</p>
       </li>
       <li class="Enroll__step">
         <h3 class="Enroll__step__number">4.</h3>
         <div class="Enroll__step__divider"></div>
-        <p class="Enroll__step__description">Provide the Academy with a copy of:
-        <ul class="Enroll__step__description__list">
-          <li class="Enroll__step__description__item">An FFA 1st or 2nd Class Medical Certificate.</li>
-          <li class="Enroll__step__description__item">Your Highschool diploma or equivalent.</li>
-          <li class="Enroll__step__description__item">Goverment Identification.</li>
-        </ul>
-        </p>
+        {!!trans('enrollform.step4_description')!!}
       </li>
     </ul>
-    <button id="enroll-button" data-target="enroll-modal" class="Enroll__button modal-trigger">Enroll</button>
+    <button id="enroll-button" data-target="enroll-modal" class="Enroll__button modal-trigger">{{trans('enrollform.enroll')}}</button>
   </div>
   <div id="enroll-modal" class="Enroll__modal modal">
     <form id="enroll-form" class="ModalForm row col s10">

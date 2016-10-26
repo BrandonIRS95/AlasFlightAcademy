@@ -8,14 +8,14 @@
   <div class="Page__header parallax-container">
     <div class="parallax"><img src="{{URL::to('images/programsheader.jpg')}}" width="100%"></div>
     <div class="Page__header__filter"></div>
-    <div class="Page__header__text">Pilot programs</div>
+    <div class="Page__header__text">{{trans('messages.pilot_programs')}}</div>
   </div>
   <div class="CTA_bar">
-    <h3 class="CTA_bar__text">Have questions?</h3>
-    <button class="CTA_bar__button" onclick="window.location.href = '{{URL::to('contact')}}'">Contact us!</button>
+    <h3 class="CTA_bar__text">{{trans('messages.have_questions')}}?</h3>
+    <button class="CTA_bar__button" onclick="window.location.href = '{{URL::to('contact')}}'">{{trans('messages.contact')}}!</button>
   </div>
   <div class="Programs__description">
-    <h3 class="Programs__description__title">Our Programs</h3>
+    <h3 class="Programs__description__title">{{trans('messages.our_programs')}}</h3>
     <p class="Programs__description__text">
 
       Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime sed voluptas sapiente explicabo laborum ullam voluptate, quaerat officia fugit eligendi, alias labore, vel esse. Tenetur, itaque qui quibusdam suscipit dolores. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
