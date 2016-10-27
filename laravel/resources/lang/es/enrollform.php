@@ -32,5 +32,13 @@ return [
     'citizenship' => 'Ciudadan&iacute;a',
     'country_passport_issuance' => 'Pa&iacute;s de emisi&oacute;n de pasaporte',
     'passport_number' => 'N&uacute;mero de pasaporte',
-    'passport_expiration' => 'Fecha de expiraci&oacute;n del pasaporte'
+    'passport_expiration' => 'Fecha de expiraci&oacute;n del pasaporte',
+    'school_record' => 'Antecedentes escolares',
+    'school_record_description' => 'Enlista las dos escuelas m&aacute;s recientes a las que asististe (Preparatoria, Universidad o Escuela T&eacute;cnica)',
+    'school_name' => 'Nombre de la escuela',
+    'school_in_usa' => '¿La escuela estaba en USA?',
+    'yes' => 'Si',
+    'no' => 'No',
+    'diploma_achieved' => 'Diploma/grado conseguido',
+    'attendance_finish' => 'Fecha de finalizaci&oacute;n de asistencia'
   ];

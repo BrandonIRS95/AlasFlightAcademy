@@ -183,45 +183,45 @@
         </div>
         <div class="ModalForm__pages_container row">
           <h3 class="ModalForm__page__step">{{trans('enrollform.step')}} 3 {{trans('enrollform.of')}} 5</h3>
-          <h4 class="ModalForm__page__section_title">School record</h4>
-          <p class="Modal_Form__page__section_subtitle">List two most recent schools attended (High School, University or Technical)</p>
+          <h4 class="ModalForm__page__section_title">{{trans('enrollform.school_record')}}</h4>
+          <p class="Modal_Form__page__section_subtitle">{{trans('enrollform.school_record_description')}}</p>
           <div class="input-field col s12 m8">
-            <label for="school-name-1">School Name</label>
+            <label for="school-name-1">{{trans('enrollform.school_name')}}</label>
             <input id="school-name-1" name="school_name1" type="text" class="ModalForm__input">
           </div>
           <div class="Modalform__input col s12 m8">
-            <p>Was this school located on the USA?</p>
+            <p>{{trans('enrollform.school_in_usa')}}</p>
             <input id="school-in-usa-input" type="radio" name="school_in_usa1" value="1" class="ModalForm__input with-gap">
-            <label for="school-in-usa-input">Yes</label>
+            <label for="school-in-usa-input">{{trans('enrollform.yes')}}</label>
             <input id="school-not-in-usa-input" type="radio" name="school_in_usa1" value="0" class="ModalForm__input with-gap">
-            <label for="school-not-in-usa-input">No</label>
+            <label for="school-not-in-usa-input">{{trans('enrollform.no')}}</label>
           </div>
           <div class="input-field col s12 m6">
-            <label for="degree-1">Diploma/Degree Achieved</label>
+            <label for="degree-1">{{trans('enrollform.diploma_achieved')}}</label>
             <input id="degree-1" name="diploma_degree1" type="text" class="ModalForm__input">
           </div>
           <div class="input-field col s10 m8">
-            <label for="attendance-1">Attendance date finish</label>
+            <label for="attendance-1">{{trans('enrollform.attendance_finish')}}</label>
             <input id="attendance-1" type="date" name="attendance_date_finish1" class="ModalForm__input datepicker">
           </div><i class="ModalForm__input_icon col s2 m2 material-icons">today</i>
           <div class="ModalForm__divider col s12 m12"></div>
           <div class="input-field col s12 m8">
-            <label for="school-name-2">School Name</label>
+            <label for="school-name-2">{{trans('enrollform.school_name')}}</label>
             <input id="school-name-2" name="school_name2" type="text" class="ModalForm__input">
           </div>
           <div class="Modalform__input col s12 m8">
-            <p>Was this school located on the USA?</p>
+            <p>{{trans('enrollform.school_in_usa')}}</p>
             <input id="school-in-usa-input2" type="radio" name="school_in_usa2" value="1" class="ModalForm__input with-gap">
-            <label for="school-in-usa-input2">Yes</label>
+            <label for="school-in-usa-input2">{{trans('enrollform.yes')}}</label>
             <input id="school-not-in-usa-input2" type="radio" name="school_in_usa2" value="0" class="ModalForm__input with-gap">
-            <label for="school-not-in-usa-input2">No</label>
+            <label for="school-not-in-usa-input2">{{trans('enrollform.no')}}</label>
           </div>
           <div class="input-field col s12 m6">
-            <label for="degree-2">Diploma/Degree Achieved</label>
+            <label for="degree-2">{{trans('enrollform.diploma_achieved')}}</label>
             <input id="degree-2" name="diploma_degree2" type="text" class="ModalForm__input">
           </div>
           <div class="input-field col s10 m8">
-            <label for="attendance-2">Attendance date finish</label>
+            <label for="attendance-2">{{trans('enrollform.attendance_finish')}}</label>
             <input id="attendance-2" name="attendance_date_finish2" type="date" class="ModalForm__input datepicker">
           </div><i class="ModalForm__input_icon col s2 m2 material-icons">today</i>
           <div class="ModalForm__buttons col s12 m12"><a data-target="modalconfirm" class="waves-effect waves-light btn ModalForm__button grey lighten-2 modal-trigger">{{trans('enrollform.cancel')}}</a><a class="waves-effect waves-light btn ModalForm__button--active modal-go-to-4">{{trans('enrollform.next')}}</a></div>

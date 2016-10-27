@@ -32,5 +32,13 @@ return [
     'citizenship' => 'Citizenship',
     'country_passport_issuance' => 'Country of passport Issuance',
     'passport_number' => 'Passport number',
-    'passport_expiration' => 'Passport expiration date'
+    'passport_expiration' => 'Passport expiration date',
+    'school_record' => 'School record',
+    'school_record_description' => 'List two most recent schools attended (High School, University or Technical)',
+    'school_name' => 'School name',
+    'school_in_usa' => 'Was this school located on the USA?',
+    'yes' => 'Yes',
+    'no' => 'No',
+    'diploma_achieved' => 'Diploma/Degree Achieved',
+    'attendance_finish' => 'Attendance date finish'
   ];
