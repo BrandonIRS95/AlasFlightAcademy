@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Address;
-use App\Admission;
+use App\Student;
 use App\PersonLegalInformation;
 use App\PilotProgram;
 use App\SchoolRecord;
@@ -65,7 +65,7 @@ class AdmissionController extends Controller
 
         $person->schoolRecords()->save($schoolRecord2);
 
-        $admission = new Admission();
+        $admission = new Student();
         $admission->status = 'onhold';
         $admission->start_date = $request['prefix__start_date__suffix'];
         $admission->requesting_financial_aid = $request['requesting_financial_aid'];
@@ -100,7 +100,7 @@ class AdmissionController extends Controller
 
     public function getAdmissionById(Request $request)
     {
-        $admission = Admission::find($request['id']);
+        $admission = Student::find($request['id']);
         $admission->person;
         $admission->person->user;
         $admission->pilotProgram;
@@ -114,7 +114,7 @@ class AdmissionController extends Controller
 
     public function getStudentById(Request $request)
     {
-        $admission = Admission::find($request['id']);
+        $admission = Student::find($request['id']);
         $admission->person;
         $admission->person->user;
         $admission->pilotProgram;

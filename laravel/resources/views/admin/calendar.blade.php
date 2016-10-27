@@ -3,7 +3,7 @@
 @section('individual-styles')
         <link rel="stylesheet" type="text/css" href="{{URL::to('css/calendar/calendar.css')}}" />
         <link rel="stylesheet" type="text/css" href="{{URL::to('css/calendar/custom_1.css')}}" />
-        <link rel="stylesheet" type="text/css" href="{{URL::to('css/calendar/jquery.jscrollpane.css')}}" />
+        {{--<link rel="stylesheet" type="text/css" href="{{URL::to('css/calendar/jquery.jscrollpane.css')}}" />--}}
         <link rel="stylesheet" type="text/css" href="{{URL::to('css/jquery-ui.min.css')}}" />
         <script src="{{URL::to('js/calendar/modernizr.custom.63321.js')}}"></script>
         <!-- Calendar -->
@@ -21,15 +21,6 @@
                 padding-top: 55px;
                 height: 100vh;
                 position: relative;
-            }
-
-            #conteiner-calendar-events{
-                position: absolute;
-                left: 220px;
-                top: 75px;
-                bottom: 20px;
-                right: 20px;
-                box-shadow: 0px 5px 5px rgba(0,0,0,0.1);
             }
 
             .container{
@@ -96,7 +87,7 @@
             }
 
             .custom-month{
-                color: #9aa5af;
+                color: #87939e;
                 font-size: 45px;
                 letter-spacing: 0;
                 text-transform: none;
@@ -296,14 +287,16 @@
                 right: 0;
                 top: 190px;
                 bottom: 90px;
-
+                overflow-x: hidden;
+                overflow-y: auto;
             }
 
             .conteiner-events .event {
                 position: relative;
                 width: 100%;
-                height: 60px;
+                height: 80px;
                 background: rgba(255, 255, 255, 0.1);
+                cursor: pointer;
             }
 
             .conteiner-events .event .info-event{
@@ -311,6 +304,7 @@
                 top: 50%;
                 left: 30px;
                 transform: translateY(-50%);
+                margin-top: -10px;
             }
 
             .conteiner-events .event .info-event .event-time{
@@ -453,7 +447,33 @@
                 height: 300px;
             }
 
+            .instructor-event{
+                position: absolute;
+                bottom: 18px;
+                left: 65px;
+                color: #b7c2cc;
+                font-size: 14px;
+            }
 
+            .detail {
+                display: none;
+            }
+
+            .event-filter.selected:before{
+                content: "";
+                position: absolute;
+                height: 100%;
+                width: 20px;
+                top: 0px;
+                background-image: radial-gradient(circle at center, #cdd8e2 3px, transparent 3px);
+                background-size: 20px 20px;
+                background-position: top center, bottom center;
+                background-repeat: no-repeat;
+            }
+            .event-filter.selected:before{
+                margin-left: -10px;
+                margin-top: -10px;
+            }
         </style>
         <!--Modal add flight test-->
         <style>
@@ -507,7 +527,7 @@
 
             }
 
-            #ta-route-description, #flight_description, #test_description{
+            #ta-route-description, #flight_description, #test_description, #flight_cancellation, #test_cancellation{
                 resize: vertical;
             }
 
@@ -651,7 +671,7 @@
             .calendarIcons.airplane{
                 display: none;
             }
-            
+
             .calendarIcons.test{
                 display: none;
             }
@@ -669,6 +689,11 @@
             #conteiner-calendar-options img{
                 width: 30px;
                 cursor: pointer;
+                margin-left: 20px;
+            }
+            #conteiner-calendar-options img:nth-child(1)
+            {
+                margin-left: 0;
             }
 
 
@@ -716,78 +741,33 @@
                     </div>
                 </div>
                 <div id="filtering-status" class="filtering-status">
-                    <div id="selectedStatus" class="selected" data-status="all">All</div>
+                    <div id="selectedStatus" class="selected" data-status="null">All</div>
                     <div data-status="available">Available<span class="available">&#9679</span></div>
                     <div data-status="booked">Booked<span class="booked">&#9679</span></div>
                     <div data-status="canceled">Canceled<span class="canceled">&#9679</span></div>
                 </div>
-                <div class="conteiner-events" data-bind="foreach: currentEvents">
-                    <div class="event">
+                <div id="conteiner-events" class="conteiner-events" data-bind="foreach: currentEvents">
+                    <div class="event" data-bind="click: $parent.showEvent">
                         <div class="info-event">
                             <span data-bind="attr: { 'class': $parent.getClass($data) }">&#9679</span>
                             <span class="event-time" data-bind="text: timeFormat()"></span>
                         </div>
+                        <div class="instructor-event">
+                            Instructor: <span data-bind="text: instructorFullName()"></span>
+                        </div>
                         <img data-bind="attr: { 'src': $parent.getIcon($data) }">
                     </div>
-                    <!--<div class="event">
-                        <div class="info-event">
-                            <span class="status booked">&#9679</span>
-                            <span class="event-time">13:50 - 14:30</span>
-                        </div>
-                        <img src="{{URL::to('svg/calendar/ic_content_paste_light_48px.svg')}}">
-                    </div>
-                    <div class="event">
-                        <div class="info-event">
-                            <span class="status available">&#9679</span>
-                            <span class="event-time">12:15 - 13:30</span>
-                        </div>
-                        <img src="{{URL::to('svg/calendar/ic_airplanemode_active_light_48px.svg')}}">
-                    </div>
-                    <div class="event">
-                        <div class="info-event">
-                            <span class="status booked">&#9679</span>
-                            <span class="event-time">13:50 - 14:30</span>
-                        </div>
-                        <img src="{{URL::to('svg/calendar/ic_content_paste_light_48px.svg')}}">
-                    </div>
-                    <div class="event">
-                        <div class="info-event">
-                            <span class="status available">&#9679</span>
-                            <span class="event-time">12:15 - 13:30</span>
-                        </div>
-                        <img src="{{URL::to('svg/calendar/ic_airplanemode_active_light_48px.svg')}}">
-                    </div>
-                    <div class="event">
-                        <div class="info-event">
-                            <span class="status booked">&#9679</span>
-                            <span class="event-time">13:50 - 14:30</span>
-                        </div>
-                        <img src="{{URL::to('svg/calendar/ic_content_paste_light_48px.svg')}}">
-                    </div><div class="event">
-                        <div class="info-event">
-                            <span class="status available">&#9679</span>
-                            <span class="event-time">12:15 - 13:30</span>
-                        </div>
-                        <img src="{{URL::to('svg/calendar/ic_airplanemode_active_light_48px.svg')}}">
-                    </div>
-                    <div class="event">
-                        <div class="info-event">
-                            <span class="status booked">&#9679</span>
-                            <span class="event-time">13:50 - 14:30</span>
-                        </div>
-                        <img src="{{URL::to('svg/calendar/ic_content_paste_light_48px.svg')}}">
-                    </div>-->
-
-
                 </div>
                 <div class="conteiner-event-filters">
-                    <div class="event-filter">
+                    <div class="event-filter" data-event="Test">
                         <img src="{{URL::to('svg/calendar/ic_content_paste_light_48px.svg')}}">
                         <div>Tests</div>
                     </div>
-                    <div class="event-filter">
+                    <div class="event-filter" data-event="FlightTest">
                         <img src="{{URL::to('svg/calendar/ic_airplanemode_active_light_48px.svg')}}">
                         <div>Flights</div>
+                    </div>
+                    <div id="allEvents" class="event-filter selected" data-event="null" style="display: none;">
                     </div>
                 </div>
                 <img id="add-btn" src="{{URL::to('svg/ic_add_circle_white_48px.svg')}}">
@@ -799,7 +779,8 @@
                 <div id="content-modal-add-event" class="modal-content custom-modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h2 class="modal-title">ADD FLIGHT TEST</h2>
+                        <h2 class="modal-title add">ADD FLIGHT TEST</h2>
+                        <h2 class="modal-title detail">FLIGHT TEST DETAIL</h2>
                         <h4><span class="span-selected-date-day-name"></span><span class="span-selected-date-month-name"></span> <span class="span-selected-date-day-number"></span>, <span class="span-selected-date-year"></span></h4>
                         <img class="modal-principal-icon" src="{{URL::to('svg/calendar/ic_airplanemode_active_white_48px.svg')}}">
                     </div>
@@ -812,7 +793,7 @@
                                         <div class="row">
                                             <div class="col-xs-8">
                                                 <div class="form-group">
-                                                    <label for="search-route" class="noNewRoute">Search route</label>
+                                                    <label for="search-route" class="noNewRoute">Search route *</label>
                                                     <input id="search-route" name="search_route" class="form-control noNewRoute" type="text">
                                                     <label for="route-name" class="newRoute">Name for the new route</label>
                                                     <input id="route-name" name="route_name" class="form-control newRoute" type="text">
@@ -855,13 +836,13 @@
                                         <div class='row'>
                                             <div class='col-sm-6'>
                                                 <div class='form-group'>
-                                                    <label for="instructor">Instructor</label>
+                                                    <label for="instructor">Instructor *</label>
                                                     <input class="form-control" id="flight_instructor" name="instructor" type="text" data-id="0"/>
                                                 </div>
                                             </div>
                                             <div class='col-sm-6'>
                                                 <div class='form-group'>
-                                                    <label for="airplane">Airplane</label>
+                                                    <label for="airplane">Airplane *</label>
                                                     <input class="form-control" id="flight_airplane" name="airplane" type="text" data-id="0"/>
                                                 </div>
                                             </div>
@@ -929,11 +910,29 @@
                                         <div class="row">
                                             <div class="col-sm-6">
                                                 <div class="form-group">
-                                                    <label for="cost">Cost (USD)</label>
+                                                    <label for="cost">Cost (USD) *</label>
                                                     <div class="input-group">
                                                         <span class="input-group-addon">$</span>
                                                         <input id="flight_cost" type="text" name="cost" class="form-control">
                                                     </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 detail">
+                                                <div class="form-group">
+                                                    <label for="status">Status</label>
+                                                    <select id="flight_status" name="status" class="form-control">
+                                                        <option id="available-option" value="available">Available</option>
+                                                        <option id="booked-option" value="booked">Booked</option>
+                                                        <option value="canceled">Canceled</option>
+                                                    </select>
+                                                </div>
+                                                <div id="conteiner-cancellation-flight" class="form-group" style="display: none;">
+                                                    <label for="cancellation">Reason for cancellation *</label>
+                                                    <textarea id="flight_cancellation" name="cancellation" class="form-control"></textarea>
+                                                </div>
+                                                <div class="form-group" id="conteiner-booked" style="display: none;">
+                                                    <label for="student">Booked by</label>
+                                                    <input id="student" name="student" class="form-control" readonly="true" />
                                                 </div>
                                             </div>
                                         </div>
@@ -941,9 +940,15 @@
                             </div>
                         </fieldset>
                     </div>
-                    <div class="modal-footer">
+                    <input type="hidden" id="id-flight">
+                    <input type="hidden" id="flight-option">
+                    <div class="modal-footer add">
                         <button id="close-modal" type="button" class="btn btn-default custom-btn-default" data-dismiss="modal">Cancel</button>
                         <button id="addflightsubmit" type="submit" class="btn btn-primary custom-btn-primary">Save</button>
+                    </div>
+                    <div class="modal-footer detail">
+                        <button id="close-modal" type="button" class="btn btn-default custom-btn-default" data-dismiss="modal">Cancel</button>
+                        <button id="editFlight" class="btn btn-primary custom-btn-primary">Edit</button>
                     </div>
                     </form>
                 </div>
@@ -955,7 +960,8 @@
                 <div class="modal-content custom-modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h2 class="modal-title">ADD TEST</h2>
+                        <h2 class="modal-title add">ADD TEST</h2>
+                        <h2 class="modal-title detail">TEST DETAIL</h2>
                         <h4><span class="span-selected-date-day-name"></span><span class="span-selected-date-month-name"></span> <span class="span-selected-date-day-number"></span>, <span class="span-selected-date-year"></span></h4>
                         <img class="modal-principal-icon" src="{{URL::to('svg/calendar/ic_content_paste_white_48px.svg')}}">
                     </div>
@@ -966,13 +972,13 @@
                             <div class="row">
                                 <div class='col-sm-6'>
                                     <div class="form-group">
-                                        <label for="subject">Subject</label>
+                                        <label for="subject">Subject *</label>
                                         <input type="text" class="form-control" id="subject" name="subject">
                                     </div>
                                 </div>
                                 <div class='col-sm-6'>
                                     <div class="form-group">
-                                        <label for="test_instructor">Instructor</label>
+                                        <label for="test_instructor">Instructor *</label>
                                         <input type="text" class="form-control" id="test_instructor" name="test_instructor">
                                     </div>
                                 </div>
@@ -1037,11 +1043,32 @@
                                     </fieldset>
                                 </div>
                             </div>
+                            <div class="row detail">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="test_status">Status</label>
+                                        <select id="test_status" name="test_status" class="form-control">
+                                            <option value="available">Available</option>
+                                            <option value="canceled">Canceled</option>
+                                        </select>
+                                    </div>
+                                    <div id="conteiner-cancellation-test" class="form-group" style="display: none;">
+                                        <label for="cancellation">Reason for cancellation *</label>
+                                        <textarea id="test_cancellation" name="cancellation" class="form-control"></textarea>
+                                    </div>
+                                </div>
+                            </div>
                             </fieldset>
                         </div>
-                        <div class="modal-footer">
+                        <input type="hidden" id="id-test">
+                        <input type="hidden" id="test-option">
+                        <div class="modal-footer add">
                             <button id="close-modal" type="button" class="btn btn-default custom-btn-default" data-dismiss="modal">Cancel</button>
                             <button id="addTestSubmit" type="submit" class="btn btn-primary custom-btn-primary">Save</button>
+                        </div>
+                        <div class="modal-footer detail">
+                            <button id="close-modal" type="button" class="btn btn-default custom-btn-default" data-dismiss="modal">Cancel</button>
+                            <button id="editTest" class="btn btn-primary custom-btn-primary">Edit</button>
                         </div>
                     </form>
                 </div>
@@ -1063,8 +1090,8 @@
         </script>
         <script type="text/javascript" src="{{URL::to('js/calendar/calendario.js')}}"></script>
         <script type="text/javascript" src="{{URL::to('js/calendar/data.js')}}"></script>
-        <script type="text/javascript" src="{{URL::to('js/calendar/jquery.jscrollpane.min.js')}}"></script>
-        <script src="http://jscrollpane.kelvinluck.com/script/jquery.mousewheel.js"></script>
+        {{--<script type="text/javascript" src="{{URL::to('js/calendar/jquery.jscrollpane.min.js')}}"></script>--}}
+        {{--<script src="http://jscrollpane.kelvinluck.com/script/jquery.mousewheel.js"></script>--}}
         <script type="text/javascript" src="{{URL::to('js/jquery-ui.min.js')}}"></script>
         <script type="text/javascript" src="{{URL::to('js/jquery.validate.js')}}"></script>
         <script type="text/javascript" src="{{URL::to('js/additional-methods.js')}}"></script>

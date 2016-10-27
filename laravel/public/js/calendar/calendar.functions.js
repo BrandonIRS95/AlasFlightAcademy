@@ -16,7 +16,11 @@ function CalendarViewModel() {
             date: SELECTED_DATE.toString('yyyy-M-d'),
             start: start,
             end: end,
+            id: $('#id-flight').val(),
+            status: $('#flight_status').val(),
+            option: $('#flight-option').val(),
             description: $('#flight_description').val(),
+            cancellation: $('#flight_cancellation').val(),
             cost: $('#flight_cost').val(),
             instructor: $('#flight_instructor').attr('data-id'),
             airplane: $('#flight_airplane').attr('data-id'),
@@ -47,6 +51,10 @@ function CalendarViewModel() {
             subject: $('#subject').val(),
             description: $('#test_description').val(),
             date: SELECTED_DATE.toString('yyyy-M-d'),
+            id: $('#id-test').val(),
+            status: $('#test_status').val(),
+            cancellation: $('#test_cancellation').val(),
+            option: $('#test-option').val(),
             start: $('#test_start_hour').val() + ':' + $('#test_start_minute').val(),
             end: $('#test_end_hour').val() + ':' + $('#test_end_minute').val(),
             instructor_id: $('#test_instructor').attr('data-id'),
@@ -75,32 +83,156 @@ function CalendarViewModel() {
 
     self.getEventsByDate = function () {
         return $.ajax({
-            url : urlGetEventsByDate + SELECTED_DATE.toString('yyyy-M-d') + '/instructor/null',
+            url : urlGetEventsByDate + SELECTED_DATE.toString('yyyy-M-d') + '/instructor/null/status/' + $('.filtering-status .selected').attr('data-status') + '/type/' + $('.event-filter.selected').attr('data-event'),
             type: 'GET'
         });
     };
 
     self.updateCalendarEvents = function () {
         self.getEventsByMonth().done(function (response) {
-            console.log(response);
             $('#calendar').calendario('setData', JSON.parse(response));
+            if (DAY_ELEMENT_SELECTED !== null)$('.fc-body').find("[data-id='" + DAY_ELEMENT_SELECTED + "']").trigger('click');
         });
+    };
+
+    self.showEvent = function(data){
+        var event = data.eventable;
+        $('.add').css('display','none');
+        $('.detail').css('display', 'block');
+        $('#conteiner-cancellation-flight').css('display', 'none');
+        $('#conteiner-cancellation-test').css('display', 'none');
+
+        if(data.type === 'App\\FlightTest')
+        {
+            console.log(data);
+            settingsFlightModal();
+            PROCESS_MESSAGE = 'Editing flight test';
+            DONE_MESSAGE = 'Flight test successfully edited!';
+            var $flightInstructor = $('#flight_instructor');
+            var $airplane = $('#flight_airplane');
+            var $route = $('#search-route');
+            var $description = $('#flight_description');
+            var $startHour = $('#flight_start_hour');
+            var $startMinute = $('#flight_start_minute');
+            var $endHour = $('#flight_end_hour');
+            var $endMinute = $('#flight_end_minute');
+            var $status = $('#flight_status');
+            var $cost = $('#flight_cost');
+            var $conteinerBooked = $('#conteiner-booked');
+            var $availableOption = $('#available-option');
+            var $bookedOption = $('#booked-option');
+            var airplane = event.airplane;
+            var route = event.flight_route;
+            $('#id-flight').val(data.id);
+            $('#flight-option').val('edit');
+            $('#flight_cancellation').val(data.cancellation);
+            $flightInstructor.val(data.instructorFullName());
+            $flightInstructor.attr('data-id', data.instructor.id);
+            $airplane.val(airplane.name);
+            $airplane.attr('data-id', airplane.id);
+            $route.val(route.name);
+            $route.attr('data-id', route.id);
+            $description.val(event.description);
+            $cost.val(event.cost);
+            $startHour.val(data.startHour());
+            $startMinute.val(data.startMinute());
+            $endHour.val(data.endHour());
+            $endMinute.val(data.endMinute());
+            $status.find('option[value="' + data.status + '"]').prop('selected',true);
+            if(data.status === 'canceled') {$('#conteiner-cancellation-flight').css('display', 'block');}
+            if(event.student_id >= 1) {
+                var person = event.student.person;
+                $conteinerBooked.css('display', 'block');
+                $('#student').val(person.first_name + ' ' + person.last_name);
+                $availableOption.css('display','none');
+                $bookedOption.css('display','inline');
+            } else {
+                $conteinerBooked.css('display','none');
+                $availableOption.css('display','inline');
+                $bookedOption.css('display','none');
+            }
+            showModalAnimation($('#modalAddFlight'), function () {
+                google.maps.event.trigger(map, 'resize');
+                drawMarkers(route.markers);
+                drawPoints(route.points);
+
+            }, function () {
+                $('#modalAddFlight').find('input, textarea').val('');
+                cleanDataInMap();
+                google.maps.event.removeListener(MAP_CLICK_EVENT);
+                poly.setEditable(false);
+                NEW_ROUTE = false;
+                $('#coordinates-error').remove();
+                $('#route-name-error').remove();
+                $('.newRoute').css('display','none');
+                $('.noNewRoute').css('display','block');
+            });
+        }
+        if (data.type === 'App\\Test')
+        {
+            settingsTestModal();
+            PROCESS_MESSAGE = 'Editing test';
+            DONE_MESSAGE = 'Test succesfully edited!';
+            var $subject = $('#subject');
+            var $instructor = $('#test_instructor');
+            var $description = $('#test_description');
+            var $startHour = $('#test_start_hour');
+            var $startMinute = $('#test_start_minute');
+            var $endHour = $('#test_end_hour');
+            var $endMinute = $('#test_end_minute');
+            var $status = $('#test_status');
+            $('#id-test').val(data.id);
+            $('#test-option').val('edit');
+            $('#test_cancellation').val(data.cancellation);
+            $subject.val(event.subject);
+            $instructor.val(data.instructorFullName());
+            $instructor.attr('data-id', data.instructor.id);
+            $description.val(event.description);
+            $startHour.val(data.startHour());
+            $startMinute.val(data.startMinute());
+            $endHour.val(data.endHour());
+            $endMinute.val(data.endMinute());
+            $status.find('option[value="' + data.status + '"]').prop('selected',true);
+            if(data.status === 'canceled') $('#conteiner-cancellation-test').css('display', 'inline');
+            showModalAnimation($('#modalAddTest'), null, function () {
+                $('#modalAddTest').find('input, textarea').val('');
+            });
+        }
+
     };
 
     return self;
 }
 
 function EventCalendar(data){
+    this.id = data.id;
     this.date = data.date;
     this.start = data.start;
     this.end = data.end;
     this.status = data.status;
     this.instructor = data.instructor;
     this.eventable = data.eventable;
+    this.cancellation = data.cancellation_description;
     this.type = data.eventable_type;
     this.timeFormat = function(){
         return this.start.substring(0,5) + ' - ' + this.end.substring(0,5);
-    }
+    };
+    this.instructorFullName = function() {
+        var person = this.instructor.person;
+        return person.first_name + ' ' + person.last_name;
+    };
+    this.startHour = function(){
+      return this.start.substring(0,2);
+    };
+    this.endHour = function(){
+        return this.end.substring(0,2);
+    };
+    this.startMinute = function () {
+        return this.start.substring(3,5);
+    };
+    this.endMinute = function () {
+        return this.end.substring(3,5);
+    };
 }
 
 var vm = new CalendarViewModel();
@@ -112,6 +244,27 @@ $(function() {
     window.SELECTED_DATE = new Date();
     var RANGE_OF_MINUTES = 5;
     var CALENDAR_EVENTS;
+    window.PROCESS_MESSAGE;
+    window.DONE_MESSAGE;
+    window.DAY_ELEMENT_SELECTED = null;
+
+    $('#flight_status').change(function () {
+        var $cancel = $('#conteiner-cancellation-flight');
+        if($(this).val() === 'canceled')
+            $cancel.css('display','block');
+        else{
+            $cancel.css('display','none');
+        }
+    });
+
+    $('#test_status').change(function () {
+        var $cancel = $('#conteiner-cancellation-test');
+        if($(this).val() === 'canceled')
+            $cancel.css('display','inline');
+        else{
+            $cancel.css('display','none');
+        }
+    });
 
     $('#showFlights').click(function () {
         $('.calendarIcons.airplane').css('display','inline');
@@ -150,6 +303,9 @@ $(function() {
             route_name: {
                 required: true
             },
+            cancellation: {
+                required: true
+            },
             coordinates: {
                 required: {
                   depends : function () {
@@ -179,8 +335,8 @@ $(function() {
 
             var loadingAnimation = new loadingProcessAnimation();
 
-            loadingAnimation.show('Saving flight test');
-            
+            loadingAnimation.show(PROCESS_MESSAGE);
+
             var arrayPoints = poly.getPath().getArray();
             var stringMarkers = '[';
             var stringPoints = '[';
@@ -213,7 +369,7 @@ $(function() {
                 if(response.status === 0)
                 {
                     vm.updateCalendarEvents();
-                    loadingAnimation.done('Flight test successfully added!', function () {
+                    loadingAnimation.done(DONE_MESSAGE, function () {
                         $('#modalAddFlight').modal('hide');
                         $submitButton.prop('disabled', false);
                     });
@@ -230,6 +386,9 @@ $(function() {
             test_instructor: {
                 required: true,
                 elementSelected: true
+            },
+            cancellation: {
+                required: true
             }
         },
         messages: {
@@ -243,19 +402,40 @@ $(function() {
 
             $submitButton.prop('disabled', true);
 
-            loadingAnimation.show('Saving test');
+            loadingAnimation.show(PROCESS_MESSAGE);
 
             vm.addTest().done(function (response) {
                 if(response.status === 0)
                 {
                     vm.updateCalendarEvents();
-                    loadingAnimation.done('Test successfully added!', function () {
+                    loadingAnimation.done(DONE_MESSAGE, function () {
                         $('#modalAddTest').modal('hide');
                         $submitButton.prop('disabled', false);
                     });
                 }
             });
         }
+    });
+
+    $('.event-filter').click(function (e) {
+        var $elementClicked = $(e.currentTarget);
+        if($elementClicked.attr('class') === 'event-filter selected')
+        {
+            var $all = $('#allEvents');
+            $elementClicked.removeAttr('id');
+            $elementClicked.attr('class','event-filter');
+            $all.addClass('selected');
+        }
+        else{
+            var $selectedStatus = $('#selectedEvent');
+            if($selectedStatus){
+                $selectedStatus.removeAttr('id');
+                $selectedStatus.attr('class','event-filter');
+            }
+            $elementClicked.addClass('selected');
+            $elementClicked.attr('id','selectedEvent');
+        }
+        showEventsByDate();
     });
 
     /** <!-- FLIGHT TEST ...*/
@@ -448,7 +628,7 @@ $(function() {
         },
         select: function( event, ui ) {
             var $input = $( "#flight_airplane" );
-            $input.val( ui.item.plate);
+            $input.val( ui.item.name);
             $input.attr('data-id',ui.item.id);
             $(this).valid();
             return false;
@@ -502,7 +682,7 @@ $(function() {
     $addBtn.click(function () {
         showModalSelectOption();
     });
-    
+
     function showModalSelectOption() {
         var $divBackground = $('<div>', {class: 'backgroundModalProcess'});
         var $divContentModal = $('<div>', {class: 'contentModalOptions'});
@@ -514,9 +694,15 @@ $(function() {
         var $testTitle = $('<div>', { class: 'optionTitle', html: 'Test'});
         var $divContainer1 = $('<div>',{ id: 'btnAddFlight', class: 'optionConteiner'});
         var $divContainer2 = $('<div>',{ id: 'btnAddTest', class: 'optionConteiner'});
+        $('#conteiner-cancellation-flight').css('display', 'none');
+        $('#conteiner-cancellation-test').css('display', 'none');
 
         $divContainer1.click(function () {
-
+            $('.add').css('display','block');
+            $('.detail').css('display', 'none');
+            $('#flight-option').val('add');
+            PROCESS_MESSAGE = 'Saving flight test';
+            DONE_MESSAGE = 'Flight test successfully added!';
             $divBackground.remove();
 
             settingsFlightModal();
@@ -525,8 +711,6 @@ $(function() {
 
                 google.maps.event.trigger(map, 'resize');
                 map.setCenter({lat: -34.397, lng: 150.644});
-
-
 
             }, function(){
                 $('#modalAddFlight').find('input, textarea').val('');
@@ -542,6 +726,11 @@ $(function() {
         });
 
         $divContainer2.click(function () {
+            $('.add').css('display','block');
+            $('.detail').css('display', 'none');
+            $('#test-option').val('add');
+            PROCESS_MESSAGE = 'Saving test';
+            DONE_MESSAGE = 'Test successfully added!';
             $divBackground.remove();
 
             settingsTestModal();
@@ -588,7 +777,7 @@ $(function() {
         return 'notToday';
     }
 
-    function settingsFlightModal(){
+    window.settingsFlightModal = function (){
         var $selectHour = $('#flight_start_hour');
         var $selectMinutes = $('#flight_start_minute');
         var $selectHourEnd = $('#flight_end_hour');
@@ -614,9 +803,9 @@ $(function() {
             });
         }
 
-    }
+    };
 
-    function settingsTestModal(){
+    window.settingsTestModal = function (){
         var $selectHour = $('#test_start_hour');
         var $selectMinutes = $('#test_start_minute');
         var $selectHourEnd = $('#test_end_hour');
@@ -642,7 +831,7 @@ $(function() {
             });
         }
 
-    }
+    };
 
     function updateEndTime($selectStartHour, $selectStartMinute, $selectEndHour, $selectEndMinute) {
         var hours = parseInt($selectStartHour.val());
@@ -677,12 +866,11 @@ $(function() {
         $selectedStatus.attr('class','');
         $elementClicked.addClass('selected');
         $elementClicked.attr('id','selectedStatus');
+        showEventsByDate();
     });
 
-    $('.conteiner-events').jScrollPane();
-
     $(window).resize(function () {
-        $('.conteiner-events').jScrollPane();
+
     });
 
     function updateMonthYear() {
@@ -722,7 +910,7 @@ $(function() {
 
             var $element = $(e.target);
 
-            console.log('HOLA');
+            DAY_ELEMENT_SELECTED = $element.attr('data-id');
 
             if($element.find('.fc-emptydate').length === 0) {
 
@@ -734,20 +922,7 @@ $(function() {
                     updateDateInfo(dateprop);
                 });
 
-
-
-                vm.getEventsByDate().done(function (response) {
-
-                    var mappedEvents = $.map(response.events, function(item) {
-                        return new EventCalendar(item);
-                    });
-
-                    vm.currentEvents(mappedEvents);
-
-
-                    console.log(vm.currentEvents());
-
-                });
+                showEventsByDate();
 
             }
 
@@ -761,6 +936,17 @@ $(function() {
         events: ['click', 'focus'],
         feed: ''
     });
+
+    function showEventsByDate(){
+        vm.getEventsByDate().done(function (response) {
+
+            var mappedEvents = $.map(response.events, function(item) {
+                return new EventCalendar(item);
+            });
+
+            vm.currentEvents(mappedEvents);
+        });
+    }
 
     function parseDateCalendarToJsDate(year, month, day){
         return new Date(year, (month - 1), parseInt(day));
@@ -802,7 +988,3 @@ $(function() {
 
 
 // TODO al usar el autocomplete de jquery simplemente asigno el valor seleccionado a la variable del viewmodel (en el metodo select o change de autocomplete)
-
-
-
-

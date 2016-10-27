@@ -24,9 +24,9 @@ class Person extends Model
         return $this->hasMany('App\SchoolRecord');
     }
 
-    public function admission()
+    public function student()
     {
-        return $this->hasOne('App\Admission');
+        return $this->hasOne('App\Student');
     }
 
     public function user(){

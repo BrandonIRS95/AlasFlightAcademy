@@ -6,7 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class FlightRoute extends Model
 {
+    protected $with = ['points','markers'];
     public $timestamps = false;
+
     public function flights(){
         return $this->hasMany('App\FlightTest');
     }

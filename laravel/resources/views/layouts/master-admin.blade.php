@@ -6,6 +6,15 @@
         <link rel="stylesheet" href="{{URL::to('css/admin/style.css')}}"/>
 
         <style>
+            #conteiner-calendar-events{
+                position: absolute;
+                left: 220px;
+                top: 75px;
+                bottom: 20px;
+                right: 20px;
+                box-shadow: 0px 5px 5px rgba(0,0,0,0.1);
+            }
+            
             .backgroundModalProcess {
                 z-index: 4000;
                 background: rgba(0, 0, 0, 0.62);
@@ -125,7 +134,7 @@
             </nav>
             <header id="header">
                 <div class="option">
-                    <div id="user-account-name" class="name">Frank requena</div>
+                    <div id="user-account-name" class="name">{{ Auth::user()->person->first_name }} {{ Auth::user()->person->last_name }}</div>
                     <div class="icon"><img src="{{URL::to('svg/admin/ic_account_circle_black_24px.svg')}}"></div>
                 </div>
             </header>

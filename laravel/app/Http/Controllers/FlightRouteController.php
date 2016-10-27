@@ -16,7 +16,7 @@ class FlightRouteController extends Controller
 
         if($type =='Admin' || $type == 'Instructor') {
 
-            $routes = FlightRoute::where('name','LIKE', '%'.$name.'%')->with('markers', 'points')->get();
+            $routes = FlightRoute::where('name','LIKE', '%'.$name.'%')->get();
 
             return response()->json(['routes' => $routes, 'status' => '0'], 200);
         }

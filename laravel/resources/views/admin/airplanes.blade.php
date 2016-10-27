@@ -62,7 +62,7 @@
                     </select>
                     <div class="form-footer">
                         <button id="cancel-add" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button id="add-airplane-btn" type="submit" class="btn btn-default">Submit</button>
+                        <button id="add-airplane-btn" type="submit" class="btn btn-default">Save</button>
                         <input type="hidden" value="{{Session::token()}}" name="_token">
                     </div>
                 </form>
@@ -204,7 +204,6 @@
 
                     if(response.status === 0)
                     {
-
                         $form.empty();
                         location.reload();
                     }
@@ -217,11 +216,7 @@
         });
 
         //Edit Airplane
-
-
         $('.edit').on('click', function(event) {
-
-
 
             var $postBody =  $(event.currentTarget);
              idAirplane = $postBody.attr('data-id');
@@ -262,6 +257,7 @@
            })
            .done(function (msg) {
                 $(postBodyElement).text(msg['new_body']);
+                location.reload();
 
            });
         });

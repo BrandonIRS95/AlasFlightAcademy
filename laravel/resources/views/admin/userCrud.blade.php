@@ -27,14 +27,11 @@
     <section class="content-header">
         <h1>Add New User</h1>
         <ol class="breadcrumb">
-            <li>
-                <a href="{{ route('userCrud') }}">
-                    <i class="livicon" data-name="home" data-size="14" data-color="#000"></i>
-                    Dashboard
-                </a>
+            <li class="active">
+                <i class="livicon" data-name="home" data-size="14" data-color="#000"></i>
+                <a href="{{ route('indexCrud') }}">Users</a>
             </li>
-            <li><a href="{{ route('indexCrud') }}">Users</a></li>
-            <li class="active">Add New User</li>
+            <li >Add New User</li>
         </ol>
     </section>
     <section class="content">

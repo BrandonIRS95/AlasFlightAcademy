@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Admission;
+use App\Student;
 use App\Person;
 use App\TypeOfUser;
 use Faker\Provider\cs_CZ\DateTime;
 use Illuminate\Http\Request;
+use App\Http\Requests;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 
@@ -38,21 +39,14 @@ class UserController extends Controller
 
     public function postSignIn(Request $request)
     {
-        $this->validate($request, [
+      $this->validate($request, [
             'email' => 'required|email',
             'password' => 'required'
         ]);
 
         if(Auth::attempt(['email' => $request['email'], 'password' => $request['password'] ]))
         {
-            //$type = Auth::user()->typeOfUser->type;
-
-            $type = Auth::user()->typeOfUser->type;
-
-            if($type == 'Admin')
-                return redirect()->route('admin');
-            else
-                return redirect()->route('index'); //cambiar cuando tengamos el dashboard de los estudiantes
+            return redirect()->route('dashboard');
         }
         return redirect()->back();
     }
@@ -63,12 +57,16 @@ class UserController extends Controller
         return redirect()->route('index');
     }
 
-    public function getAdminView()
+    public function getDashboardView()
     {
         $type = Auth::user()->typeOfUser->type;
 
         if($type == 'Admin')
             return view('admin.dashboard');
+        if($type == 'Student')
+            return view('student.dashboard');
+        if($type == 'Instructor')
+            return view('instructor.dashboard');
         else
             return redirect()->route('index');
 
@@ -80,6 +78,10 @@ class UserController extends Controller
 
         if($type == 'Admin')
             return view('admin.calendar');
+        if($type == 'Student')
+            return view('student.calendar');
+        if($type == 'Instructor')
+            return view('instructor.calendar');
         else
             return redirect()->route('index');
 
@@ -88,7 +90,7 @@ class UserController extends Controller
     public function getAspirantsView(){
         $type = Auth::user()->typeOfUser->type;
         if($type =='Admin') {
-            $posts = Admission::where('status','=','onhold')->paginate(10);
+            $posts = Student::where('status','=','onhold')->paginate(10);
             return view('admin.aspirants',['posts'=>$posts]);
         }
         else
@@ -99,7 +101,7 @@ class UserController extends Controller
     public function getStudentsView(){
         $type = Auth::user()->typeOfUser->type;
         if($type =='Admin') {
-            $posts = Admission::where('status','=','admited')->paginate(10);
+            $posts = Student::where('status','=','admited')->paginate(10);
             return view('admin.students',['posts'=>$posts]);
         }
         else
@@ -148,10 +150,7 @@ class UserController extends Controller
     }
     public function getIndexCrud()
     {
-        $type = Auth::user()->typeOfUser->type;
-        if ($type == 'Admin') {
-            return view('admin.indexCrud');
-        } else
-            return redirect()->route('index');
+            $posts = User::paginate(10);
+            return view('admin.indexCrud',['posts'=>$posts]);
     }
 }

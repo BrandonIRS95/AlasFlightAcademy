@@ -11,6 +11,9 @@
 |
 */
 
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
+
 Route::post('/signup', [
     'uses' => 'UserController@postSignUp',
     'as' => 'signup'
@@ -26,9 +29,9 @@ Route::post('/addAdmission', [
     'as' => 'addAdmission'
 ]);
 
-Route::get('/admin', [
-    'uses' => 'UserController@getAdminView',
-    'as' => 'admin',
+Route::get('/dashboard', [
+    'uses' => 'UserController@getDashboardView',
+    'as' => 'dashboard',
     'middleware' => 'auth'
 ]);
 
@@ -85,11 +88,42 @@ Route::get('/getInstructorsByName/{name?}', [
     'middleware' => 'auth'
 ]);
 
+Route::get('/getNextFlights', [
+    'uses' => 'StudentController@getNextFlights',
+    'as' => 'getNextFlights',
+    'middleware' => 'auth'
+]);
+
+Route::get('/getPreviousFlights', [
+    'uses' => 'StudentController@getPreviousFlights',
+    'as' => 'getPreviousFlights',
+    'middleware' => 'auth'
+]);
+
 Route::get('/contacts', [
     'uses' => 'ContactController@getContactsView',
     'as' => 'contacts',
     'middleware' => 'auth'
 ]);
+
+Route::post('/bookFlight', [
+    'uses' => 'FlightTestController@postBookFlight',
+    'as' => 'bookFlight',
+    'middleware' => 'auth'
+]);
+
+Route::post('/cancelBookFlight', [
+    'uses' => 'FlightTestController@postCancelBookFlight',
+    'as' => 'cancelBookFlight',
+    'middleware' => 'auth'
+]);
+
+Route::get('/myflights', [
+    'uses' => 'StudentController@getMyFlightsView',
+    'as' => 'myflights',
+    'middleware' => 'auth'
+]);
+
 /////////////////yisus
 # User Management
 
@@ -134,7 +168,7 @@ Route::get('/getAirplanesByPlateAndName/{text?}', [
     'middleware' => 'auth'
 ]);
 
-Route::get('/getEventsByDate/{date?}/instructor/{instructor?}', [
+Route::get('/getEventsByDate/{date?}/instructor/{instructor?}/status/{status?}/type/{type?}', [
     'uses' => 'EventController@getEventsByDate',
     'as' => 'getEventsByDate'
     //'middleware' => 'auth'
@@ -165,8 +199,8 @@ Route::get('/getRoutesByName/{name?}', [
 ]);
 
 
-Route::get('/', function () {
-    return view('index');
+Route::get('/', function (Request $request) {
+  return view("index");
 })->name('index');
 
 Route::get('/login', function () {
@@ -204,6 +238,11 @@ Route::get('/addperson', [
     'as' => 'addperson'
 ]);
 
+Route::get('/changeLanguage', function (Request $request) {
+  LanguageSwitcher::setLanguage(Input::get("lang"));
+  return redirect()->route('index');
+})->name('changeLanguage');
+
 Route::post('/addcontact', [
     'uses' => 'ContactController@postAddContact',
     'as' => 'addcontact'
@@ -212,6 +251,11 @@ Route::post('/addcontact', [
 Route::post('/addairplane', [
     'uses' => 'AirplaneController@postAddAirplane',
     'as' => 'addairplane'
+]);
+
+Route::post('/addinstructor', [
+    'uses' => 'InstructorController@postAddInstructor',
+    'as' => 'addinstructor'
 ]);
 
 Route::post('/edit',[
