@@ -12,5 +12,25 @@ return [
           <li class="Enroll__step__description__item">Goverment Identification.</li>
         </ul>
         </p>',
-    'enroll' => 'Enroll'
+    'enroll' => 'Enroll',
+    'title_form' => 'Application for admission',
+    'student_details' => 'Student details',
+    'gender' => 'Gender',
+    'female' => 'Female',
+    'male' => 'Male',
+    'date_birth' => 'Date of birth',
+    'address' => 'Address',
+    'country' => 'Country',
+    'state' => 'State',
+    'city' => 'City',
+    'zip_code' => 'Zip code',
+    'step' => 'Step',
+    'of' => 'of',
+    'cancel' => 'Cancel',
+    'next' => 'Next',
+    'city_country_birth' => 'City and country of birth',
+    'citizenship' => 'Citizenship',
+    'country_passport_issuance' => 'Country of passport Issuance',
+    'passport_number' => 'Passport number',
+    'passport_expiration' => 'Passport expiration date'
   ];

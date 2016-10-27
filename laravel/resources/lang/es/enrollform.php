@@ -12,5 +12,25 @@ return [
         <li class="Enroll__step__description__item">Identificaci&oacute;n de gobierno.</li>
       </ul>
       </p>',
-  'enroll' => 'Inscr&iacute;bete'
+  'enroll' => 'Inscr&iacute;bete',
+  'title_form' => 'Solicitud de inscripci&oacute;n',
+    'student_details' => 'Detalles del estudiante',
+    'gender' => 'G&eacute;nero',
+    'female' => 'Mujer',
+    'male' => 'Hombre',
+    'date_birth' => 'Fecha de nacimiento',
+    'address' => 'Domicilio',
+    'country' => 'Pa&iacute;s',
+    'state' => 'Estado',
+    'city' => 'Ciudad',
+    'zip_code' => 'C&oacute;digo postal',
+    'step' => 'Paso',
+    'of' => 'de',
+    'cancel' => 'Cancelar',
+    'next' => 'Siguiente',
+    'city_country_birth' => 'Ciudad y pa&iacute;s de nacimiento',
+    'citizenship' => 'Ciudadan&iacute;a',
+    'country_passport_issuance' => 'Pa&iacute;s de emisi&oacute;n de pasaporte',
+    'passport_number' => 'N&uacute;mero de pasaporte',
+    'passport_expiration' => 'Fecha de expiraci&oacute;n del pasaporte'
   ];

@@ -77,57 +77,57 @@
     <form id="enroll-form" class="ModalForm row col s10">
       <div class="ModalForm__page container col s2">
         <div class="ModalForm__header">
-          <h2 class="ModalForm__header__title">Application for admission</h2><i data-target="modalconfirm" class="ModalForm__header__icon material-icons modal-trigger">clear</i>
+          <h2 class="ModalForm__header__title">{{trans('enrollform.title_form')}}</h2><i data-target="modalconfirm" class="ModalForm__header__icon material-icons modal-trigger">clear</i>
         </div>
         <div class="ModalForm__pages_container col s12 m12 row">
-          <h3 class="ModalForm__page__step">Step 1 of 5</h3>
-          <h4 class="ModalForm__page__section_title">Student details</h4>
+          <h3 class="ModalForm__page__step">{{trans('enrollform.step')}} 1 {{trans('enrollform.of')}} 5</h3>
+          <h4 class="ModalForm__page__section_title">{{trans('enrollform.student_details')}}</h4>
 
           <div class="Modalform__checkboxes">
-            <p>Gender</p>
+            <p>{{trans('enrollform.gender')}}</p>
             <input id="gender-female-input" type="radio" name="gender" value="female" class="ModalForm__input with-gap">
-            <label for="gender-female-input">Female</label>
+            <label for="gender-female-input">{{trans('enrollform.female')}}</label>
             <input id="gender-male-input" type="radio" name="gender" value="male" class="ModalForm__input with-gap">
-            <label for="gender-male-input">Male</label>
+            <label for="gender-male-input">{{trans('enrollform.male')}}</label>
           </div>
           <div class="input-field col s10 m8">
-            <label for="birthdate">Date of birth</label>
+            <label for="birthdate">{{trans('enrollform.date_birth')}}</label>
             <input id="birthdate" name="date_of_birth" type="date" class="ModalForm__input datepicker">
 
           </div><i class="ModalForm__input_icon col s2 m2 material-icons">today</i>
           <div class="input-field col s12 m6">
-            <label for="name">First name</label>
+            <label for="name">{{trans('messages.first_name')}}</label>
             <input id="name" name="first_name" type="text" class="ModalForm__input">
           </div>
           <div class="input-field col s12 m6">
-            <label for="name">Last name</label>
+            <label for="name">{{trans('messages.last_name')}}</label>
             <input id="name" name="last_name" type="text" class="ModalForm__input">
           </div>
           <div class="input-field col s12 m12">
-            <label for="address">Address</label>
+            <label for="address">{{trans('enrollform.address')}}</label>
             <input id="address" type="text" name="address" class="ModalForm__input">
           </div>
           <div class="ModalForm__input--select input-field col s12 m6">
             <select id="country_select" name="country">
-              <option value="" disabled selected>Country</option>
+              <option value="" disabled selected>{{trans('enrollform.country')}}</option>
               <option>Mexico</option>
               <option>USA</option>
             </select>
           </div>
           <div class="ModalForm__input--select input-field col s12 m6">
             <select id="state_select" name="state">
-              <option value="" disabled selected>State</option>
+              <option value="" disabled selected>{{trans('enrollform.state')}}</option>
               <option>CA</option>
               <option>FL</option>
               <option>TX</option>
             </select>
           </div>
           <div class="input-field col s12 m6">
-            <label for="city">City</label>
+            <label for="city">{{trans('enrollform.city')}}</label>
             <input id="city" type="text" name="city" class="ModalForm__input">
           </div>
           <div class="input-field col s12 m6">
-            <label for="zipcode">Zip Code</label>
+            <label for="zipcode">{{trans('enrollform.zip_code')}}</label>
             <input id="zipcode" type="text" name="zip_code" class="ModalForm__input">
           </div>
           <div class="input-field col s12 m6">
@@ -135,54 +135,54 @@
             <input id="phone" type="text" name="phone_number" class="ModalForm__input">
           </div>
           <div class="input-field col s12 m6">
-            <label for="email">E-mail</label>
+            <label for="email">{{trans('messages.email')}}</label>
             <input id="email" type="email" name="email" class="ModalForm__input validate">
           </div>
-          <div class="ModalForm__buttons col s12 m12"><a data-target="modalconfirm" class="waves-effect waves-light btn ModalForm__button grey lighten-2 modal-trigger">cancel</a><a class="waves-effect waves-light btn ModalForm__button--active modal-go-to-2">NEXT</a></div>
+          <div class="ModalForm__buttons col s12 m12"><a data-target="modalconfirm" class="waves-effect waves-light btn ModalForm__button grey lighten-2 modal-trigger">{{trans('enrollform.cancel')}}</a><a class="waves-effect waves-light btn ModalForm__button--active modal-go-to-2">{{trans('enrollform.next')}}</a></div>
 
         </div>
 
       </div>
       <div class="ModalForm__page container col s2">
         <div class="ModalForm__header">
-          <h2 class="ModalForm__header__title"> <i class="ModalForm__header__title__icon material-icons modal-go-to-1">keyboard_backspace</i> Application for admission</h2><i data-target="modalconfirm" class="ModalForm__header__icon material-icons modal-trigger"> clear</i>
+          <h2 class="ModalForm__header__title"> <i class="ModalForm__header__title__icon material-icons modal-go-to-1">keyboard_backspace</i>{{trans('enrollform.title_form')}}</h2><i data-target="modalconfirm" class="ModalForm__header__icon material-icons modal-trigger"> clear</i>
         </div>
         <div class="ModalForm__pages_container row">
-          <h3 class="ModalForm__page__step">Step 2 of 5</h3>
-          <h4 class="ModalForm__page__section_title">Student details</h4>
+          <h3 class="ModalForm__page__step">{{trans('enrollform.step')}} 2 {{trans('enrollform.of')}} 5</h3>
+          <h4 class="ModalForm__page__section_title">{{trans('enrollform.student_details')}}</h4>
           <div class="input-field col s12 m8">
-            <label for="birthplace">City and coutry of birth</label>
+            <label for="birthplace">{{trans('enrollform.city_country_birth')}}</label>
             <input id="birthplace" type="text" class="ModalForm__input" name="city_country_of_birth">
           </div>
           <div class="input-field col s12 m8">
-            <label for="citizenship">Citizenship</label>
+            <label for="citizenship">{{trans('enrollform.citizenship')}}</label>
             <input id="citizenship" type="text" name="citizenship" class="ModalForm__input">
           </div>
           <div class="ModalForm__input--select input-field col s12 m8">
             <select name="country_of_passport_issuance">
-              <option value="" disabled selected>Country of passport Issuance</option>
+              <option value="" disabled selected>{{trans('enrollform.country_passport_issuance')}}</option>
               <option>Mexico</option>
               <option>USA</option>
             </select>
           </div>
           <div class="input-field col s12 m6">
-            <label for="passport">Passport number</label>
+            <label for="passport">{{trans('enrollform.passport_number')}}</label>
             <input id="passport" name="passport_number" type="text" class="ModalForm__input">
           </div>
           <div class="col s10 m8">
-            <label for="birthdate">Passport expiration date</label>
+            <label for="birthdate">{{trans('enrollform.passport_expiration')}}</label>
             <input id="birthdate" name="passport_expiration_date" type="date" class="ModalForm__input datepicker">
           </div><i class="ModalForm__input_icon col s2 m2 material-icons">today</i>
           <div class="ModalForm__buttons_margin col s12"></div>
-          <div class="ModalForm__buttons col s12 m12"><a data-target="modalconfirm" class="waves-effect waves-light btn ModalForm__button grey lighten-2 modal-trigger">cancel</a><a class="waves-effect waves-light btn ModalForm__button--active modal-go-to-3">NEXT</a></div>
+          <div class="ModalForm__buttons col s12 m12"><a data-target="modalconfirm" class="waves-effect waves-light btn ModalForm__button grey lighten-2 modal-trigger">{{trans('enrollform.cancel')}}</a><a class="waves-effect waves-light btn ModalForm__button--active modal-go-to-3">{{trans('enrollform.next')}}</a></div>
         </div>
       </div>
       <div class="ModalForm__page container col s2">
         <div class="ModalForm__header">
-          <h2 class="ModalForm__header__title"> <i class="ModalForm__header__title__icon material-icons modal-go-to-2">keyboard_backspace</i> Application for admission</h2><i data-target="modalconfirm" class="ModalForm__header__icon material-icons modal-trigger">clear</i>
+          <h2 class="ModalForm__header__title"> <i class="ModalForm__header__title__icon material-icons modal-go-to-2">keyboard_backspace</i>{{trans('enrollform.title_form')}}</h2><i data-target="modalconfirm" class="ModalForm__header__icon material-icons modal-trigger">clear</i>
         </div>
         <div class="ModalForm__pages_container row">
-          <h3 class="ModalForm__page__step">Step 3 of 5</h3>
+          <h3 class="ModalForm__page__step">{{trans('enrollform.step')}} 3 {{trans('enrollform.of')}} 5</h3>
           <h4 class="ModalForm__page__section_title">School record</h4>
           <p class="Modal_Form__page__section_subtitle">List two most recent schools attended (High School, University or Technical)</p>
           <div class="input-field col s12 m8">
@@ -224,15 +224,15 @@
             <label for="attendance-2">Attendance date finish</label>
             <input id="attendance-2" name="attendance_date_finish2" type="date" class="ModalForm__input datepicker">
           </div><i class="ModalForm__input_icon col s2 m2 material-icons">today</i>
-          <div class="ModalForm__buttons col s12 m12"><a data-target="modalconfirm" class="waves-effect waves-light btn ModalForm__button grey lighten-2 modal-trigger">cancel</a><a class="waves-effect waves-light btn ModalForm__button--active modal-go-to-4">NEXT</a></div>
+          <div class="ModalForm__buttons col s12 m12"><a data-target="modalconfirm" class="waves-effect waves-light btn ModalForm__button grey lighten-2 modal-trigger">{{trans('enrollform.cancel')}}</a><a class="waves-effect waves-light btn ModalForm__button--active modal-go-to-4">{{trans('enrollform.next')}}</a></div>
         </div>
       </div>
       <div class="ModalForm__page container col s2">
         <div class="ModalForm__header">
-          <h2 class="ModalForm__header__title"> <i class="ModalForm__header__title__icon material-icons modal-go-to-3">keyboard_backspace</i> Application for admission</h2><i data-target="modalconfirm" class="ModalForm__header__icon material-icons modal-trigger"> clear</i>
+          <h2 class="ModalForm__header__title"> <i class="ModalForm__header__title__icon material-icons modal-go-to-3">keyboard_backspace</i>{{trans('enrollform.title_form')}}</h2><i data-target="modalconfirm" class="ModalForm__header__icon material-icons modal-trigger"> clear</i>
         </div>
         <div class="ModalForm__pages_container row">
-          <h3 class="ModalForm__page__step">Step 4 of 5</h3>
+          <h3 class="ModalForm__page__step">{{trans('enrollform.step')}} 4 {{trans('enrollform.of')}} 5</h3>
           <h4 class="ModalForm__page__section_title">Student details</h4>
           <div class="input-field col s10 m8">
             <label for="startdate">Select start date</label>
@@ -298,15 +298,15 @@
             <input id="thid-ffa-medical-input" type="radio" name="ffa_medical" value="third class" class="ModalForm__input with-gap">
             <label for="thid-ffa-medical-input">Third class</label>
           </div>
-          <div class="ModalForm__buttons col s12 m12"><a data-target="modalconfirm" class="waves-effect waves-light btn ModalForm__button grey lighten-2 modal-trigger">cancel</a><a class="waves-effect waves-light btn ModalForm__button--active modal-go-to-5">NEXT</a></div>
+          <div class="ModalForm__buttons col s12 m12"><a data-target="modalconfirm" class="waves-effect waves-light btn ModalForm__button grey lighten-2 modal-trigger">{{trans('enrollform.cancel')}}</a><a class="waves-effect waves-light btn ModalForm__button--active modal-go-to-5">{{trans('enrollform.next')}}</a></div>
         </div>
       </div>
       <div class="ModalForm__page container col s2">
         <div class="ModalForm__header">
-          <h2 class="ModalForm__header__title"> <i class="ModalForm__header__title__icon material-icons modal-go-to-4">keyboard_backspace</i> Application for admission</h2><i data-target="modalconfirm" class="ModalForm__header__icon material-icons modal-trigger">clear</i>
+          <h2 class="ModalForm__header__title"> <i class="ModalForm__header__title__icon material-icons modal-go-to-4">keyboard_backspace</i>{{trans('enrollform.title_form')}}</h2><i data-target="modalconfirm" class="ModalForm__header__icon material-icons modal-trigger">clear</i>
         </div>
         <div class="ModalForm__pages_container row">
-          <h3 class="ModalForm__page__step">Step 5 of 5</h3>
+          <h3 class="ModalForm__page__step">{{trans('enrollform.step')}} 5 {{trans('enrollform.of')}} 5</h3>
           <h4 class="ModalForm__page__section_title">Authentication</h4>
           <div class="Modalform__input col s12 ModalForm__certification">
             <input id="confirmation-input" type="checkbox" name="information_application_factual" value="1" class="ModalForm__input">
@@ -326,7 +326,7 @@
             <input id="todays_date" name="todays_date" type="date" class="ModalForm__input datepicker">
           </div><i class="ModalForm__input_icon col s2 material-icons">today</i>
           <div class="ModalForm__buttons_margin col s12"></div>
-          <div class="ModalForm__buttons col s12"><a data-target="modalconfirm" class="waves-effect waves-light btn ModalForm__button grey lighten-2 modal-trigger">cancel</a>
+          <div class="ModalForm__buttons col s12"><a data-target="modalconfirm" class="waves-effect waves-light btn ModalForm__button grey lighten-2 modal-trigger">{{trans('enrollform.cancel')}}</a>
             <input type="submit" value="Submit" class="waves-effect waves-light btn ModalForm__button--active">
           </div>
         </div>
