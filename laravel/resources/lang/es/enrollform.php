@@ -40,5 +40,20 @@ return [
     'yes' => 'Si',
     'no' => 'No',
     'diploma_achieved' => 'Diploma/grado conseguido',
-    'attendance_finish' => 'Fecha de finalizaci&oacute;n de asistencia'
+    'attendance_finish' => 'Fecha de finalizaci&oacute;n de asistencia',
+    'select_start' => 'Selecciona la fecha de inicio',
+    'select_pilot' => 'Selecciona el programa',
+    'financial_aid' => '¿Solicitar&aacute;s ayuda econ&oacute;mica?',
+    'va_benefits' => '¿Eres elegible para beneficios de VA?',
+    'native_language' => '¿Ingl&eacute;s es tu idioma natal?',
+    'by_tsa' => 'Have you been convicted of a crime in the past 10 years that may
+              prevent you from passing a criminal history records check administered
+              by TSA?',
+    'flight_certificates' => 'Lista de todos los certificados de vuelo/ratings cabo',
+    'name_schools_rating' => 'Nombre de las escuelas donde fueron obtenidos los certificados',
+    'ffa_medical' => 'FFA M&eacute;dico:',
+    'none' => 'Ninguno',
+    'first_class' => 'Primera clase',
+    'second_class' => 'Segunda clase',
+    'third_class' => 'Tercera clase'
   ];

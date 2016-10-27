@@ -233,39 +233,39 @@
         </div>
         <div class="ModalForm__pages_container row">
           <h3 class="ModalForm__page__step">{{trans('enrollform.step')}} 4 {{trans('enrollform.of')}} 5</h3>
-          <h4 class="ModalForm__page__section_title">Student details</h4>
+          <h4 class="ModalForm__page__section_title">{{trans('enrollform.student_details')}}</h4>
           <div class="input-field col s10 m8">
-            <label for="startdate">Select start date</label>
+            <label for="startdate">{{trans('enrollform.select_start')}}</label>
             <input id="startdate" name="start_date" type="date" class="ModalForm__input datepicker">
           </div><i class="ModalForm__input_icon col s2 m2 material-icons">today</i>
           <div class="ModalForm__input--select input-field col s12 m8">
             <select id="pilot_program_select" name="pilot_program">
-              <option value="" selected disabled>Select pilot program</option>
+              <option value="" selected disabled>{{trans('enrollform.select_pilot')}}</option>
               <option value="1">Program 1</option>
               <option value="2">Program 2</option>
               <option value="3">Program 3</option>
             </select>
           </div>
           <div class="Modalform__input col s12 m12">
-            <p>Will you be requesting financial aid?</p>
+            <p>{{trans('enrollform.financial_aid')}}</p>
             <input id="financial-aid-input" type="radio" name="requesting_financial_aid" value="1" class="ModalForm__input with-gap">
-            <label for="financial-aid-input">Yes</label>
+            <label for="financial-aid-input">{{trans('enrollform.yes')}}</label>
             <input id="not-financial-aid-input" type="radio" name="requesting_financial_aid" value="0" class="ModalForm__input with-gap">
-            <label for="not-financial-aid-input">No</label>
+            <label for="not-financial-aid-input">{{trans('enrollform.no')}}</label>
           </div>
           <div class="Modalform__input col s12 m12">
-            <p>Are you elegible for VA Benefits?</p>
+            <p>{{trans('enrollform.va_benefits')}}</p>
             <input id="va-benefits-input" type="radio" name="elegible_va_benefits" value="1" class="ModalForm__input with-gap">
-            <label for="va-benefits-input">Yes</label>
+            <label for="va-benefits-input">{{trans('enrollform.yes')}}</label>
             <input id="not-va-benefits-input" type="radio" name="elegible_va_benefits" value="0" class="ModalForm__input with-gap">
-            <label for="not-va-benefits-input">No</label>
+            <label for="not-va-benefits-input">{{trans('enrollform.no')}}</label>
           </div>
           <div class="Modalform__input col s12 m12">
-            <p>Is english your native language?</p>
+            <p>{{trans('enrollform.native_language')}}</p>
             <input id="native-english-input" type="radio" name="english_native_language" value="1" class="ModalForm__input with-gap">
-            <label for="native-english-input">Yes</label>
+            <label for="native-english-input">{{trans('enrollform.yes')}}</label>
             <input id="not-native-english-input" type="radio" name="english_native_language" value="0" class="ModalForm__input with-gap">
-            <label for="not-native-english-input">No</label>
+            <label for="not-native-english-input">{{trans('enrollform.no')}}</label>
           </div>
           <div class="Modalform__input col s12 m12">
             <p>
@@ -275,28 +275,28 @@
               by TSA?
             </p>
             <input id="crime-input" type="radio" name="convicted_crime" value="1" class="ModalForm__input with-gap">
-            <label for="crime-input">Yes</label>
+            <label for="crime-input">{{trans('enrollform.yes')}}</label>
             <input id="not-crime-input" type="radio" name="convicted_crime" value="0" class="ModalForm__input with-gap">
-            <label for="not-crime-input">No</label>
+            <label for="not-crime-input">{{trans('enrollform.no')}}</label>
           </div>
           <div class="input-field col s12 m12">
-            <label for="flight-certificates">List all Flight Certificates/Ratings held</label>
+            <label for="flight-certificates">{{trans('enrollform.flight_certificates')}}</label>
             <input id="flight-certificates" name="flight_certificates_rating" type="text" class="ModalForm__input">
           </div>
           <div class="input-field col s12 m12">
-            <label for="rating-schools">Name of schools were rating was obtained.</label>
+            <label for="rating-schools">{{trans('enrollform.name_schools_rating')}}</label>
             <input id="rating-schools" name="schools_rating_obtained" type="text" class="ModalForm__input">
           </div>
           <div class="Modalform__input col s12 m12">
-            <p>FFA Medical:</p>
+            <p>{{trans('enrollform.ffa_medical')}}</p>
             <input id="none-ffa-medical-input" type="radio" name="ffa_medical" value="none" class="ModalForm__input with-gap">
-            <label for="none-ffa-medical-input">None</label>
+            <label for="none-ffa-medical-input">{{trans('enrollform.none')}}</label>
             <input id="first-ffa-medical-input" type="radio" name="ffa_medical" value="first class" class="ModalForm__input with-gap">
-            <label for="first-ffa-medical-input">First class</label>
+            <label for="first-ffa-medical-input">{{trans('enrollform.first_class')}}</label>
             <input id="second-ffa-medical-input" type="radio" name="ffa_medical" value="second class" class="ModalForm__input with-gap">
-            <label for="second-ffa-medical-input">Second class</label>
+            <label for="second-ffa-medical-input">{{trans('enrollform.second_class')}}</label>
             <input id="thid-ffa-medical-input" type="radio" name="ffa_medical" value="third class" class="ModalForm__input with-gap">
-            <label for="thid-ffa-medical-input">Third class</label>
+            <label for="thid-ffa-medical-input">{{trans('enrollform.third_class')}}</label>
           </div>
           <div class="ModalForm__buttons col s12 m12"><a data-target="modalconfirm" class="waves-effect waves-light btn ModalForm__button grey lighten-2 modal-trigger">{{trans('enrollform.cancel')}}</a><a class="waves-effect waves-light btn ModalForm__button--active modal-go-to-5">{{trans('enrollform.next')}}</a></div>
         </div>

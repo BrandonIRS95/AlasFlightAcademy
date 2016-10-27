@@ -40,5 +40,20 @@ return [
     'yes' => 'Yes',
     'no' => 'No',
     'diploma_achieved' => 'Diploma/Degree Achieved',
-    'attendance_finish' => 'Attendance date finish'
+    'attendance_finish' => 'Attendance date finish',
+    'select_start' => 'Select start date',
+    'select_pilot' => 'Select pilot program',
+    'financial_aid' => 'Will you be requesting financial aid?',
+    'va_benefits' => 'Are you eligible for VA Benefits?',
+    'native_language' => 'Is english your native language?',
+    'by_tsa' => 'Have you been convicted of a crime in the past 10 years that may
+              prevent you from passing a criminal history records check administered
+              by TSA?',
+    'flight_certificates' => 'List all Flight Certificates/Ratings held',
+    'name_schools_rating' => 'Name of schools were rating was obtained.',
+    'ffa_medical' => 'FFA Medical:',
+    'none' => 'None',
+    'first_class' => 'First class',
+    'second_class' => 'Second class',
+    'third_class' => 'Third class'
   ];
