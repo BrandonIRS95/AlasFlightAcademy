@@ -191,11 +191,11 @@
             }
 
             return true;
-        }, "Please enter a valid phone number.");
+        }, "{{trans('enrollform.phone_validation')}}");
 
         jQuery.validator.addMethod("nulleable", function(value, element) {
             return true;
-        }, "Please enter a valid phone number.");
+        }, "{{trans('enrollform.phone_validation')}}");
 
         $('#form-add-contact').validate({
             errorClass: "error",
@@ -249,6 +249,11 @@
                 });
             }
         });
+
+        jQuery.extend(jQuery.validator.messages, {
+        required: "{{trans('enrollform.field_required')}}",
+        email: "{{trans('enrollform.email_validation')}}"
+    });
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD3yLB8Z-4fx9RsAOJETr7CndhqHjo_za4&amp;callback=initMap"></script>
 @endsection
