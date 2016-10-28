@@ -177,13 +177,13 @@
                                       <div class='row'>
                                           <div class='col-sm-6'>
                                               <div class='form-group'>
-                                                  <label for="instructor">Instructor *</label>
+                                                  <label for="instructor">Instructor  </label>
                                                   <input class="form-control" id="flight_instructor" name="instructor" type="text" data-id="0" readonly="true"/>
                                               </div>
                                           </div>
                                           <div class='col-sm-6'>
                                               <div class='form-group'>
-                                                  <label for="airplane">Airplane *</label>
+                                                  <label for="airplane">Airplane  </label>
                                                   <input class="form-control" id="flight_airplane" name="airplane" type="text" data-id="0" readonly="true"/>
                                               </div>
                                           </div>
@@ -251,7 +251,7 @@
                                       <div class="row">
                                           <div class="col-sm-6">
                                               <div class="form-group">
-                                                  <label for="cost">Cost (USD) *</label>
+                                                  <label for="cost">Cost (USD)  </label>
                                                   <div class="input-group">
                                                       <span class="input-group-addon">$</span>
                                                       <input id="flight_cost" type="text" name="cost" class="form-control" readonly="true">
@@ -268,7 +268,7 @@
                                                   </select>
                                               </div>
                                               <div id="conteiner-cancellation-flight" class="form-group" style="display: none;">
-                                                  <label for="cancellation">Reason for cancellation *</label>
+                                                  <label for="cancellation">Reason for cancellation  </label>
                                                   <textarea id="flight_cancellation" name="cancellation" class="form-control" readonly="true"></textarea>
                                               </div>
                                               <div class="form-group" id="conteiner-booked" style="display: none;">
