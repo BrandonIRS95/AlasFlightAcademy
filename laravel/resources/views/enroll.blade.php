@@ -307,14 +307,14 @@
         </div>
         <div class="ModalForm__pages_container row">
           <h3 class="ModalForm__page__step">{{trans('enrollform.step')}} 5 {{trans('enrollform.of')}} 5</h3>
-          <h4 class="ModalForm__page__section_title">Authentication</h4>
+          <h4 class="ModalForm__page__section_title">{{trans('enrollform.authentication')}}</h4>
           <div class="Modalform__input col s12 ModalForm__certification">
             <input id="confirmation-input" type="checkbox" name="information_application_factual" value="1" class="ModalForm__input">
-            <label for="confirmation-input">I Certify that all the information entered in this application is factual.</label>
+            <label for="confirmation-input">{{trans('enrollform.app_factual')}}</label>
           </div>
           <div class="input-field file-field col s10">
             <div class="file-path-wrapper col s8 ModalForm__input_file">
-              <input type="text" name="electronic_signature" placeholder="Electronic signature" class="file-path validate">
+              <input type="text" name="electronic_signature" placeholder="{{trans('enrollform.electronic_signature')}}" class="file-path validate">
             </div>
             <!--<div class="btn grey lighten-2 col s4 m2 black-text"><span>ADD</span>
               <input type="file">
@@ -322,12 +322,12 @@
           </div>
           <input type="hidden" name="_token" value="{{ Session::token() }}">
           <div class="input-field col s6">
-            <label for="todays_date">Today's date</label>
+            <label for="todays_date">{{trans('enrollform.todays_date')}}</label>
             <input id="todays_date" name="todays_date" type="date" class="ModalForm__input datepicker">
           </div><i class="ModalForm__input_icon col s2 material-icons">today</i>
           <div class="ModalForm__buttons_margin col s12"></div>
           <div class="ModalForm__buttons col s12"><a data-target="modalconfirm" class="waves-effect waves-light btn ModalForm__button grey lighten-2 modal-trigger">{{trans('enrollform.cancel')}}</a>
-            <input type="submit" value="Submit" class="waves-effect waves-light btn ModalForm__button--active">
+            <input type="submit" value="{{trans('enrollform.submit')}}" class="waves-effect waves-light btn ModalForm__button--active">
           </div>
         </div>
       </div>
@@ -335,11 +335,11 @@
   </div>
   <div id="modalconfirm" class="modal fit-size">
     <div class="modal-content">
-      <h5>Are you sure you want to close this form? Info will be lost</h5>
+      <h5>{{trans('enrollform.title_confirm')}}</h5>
     </div>
     <div class="modal-footer col s12 ModalForm__buttons--fit">
-      <button class="waves-effect waves-light btn ModalForm__button--active modal-close">CANCEL</button>
-      <button id="modal-close-button" class="waves-effect waves-light btn ModalForm__button grey lighten-2">CLOSE</button>
+      <button class="waves-effect waves-light btn ModalForm__button--active modal-close">{{trans('enrollform.cancel')}}</button>
+      <button id="modal-close-button" class="waves-effect waves-light btn ModalForm__button grey lighten-2">{{trans('enrollform.close')}}</button>
     </div>
   </div>
 

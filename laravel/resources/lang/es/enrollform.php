@@ -55,5 +55,12 @@ return [
     'none' => 'Ninguno',
     'first_class' => 'Primera clase',
     'second_class' => 'Segunda clase',
-    'third_class' => 'Tercera clase'
+    'third_class' => 'Tercera clase',
+    'app_factual' => 'Certifico que toda la informaci&oacute;n introducida en esta solicitud est&aacute; basada en hechos.',
+    'electronic_signature' => 'Firma electr&oacute;nica',
+    'todays_date' => 'Fecha de hoy',
+    'submit' => 'Enviar',
+    'authentication' => 'Autenticaci&oacute;n',
+    'title_confirm' => '¿Est&aacute;s seguro de cerrar este formulario? La informaci&oacute;n se perder&aacute;.',
+    'close' => 'Cerrar'
   ];

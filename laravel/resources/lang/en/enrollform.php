@@ -55,5 +55,12 @@ return [
     'none' => 'None',
     'first_class' => 'First class',
     'second_class' => 'Second class',
-    'third_class' => 'Third class'
+    'third_class' => 'Third class',
+    'app_factual' => 'I Certify that all the information entered in this application is factual.',
+    'electronic_signature' => 'Electronic signature',
+    'todays_date' => 'Today\'s date',
+    'submit' => 'Submit',
+    'authentication' => 'Authentication',
+    'title_confirm' => 'Are you sure you want to close this form? Info will be lost',
+    'close' => 'Close'
   ];
