@@ -62,5 +62,12 @@ return [
     'submit' => 'Enviar',
     'authentication' => 'Autenticaci&oacute;n',
     'title_confirm' => '¿Est&aacute;s seguro de cerrar este formulario? La informaci&oacute;n se perder&aacute;.',
-    'close' => 'Cerrar'
+    'close' => 'Cerrar',
+    'you_missed' => 'Olvidaste',
+    'fields' => 'campos, por favor revisa el formulario.',
+    'admission_sent' => 'Inscripción enviada. Ahora, sigue los otros pasos para terminar tu inscripción.',
+    'error_sent' => 'Error: No pudimos enviar tu inscripción. Por favor, intenta de nuevo.',
+    'field_required' => 'Este campo es requerido.',
+    'email_validation' => 'Por favor ingresa un correo electr&oacute;nico v&aacute;lido.',
+    'phone_validation' => 'Por favor ingresa un n&uacute;mero de tel&eacute;fono v&aacute;lido.'
   ];

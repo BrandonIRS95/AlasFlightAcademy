@@ -62,5 +62,12 @@ return [
     'submit' => 'Submit',
     'authentication' => 'Authentication',
     'title_confirm' => 'Are you sure you want to close this form? Info will be lost',
-    'close' => 'Close'
+    'close' => 'Close',
+    'you_missed' => 'You missed',
+    'fields' => 'fields, please check the form again.',
+    'admission_sent' => 'Admission sent. Now follow the other steps to complete your admission.',
+    'error_sent' => 'Error: We could not send your data. Please try again.',
+    'field_required' => 'This field is required.',
+    'email_validation' => 'Please enter a valid email address.',
+    'phone_validation' => 'Please enter a valid phone number.'
   ];

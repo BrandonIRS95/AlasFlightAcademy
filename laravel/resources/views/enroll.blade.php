@@ -425,7 +425,7 @@
       }
 
       return true;
-    }, "Please enter a valid phone number.");
+    }, "{{trans('enrollform.phone_validation')}}");
 
 
     $('#pilot_program_select').change(function () {
@@ -453,7 +453,7 @@
           // 'this' refers to the form
           var errors = validator.numberOfInvalids();
           if (errors) {
-            alert('You missed ' + errors + ' fields, please check the form again.');
+            alert('{{trans('enrollform.you_missed')}} ' + errors + ' {{trans('enrollform.fields')}}');
           } else {
             $("div.error").hide();
           }
@@ -568,14 +568,19 @@
           }).done(function (response) {
             if(response.status === 0)
             {
-              alert('Admission sent. Now follow the other steps to complete your admission.');
+              alert('{{trans('enrollform.admission_sent')}}');
               closeForm();
             }
             else {
-              alert("Error: We could not send your data. Please try again.");
+              alert("{{trans('enrollform.error_sent')}}");
             }
           })
         }
     });
+
+    jQuery.extend(jQuery.validator.messages, {
+    required: "{{trans('enrollform.field_required')}}",
+    email: "{{trans('enrollform.email_validation')}}"
+});
   </script>
 @endsection
