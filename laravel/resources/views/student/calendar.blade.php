@@ -782,7 +782,7 @@
             <div id="content-modal-add-event" class="modal-content custom-modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h2 class="modal-title detail">FLIGHT TEST DETAIL</h2>
+                    <h2 class="modal-title detail">{{trans('flightform.title')}}</h2>
                     <h4><span class="span-selected-date-day-name"></span><span class="span-selected-date-month-name"></span> <span class="span-selected-date-day-number"></span>, <span class="span-selected-date-year"></span></h4>
                     <img class="modal-principal-icon" src="{{URL::to('svg/calendar/ic_airplanemode_active_white_48px.svg')}}">
                 </div>
@@ -791,7 +791,7 @@
                         <div class="row">
                             <div class='col-sm-12'>
                                 <fieldset class="form-group">
-                                    <legend>Route</legend>
+                                    <legend>{{trans('flightform.route')}}</legend>
                                     <div class='row'>
                                         <div class='col-sm-12'>
                                             <div class='form-group' style="position:relative;">
@@ -803,7 +803,7 @@
                                     <div class='row'>
                                         <div class='col-sm-12 newRoute'>
                                             <div class='form-group'>
-                                                <label for="route_description">Route description</label>
+                                                <label for="route_description"></label>
                                                 <textarea id="ta-route-description" name="route_description" type="text" class="form-control" readonly></textarea>
                                             </div>
                                         </div>
@@ -812,19 +812,19 @@
                             </div>
                         </div>
                         <fieldset class="form-group">
-                            <legend>Flight information</legend>
+                            <legend>{{trans('flightform.information')}}</legend>
                             <div class="row">
                                 <div class="col-sm-12">
                                     <div class='row'>
                                         <div class='col-sm-6'>
                                             <div class='form-group'>
-                                                <label for="instructor">Instructor</label>
+                                                <label for="instructor">{{trans('flightform.instructor')}}</label>
                                                 <input class="form-control" id="flight_instructor" name="instructor" type="text" data-id="0" readonly/>
                                             </div>
                                         </div>
                                         <div class='col-sm-6'>
                                             <div class='form-group'>
-                                                <label for="airplane">Airplane</label>
+                                                <label for="airplane">{{trans('flightform.airplane')}}</label>
                                                 <input class="form-control" id="flight_airplane" name="airplane" type="text" data-id="0" readonly/>
                                             </div>
                                         </div>
@@ -832,7 +832,7 @@
                                     <div class="row">
                                         <div class="col-sm-12">
                                             <div class="form-group">
-                                                <label for="flight_description">Description</label>
+                                                <label for="flight_description">{{trans('flightform.description')}}</label>
                                                 <textarea id="flight_description" name="flight_description" class="form-control" readonly></textarea>
                                             </div>
                                         </div>
@@ -840,10 +840,10 @@
                                     <div class='row'>
                                         <div class='col-sm-6'>
                                             <fieldset class="form-group">
-                                                <legend>Start</legend>
+                                                <legend>{{trans('flightform.start')}}</legend>
                                                 <div class="col-xs-6 nopadding-left">
                                                     <div class='form-group'>
-                                                        <label for="flight_start_hour">Hour</label>
+                                                        <label for="flight_start_hour">{{trans('flightform.hour')}}</label>
                                                         <select class="form-control" id="flight_start_hour" name="flight_start_hour" disabled="true">
                                                             @for($x =0; $x < 24; $x++)
                                                                 <option value="{{($x < 10 ? '0'.$x : $x)}}">{{($x < 10 ? '0'.$x : $x)}}</option>
@@ -853,7 +853,7 @@
                                                 </div>
                                                 <div class="col-xs-6 nopadding-right">
                                                     <div class='form-group'>
-                                                        <label for="start">Minute</label>
+                                                        <label for="start">{{trans('flightform.minute')}}</label>
                                                         <select class="form-control" id="flight_start_minute" name="start" disabled="true">
                                                             @for($x =0; $x < 60; $x+=5)
                                                                 <option value="{{($x < 10 ? '0'.$x : $x)}}">{{($x < 10 ? '0'.$x : $x)}}</option>
@@ -865,10 +865,10 @@
                                         </div>
                                         <div class='col-sm-6'>
                                             <fieldset class="form-group">
-                                                <legend>Finish</legend>
+                                                <legend>{{trans('flightform.finish')}}</legend>
                                                 <div class="col-xs-6 nopadding-left">
                                                     <div class='form-group'>
-                                                        <label for="start">Hour</label>
+                                                        <label for="start">{{trans('flightform.hour')}}</label>
                                                         <select class="form-control" id="flight_end_hour" name="start" disabled="true">
                                                             @for($x =0; $x < 24; $x++)
                                                                 <option value="{{($x < 10 ? '0'.$x : $x)}}">{{($x < 10 ? '0'.$x : $x)}}</option>
@@ -878,7 +878,7 @@
                                                 </div>
                                                 <div class="col-xs-6 nopadding-right">
                                                     <div class='form-group'>
-                                                        <label for="start">Minute</label>
+                                                        <label for="start">{{trans('flightform.minute')}}</label>
                                                         <select class="form-control" id="flight_end_minute" name="start" disabled="true">
                                                             @for($x =0; $x < 60; $x+=5)
                                                                 <option value="{{($x < 10 ? '0'.$x : $x)}}">{{($x < 10 ? '0'.$x : $x)}}</option>
@@ -892,7 +892,7 @@
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <div class="form-group">
-                                                <label for="cost">Cost (USD)</label>
+                                                <label for="cost">{{trans('flightform.cost')}} ({{trans('flightform.usd')}})</label>
                                                 <div class="input-group">
                                                     <span class="input-group-addon">$</span>
                                                     <input id="flight_cost" type="text" name="cost" class="form-control" readonly>
@@ -901,7 +901,7 @@
                                         </div>
                                         <div class="col-sm-6 detail">
                                             <div class="form-group">
-                                                <label for="status">Status</label>
+                                                <label for="status">{{trans('flightform.status')}}</label>
                                                 <select id="flight_status" name="status" class="form-control" disabled="true">
                                                     <option value="available">Available</option>
                                                     <option value="booked">Booked</option>
@@ -909,7 +909,7 @@
                                                 </select>
                                             </div>
                                             <div id="conteiner-cancellation-flight" class="form-group" style="display: none;">
-                                                <label for="cancellation">Reason for cancellation</label>
+                                                <label for="cancellation">{{trans('flightform.reason_cancellation')}}</label>
                                                 <textarea id="flight_cancellation" name="cancellation" class="form-control" readonly></textarea>
                                             </div>
                                         </div>
@@ -921,8 +921,8 @@
                     <input type="hidden" id="id-flight">
                     <input type="hidden" id="flight-option">
                     <div class="modal-footer">
-                        <button id="close-modal" type="button" class="btn btn-default custom-btn-default" data-dismiss="modal">Close</button>
-                        <button id="btnBookFlight" type="button" class="btn btn-primary custom-btn-primary">Book</button>
+                        <button id="close-modal" type="button" class="btn btn-default custom-btn-default" data-dismiss="modal">{{trans('flightform.close')}}</button>
+                        <button id="btnBookFlight" type="button" class="btn btn-primary custom-btn-primary">{{trans('flightform.book')}}</button>
                     </div>
                 </form>
             </div>
