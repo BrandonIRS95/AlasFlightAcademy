@@ -146,7 +146,7 @@ function validateForm(_step){
 			$(_boxyWrap).addClass('shake');
 			$(_boxyMessage).fadeIn('slow');
 
-			document.getElementsByName('email')[0].placeholder = 'enter your username to continue';
+			document.getElementsByName('email')[0].placeholder = 'Enter your e-mail to continue';
 
 	}else if( _boxyInput.value ){
 
