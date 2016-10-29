@@ -45,7 +45,7 @@
   </div>
   <div class="CTA_bar">
     <h3 class="CTA_bar__text">{{trans('messages.want_become_pilot')}}?</h3>
-    <button class="CTA_bar__button">{{trans('messages.apply_now')}}!</button>
+    <button onclick="window.location.href = '{{URL::to('enroll')}}'" class="CTA_bar__button">{{trans('messages.apply_now')}}!</button>
   </div>
   <div class="Landing__sections row"><a id="land-section-1" href="{{route('index')}}" class="Landing__section col l8 s12">
       <figure class="Landing__section__image_container"><img src="{{ URL::to('images/landing-become-a-pilot.jpg') }}" class="Landing__section__image">
