@@ -382,6 +382,7 @@
             margin-top: 18px;
             opacity: 0.5;
             margin-right: 20px;
+            text-align: center;
         }
 
         .event-filter img{
@@ -745,10 +746,10 @@
                 </div>
             </div>
             <div id="filtering-status" class="filtering-status">
-                <div id="selectedStatus" class="selected" data-status="null">All</div>
-                <div data-status="available">Available<span class="available">&#9679</span></div>
-                <div data-status="booked">Booked<span class="booked">&#9679</span></div>
-                <div data-status="canceled">Canceled<span class="canceled">&#9679</span></div>
+                <div id="selectedStatus" class="selected" data-status="null">{!! trans('flightform.all') !!}</div>
+                <div data-status="available">{!! trans('flightform.available') !!}<span class="available">&#9679</span></div>
+                <div data-status="booked">{!! trans('flightform.booked') !!}<span class="booked">&#9679</span></div>
+                <div data-status="canceled">{!! trans('flightform.canceled') !!}<span class="canceled">&#9679</span></div>
             </div>
             <div id="conteiner-events" class="conteiner-events" data-bind="foreach: currentEvents">
                 <div class="event" data-bind="click: $parent.showEvent">
@@ -765,11 +766,11 @@
             <div class="conteiner-event-filters">
                 <div class="event-filter" data-event="Test">
                     <img src="{{URL::to('svg/calendar/ic_content_paste_light_48px.svg')}}">
-                    <div>Tests</div>
+                    <div>{!! trans('flightform.tests') !!}</div>
                 </div>
                 <div class="event-filter" data-event="FlightTest">
                     <img src="{{URL::to('svg/calendar/ic_airplanemode_active_light_48px.svg')}}">
-                    <div>Flights</div>
+                    <div>{!! trans('flightform.flights') !!}</div>
                 </div>
                 <div id="allEvents" class="event-filter selected" data-event="null" style="display: none;">
                 </div>
@@ -903,9 +904,9 @@
                                             <div class="form-group">
                                                 <label for="status">{{trans('flightform.status')}}</label>
                                                 <select id="flight_status" name="status" class="form-control" disabled="true">
-                                                    <option value="available">Available</option>
-                                                    <option value="booked">Booked</option>
-                                                    <option value="canceled">Canceled</option>
+                                                    <option value="available">{!! trans('flightform.available') !!}</option>
+                                                    <option value="booked">{!! trans('flightform.booked') !!}</option>
+                                                    <option value="canceled">{!! trans('flightform.canceled') !!}</option>
                                                 </select>
                                             </div>
                                             <div id="conteiner-cancellation-flight" class="form-group" style="display: none;">
@@ -935,24 +936,24 @@
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <h2 class="modal-title add">ADD TEST</h2>
-                    <h2 class="modal-title detail">TEST DETAIL</h2>
+                    <h2 class="modal-title detail">{!! trans('testform.title') !!}</h2>
                     <h4><span class="span-selected-date-day-name"></span><span class="span-selected-date-month-name"></span> <span class="span-selected-date-day-number"></span>, <span class="span-selected-date-year"></span></h4>
                     <img class="modal-principal-icon" src="{{URL::to('svg/calendar/ic_content_paste_white_48px.svg')}}">
                 </div>
                 <form id="form-add-test">
                     <div class="modal-body">
                         <fieldset class="form-group">
-                            <legend>Information</legend>
+                            <legend>{!! trans('flightform.information') !!}</legend>
                             <div class="row">
                                 <div class='col-sm-6'>
                                     <div class="form-group">
-                                        <label for="subject">Subject</label>
+                                        <label for="subject">{!! trans('testform.subject') !!}</label>
                                         <input type="text" class="form-control" id="subject" name="subject" readonly>
                                     </div>
                                 </div>
                                 <div class='col-sm-6'>
                                     <div class="form-group">
-                                        <label for="test_instructor">Instructor</label>
+                                        <label for="test_instructor">{!! trans('flightform.instructor') !!}</label>
                                         <input type="text" class="form-control" id="test_instructor" name="test_instructor" readonly>
                                     </div>
                                 </div>
@@ -960,7 +961,7 @@
                             <div class="row">
                                 <div class='col-sm-12'>
                                     <div class="form-group">
-                                        <label for="test_description">Description</label>
+                                        <label for="test_description">{!! trans('flightform.description') !!}</label>
                                         <textarea class="form-control" id="test_description" name="test_description" readonly></textarea>
                                     </div>
                                 </div>
@@ -968,10 +969,10 @@
                             <div class="row">
                                 <div class="col-sm-6">
                                     <fieldset class="form-group">
-                                        <legend>Start</legend>
+                                        <legend>{!! trans('flightform.start') !!}</legend>
                                         <div class="col-xs-6 nopadding-left">
                                             <div class="form-group">
-                                                <label for="test_start_hour">Hour</label>
+                                                <label for="test_start_hour">{!! trans('flightform.hour') !!}</label>
                                                 <select name="test_start_hour" id="test_start_hour" class="form-control" disabled="true">
                                                     @for($x =0; $x < 24; $x++)
                                                         <option value="{{($x < 10 ? '0'.$x : $x)}}">{{($x < 10 ? '0'.$x : $x)}}</option>
@@ -981,7 +982,7 @@
                                         </div>
                                         <div class="col-xs-6 nopadding-right">
                                             <div class="form-group">
-                                                <label for="test_start_minute">Minute</label>
+                                                <label for="test_start_minute">{!! trans('flightform.minute') !!}</label>
                                                 <select name="test_start_minute" id="test_start_minute" class="form-control" disabled="true">
                                                     @for($x =0; $x < 60; $x+=5)
                                                         <option value="{{($x < 10 ? '0'.$x : $x)}}">{{($x < 10 ? '0'.$x : $x)}}</option>
@@ -993,10 +994,10 @@
                                 </div>
                                 <div class="col-sm-6">
                                     <fieldset class="form-group">
-                                        <legend>End</legend>
+                                        <legend>{!! trans('flightform.end') !!}</legend>
                                         <div class="col-xs-6 nopadding-left">
                                             <div class="form-group">
-                                                <label for="test_end_hour">Hour</label>
+                                                <label for="test_end_hour">{!! trans('flightform.hour') !!}</label>
                                                 <select name="test_end_hour" id="test_end_hour" class="form-control" disabled="true">
                                                     @for($x =0; $x < 24; $x++)
                                                         <option value="{{($x < 10 ? '0'.$x : $x)}}">{{($x < 10 ? '0'.$x : $x)}}</option>
@@ -1006,7 +1007,7 @@
                                         </div>
                                         <div class="col-xs-6 nopadding-right">
                                             <div class="form-group">
-                                                <label for="test_end_minute">Minute</label>
+                                                <label for="test_end_minute">{!! trans('flightform.minute') !!}</label>
                                                 <select name="test_end_minute" id="test_end_minute" class="form-control" disabled="true">
                                                     @for($x =0; $x < 60; $x+=5)
                                                         <option value="{{($x < 10 ? '0'.$x : $x)}}">{{($x < 10 ? '0'.$x : $x)}}</option>
@@ -1020,14 +1021,14 @@
                             <div class="row detail">
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <label for="test_status">Status</label>
+                                        <label for="test_status">{!! trans('flightform.status') !!}</label>
                                         <select id="test_status" name="test_status" class="form-control" disabled="true">
-                                            <option value="available">Available</option>
-                                            <option value="canceled">Canceled</option>
+                                            <option value="available">{!! trans('flightform.available') !!}</option>
+                                            <option value="canceled">{!! trans('flightform.canceled') !!}</option>
                                         </select>
                                     </div>
                                     <div id="conteiner-cancellation-test" class="form-group" style="display: none;">
-                                        <label for="cancellation">Reason for cancellation</label>
+                                        <label for="cancellation">{!! trans('flightform.reason_cancellation') !!}</label>
                                         <textarea id="test_cancellation" name="cancellation" class="form-control" readonly></textarea>
                                     </div>
                                 </div>
@@ -1037,7 +1038,7 @@
                     <input type="hidden" id="id-test">
                     <input type="hidden" id="test-option">
                     <div class="modal-footer">
-                        <button id="close-modal" type="button" class="btn btn-default custom-btn-default" data-dismiss="modal">Close</button>
+                        <button id="close-modal" type="button" class="btn btn-default custom-btn-default" data-dismiss="modal">{!! trans('flightform.close') !!}</button>
                     </div>
                 </form>
             </div>
@@ -1061,8 +1062,7 @@
         window.months = [{!!trans('calendar.months')!!}];
         window.monthabbrs = [{!!trans('calendar.monthabbrs')!!}];
         window.specialArray = [{!!trans('calendar.special')!!}];
-        window.th = '{{trans('calendar.th')}}';
-    </script>
+        window.th = '{{trans('calendar.th')}}'; </script>
     <script type="text/javascript" src="{{URL::to('js/calendar/calendario.js')}}"></script>
     {{--<script type="text/javascript" src="{{URL::to('js/calendar/jquery.jscrollpane.min.js')}}"></script>--}}
     {{--<script src="http://jscrollpane.kelvinluck.com/script/jquery.mousewheel.js"></script>--}}

@@ -17,5 +17,11 @@ return [
   'status' => 'Status',
   'reason_cancellation' => 'Reason for cancellation',
   'close' => 'Close',
-  'book' => 'Book'
+  'book' => 'Book',
+  'available' => 'Available',
+  'booked' => 'Booked',
+  'canceled' => 'Canceled',
+  'all' => 'All',
+  'flights' => 'Flights',
+  'tests' => 'Tests'
 ];

@@ -16,5 +16,11 @@ return [
   'status' => 'Estatus',
   'reason_cancellation' => 'Raz&oacute;n por la cancelaci&oacute;n',
   'close' => 'Cerrar',
-  'book' => 'Reservar'
+  'book' => 'Reservar',
+  'available' => 'Disponible',
+  'booked' => 'Reservado',
+  'canceled' => 'Cancelado',
+  'all' => 'Todo',
+  'flights' => 'Vuelos',
+  'tests' => 'Examenes'
 ];
