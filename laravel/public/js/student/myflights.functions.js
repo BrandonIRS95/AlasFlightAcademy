@@ -61,7 +61,7 @@ function CalendarViewModel() {
         $('#id-flight').val(data.eventable.id);
         $('#flight-option').val('edit');
         $('#flight_cancellation').val(data.cancellation);
-        $('#date-modal').html('Date: ' + data.getFormatDate());
+        $('#date-modal').html(dateTrans + ': ' + data.getFormatDate());
         $flightInstructor.val(data.instructorFullName());
         $flightInstructor.attr('data-id', data.instructor.id);
         $airplane.val(airplane.name);
@@ -153,6 +153,7 @@ function CalendarViewModel() {
 }
 
 function EventCalendar(data){
+    var self = this;
     this.id = data.id;
     this.date = data.date;
     this.start = data.start;
@@ -188,6 +189,11 @@ function EventCalendar(data){
     };
     this.endMinute = function () {
         return this.end.substring(3,5);
+    };
+    this.getStatus = function () {
+      var result = $.grep(statusArray, function(e){
+        return e.status === self.status; });
+      return result[0].trans;
     };
 }
 

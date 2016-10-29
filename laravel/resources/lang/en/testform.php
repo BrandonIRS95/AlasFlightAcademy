@@ -2,5 +2,6 @@
 
 return [
   'title' => 'TEST DETAIL',
-  'subject' => 'Subject'
+  'subject' => 'Subject',
+  'information' => 'Information'
 ];

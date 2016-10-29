@@ -943,7 +943,7 @@
                 <form id="form-add-test">
                     <div class="modal-body">
                         <fieldset class="form-group">
-                            <legend>{!! trans('flightform.information') !!}</legend>
+                            <legend>{!! trans('testform.information') !!}</legend>
                             <div class="row">
                                 <div class='col-sm-6'>
                                     <div class="form-group">

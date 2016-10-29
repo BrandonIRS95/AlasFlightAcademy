@@ -22,5 +22,7 @@ return [
   'canceled' => 'Cancelado',
   'all' => 'Todo',
   'flights' => 'Vuelos',
-  'tests' => 'Examenes'
+  'tests' => 'Examenes',
+  'date' => 'Fecha',
+  'time' => 'Hora'
 ];
