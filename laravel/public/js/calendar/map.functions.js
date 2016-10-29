@@ -71,11 +71,22 @@ function initMap() {
         center: {lat: 41.879, lng: -87.624}  // Center the map on Chicago, USA.
     });
 
+    var lineSymbol = {
+      path: 'M 0,-1 0,1',
+      strokeOpacity: 1,
+      strokeColor: '#1784c7',
+      strokeWeight: '30px',
+      scale: 2
+    };
+
     poly = new google.maps.Polyline({
-        strokeColor: '#000000',
-        strokeOpacity: 1.0,
-        strokeWeight: 3,
-        editable: true
+        strokeOpacity: 0,
+        editable: true,
+        icons: [{
+          icon: lineSymbol,
+          offset: '0',
+          repeat: '10px'
+        }]
     });
     poly.setMap(map);
 
