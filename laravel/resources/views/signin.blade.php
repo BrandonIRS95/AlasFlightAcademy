@@ -58,6 +58,14 @@
             padding-left: 30px;
         }
 
+        nav ul a {
+          font-size: 14px;
+        }
+
+        nav .brand-logo {
+          font-size: 32px;
+        }
+
     </style>
 @endsection
 @section('content')
