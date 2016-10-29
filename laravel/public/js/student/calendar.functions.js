@@ -42,7 +42,7 @@ function CalendarViewModel() {
         $('.detail').css('display', 'block');
         $('#conteiner-cancellation-flight').css('display', 'none');
         $('#conteiner-cancellation-test').css('display', 'none');
-        
+
         if(data.type === 'App\\FlightTest')
         {
             var $flightInstructor = $('#flight_instructor');
@@ -273,7 +273,7 @@ $(function() {
             var loadingAnimation = new loadingProcessAnimation();
 
             loadingAnimation.show(PROCESS_MESSAGE);
-            
+
             var arrayPoints = poly.getPath().getArray();
             var stringMarkers = '[';
             var stringPoints = '[';
@@ -353,7 +353,7 @@ $(function() {
             });
         }
     });
-    
+
     $('.event-filter').click(function (e) {
         var $elementClicked = $(e.currentTarget);
         if($elementClicked.attr('class') === 'event-filter selected')
@@ -446,6 +446,10 @@ $(function() {
         fillEmpty : true,
         displayWeekAbbr : true,
         events: ['click', 'focus'],
+        weeks : weeks,
+        weekabbrs : weekabbrs,
+        months : months,
+        monthabbrs : monthabbrs,
         feed: ''
     });
 
@@ -486,12 +490,11 @@ $(function() {
 
     function numberAbbs(number){
         var firstDigit = parseInt(number.charAt(number.length - 1));
-        var specialArray = ['st', 'nd', 'rd'];
         var normalArray = [4,5,6,7,8,9,0];
         var excArray = [11,12,13];
 
         if(normalArray.includes(firstDigit) || excArray.includes(parseInt(number)))
-            return number + 'th';
+            return number + th;
 
         return number + specialArray[firstDigit - 1];
 
@@ -500,7 +503,3 @@ $(function() {
 
 
 // TODO al usar el autocomplete de jquery simplemente asigno el valor seleccionado a la variable del viewmodel (en el metodo select o change de autocomplete)
-
-
-
-

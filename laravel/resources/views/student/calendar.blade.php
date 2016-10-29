@@ -1056,6 +1056,12 @@
         var urlGetEventsByDate = '{{URL::to('/')}}' + '/getEventsByDate/';
         var studentId = '{{ Auth::user()->person->student->id }}';
         var TOKEN = '{{ Session::token() }}';
+        window.weeks = [{!!trans('calendar.weeks')!!}];
+        window.weekabbrs = [{!!trans('calendar.weekabbrs')!!}];
+        window.months = [{!!trans('calendar.months')!!}];
+        window.monthabbrs = [{!!trans('calendar.monthabbrs')!!}];
+        window.specialArray = [{!!trans('calendar.special')!!}];
+        window.th = '{{trans('calendar.th')}}';
     </script>
     <script type="text/javascript" src="{{URL::to('js/calendar/calendario.js')}}"></script>
     {{--<script type="text/javascript" src="{{URL::to('js/calendar/jquery.jscrollpane.min.js')}}"></script>--}}
