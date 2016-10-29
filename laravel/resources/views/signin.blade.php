@@ -89,12 +89,12 @@
 
                         <span class="side front">
                                   <span class="glyphicon glyphicon-user" data-toggle="tooltip" title="enter your username"></span>
-                                  <input id="email"  type="input" name="email" class="rotate" placeholder="username" required />
+                                  <input id="email"  type="input" name="email" class="rotate" placeholder="{{trans('signin.email')}}" required />
                                   <button class="boxy-button next-field" data-step="0"></button>
                             </span>
                         <span class="side bottom">
                                   <span class="glyphicon glyphicon-asterisk" data-toggle="tooltip" title="enter your password"></span>
-                                  <input style="padding: 0px 0px 0px 20px;" id="password" step="2" type="password" name="password" class="rotate" placeholder="password" required />
+                                  <input style="padding: 0px 0px 0px 20px;" id="password" step="2" type="password" name="password" class="rotate" placeholder="{{trans('signin.password')}}" required />
                                   <button type="submit" class="btn-primary" data-step="1"></button>
                             </span>
 
