@@ -94,21 +94,21 @@
                     <span style="color: #fff;">Alas</span><span style="color: #abcff8;">Academy</span>
                 </div>
                 <div class="nav-section">
-                    <div class="title">Academy</div>
+                    <div class="title">{!! trans('studentdashboard.academy') !!}</div>
                     <div class="option{{ (Request::is('calendar') ? ' selected' : '') }}" onclick="window.location='{{route('calendar')}}'">
                         <div class="icon"><img src="{{URL::to('svg/admin/ic_today_black_24px.svg')}}"/></div>
-                        <div class="name">Calendar</div>
+                        <div class="name">{!! trans('studentdashboard.calendar') !!}</div>
                     </div>
                     <div class="option{{ (Request::is('myflights') ? ' selected' : '') }}" onclick="window.location='{{route('myflights')}}'">
                         <div class="icon"><img src="{{URL::to('svg/admin/ic_airplanemode_active_black_24px.svg')}}"/></div>
-                        <div class="name">My flights</div>
+                        <div class="name">{!! trans('studentdashboard.myflights') !!}</div>
                     </div>
                 </div>
 
                 <div class="nav-section">
-                    <div class="title">Action</div>
+                    <div class="title">{!! trans('studentdashboard.action') !!}</div>
                     <div class="option">
-                        <div onclick="window.location='{{route('logout')}}'" class="action-button">Logout</div>
+                        <div onclick="window.location='{{route('logout')}}'" class="action-button">{!! trans('studentdashboard.logout') !!}</div>
                     </div>
                 </div>
 
