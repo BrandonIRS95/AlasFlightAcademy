@@ -281,7 +281,7 @@
                       <input type="hidden" id="flight-option">
                       <div class="modal-footer">
                           <button id="close-modal" type="button" class="btn btn-default custom-btn-default" data-dismiss="modal">{{trans('flightform.close')}}</button>
-                          <button id="btnBookFlight" type="button" class="btn btn-primary custom-btn-primary">{{trans('flightform.book')}}</button>
+                          <button id="cancelBooking" type="button" class="btn btn-primary custom-btn-primary">{!! trans('flightform.cancel_booking') !!}</button>
                       </div>
                   </form>
               </div>

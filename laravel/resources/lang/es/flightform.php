@@ -24,5 +24,6 @@ return [
   'flights' => 'Vuelos',
   'tests' => 'Examenes',
   'date' => 'Fecha',
-  'time' => 'Hora'
+  'time' => 'Hora',
+  'cancel_booking' => 'Cancelar reservaci&oacute;n'
 ];

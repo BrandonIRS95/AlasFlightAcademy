@@ -25,5 +25,6 @@ return [
   'flights' => 'Flights',
   'tests' => 'Tests',
   'date' => 'Date',
-  'time' => 'Time'
+  'time' => 'Time',
+  'cancel_booking' => 'Cancel booking'
 ];
