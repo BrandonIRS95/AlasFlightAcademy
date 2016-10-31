@@ -14,7 +14,7 @@
                 right: 20px;
                 box-shadow: 0px 5px 5px rgba(0,0,0,0.1);
             }
-            
+
             .backgroundModalProcess {
                 z-index: 4000;
                 background: rgba(0, 0, 0, 0.62);
@@ -24,7 +24,7 @@
                 bottom: 0;
                 top: 0;
             }
-            
+
             .airplaneLoadingProcess {
                 position: absolute;
                 left: -50%;
@@ -32,7 +32,7 @@
                 width: 60px;
                 transform: rotate(45deg);
             }
-            
+
             .conteinerAirplaneLoadingProcess, .doneAirplaneLoadingProcess{
                 position: absolute;
                 width: 60px;
@@ -40,7 +40,7 @@
                 left: 50%;
                 transform: translateX(-50%);
             }
-            
+
             .doneAirplaneLoadingProcess{
                 width: 150px;
                 height: auto;
@@ -50,7 +50,7 @@
             .conteinerAirplaneLoadingProcess{
                 top: 70px;
             }
-            
+
             .textAirplaneLoadingProcess{
                 position: absolute;
                 color: white;
@@ -134,7 +134,18 @@
             </nav>
             <header id="header">
                 <div class="option">
-                    <div id="user-account-name" class="name">{{ Auth::user()->person->first_name }} {{ Auth::user()->person->last_name }}</div>
+                    <div id="user-account-name" class="name">
+                      @php
+                        $person = Auth::user()->person;
+                        if($person != null)
+                        {
+                          echo $person->first_name.' '.$person->last_name;
+                        }
+                        else {
+                          echo Auth::user()->email;
+                        }
+                      @endphp
+                  </div>
                     <div class="icon"><img src="{{URL::to('svg/admin/ic_account_circle_black_24px.svg')}}"></div>
                 </div>
             </header>
@@ -159,4 +170,3 @@
         @yield('javascript')
     </body>
 </html>
-
