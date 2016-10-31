@@ -127,7 +127,7 @@ Route::get('/myflights', [
 /////////////////yisus
 # User Management
 
-Route::get('/userCrud', [
+Route::get('/indexCrud', [
     'uses' => 'UserController@getCrudView',
     'as' => 'userCrud',
     'middleware' => 'auth'
@@ -137,8 +137,8 @@ Route::get('/indexCrud', [
     'as' => 'indexCrud',
     'middleware' => 'auth'
 ]);
-Route::post('/userCrud', [
-    'uses' => 'UserController@postCrearNuevaPersona',
+Route::post('/indexCrud', [
+    'uses' => 'UserController@crearNuevoUsuario',
     'as' => 'userCrud'
 ]);
 ///////////////////////

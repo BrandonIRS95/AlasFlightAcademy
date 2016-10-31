@@ -19,10 +19,8 @@
     <script src="{{ asset('/js/jquery-ui.min.js') }}" ></script>
     <script src="{{ asset('/js/moment.min.js') }}" ></script>
     <script src="{{ asset('/js/jasny-bootstrap.js') }}"  type="text/javascript"></script>
-    <script src="{{ asset('/js/select2.js') }}" type="text/javascript"></script>
     <script src="{{ asset('/js/jquery.bootstrap.wizard.js') }}" type="text/javascript"></script>
     <script src="{{ asset('/js/bootstrapValidator.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('/js/adduser.js') }}"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.9/js/bootstrap.min.js"></script>
     <section class="content-header">
         <h1>Add New User</h1>
@@ -34,7 +32,7 @@
             <li >Add New User</li>
         </ol>
     </section>
-    <section class="content">
+    <section class="content" style="width:95%;margin-left: 2.5%;">
         <div class="row">
             <div class="col-md-12">
                 <div class="panel panel-primary">
@@ -54,86 +52,34 @@
                             <!-- CSRF Token -->
                             <input  type="hidden" name="_token" value="{{ Session::token() }}">
                             <div id="rootwizard">
-                            <h3><a href="#tab1" data-toggle="tab">User Profile</a></h3>
+                            <h3><a href="#tab1"  selected data-toggle="tab">User Profile</a></h3>
                                 <div class="tab-content" id="btn">
                                     <div class="tab-pane" id="tab1">
                                         <h2 class="hidden">&nbsp;</h2>
                                         <div class="form-group">
-                                            <label for="first_name" class="col-sm-2 control-label">First Name *</label>
-                                            <div class="col-sm-10">
-                                                <input id="first_name" name="first_name" type="text"
-                                                       placeholder="First Name" class="form-control required"
-                                                       value="{!! old('first_name') !!}"/>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="last_name" class="col-sm-2 control-label">Last Name *</label>
-                                            <div class="col-sm-10">
-                                                <input id="last_name" name="last_name" type="text" placeholder="Last Name"
-                                                       class="form-control required" value="{!! old('last_name') !!}"/>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
                                             <label for="email" class="col-sm-2 control-label">Email *</label>
                                             <div class="col-sm-10">
-                                                <input id="email" name="email" placeholder="E-Mail" type="text"
+                                                <input id="email" onchange="avilitarSubmit()" name="email" placeholder="E-Mail" type="text"
                                                        class="form-control required email" value="{!! old('email') !!}"/>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="password" class="col-sm-2 control-label">Password *</label>
                                             <div class="col-sm-10">
-                                                <input id="password" name="password" type="password" placeholder="Password"
+                                                <input id="password" onchange="avilitarSubmit()" name="password" type="password" placeholder="Password"
                                                        class="form-control required" value="{!! old('password') !!}"/>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="password_confirm" class="col-sm-2 control-label">Confirm Password *</label>
                                             <div class="col-sm-10">
-                                                <input id="password_confirm" name="password_confirm" type="password"
+                                                <input id="password_confirm" onchange="avilitarSubmit()" name="password_confirm" type="password"
                                                        placeholder="Confirm Password " class="form-control required"
                                                        value="{!! old('password_confirm') !!}"/>
                                             </div>
                                         </div>
-                                        <div class="form-group required">
-                                            <label for="dob" class="col-sm-2 control-label">Date of Birth</label>
-                                            <div class="col-sm-10">
-                                                <input type="text" class="form-control" name="datepicker" id="datepicker" placeholder="yyyy-mm-dd" data-date-format="YYYY-MM-DD" />
-                                            </div>
-                                            <span class="help-block">{{ $errors->first('dob', ':message') }}</span>
-                                            </div>
-                                        <div class="form-group {{ $errors->first('gender', 'has-error') }}">
-                                            <label for="email" class="col-sm-2 control-label">Gender</label>
-                                            <div class="col-sm-10">
-                                                <select id="gender" class="form-control" title="Select Gender..." name="gender">
-                                                    <option value="">Select</option>
-                                                    <option value="male"
-                                                            @if(old('gender') === 'male') selected="selected" @endif >MALE
-                                                    </option>
-                                                    <option value="female"
-                                                            @if(old('gender') === 'female') selected="selected" @endif >
-                                                        FEMALE
-                                                    </option>
-                                                    <option value="other"
-                                                            @if(old('gender') === 'other') selected="selected" @endif >OTHER
-                                                    </option>
-                                                </select>
-                                            </div>
-                                            <span class="help-block">{{ $errors->first('gender', ':message') }}</span>
-                                        </div>
                                         <p class="text-danger"><strong>Be careful with group selection, if you give admin access.. they can access admin section</strong></p>
-                                        <div class="form-group required">
-                                            <label for="group" class="col-sm-2 control-label">Group *</label>
-                                            <div class="col-sm-10">
-                                                <select onchange="avilitarSubmit()" class="form-control required" title="Select group..." name="group"
-                                                        id="group">
-                                                    <option value="">Select</option>
-                                                    <option value="3">Instructor</option>
-                                                    <option value="1">Admin</option>
-                                                </select>
-                                            </div>
-                                            <span class="help-block">{{ $errors->first('group', ':message') }}</span>
-                                        </div>
+                                        <button id="btnSubmit"  disabled class="btn pull-right">Submit</button>
                                         <!-- Modal -->
                                         <div id="myModal" class="modal fade" role="dialog">
                                             <div class="modal-dialog">
@@ -153,24 +99,22 @@
 
                                             </div>
                                         </div>
+
                                     </div>
                                     <script>
                                         function avilitarSubmit() {
-                                            var n1 = document.getElementById("first_name").value;
-                                            var n = document.getElementById("group").value;
-                                            var div = document.getElementById("btn");
-                                            var btn = document.createElement("button");
-                                            btn.setAttribute("id","btnSubmit");
-                                            btn.setAttribute("type", "button");
-                                            btn.setAttribute("class", "btn btn-info pull-right");
-                                            btn.setAttribute("data-toggle","modal");
-                                            btn.setAttribute("data-target","#myModal");
-                                            btn.innerHTML = "Submit";
-                                              if (n == 1 || n == 3 ) {
-                                                if(n1 != "")
-                                                {
-                                                    div.appendChild(btn);
-                                                }
+                                            var email = document.getElementById("email").value;
+                                            var password = document.getElementById("password").value;
+                                            var passwordL = document.getElementById("password_confirm").value;
+
+                                            var btn = document.getElementById("btnSubmit");
+                                            if(email != "" && password != "" && passwordL != "") {
+                                                btn.setAttribute('class','btn btn-info pull-right');
+                                                btn.setAttribute("data-toggle", "modal");
+                                                btn.setAttribute("data-target", "#myModal");
+                                                btn.disabled=false;
+                                            }else{
+                                                btn.disabled=true;
                                             }
                                         }
                                         $("#datepicker").datepicker({
