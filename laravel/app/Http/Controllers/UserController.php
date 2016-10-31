@@ -123,30 +123,18 @@ class UserController extends Controller
             return redirect()->route('index');
 
     }
-    public function postCrearNuevaPersona(Request $request){
+    public function crearNuevoUsuario(Request $request){
 
-        $person = new Person();
-
-        $person->first_name = $request->input("first_name");
-        $person->last_name = $request->input("last_name");
-        $person->date_of_birth = $request->input("dob");
-        $person->gender = $request["gender"];
-        $person->city_country_of_birth = "";
-
-        if($person->save()) {
-           //crearNuevoUsuario($request->input("password"),$request->input("email"),6);
-            return redirect()->back();
-        }
-    }
-    public function crearNuevoUsuario($password,$typeUserId,$email,$personId)
-    {
         $user = new User();
 
-        $user->password = $password;
+        $user->password = bcrypt($request['password_confirm']);
         $user->status=0;
-        $user->type_of_user_id = $typeUserId;
-        $user->email = $email;
-        $user->person_id = $personId;
+        $user->type_of_user_id = 1;
+        $user->email = $request['email'];
+
+        if($user->save()) {
+            return redirect()->back();
+        }
     }
     public function getIndexCrud()
     {
