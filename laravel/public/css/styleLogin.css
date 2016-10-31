@@ -1,23 +1,4 @@
 
-body #r8-logo-coin {
-  width: 110px;
-  height: 110px;
-  display: block;
-  margin: 15px;
-  position: absolute;
-  bottom: 15px;
-  right: 15px;
-  border: none;
-  outline: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
-  -moz-user-select: none;
-  -o-user-select: none;
-  user-select: none;
- }
-#wrapper {
-  min-height: 500px;
-}
 
 #boxy-login-wrapper {
   width: 31.5em;

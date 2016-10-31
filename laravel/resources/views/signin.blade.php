@@ -2,9 +2,6 @@
 
 @section('individual-styles')
         <meta charset="UTF-8">
-        <title>boxy-login</title>
-        <script src="http://s.codepen.io/assets/libs/modernizr.js" type="text/javascript"></script>
-        <link rel='stylesheet prefetch' href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css'>
         <link rel='stylesheet prefetch' href='https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css'>
         <link rel="stylesheet" href="css/styleLogin.css">
     <!-- Latest compiled and minified CSS -->
@@ -83,8 +80,6 @@
         <div class="cloud x6"></div>
         <div class="cloud x7"></div>
     </div>-->
-    <div id="wrapper">
-
         <div id="boxy-login-wrapper">
 
             <form id="boxy-login-form" name="boxy-login-form" action="{{route('signin')}}" method="POST">
@@ -110,7 +105,6 @@
                 </fieldset>
             </form>
         </div>
-    </div>
 @endsection
 @section('javascript-functions')
     <script src="{{URL::to('js/jquery-migrate-1.4.1.min.js')}}"></script>
