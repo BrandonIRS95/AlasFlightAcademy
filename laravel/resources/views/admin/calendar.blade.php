@@ -515,7 +515,7 @@
                 color: #FFF;
             }
 
-            #map{
+            #map, #conteiner-weather{
                 width: 100%;
                 height: 270px;
             }
@@ -531,7 +531,7 @@
                 resize: vertical;
             }
 
-            #add-marker-btn{
+            #add-marker-btn, #show-weather-btn, #close-btn{
                 position: absolute;
                 top: 10px;
                 left: 140px;
@@ -540,6 +540,20 @@
                 border-radius: 3px;
                 box-shadow: 0px 2px 2px rgba(0,0,0,0.2);
                 cursor: pointer;
+            }
+
+            #show-weather-btn{
+              left: 190px;
+            }
+
+            #show-weather-btn img{
+              width: 24px;
+            }
+
+            #close-btn {
+              right: 10px;
+              top: 10px;
+              left: auto;
             }
 
             #modalAddFlight fieldset legend, #modalAddTest fieldset legend{
@@ -696,6 +710,64 @@
                 margin-left: 0;
             }
 
+            /*ANIMATION WEATHER*/
+
+            #conteiner-weather{
+              background: linear-gradient(#01A9DB, #81DAF5);
+              position: absolute;
+              bottom: -100%;
+              z-index: 1;
+              overflow: hidden;
+            }
+
+            #plane-svg, #cloud1, #cloud2, #cloud3, #cloud4, #cloud5, #cloud6 {
+            	position: absolute;
+            }
+
+            #plane-svg {
+            	width: 60%;
+              left: 50%;
+              top: 130px;
+              transform: translateX(-50%);
+
+            }
+
+            #cloud1 {
+              width: 300px;
+              bottom: -5px;
+              left: 200px;
+            }
+
+            #cloud2 {
+              width: 200px;
+              bottom: -4px;
+              right: -10px;
+            }
+
+            #cloud3 {
+              width: 250px;
+              bottom: 0px;
+              left: 50px;
+            }
+
+            #cloud4 {
+              width: 180px;
+              bottom: -5px;
+              left: -5px;
+            }
+
+            #cloud5 {
+              width: 180px;
+              bottom: 0px;
+              right: -5px;
+            }
+
+            #cloud6 {
+              width: 250px;
+              bottom: -50px;
+              right: 190px;
+            }
+
 
             @media (max-width: 412px) {
                 #cancel-new-route {
@@ -809,10 +881,19 @@
                                         <div class='row'>
                                             <div class='col-sm-12'>
                                                 <label class="newRoute">Draw the route</label>
-                                                <div class='form-group' style="position:relative;">
+                                                <div class='form-group' style="position:relative; overflow-y: hidden;">
                                                     <div id="map"></div>
+                                                    <div id="conteiner-weather">
+                                                      <div id="close-btn">
+                                                          <img src="{{URL::to('svg/ic_close_black_24px.svg')}}">
+
+                                                      </div>
+                                                    </div>
                                                     <div id="add-marker-btn">
                                                         <img src="{{URL::to('svg/calendar/ic_add_location_black_24px.svg')}}">
+                                                    </div>
+                                                    <div id="show-weather-btn">
+                                                        <img src="{{URL::to('svg/calendar/2.svg')}}">
                                                     </div>
                                                     <input type="hidden" name="coordinates" id="coordinates">
                                                 </div>
