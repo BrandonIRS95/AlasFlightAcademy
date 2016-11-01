@@ -727,9 +727,8 @@
             #plane-svg {
             	width: 60%;
               left: 50%;
-              top: 130px;
+              bottom: 40px;
               transform: translateX(-50%);
-
             }
 
             #cloud1 {
