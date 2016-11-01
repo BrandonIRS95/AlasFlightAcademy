@@ -3,6 +3,7 @@
 @section('individual-styles')
         <link rel="stylesheet" type="text/css" href="{{URL::to('css/calendar/calendar.css')}}" />
         <link rel="stylesheet" type="text/css" href="{{URL::to('css/calendar/custom_1.css')}}" />
+        <link rel="stylesheet" type="text/css" href="{{URL::to('css/calendar/weather.css')}}" />
         {{--<link rel="stylesheet" type="text/css" href="{{URL::to('css/calendar/jquery.jscrollpane.css')}}" />--}}
         <link rel="stylesheet" type="text/css" href="{{URL::to('css/jquery-ui.min.css')}}" />
         <script src="{{URL::to('js/calendar/modernizr.custom.63321.js')}}"></script>
@@ -818,8 +819,17 @@
                                         <div class='row'>
                                             <div class='col-sm-12'>
                                                 <label class="newRoute">Draw the route</label>
-                                                <div class='form-group' style="position:relative;">
+                                                <div class='form-group' style="position:relative; overflow: hidden;">
                                                     <div id="map"></div>
+                                                    <div id="conteiner-weather">
+                                                      <div id="close-btn">
+                                                          <img src="{{URL::to('svg/ic_close_black_24px.svg')}}">
+
+                                                      </div>
+                                                    </div>
+                                                    <div id="show-weather-btn">
+                                                        <img src="{{URL::to('svg/calendar/2.svg')}}">
+                                                    </div>
                                                     <div id="add-marker-btn">
                                                         <img src="{{URL::to('svg/calendar/ic_add_location_black_24px.svg')}}">
                                                     </div>
@@ -1096,6 +1106,7 @@
         <script type="text/javascript" src="{{URL::to('js/calendar/date.js')}}"></script>
         <script type="text/javascript" src="{{URL::to('js/calendar/map.functions.js')}}"></script>
         <script type="text/javascript" src="{{URL::to('js/instructor/calendar.functions.js')}}"> </script>
+        <script type="text/javascript" src="{{URL::to('js/calendar/weather.js')}}"> </script>
         <script
                 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD6KW7B-xPGNZIpgADTsdMfmhv0Yap_BeM&signed_in=true&libraries=drawing&callback=initMap">
         </script>

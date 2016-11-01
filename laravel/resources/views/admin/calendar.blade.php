@@ -5,6 +5,7 @@
         <link rel="stylesheet" type="text/css" href="{{URL::to('css/calendar/custom_1.css')}}" />
         {{--<link rel="stylesheet" type="text/css" href="{{URL::to('css/calendar/jquery.jscrollpane.css')}}" />--}}
         <link rel="stylesheet" type="text/css" href="{{URL::to('css/jquery-ui.min.css')}}" />
+        <link rel="stylesheet" type="text/css" href="{{URL::to('css/calendar/weather.css')}}" />
         <script src="{{URL::to('js/calendar/modernizr.custom.63321.js')}}"></script>
         <!-- Calendar -->
         <style>
@@ -515,7 +516,7 @@
                 color: #FFF;
             }
 
-            #map, #conteiner-weather{
+            #map{
                 width: 100%;
                 height: 270px;
             }
@@ -531,7 +532,7 @@
                 resize: vertical;
             }
 
-            #add-marker-btn, #show-weather-btn, #close-btn{
+            #add-marker-btn{
                 position: absolute;
                 top: 10px;
                 left: 140px;
@@ -540,20 +541,6 @@
                 border-radius: 3px;
                 box-shadow: 0px 2px 2px rgba(0,0,0,0.2);
                 cursor: pointer;
-            }
-
-            #show-weather-btn{
-              left: 190px;
-            }
-
-            #show-weather-btn img{
-              width: 24px;
-            }
-
-            #close-btn {
-              right: 10px;
-              top: 10px;
-              left: auto;
             }
 
             #modalAddFlight fieldset legend, #modalAddTest fieldset legend{
@@ -708,63 +695,6 @@
             #conteiner-calendar-options img:nth-child(1)
             {
                 margin-left: 0;
-            }
-
-            /*ANIMATION WEATHER*/
-
-            #conteiner-weather{
-              background: linear-gradient(#01A9DB, #81DAF5);
-              position: absolute;
-              bottom: -100%;
-              z-index: 1;
-              overflow: hidden;
-            }
-
-            #plane-svg, #cloud1, #cloud2, #cloud3, #cloud4, #cloud5, #cloud6 {
-            	position: absolute;
-            }
-
-            #plane-svg {
-            	width: 60%;
-              left: 50%;
-              bottom: 40px;
-              transform: translateX(-50%);
-            }
-
-            #cloud1 {
-              width: 300px;
-              bottom: -5px;
-              left: 200px;
-            }
-
-            #cloud2 {
-              width: 200px;
-              bottom: -4px;
-              right: -10px;
-            }
-
-            #cloud3 {
-              width: 250px;
-              bottom: 0px;
-              left: 50px;
-            }
-
-            #cloud4 {
-              width: 180px;
-              bottom: -5px;
-              left: -5px;
-            }
-
-            #cloud5 {
-              width: 180px;
-              bottom: 0px;
-              right: -5px;
-            }
-
-            #cloud6 {
-              width: 250px;
-              bottom: -50px;
-              right: 190px;
             }
 
 
@@ -1179,6 +1109,7 @@
         <script type="text/javascript" src="{{URL::to('js/calendar/date.js')}}"></script>
         <script type="text/javascript" src="{{URL::to('js/calendar/map.functions.js')}}"></script>
         <script type="text/javascript" src="{{URL::to('js/calendar/calendar.functions.js')}}"> </script>
+        <script type="text/javascript" src="{{URL::to('js/calendar/weather.js')}}"> </script>
         <script
                 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD6KW7B-xPGNZIpgADTsdMfmhv0Yap_BeM&signed_in=true&libraries=drawing&callback=initMap">
         </script>
