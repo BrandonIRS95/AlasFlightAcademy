@@ -2,6 +2,7 @@
 
 @section('individual-styles')
   <link rel="stylesheet" href="{{ URL::to('css/landing-page.css') }}">
+  <link rel="stylesheet" href="{{ URL::to('css/etiquetas.css') }}">
   <style>
     .content_flags {
       position: absolute;
@@ -28,14 +29,17 @@
 @endsection
 
 @section('content')
-  <div class="content_flags">
-    <a href="{{url('/changeLanguage?lang=es')}}"><img src="{{URL::to('images\flags\Spain.png')}}" alt="Español" title="Español" data-id="es"/></a>
-    <a href="{{url('/changeLanguage?lang=en')}}"><img src="{{URL::to('images\flags\United States of America(USA).png')}}" alt="English" title="English" data-id="en"/></a>
+  <div class="content_flags" id="image">
+    <img  class="imgEtiqueta" src="./images/galones-pilotos-aviacion-comercial-T-xzuXZ8.png"  />
+        <h2>
+          <a href="{{url('/changeLanguage?lang=es')}}"><img style="width: 35%;margin-top: 30px;" src="{{URL::to('images\flags\Spain.png')}}" alt="Español" title="Español" data-id="es"/></a>
+          <a href="{{url('/changeLanguage?lang=en')}}"><img style="position:absolute;width:35%;top:60px;left:0px;" src="{{URL::to('images\flags\United States of America(USA).png')}}" alt="English" title="English" data-id="en"/></a>
+        </h2>
   </div>
   <div id="parent-video"  class="Page__header--landing Page__header parallax-container">
     <div class="parallax" id="header-video">
-      <video id="alas-video" width="100%" autoplay loop>
-        <source src="{{URL::to('videos/alasvideo.mp4')}}" type="video/mp4">
+      <video id="alas-video" width="100%" autoplay loop muted=>
+        <source src="{{URL::to('videos/alasvideo.mp4')}}" type="video/mp4" muted>
         Your browser does not support the video tag.
       </video>
       <div style="clear: both"></div>
@@ -122,5 +126,19 @@
         $("#header-video, #parent-video").height(620);
       }
     }
+    $('#image').mouseover(function () {
+      var a = $('#image').css("top");
+      //if(a == "-50px") {
+        $('#image').css("top", "0px");
+      //}else{$('#image').css("top", "-50px");}
+    });
+    $('#image').click(function () {
+      var a = $('#image').css("top");
+      if(a == "-50px") {
+      $('#image').css("top", "0px");
+      }else{$('#image').css("top", "-50px");}
+    });
+
+
   </script>
 @endsection
