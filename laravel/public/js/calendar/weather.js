@@ -29,6 +29,11 @@ $('#show-weather-btn').click(function () {
         $summary.html(currently.summary);
         $('#imgSummary').attr('src', urlSvgCalendar + icon + '.svg');
         if(icon === 'clear-day') $conteiner.css('background', 'linear-gradient(#01A9DB, #81DAF5)');
+        if(icon === 'clear-night') {
+            $conteiner.css('background', 'linear-gradient(#210B61, #0489B1)');
+            $('.weather').remove();
+            $('.plane').css('filter', 'brightness(0.6) saturate(3) hue-rotate(360deg) opacity(1) brightness(1) contrast(1.4)');
+        }
         if(icon === 'partly-cloudy-night') {
             $conteiner.css('background', 'linear-gradient(#210B61, #0489B1)');
             $('.weather').css('filter', 'brightness(0.5) saturate(10) hue-rotate(360deg) opacity(0.5) brightness(1) contrast(1)');
