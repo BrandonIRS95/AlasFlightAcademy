@@ -32,8 +32,7 @@
                 </div>
                 <br />
                 <div class="panel-body">
-                    <form id="commentForm"   method="POST" role="form"
-                          enctype="multipart/form-data" class="form-horizontal">
+                    <form id="commentForm" class="form-horizontal">
                         <!-- CSRF Token -->
                         <input  type="hidden" name="_token" value="{{ Session::token() }}">
                             <h3><a class="btn btn-info" href="#tab1"  id="a" selected data-toggle="tab">Add New User</a></h3>
@@ -66,10 +65,8 @@
                                     <button id="btnSubmit"  disabled class="btn pull-right btn-primary">Submit</button>
                                     <div type="button" id="btnCancel" class="pull-right btn btn-danger" style="margin-right:15px;">Cancel</div>
                                     <!-- Modal -->
-                                    <div id="myModal" class="modal fade" role="dialog">
+                                    <!--<div id="myModal" class="modal fade" role="dialog">
                                         <div class="modal-dialog">
-
-                                            <!-- Modal content-->
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -83,7 +80,7 @@
                                             </div>
 
                                         </div>
-                                    </div>
+                                    </div>-->
 
                                 </div>
                             </div>
@@ -134,6 +131,8 @@
         <!--row end-->
     @endsection
 @section('javascript')
+    <script type="text/javascript" src="{{URL::to('js/jquery.validate.js')}}"></script>
+    <script type="text/javascript" src="{{URL::to('js/additional-methods.js')}}"></script>
   <script>
 
       function changeStatus(id)
@@ -159,6 +158,27 @@
       $('#a').click(function () {
           $("#DivNewUser").slideDown();
       });
+
+      $('#commentForm').validate({
+          submitHandler: function (form) {
+
+              var loadAnim = new loadingProcessAnimation();
+
+              loadAnim.show('Adding user');
+
+              var data = $(form).serialize();
+              $.ajax({
+                  url: window.location.href,
+                  method: "POST",
+                  data: data
+              }).done(function (response) {
+                  loadAnim.done('User added succesfully!', function () {
+                      $('#email, #password, #password_confirm').val('');
+                  });
+              });
+          }
+      });
+
       function avilitarSubmit() {
           var email = document.getElementById("email").value;
           var password = document.getElementById("password").value;

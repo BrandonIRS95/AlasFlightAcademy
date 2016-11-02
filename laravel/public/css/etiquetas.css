@@ -1,0 +1,15 @@
+#image {
+    position: absolute;
+    width: 5%; /* for IE 6 */
+    top:-50px;
+    left:1270px;
+}
+.imgEtiqueta{
+    width:80%;transform: rotate(180deg);
+}
+h2 {
+    position: absolute;
+    top: -30px;
+    left: 15px;
+    width: 100%;
+}

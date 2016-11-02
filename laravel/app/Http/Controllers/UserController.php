@@ -134,7 +134,7 @@ class UserController extends Controller
         $user->email = $request['email'];
 
         if($user->save()) {
-            return redirect()->back();
+            return response()->json(['message' => 'User added succesfully', 'status' => '0'], 200);
         }
     }
     public function getIndexCrud()
