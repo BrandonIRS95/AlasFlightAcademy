@@ -84,3 +84,37 @@
   bottom: -50px;
   right: 190px;
 }
+
+#content-weather{
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    width: 90%;
+}
+
+.temperature{
+    font-size:20px;
+}
+
+.prop-weather{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 20px;
+    font-size:16px;
+    text-shadow: 0px 2px rgba(0,0,0,0.2);
+    margin-bottom:8px;
+    position: relative;
+    float: left;
+    margin-right: 30px;
+}
+
+.prop-weather span {
+    margin-left: 10px;
+}
+
+.prop-weather .icon {
+    width: 20px;
+    -webkit-filter: drop-shadow(0px 2px 0px rgba(0,0,0,0.2));
+    filter: drop-shadow(0px 2px 0px rgba(0,0,0,0.2));
+}

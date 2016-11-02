@@ -798,15 +798,7 @@
                                         <div class='col-sm-12'>
                                             <div class='form-group' style="position:relative; overflow: hidden;">
                                                 <div id="map"></div>
-                                                <div id="conteiner-weather">
-                                                  <div id="close-btn">
-                                                      <img src="{{URL::to('svg/ic_close_black_24px.svg')}}">
-
-                                                  </div>
-                                                </div>
-                                                <div id="show-weather-btn">
-                                                    <img src="{{URL::to('svg/calendar/2.svg')}}">
-                                                </div>
+                                                @include('includes.weather')
                                                 <input type="hidden" name="coordinates" id="coordinates">
                                             </div>
                                         </div>

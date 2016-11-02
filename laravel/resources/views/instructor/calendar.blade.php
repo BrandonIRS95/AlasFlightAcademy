@@ -821,15 +821,7 @@
                                                 <label class="newRoute">Draw the route</label>
                                                 <div class='form-group' style="position:relative; overflow: hidden;">
                                                     <div id="map"></div>
-                                                    <div id="conteiner-weather">
-                                                      <div id="close-btn">
-                                                          <img src="{{URL::to('svg/ic_close_black_24px.svg')}}">
-
-                                                      </div>
-                                                    </div>
-                                                    <div id="show-weather-btn">
-                                                        <img src="{{URL::to('svg/calendar/2.svg')}}">
-                                                    </div>
+                                                    @include('includes.weather')
                                                     <div id="add-marker-btn">
                                                         <img src="{{URL::to('svg/calendar/ic_add_location_black_24px.svg')}}">
                                                     </div>
