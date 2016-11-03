@@ -1073,9 +1073,9 @@
     <script type="text/javascript" src="{{URL::to('js/additional-methods.js')}}"></script>
     <script type="text/javascript" src="{{URL::to('js/knockout-3.4.0.js')}}"></script>
     <script type="text/javascript" src="{{URL::to('js/calendar/date.js')}}"></script>
+    <script type="text/javascript" src="{{URL::to('js/calendar/weather.js')}}"> </script>
     <script type="text/javascript" src="{{URL::to('js/calendar/map.functions.js')}}"></script>
     <script type="text/javascript" src="{{URL::to('js/student/calendar.functions.js')}}"> </script>
-    <script type="text/javascript" src="{{URL::to('js/calendar/weather.js')}}"> </script>
     <script
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD6KW7B-xPGNZIpgADTsdMfmhv0Yap_BeM&signed_in=true&libraries=drawing&callback=initMap">
     </script>

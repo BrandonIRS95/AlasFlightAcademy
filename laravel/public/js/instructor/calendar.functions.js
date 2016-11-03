@@ -166,6 +166,7 @@ function CalendarViewModel() {
                 $('#route-name-error').remove();
                 $('.newRoute').css('display','none');
                 $('.noNewRoute').css('display','block');
+                hideWeather();
             });
         }
         if (data.type === 'App\\Test')
@@ -372,6 +373,7 @@ $(function() {
                     loadingAnimation.done(DONE_MESSAGE, function () {
                         $('#modalAddFlight').modal('hide');
                         $submitButton.prop('disabled', false);
+                        hideWeather();
                     });
                 }
             });
