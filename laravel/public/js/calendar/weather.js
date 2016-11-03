@@ -27,7 +27,11 @@ $('#show-weather-btn').click(function () {
         $wind.html(currently.windSpeed + ' MPH');
         $summary.html(currently.summary);
         $('#imgSummary').attr('src', urlSvgCalendar + icon + '.svg');
-        if(icon === 'clear-day') $conteiner.css('background', 'linear-gradient(#01A9DB, #81DAF5)');
+        if(icon === 'clear-day') {
+            $conteiner.css('background', 'linear-gradient(#01A9DB, #81DAF5)');
+            $('.weather').remove();
+            $conteiner.append($('<div>', {class: 'sun'}));
+        }
         if(icon === 'clear-night') {
             $conteiner.css('background', 'linear-gradient(#0B0B3B, #0B2161)');
             $('.weather').remove();
@@ -68,6 +72,10 @@ $('#show-weather-btn').click(function () {
 });
 
 $(document).on('click', '#close-btn', function () {
+    hideWeather();
+});
+
+function hideWeather() {
     var $conteiner = $('#conteiner-weather');
     var $btn = $('#close-btn');
     TweenMax.to($conteiner, 0.4, {top: '100%', onComplete: function () {
@@ -75,5 +83,5 @@ $(document).on('click', '#close-btn', function () {
         $('#conteiner-weather').empty().append([$content, $btn]);
 
     }});
-});
+}
 
