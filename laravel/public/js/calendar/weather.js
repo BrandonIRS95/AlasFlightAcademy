@@ -21,7 +21,6 @@ $('#show-weather-btn').click(function () {
         var $summary = $('#summary');
         var tempFormat = '';
         var icon = currently.icon;
-        var container = $('#conteiner-weather');
         var c = (currently.temperature - 32) / 1.8;
         tempFormat = c.toFixed(0) + ' &deg;C | ' + currently.temperature.toFixed(0) + ' &deg;F';
         $temp.html(tempFormat);
@@ -30,14 +29,24 @@ $('#show-weather-btn').click(function () {
         $('#imgSummary').attr('src', urlSvgCalendar + icon + '.svg');
         if(icon === 'clear-day') $conteiner.css('background', 'linear-gradient(#01A9DB, #81DAF5)');
         if(icon === 'clear-night') {
-            $conteiner.css('background', 'linear-gradient(#210B61, #0489B1)');
+            $conteiner.css('background', 'linear-gradient(#0B0B3B, #0B2161)');
             $('.weather').remove();
             $('.plane').css('filter', 'brightness(0.6) saturate(3) hue-rotate(360deg) opacity(1) brightness(1) contrast(1.4)');
+            $conteiner.append($('<img>', {src: urlSvgCalendar + 'moon.svg', class: 'moon'}));
         }
         if(icon === 'partly-cloudy-night') {
             $conteiner.css('background', 'linear-gradient(#210B61, #0489B1)');
             $('.weather').css('filter', 'brightness(0.5) saturate(10) hue-rotate(360deg) opacity(0.5) brightness(1) contrast(1)');
             $('.plane').css('filter', 'brightness(0.6) saturate(3) hue-rotate(360deg) opacity(1) brightness(1) contrast(1.4)');
+            $conteiner.append($('<img>', {src: urlSvgCalendar + 'moon.svg', class: 'moon'}));
+            $('#cloud6, #cloud1, #cloud5').remove();
+            $('#cloud4').css('bottom','-80px');
+        }
+        if (icon === 'partly-cloudy-day') {
+            $conteiner.css('background', 'linear-gradient(#01A9DB, #81DAF5)');
+            $conteiner.append($('<div>', {class: 'sun'}));
+            $('#cloud6, #cloud1, #cloud5').remove();
+            $('#cloud4').css('bottom','-80px');
         }
 
         TweenMax.to($conteiner, 0.4, {top: 0, onComplete: function () {
@@ -58,9 +67,13 @@ $('#show-weather-btn').click(function () {
 
 });
 
-$('#close-btn').click(function () {
-  var $conteiner = $('#conteiner-weather');
-  TweenMax.to($conteiner, 0.4, {top: '100%', onComplete: function () {
-    $('#plane-svg, #cloud1, #cloud2, #cloud3, #cloud4, #cloud5, #cloud6').remove();
-  }});
+$(document).on('click', '#close-btn', function () {
+    var $conteiner = $('#conteiner-weather');
+    var $btn = $('#close-btn');
+    TweenMax.to($conteiner, 0.4, {top: '100%', onComplete: function () {
+        var $content = $('#content-weather');
+        $('#conteiner-weather').empty().append([$content, $btn]);
+
+    }});
 });
+
