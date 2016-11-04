@@ -52,6 +52,10 @@ $('#show-weather-btn').click(function () {
             $('#cloud6, #cloud1, #cloud5').remove();
             $('#cloud4').css('bottom','-80px');
         }
+        if (icon === 'cloudy') {
+            $conteiner.css('background', 'linear-gradient(#585858, #848484)');
+            $('.weather').css('filter','brightness(0.8)');
+        }
 
         TweenMax.to($conteiner, 0.4, {top: 0, onComplete: function () {
 
