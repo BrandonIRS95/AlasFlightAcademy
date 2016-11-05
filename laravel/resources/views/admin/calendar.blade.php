@@ -135,6 +135,7 @@
                 width: 37%;
                 height: 100%;
                 background: #011a35;
+                overflow-x: hidden;
             }
 
             #custom-next, #custom-prev{

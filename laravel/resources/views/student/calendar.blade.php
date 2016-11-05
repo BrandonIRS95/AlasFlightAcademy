@@ -135,6 +135,7 @@
             width: 37%;
             height: 100%;
             background: #011a35;
+            overflow-x: hidden;
         }
 
         #custom-next, #custom-prev{
@@ -710,6 +711,7 @@
             }
         }
     </style>
+    <link rel="stylesheet" type="text/css" href="{{URL::to('css/calendar/responsive.css')}}" />
 @endsection
 
 @section('content')
