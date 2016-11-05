@@ -21,7 +21,7 @@
       }
       #map {
           width: 100%;
-          height: 200px;
+          height: 270px;
       }
       #ta-route-description, #flight_description, #test_description, #flight_cancellation, #test_cancellation {
           resize: vertical;
@@ -78,6 +78,7 @@
         color: #fff;
       }
     </style>
+    <link rel="stylesheet" type="text/css" href="{{URL::to('css/calendar/weather.css')}}" />
     @endsection
 @section('content')
     <div id="conteiner-calendar-events" class="container">
@@ -161,8 +162,9 @@
                                       <legend>{{trans('flightform.route')}}</legend>
                                       <div class='row'>
                                           <div class='col-sm-12'>
-                                              <div class='form-group' style="position:relative;">
+                                              <div class='form-group' style="position:relative; overflow-y: hidden;">
                                                   <div id="map"></div>
+                                                  @include('includes.weather')
                                                   <input type="hidden" name="coordinates" id="coordinates">
                                               </div>
                                           </div>
@@ -296,6 +298,7 @@
     var urlCancelBookFlight = '{{route('cancelBookFlight')}}';
     var TOKEN = '{{ Session::token() }}';
     var NOW = null;
+    var urlSvgCalendar = urlSvgImages + '/calendar/';
     window.dateTrans = '{{trans('flightform.date')}}';
     var statusArray = [
       {'status' : 'available', 'trans' : '{{trans('flightform.available')}}'},
@@ -308,6 +311,8 @@
   <script src="{{URL::to('js/moment.min.js')}}" type="text/javascript"></script>
   <script type="text/javascript" src="{{URL::to('js/calendar/map.functions.js')}}"></script>
   <script type="text/javascript" src="{{URL::to('js/student/myflights.functions.js')}}"> </script>
+            <script type="text/javascript" src="{{URL::to('js/calendar/date.js')}}"></script>
+            <script type="text/javascript" src="{{URL::to('js/calendar/weather.js')}}"> </script>
   <script
           src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD6KW7B-xPGNZIpgADTsdMfmhv0Yap_BeM&signed_in=true&libraries=drawing&callback=initMap">
   </script>
