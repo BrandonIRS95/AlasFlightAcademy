@@ -1,3 +1,5 @@
+var goRain = true;
+
 $('#show-weather-btn').click(function () {
   var $conteiner = $('#conteiner-weather');
     var hourFormat = $('#flight_start_hour').val() + ':' + $('#flight_start_minute').val() + ':00';
@@ -56,6 +58,13 @@ $('#show-weather-btn').click(function () {
             $conteiner.css('background', 'linear-gradient(#585858, #848484)');
             $('.weather').css('filter','brightness(0.8)');
         }
+        if (icon === 'rain') {
+            $conteiner.css('background', 'linear-gradient(#585858, #848484)');
+            $('.weather').css('filter','brightness(0.8)');
+            goRain = true;
+            createDrops($conteiner);
+
+        }
 
         TweenMax.to($conteiner, 0.4, {top: 0, onComplete: function () {
 
@@ -75,9 +84,29 @@ $('#show-weather-btn').click(function () {
 
 });
 
+function createDrops() {
+    if(goRain)
+    setTimeout(function () {
+        var $conteiner = $('#conteiner-weather');
+        var $drop = $('<div>', { class: 'drop'});
+        $drop.css('left', randomInterval(0, $conteiner.width()) + 'px');
+        $conteiner.append($drop);
+        var xDrop = $conteiner.height() * Math.tan(20);
+        TweenMax.to($drop, 0.6, {x: $drop.position().left - xDrop, y: $conteiner.height(), ease: Power0.easeNone, onComplete: function () {
+            $drop.remove();
+        }});
+        createDrops();
+    }, 10);
+}
+
 $(document).on('click', '#close-btn', function () {
     hideWeather();
 });
+
+function randomInterval(min,max)
+{
+    return Math.floor(Math.random()*(max-min+1)+min);
+}
 
 function hideWeather() {
     var $conteiner = $('#conteiner-weather');
@@ -85,7 +114,7 @@ function hideWeather() {
     TweenMax.to($conteiner, 0.4, {top: '100%', onComplete: function () {
         var $content = $('#content-weather');
         $('#conteiner-weather').empty().append([$content, $btn]);
-
+        goRain = false;
     }});
 }
 
