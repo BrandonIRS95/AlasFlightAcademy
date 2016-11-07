@@ -13,12 +13,17 @@
 
 @media only screen and (max-width:1082px)
 {
-    .filtering-status {font-size: 15px;}
-    .custom-month, .date-selected .custom-month, .date-selected .custom-year {font-size: 40px;}
-    .custom-year { font-size: 30px;}
+    .filtering-status {font-size: 14px;}
+    .custom-month, .date-selected .custom-month, .date-selected .custom-year {font-size: 35px;}
+    .custom-year { font-size: 25px;}
     .fc-calendar .fc-head > div { font-size: 22px;}
     .fc-calendar .fc-row > div > span.fc-date {font-size: 20px;}
     .calendar-points {font-size: 22px;}
     .date-selected { height: 95px;}
     .conteiner-events{top: 150px;}
+}
+
+@media only screen and (max-width:768px)
+{
+    #content-events, .container { height: 50%; width: 100%; }
 }
