@@ -3,9 +3,10 @@
     width: 5%; /* for IE 6 */
     top:-50px;
     left:1270px;
-}
-.imgEtiqueta{
-    width:80%;transform: rotate(180deg);
+    -webkit-transition:all 1s ease;
+    -moz-transition:all 1s ease;
+    -o-transition:all 1s ease;
+    transition:all 1s ease;
 }
 h2 {
     position: absolute;
