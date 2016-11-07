@@ -107,7 +107,15 @@
         </div>
 @endsection
 @section('javascript-functions')
-    <script src="{{URL::to('js/jquery-migrate-1.4.1.min.js')}}"></script>
+    <script>
+        $('.button-collapse').sideNav();
+        var $navbarItems = $('.Navbar__item');
+        $navbarItems.on('click', function() {
+            var $el = $(this);
+            $navbarItems.removeClass('Navbar__item--active');
+            $el.addClass('Navbar__item--active');
+        })
+    </script>
     <script src="{{URL::to('js/jquery.validate.js')}}"></script>
     <script src="{{URL::to('js/additional-methods.js')}}"></script>
     <script src="js/indexLogin.js"></script>

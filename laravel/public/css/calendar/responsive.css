@@ -23,7 +23,14 @@
     .conteiner-events{top: 150px;}
 }
 
-@media only screen and (max-width:768px)
+@media only screen and (max-width:960px)
+{
+    .filtering-status span{ font-size: 16px;}
+    .filtering-status div{ font-size: 12px;}
+    .instructor-event {font-size: 12px;}
+}
+
+/*@media only screen and (max-width:950px)
 {
     #content-events, .container { height: 50%; width: 100%; }
-}
+}*/
