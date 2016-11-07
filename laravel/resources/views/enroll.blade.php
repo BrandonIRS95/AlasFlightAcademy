@@ -38,10 +38,16 @@
 @endsection
 
 @section('content')
-  <div class="Page__header parallax-container">
-    <div class="parallax"><img src="{{URL::to('images/enroll.jpg')}}" width="100%"></div>
-    <div class="Page__header__filter"></div>
-    <div class="Page__header__text">{{trans('messages.enroll_now')}}</div>
+  <div id="parent-video"  class="Page__header--landing Page__header parallax-container">
+    <div class="parallax" id="header-video">
+      <video id="alas-video" width="100%" autoplay loop>
+        <source src="{{URL::to('videos/Last-Call.mp4')}}" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <div style="clear: both"></div>
+    </div>
+    <div class="Page__header__filter--landing"></div>
+    <div id="text-header" class="Page__header__text">Enroll Now</div>
   </div>
   <div class="CTA_bar">
     <h3 class="CTA_bar__text">{{trans('messages.have_questions')}}</h3>
