@@ -67,7 +67,7 @@
 @endsection
 @section('content')
     <video id="alas-video" width="100%" autoplay loop>
-        <source src="{{URL::to('videos/sky.mp4')}}" type="video/mp4">
+        <source src="{{URL::to('videos/Airtaxi.mp4')}}" type="video/mp4">
         Your browser does not support the video tag.
       </video>
     <!--<div id="clouds">

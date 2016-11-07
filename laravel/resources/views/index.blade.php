@@ -30,7 +30,7 @@
 
 @section('content')
   <div class="content_flags" id="image">
-    <img  class="imgEtiqueta" src="./images/galones-pilotos-aviacion-comercial-T-xzuXZ8.png"  />
+   <!--<img  class="imgEtiqueta" src="./images/galones-pilotos-aviacion-comercial-T-xzuXZ8.png"  />-->
         <h2>
           <a href="{{url('/changeLanguage?lang=es')}}"><img style="width: 35%;margin-top: 30px;" src="{{URL::to('images\flags\Spain.png')}}" alt="Español" title="Español" data-id="es"/></a>
           <a href="{{url('/changeLanguage?lang=en')}}"><img style="position:absolute;width:35%;top:60px;left:0px;" src="{{URL::to('images\flags\United States of America(USA).png')}}" alt="English" title="English" data-id="en"/></a>
@@ -126,19 +126,19 @@
         $("#header-video, #parent-video").height(620);
       }
     }
-    $('#image').mouseover(function () {
+    $('#image').hover(function () {
       var a = $('#image').css("top");
-      //if(a == "-50px") {
+      if(a == "-50px") {
         $('#image').css("top", "0px");
-      //}else{$('#image').css("top", "-50px");}
+      }else{
+        $('#image').css("top", "-50px");
+      }
     });
-    $('#image').click(function () {
+    /*$('#image').click(function () {
       var a = $('#image').css("top");
       if(a == "-50px") {
       $('#image').css("top", "0px");
-      }else{$('#image').css("top", "-50px");}
-    });
-
-
+      }else{$('#image').css("top", "-50px");
+    });*/
   </script>
 @endsection
