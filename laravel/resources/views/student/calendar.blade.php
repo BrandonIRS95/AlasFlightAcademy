@@ -703,7 +703,6 @@
 
         }
 
-
         @media (max-width: 412px) {
             #cancel-new-route {
                 font-size: 10px;

@@ -9,9 +9,9 @@
 
 @media only screen and (max-width:1358px)
 {
-    nav { display: none;}
-    .content-container { padding-left: 0px}
-    #conteiner-calendar-events { left: 20px;}
+    nav { display: none}
+    .content-container { padding-left: 0px }
+    #conteiner-calendar-events { left: 20px }
 }
 
 @media only screen and (max-width:1178px)

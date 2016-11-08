@@ -1,3 +1,6 @@
+nav{
+    display: inline;
+}
 #ghost-div{
     position: fixed;
     left: 200px;
@@ -6,7 +9,13 @@
     bottom: 0px;
 }
 
-@media only screen and (max-width:1043px) {
+@media only screen and (min-width:1359px) {
+    nav{
+        display: inline !important;
+    }
+}
+
+@media only screen and (max-width:1358px) {
     nav{
         display: none;
     }

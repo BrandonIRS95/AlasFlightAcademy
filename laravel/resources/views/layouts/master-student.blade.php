@@ -88,8 +88,8 @@
                 box-shadow: 0 5px 15px rgba(0,0,0,.3);
             }
         </style>
-        @yield('individual-styles')
         <link rel="stylesheet" href="{{URL::to('css/sidebar.css')}}"/>
+        @yield('individual-styles')
     </head>
 
     <body>
