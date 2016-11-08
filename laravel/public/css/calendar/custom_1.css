@@ -268,7 +268,7 @@ body {
 .no-touch .fc-calendar .fc-row > div > div a:hover {
 	background: rgba(255,255,255,0.3);
 }
-
+/*880*/
 @media screen and (max-width: 880px) , screen and (max-height: 450px) {
 	html, body, .container {
 		height: auto;
