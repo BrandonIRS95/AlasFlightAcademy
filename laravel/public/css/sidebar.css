@@ -1,0 +1,21 @@
+#ghost-div{
+    position: fixed;
+    left: 200px;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+}
+
+@media only screen and (max-width:1043px) {
+    nav{
+        display: none;
+    }
+
+    .content-container{
+        padding-left: 0;
+    }
+
+    #conteiner-calendar-events{
+        left: 20px;
+    }
+}

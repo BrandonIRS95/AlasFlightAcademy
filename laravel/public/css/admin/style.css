@@ -27,7 +27,6 @@ body{
 }
 
 #header {
-    padding-left: 200px;
     position: fixed;
     top: 0px;
     left: 0px;
@@ -128,4 +127,11 @@ body{
     text-align: center;
     color: #ffffff;
     font-size: 14px;
+}
+
+#menu-icon{
+    position: absolute;
+    left: 10px;
+    top: 3px;
+    cursor: pointer;
 }

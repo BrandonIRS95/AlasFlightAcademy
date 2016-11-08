@@ -530,7 +530,12 @@ $(function() {
             $('.container').css({'left':'0px', 'opacity':'1', 'display':'inline'});
             $('#conteiner-calendar-events').css({'left':'20px', 'right':'20px'});
         }
-        if (window.innerWidth > 1358) $('#conteiner-calendar-events').css({'left':'220px', 'right':'20px'});
+        if (window.innerWidth > 1358){
+            SLIDER = false;
+            $('#content-events').css({'right': '0px', 'opacity': '1'});
+            $('.container').css({'left':'0px', 'opacity':'1', 'display':'inline'});
+            $('#conteiner-calendar-events').css({'left':'220px', 'right':'20px'});
+        }
     }
 
     $(document).ready(function () {
