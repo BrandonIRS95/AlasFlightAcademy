@@ -80,6 +80,7 @@
                 box-shadow: 0 5px 15px rgba(0,0,0,.3);
             }
         </style>
+        <link rel="stylesheet" href="{{URL::to('css/sidebar.css')}}"/>
         @yield('individual-styles')
     </head>
 
@@ -110,6 +111,7 @@
 
             </nav>
             <header id="header">
+                <img id="menu-icon" src="{{URL::to('svg/admin/ic_menu_white_48px.svg')}}" alt="">
                 <div class="option">
                     <div id="user-account-name" class="name">{{ Auth::user()->person->first_name }} {{ Auth::user()->person->last_name }}</div>
                     <div class="icon"><img src="{{URL::to('svg/admin/ic_account_circle_black_24px.svg')}}"></div>
@@ -127,6 +129,7 @@
         <!-- Latest compiled and minified JavaScript -->
         <script src="{{URL::to('js/bootstrap.min.js')}}"></script>
         <script src="{{URL::to('js/TweenMax.min.js')}}"></script>
+        <script src="{{URL::to('js/sidebar.js')}}"></script>
         <script src="{{URL::to('js/admin/animations.js')}}"></script>
         <script type="text/javascript">
             $(window).on('load', function () {

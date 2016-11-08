@@ -248,6 +248,8 @@ $(function() {
     window.PROCESS_MESSAGE;
     window.DONE_MESSAGE;
     window.DAY_ELEMENT_SELECTED = null;
+    var SLIDER = false;
+    var SCROLL = 0;
 
     $('#flight_status').change(function () {
         var $cancel = $('#conteiner-cancellation-flight');
@@ -812,7 +814,7 @@ $(function() {
     function updateMonthYear() {
         $( '#custom-month' ).html( $( '#calendar' ).calendario('getMonthName') );
         $( '#custom-year' ).html( $( '#calendar' ).calendario('getYear'));
-        vm.updateCalendarEvents();
+        if(SLIDER) vm.updateCalendarEvents();
     }
 
     $(document).on('finish.calendar.calendario', function(e){
@@ -859,6 +861,18 @@ $(function() {
                 });
 
                 showEventsByDate();
+
+                if(SLIDER) {
+                    var $events = $('#content-events');
+                    var $container = $('.container');
+                    $('#conteiner-calendar-events').css({'background':'transparent', 'left':'6%', 'right':'6%'});
+                    SCROLL = $(window).scrollTop();
+                    window.scrollTo(0, 0);
+                    TweenMax.to($events, 0.4, {right: '0px', opacity: 1, ease: Power0.easeNone});
+                    TweenMax.to($container, 0.4, {left: '-200%', opacity: 0, ease: Power0.easeNone, onComplete: function () {
+                        $container.css('display','none');
+                    }});
+                }
 
             }
 
@@ -920,6 +934,41 @@ $(function() {
         return number + specialArray[firstDigit - 1];
 
     }
+
+    window.onresize = function() {
+        if (window.innerWidth <= 880) {
+            SLIDER = true;
+            $('.container').css({'left':'-200%', 'opacity':'0', 'display':'none'});
+            $('#content-events').css({'right': '0px', 'opacity': '1'});
+            $('#conteiner-calendar-events').css({'left':'6%', 'right':'6%'});
+        }
+        if (window.innerWidth > 880 && window.innerWidth <= 1358)  {
+            SLIDER = false;
+            $('#content-events').css({'right': '0px', 'opacity': '1'});
+            $('.container').css({'left':'0px', 'opacity':'1', 'display':'inline'});
+            $('#conteiner-calendar-events').css({'left':'20px', 'right':'20px'});
+        }
+        if (window.innerWidth > 1358){
+            SLIDER = false;
+            $('#content-events').css({'right': '0px', 'opacity': '1'});
+            $('.container').css({'left':'0px', 'opacity':'1', 'display':'inline'});
+            $('#conteiner-calendar-events').css({'left':'220px', 'right':'20px'});
+        }
+    }
+
+    $(document).ready(function () {
+        if (window.innerWidth <= 880) { SLIDER = true; }
+    });
+
+    $('#back-calendar').click(function () {
+        var $events = $('#content-events');
+        var $container = $('.container');
+        $('#conteiner-calendar-events').css({'left':'15%', 'right':'15%'});
+        $container.css({'display': 'inline'});
+        window.scrollTo(0,SCROLL);
+        TweenMax.to($events, 0.4, {right: '-200%', opacity: 0, ease: Power0.easeNone});
+        TweenMax.to($container, 0.4, {left: '0px', opacity: 1, ease: Power0.easeNone});
+    });
 });
 
 
