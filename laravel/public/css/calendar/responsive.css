@@ -158,4 +158,23 @@
     .fc-calendar-container{
         top: 0;
     }
+
+    .instructor-event{
+        left: 55px;
+        font-size: 10px;
+    }
+
+    .conteiner-events .event .info-event{
+        left: 20px;
+    }
+
+    .filtering-status div{
+        font-size: 10px;
+    }
+
+    .filtering-status, .date-selected{
+        padding: 0px 20px;
+    }
+
+
 }
