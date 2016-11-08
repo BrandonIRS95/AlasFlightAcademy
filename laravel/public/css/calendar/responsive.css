@@ -33,15 +33,16 @@
 
 @media only screen and (max-width:880px) {
     #content-events {
-        width: 60%;
+        width: 100%;
         position: absolute;
-        right: -100%;
+        right: -150%;
     }
 
     .container {
         width: 100%;
         padding-right: 0px;
         padding-left: 0px;
+        position: absolute;
     }
 
     .fc-calendar{
@@ -90,5 +91,44 @@
         bottom: 80px;
         width: 22px;
         right: -50px;
+    }
+}
+
+@media only screen and (max-width:500px) {
+    .custom-month, .date-selected .custom-month, .date-selected .custom-year{
+        font-size: 20px;
+    }
+
+    .custom-year{
+        font-size: 16px;
+    }
+
+    .custom-header{
+        height: 200px;
+    }
+
+    #month-year-calendar{
+        top: 90px;
+        left: 0px;
+        width: 100%;
+        transform: translateY(0);
+        text-align: center;
+    }
+
+    #conteiner-nav-calendar{
+        top: 20px;
+        width: 168px;
+        transform: translateY(0) translateX(-50%);
+        left: 50%;
+    }
+
+    #conteiner-calendar-options{
+        top: 150px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .fc-calendar-container{
+        top: 0;
     }
 }
