@@ -20,6 +20,10 @@
                 background: #fff;
             }
 
+            #conteiner-calendar-events.container{
+                width: auto !important;
+            }
+
             .backgroundModalProcess {
                 z-index: 4000;
                 background: rgba(0, 0, 0, 0.62);
