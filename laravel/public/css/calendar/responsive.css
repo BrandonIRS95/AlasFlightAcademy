@@ -1,3 +1,12 @@
+#back-calendar{
+    display: none;
+    position: absolute;
+    right: 20px;
+    top: 30px;
+    z-index: 5;
+    cursor: pointer;
+}
+
 @media only screen and (max-width:1358px)
 {
     nav { display: none;}
@@ -32,10 +41,19 @@
 }
 
 @media only screen and (max-width:880px) {
+    #back-calendar{
+        display: inline;
+    }
+
+    #conteiner-calendar-events{
+        box-shadow: none;
+    }
+
     #content-events {
         width: 100%;
         position: absolute;
         right: -150%;
+        height: 600px;
     }
 
     .container {

@@ -187,6 +187,9 @@ $(function() {
     window.PROCESS_MESSAGE;
     window.DONE_MESSAGE;
     window.DAY_ELEMENT_SELECTED = null;
+    var SLIDER = false;
+
+
 
     $('#btnBookFlight').click(function(){
 
@@ -437,6 +440,19 @@ $(function() {
 
                 showEventsByDate();
 
+                if(SLIDER) {
+                    var $events = $('#content-events');
+                    var $container = $('.container');
+                    $('#conteiner-calendar-events').css('background','transparent');
+                    // $events.css('right','0px');
+                    // $container.css({'left': '-150%', 'display': 'none'});
+                    window.scrollTo(0, 0);
+                    TweenMax.to($events, 0.4, {right: '0px', opacity: 1, ease: Power0.easeNone});
+                    TweenMax.to($container, 0.4, {left: '-150%', opacity: 0, ease: Power0.easeNone, onComplete: function () {
+                        $container.css('display','none');
+                    }});
+                }
+
             }
 
         });
@@ -500,7 +516,32 @@ $(function() {
         return number + specialArray[firstDigit - 1];
 
     }
+
+    window.onresize = function() {
+        if (window.innerWidth <= 880) {
+            SLIDER = true;
+            $('.container').css({'left':'-150%', 'opacity':'0', 'display':'none'});
+            $('#content-events').css({'right': '0px', 'opacity': '1'});
+        }
+        else {
+            SLIDER = false;
+            $('#content-events').css({'right': '0px', 'opacity': '1'});
+            $('.container').css({'left':'0px', 'opacity':'1', 'display':'inline'});
+        }
+    }
+
+    $(document).ready(function () {
+        if (window.innerWidth <= 880) { SLIDER = true; }
+    });
+
+    $('#back-calendar').click(function () {
+        var $events = $('#content-events');
+        var $container = $('.container');
+        $container.css({'display': 'inline'});
+        TweenMax.to($events, 0.4, {right: '-150%', opacity: 0, ease: Power0.easeNone});
+        TweenMax.to($container, 0.4, {left: '0px', opacity: 1, ease: Power0.easeNone});
+    });
 });
 
 
-// TODO al usar el autocomplete de jquery simplemente asigno el valor seleccionado a la variable del viewmodel (en el metodo select o change de autocomplete)
+

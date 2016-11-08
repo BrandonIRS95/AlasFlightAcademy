@@ -742,6 +742,7 @@
             </div>
         </div>
         <div id="content-events">
+            <img src="{{URL::to('svg/calendar/ic_event_white_48px.svg')}}" alt="" id="back-calendar">
             <div class="date-selected" id="date-selected">
                 <div class="vertical-center">
                     <span class="custom-month span-selected-date-day-name"></span>
