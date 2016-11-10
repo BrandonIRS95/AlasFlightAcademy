@@ -16,25 +16,26 @@
 @stop
 @section('content')
 
-    <section class="content-header">
-        <h1>Users</h1>
-        <ol class="breadcrumb">
-            <li>Users</li>
-        </ol>
-    </section>
-    <section class="content paddingleft_right15" style="width:95%;margin-left: 2.5%;">
-        <div class="row">
-            <div class="panel panel-primary ">
-                <div class="panel-heading">
-                    <h4 class="panel-title"> <i class="livicon" data-name="user" data-size="16" data-loop="true" data-c="#fff" data-hc="white"></i>
-                        Users List
-                    </h4>
-                </div>
-                <br />
-                <div class="panel-body">
-                    <form id="commentForm" class="form-horizontal">
-                        <!-- CSRF Token -->
-                        <input  type="hidden" name="_token" value="{{ Session::token() }}">
+    <div id="conteiner-calendar-events">
+        <section class="content-header">
+            <h1>Users</h1>
+            <ol class="breadcrumb">
+                <li>Users</li>
+            </ol>
+        </section>
+        <section class="content paddingleft_right15" style="width:95%;margin-left: 2.5%;">
+            <div class="row">
+                <div class="panel panel-primary ">
+                    <div class="panel-heading">
+                        <h4 class="panel-title"> <i class="livicon" data-name="user" data-size="16" data-loop="true" data-c="#fff" data-hc="white"></i>
+                            Users List
+                        </h4>
+                    </div>
+                    <br />
+                    <div class="panel-body">
+                        <form id="commentForm" class="form-horizontal">
+                            <!-- CSRF Token -->
+                            <input  type="hidden" name="_token" value="{{ Session::token() }}">
                             <h3><a class="btn btn-info" href="#tab1"  id="a" selected data-toggle="tab">Add New User</a></h3>
                             <div id="DivNewUser">
                                 <div  id="tab1">
@@ -84,50 +85,51 @@
 
                                 </div>
                             </div>
-                    </form>
-                    <table class="table table-hover" id="table">
-                        <thead>
-                        <tr class="filters">
-                            <th>User E-mail</th>
-                            <th>Status</th>
-                            <th>Created At</th>
-                            <th>Updated At</th>
-                        </tr>
-                        @foreach($posts as $post)
-                            <tr class="post"  data-id="{{$post->id}}">
-                                <td class="people" >{{$post->email}}</td>
-                                @if($post->status == 0)
-                                    <td>
-                                    <div class="dropdown">
-                                        <button id="{{$post->id}}" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">active
-                                            </button>
-                                        <ul class="dropdown-menu">
-                                            <li><a onclick="changeStatus({{$post->id}})">inactive</a></li>
-                                        </ul>
-                                    </div>
-                                    </td>
-                                @else
-                                    <td>
-                                        <div class="dropdown">
-                                            <button id="{{$post->id}}" class="btn btn-warning dropdown-toggle" type="button" data-toggle="dropdown">inactive
-                                                <span class="caret"></span></button>
-                                            <ul class="dropdown-menu">
-                                                <li><a onclick="changeStatus({{$post->id}})">active</a></li>
-                                            </ul>
-                                        </div>
-                                    </td>
-                                @endif
-                                <td class="people">{{$post->created_at}}</td>
-                                <td class="people">{{$post->updated_at}}</td>
+                        </form>
+                        <table class="table table-hover" id="table">
+                            <thead>
+                            <tr class="filters">
+                                <th>User E-mail</th>
+                                <th>Status</th>
+                                <th>Created At</th>
+                                <th>Updated At</th>
                             </tr>
-                        @endforeach
-                    </table>
-                    {!! $posts->render() !!}
-                </div>
+                            @foreach($posts as $post)
+                                <tr class="post"  data-id="{{$post->id}}">
+                                    <td class="people" >{{$post->email}}</td>
+                                    @if($post->status == 0)
+                                        <td>
+                                            <div class="dropdown">
+                                                <button id="{{$post->id}}" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">active
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a onclick="changeStatus({{$post->id}})">inactive</a></li>
+                                                </ul>
+                                            </div>
+                                        </td>
+                                    @else
+                                        <td>
+                                            <div class="dropdown">
+                                                <button id="{{$post->id}}" class="btn btn-warning dropdown-toggle" type="button" data-toggle="dropdown">inactive
+                                                    <span class="caret"></span></button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a onclick="changeStatus({{$post->id}})">active</a></li>
+                                                </ul>
+                                            </div>
+                                        </td>
+                                    @endif
+                                    <td class="people">{{$post->created_at}}</td>
+                                    <td class="people">{{$post->updated_at}}</td>
+                                </tr>
+                            @endforeach
+                        </table>
+                        {!! $posts->render() !!}
+                    </div>
 
-            </div>
-        </div>    <!-- row-->
-    </section>
+                </div>
+            </div>    <!-- row-->
+        </section>
+    </div>
         <!--row end-->
     @endsection
 @section('javascript')

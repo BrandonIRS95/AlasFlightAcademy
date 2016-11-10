@@ -23,28 +23,31 @@
 
 @endsection
 @section('content')
+    <div id="conteiner-calendar-events">
         <div class="panel panel-default">
-               <table class="table table-striped" >
-                   <thead>
-                        <tr>
-                            <td><h4><strong>Name</strong></h4></td>
-                            <td><h4><strong>Gender</strong></h4></td>
-                            <td><h4><strong>City/Country of birth</strong></h4></td>
-                            <td><h4><strong>Pilot program</strong></h4></td>
+            <table class="table table-striped" >
+                <thead>
+                <tr>
+                    <td><h4><strong>Name</strong></h4></td>
+                    <td><h4><strong>Gender</strong></h4></td>
+                    <td><h4><strong>City/Country of birth</strong></h4></td>
+                    <td><h4><strong>Pilot program</strong></h4></td>
 
-                        <tr>
-                   </thead>
-                   @foreach($posts as $post)
-                   <tr class="post" data-id="{{$post->id}}">
+                <tr>
+                </thead>
+                @foreach($posts as $post)
+                    <tr class="post" data-id="{{$post->id}}">
                         <td class="people">{{$post->Person->last_name }} {{$post->Person->first_name}}</td>
                         <td class="people">{{$post->Person->gender}}</td>
                         <td class="people">{{$post->Person->city_country_of_birth}}</td>
                         <td class="people">{{$post->PilotProgram->name}}</td>
-                   </tr>
-                   @endforeach
-               </table>
+                    </tr>
+                @endforeach
+            </table>
             {!! $posts->render() !!}
         </div>
+    </div>
+
 
     <div tabindex="-1" role="dialog" id="aspirant-modal" class="modal bs-example-modal-lg">
         <div class="modal-dialog" role="document">

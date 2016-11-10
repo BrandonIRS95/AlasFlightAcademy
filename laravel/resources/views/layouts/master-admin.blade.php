@@ -6,13 +6,19 @@
         <link rel="stylesheet" href="{{URL::to('css/admin/style.css')}}"/>
 
         <style>
+            
+            body{
+                background-color: #cdd8e2;
+            }
+            
             #conteiner-calendar-events{
                 position: absolute;
                 left: 220px;
                 top: 75px;
-                bottom: 20px;
                 right: 20px;
                 box-shadow: 0px 5px 5px rgba(0,0,0,0.1);
+                background-color: #ffffff;
+                min-height: calc(100% - 95px);
             }
 
             .backgroundModalProcess {

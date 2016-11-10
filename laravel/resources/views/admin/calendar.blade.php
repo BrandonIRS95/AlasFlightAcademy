@@ -698,6 +698,12 @@
                 margin-left: 0;
             }
 
+            #conteiner-calendar-events{
+                background-color: transparent;
+                min-height: inherit;
+                bottom: 20px;
+            }
+
 
             @media (max-width: 412px) {
                 #cancel-new-route {

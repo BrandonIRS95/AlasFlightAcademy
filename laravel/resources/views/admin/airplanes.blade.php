@@ -36,11 +36,12 @@
 
 @section('content')
 
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <p></p><h3 class="panel-title">New Airplane</h3></p>
-            <button id="newAirplane" type="button" class="btn btn-primary">New Airplane</button>
-        </div>
+    <div id="conteiner-calendar-events">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <p></p><h3 class="panel-title">New Airplane</h3></p>
+                <button id="newAirplane" type="button" class="btn btn-primary">New Airplane</button>
+            </div>
 
             <div id="crateForm" class="col-md-8 col-md-offset-2">
                 <form id="form-add-airplane">
@@ -68,7 +69,35 @@
                 </form>
             </div>
 
+        </div>
+        <div class="panel panel-default">
+            <table class="table table" >
+                <thead>
+                <tr>
+                    <td><h4><strong>Id</strong></h4></td>
+                    <td><h4><strong>Name</strong></h4></td>
+                    <td><h4><strong>Plate</strong></h4></td>
+                    <td><h4><strong>Status</strong></h4></td>
+                    <td><h4><strong>Created at</strong></h4></td>
+                    <td><h4><strong></strong></h4></td>
+
+                <tr>
+                </thead>
+                @foreach($posts as $post)
+                    <tr class="post">
+                        <td class="people">{{$post->id}}</td>
+                        <td class="people">{{$post->name}}</td>
+                        <td class="people">{{$post->plate}}</td>
+                        <td class="people">{{$post->status}}</td>
+                        <td class="people">{{$post->created_at}}</td>
+                        <td  data-id="{{$post->id}}" class="edit"><button id="editAirplane" class="btn btn-primary">Edit</button></td>
+                    </tr>
+                @endforeach
+            </table>
+        </div>
     </div>
+
+
 
 
     <div id="airplane-modal" tabindex="-1" role="dialog" class="modal bs-example-modal-lg">
@@ -112,33 +141,6 @@
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
 
-
-
-    <div class="panel panel-default">
-        <table class="table table" >
-            <thead>
-            <tr>
-                <td><h4><strong>Id</strong></h4></td>
-                <td><h4><strong>Name</strong></h4></td>
-                <td><h4><strong>Plate</strong></h4></td>
-                <td><h4><strong>Status</strong></h4></td>
-                <td><h4><strong>Created at</strong></h4></td>
-                <td><h4><strong></strong></h4></td>
-
-            <tr>
-            </thead>
-            @foreach($posts as $post)
-                <tr class="post">
-                    <td class="people">{{$post->id}}</td>
-                    <td class="people">{{$post->name}}</td>
-                    <td class="people">{{$post->plate}}</td>
-                    <td class="people">{{$post->status}}</td>
-                    <td class="people">{{$post->created_at}}</td>
-                    <td  data-id="{{$post->id}}" class="edit"><button id="editAirplane" class="btn btn-primary">Edit</button></td>
-                </tr>
-            @endforeach
-        </table>
-    </div>
 
 @endsection
 @section('javascript')

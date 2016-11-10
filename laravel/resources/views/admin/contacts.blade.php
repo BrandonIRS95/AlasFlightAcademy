@@ -21,33 +21,36 @@
     </style>
 @endsection
 @section('content')
-    <section class="row posts">
-        <div class="col-md-6 col-md-offset-3">
-            <header><h3>People who whant to know about us!</h3></header>
-            @foreach($posts as $post)
-            <article class="post" data-id="{{$post->id}}">
-                <p> {{$post->question}}</p>
-                <div class="info">
-                    Posted by {{$post->first_name}} on {{$post->created_at}}
-                </div>
-            </article>
-            @endforeach
-        </div>
-    </section>
-    <section>
-        <div class="col-md-6 col-md-offset-3" id="mailForm">
-            <form action="{{ route('sendmail' )}}" method="post" class="formSend">
-              <div class="form-group">
-                  <input type="email" name="mail" class="form-control" id="toEmail" >
-              </div>                
-              <div class="form-group">
-                <textarea name="title" type="text" class="form-control" ></textarea>
-              </div>                   
-              <button type="submit" id="submit" class="btn btn-default">Submit</button>
-                {{csrf_field()}}
-            </form>
-        </div>
-    </section>
+
+    <div id="conteiner-calendar-events">
+        <section class="row posts">
+            <div class="col-md-6 col-md-offset-3">
+                <header><h3>People who whant to know about us!</h3></header>
+                @foreach($posts as $post)
+                    <article class="post" data-id="{{$post->id}}">
+                        <p> {{$post->question}}</p>
+                        <div class="info">
+                            Posted by {{$post->first_name}} on {{$post->created_at}}
+                        </div>
+                    </article>
+                @endforeach
+            </div>
+        </section>
+        <section>
+            <div class="col-md-6 col-md-offset-3" id="mailForm">
+                <form action="{{ route('sendmail' )}}" method="post" class="formSend">
+                    <div class="form-group">
+                        <input type="email" name="mail" class="form-control" id="toEmail" >
+                    </div>
+                    <div class="form-group">
+                        <textarea name="title" type="text" class="form-control" ></textarea>
+                    </div>
+                    <button type="submit" id="submit" class="btn btn-default">Submit</button>
+                    {{csrf_field()}}
+                </form>
+            </div>
+        </section>
+    </div>
 @endsection
 @section('javascript')
     <script type="text/javascript">
