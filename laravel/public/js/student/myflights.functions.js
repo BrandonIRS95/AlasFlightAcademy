@@ -95,6 +95,7 @@ function CalendarViewModel() {
             $('.newRoute').css('display','none');
             $('.noNewRoute').css('display','block');
             $('#btnBookFlight').css('display','inline');
+            hideWeather();
         });
 
     };
