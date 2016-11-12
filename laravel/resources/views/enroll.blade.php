@@ -34,6 +34,14 @@
       color: #9e9e9e;
     }
 
+    .alien {
+      display: none;
+    }
+
+    .citizens{
+      display: none;
+    }
+
   </style>
 @endsection
 
@@ -165,20 +173,28 @@
             <input id="citizenship" type="text" name="citizenship" class="ModalForm__input">
           </div>
           <div class="ModalForm__input--select input-field col s12 m8">
-            <select name="country_of_passport_issuance">
+            <select id="country_of_passport_issuance" name="country_of_passport_issuance">
               <option value="" disabled selected>{{trans('enrollform.country_passport_issuance')}}</option>
-              <option>Mexico</option>
-              <option>USA</option>
+              <option value="México">Mexico</option>
+              <option value="USA">USA</option>
             </select>
           </div>
-          <div class="input-field col s12 m6">
+          <div class="input-field col s12 m6 citizens">
+            <h6>It's <b>OBLIGATORY</b> to complete the form of the following link:</h6>
+            <div><a href="https://uvu.ellucianrecruiter.com/Admissions/Pages/createaccount.aspx" target="_blank">Admissions Utah Valley University</a></div>
+          </div>
+          <div class="input-field col s12 m6 alien">
             <label for="passport">{{trans('enrollform.passport_number')}}</label>
             <input id="passport" name="passport_number" type="text" class="ModalForm__input">
           </div>
-          <div class="col s10 m8">
+          <div class="col s10 m8 alien">
             <label for="birthdate">{{trans('enrollform.passport_expiration')}}</label>
             <input id="birthdate" name="passport_expiration_date" type="date" class="ModalForm__input datepicker">
-          </div><i class="ModalForm__input_icon col s2 m2 material-icons">today</i>
+          </div><i class="ModalForm__input_icon col s2 m2 material-icons alien">today</i>
+          <div class="input-field col s12 m8 alien">
+            <h6>It's <b>OBLIGATORY</b> to complete the form of the following link:</h6>
+            <div><a href="https://www.aopa.org/advocacy/pilots/alien-flight-training-program/aliens-and-non-us-citizens-seeking-flight-training" target="_blank">Aliens and non us citizens seeking flight training</a></div>
+          </div>
           <div class="ModalForm__buttons_margin col s12"></div>
           <div class="ModalForm__buttons col s12 m12"><a data-target="modalconfirm" class="waves-effect waves-light btn ModalForm__button grey lighten-2 modal-trigger">{{trans('enrollform.cancel')}}</a><a class="waves-effect waves-light btn ModalForm__button--active modal-go-to-3">{{trans('enrollform.next')}}</a></div>
         </div>
@@ -419,6 +435,15 @@
   <script>
     $('#phone').intlTelInput({
       utilsScript: "js/utils.js"
+    });
+
+    $('#country_of_passport_issuance').on('change', function () {
+      var value = $(this).val();
+      var $alien = $('.alien');
+      var $citizens = $('.citizens');
+      if(value === 'México') $alien.css('display','inherit'); else $alien.css('display','none');
+      if(value === 'USA') $citizens.css('display','inherit'); else $citizens.css('display','none');
+
     });
 
     jQuery.validator.addMethod("validPhoneFormat", function(value, element) {
