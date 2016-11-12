@@ -84,6 +84,10 @@
                 transform: translate(-50%,-50%);
                 box-shadow: 0 5px 15px rgba(0,0,0,.3);
             }
+
+            #nav{
+                overflow-y: auto;
+            }
         </style>
         <link rel="stylesheet" href="{{URL::to('css/sidebar.css')}}"/>
         @yield('individual-styles')
