@@ -88,10 +88,10 @@ function CalendarViewModel() {
         });
     };
 
-    self.updateCalendarEvents = function () {
+    self.updateCalendarEvents = function (click) {
         self.getEventsByMonth().done(function (response) {
             $('#calendar').calendario('setData', JSON.parse(response));
-            if (DAY_ELEMENT_SELECTED !== null)$('.fc-body').find("[data-id='" + DAY_ELEMENT_SELECTED + "']").trigger('click');
+            if (DAY_ELEMENT_SELECTED !== null && click)$('.fc-body').find("[data-id='" + DAY_ELEMENT_SELECTED + "']").trigger('click');
         });
     };
 
@@ -371,7 +371,7 @@ $(function() {
             vm.addFlight(jsonPoints, jsonMarkers).done(function (response) {
                 if(response.status === 0)
                 {
-                    vm.updateCalendarEvents();
+                    vm.updateCalendarEvents(true);
                     loadingAnimation.done(DONE_MESSAGE, function () {
                         $('#modalAddFlight').modal('hide');
                         $submitButton.prop('disabled', false);
@@ -411,7 +411,7 @@ $(function() {
             vm.addTest().done(function (response) {
                 if(response.status === 0)
                 {
-                    vm.updateCalendarEvents();
+                    vm.updateCalendarEvents(true);
                     loadingAnimation.done(DONE_MESSAGE, function () {
                         $('#modalAddTest').modal('hide');
                         $submitButton.prop('disabled', false);
@@ -814,7 +814,7 @@ $(function() {
     function updateMonthYear() {
         $( '#custom-month' ).html( $( '#calendar' ).calendario('getMonthName') );
         $( '#custom-year' ).html( $( '#calendar' ).calendario('getYear'));
-        if(SLIDER) vm.updateCalendarEvents();
+        vm.updateCalendarEvents();
     }
 
     $(document).on('finish.calendar.calendario', function(e){
