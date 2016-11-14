@@ -1,8 +1,8 @@
 #image {
     position: absolute;
-    width: 5%; /* for IE 6 */
+    width: 80px; /* for IE 6 */
     top:-50px;
-    left:1270px;
+    left: 93%;
     -webkit-transition:all 1s ease;
     -moz-transition:all 1s ease;
     -o-transition:all 1s ease;
@@ -13,4 +13,14 @@ h2 {
     top: -30px;
     left: 15px;
     width: 100%;
+}
+@media only screen and (max-width: 1000px) {
+    #image  {
+        left: 90%;
+    }
+}
+@media only screen and (max-width: 740px) {
+    #image  {
+        left: 86%;
+    }
 }
