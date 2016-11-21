@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Auth;
 use App\User;
+use App\Thing;
 
 class UserController extends Controller
 {
@@ -142,4 +143,34 @@ class UserController extends Controller
             $posts = User::paginate(10);
             return view('admin.indexCrud',['posts'=>$posts]);
     }
+    public function getThings()
+    {
+        $id = Auth::user()->id;
+        $posts = Thing::where('id_user','=',$id)->paginate(7);
+        return view('admin.dashboard',['posts'=>$posts]);
+
+    }
+    public function postNewThing(Request $request){
+        $id = Auth::user()->id;
+        $thing = new Thing();
+        $fecha =new DateTime("Y/m/d");
+
+        $thing->id_user = $id;
+        $thing->description = $request['description'];
+        $thing->start_date = $fecha;
+
+        if($thing->save()) {
+            return response()->json(['message' => 'User added succesfully', 'status' => '0'], 200);
+        }
+    }
+        public function destroy( $id, Request $request ) {
+            $thing = Thing::findOrFail( $id );
+
+            if ( $request->ajax() ) {
+                $thing->delete( $request->all() );
+
+                return response(['msg' => 'Product deleted', 'status' => 'success']);
+            }
+            return response(['msg' => 'Failed deleting the product', 'status' => 'failed']);
+        }
 }

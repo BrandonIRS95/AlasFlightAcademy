@@ -65,24 +65,6 @@
                                     <p class="text-danger"><strong>Be careful with group selection, if you give admin access.. they can access admin section</strong></p>
                                     <button id="btnSubmit"  disabled class="btn pull-right btn-primary">Submit</button>
                                     <div type="button" id="btnCancel" class="pull-right btn btn-danger" style="margin-right:15px;">Cancel</div>
-                                    <!-- Modal -->
-                                    <!--<div id="myModal" class="modal fade" role="dialog">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                </div>
-                                                <div class="modal-body" style="text-align: center;">
-                                                    <h2> <i class="glyphicon glyphicon-check" style="font-size: 40px;top:5px;margin-right: 30px;"></i>User has been added !!</h2>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="submit" class="btn btn-primary" >Accept</button>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>-->
-
                                 </div>
                             </div>
                         </form>

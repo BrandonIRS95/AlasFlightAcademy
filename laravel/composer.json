@@ -8,7 +8,8 @@
         "php": ">=5.6.4",
         "laravel/framework": "5.3.*",
         "nesbot/carbon": "^1.21",
-        "ied3vil/language-switcher": "^1.1"
+        "ied3vil/language-switcher": "^1.1",
+        "illuminate/html": "^5.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

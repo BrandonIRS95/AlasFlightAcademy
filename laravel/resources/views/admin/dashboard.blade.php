@@ -1,18 +1,21 @@
 
 @extends('layouts.master-admin')
 @section('title-view')
-
-    @endsection
-@section('content')
-
         <!DOCTYPE html>
 <html>
 <head>
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+    <!-- jQuery 2.2.3 -->
+    <script src="js/jquery-2.2.3.min.js"></script>
     <meta name="viewport" content="initial-scale=1.0">
     <link rel="stylesheet" href="css/AdminLTE.css">
+
     <meta charset="utf-8">
     <style>
         html, body {
@@ -23,10 +26,13 @@
         #map {
             height: 100%;
         }
+
     </style>
 </head>
 <body>
 <!-- Small boxes (Stat box) -->
+<!-- CSRF Token -->
+<input  type="hidden" name="_token" value="{{ Session::token() }}">
 <div class="row">
     <div class="col-lg-3 col-xs-6">
         <!-- small box -->
@@ -99,20 +105,15 @@
 
             <h3 class="box-title">To Do List</h3>
 
-            <div class="box-tools pull-right">
-                <ul class="pagination pagination-sm inline">
-                    <li><a href="#">&laquo;</a></li>
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">&raquo;</a></li>
-                </ul>
+            <div class="box-tools pull-right" style="margin-bottom: 10px;">
+                {!! $posts->render() !!}
             </div>
         </div>
         <!-- /.box-header -->
         <div class="box-body">
             <ul class="todo-list">
-                <li>
+                @foreach($posts as $post)
+                    <li id="thing{{$post->id}}">
                     <!-- drag handle -->
                     <span class="handle">
                         <i class="fa fa-ellipsis-v"></i>
@@ -120,111 +121,73 @@
                       </span>
                     <!-- checkbox -->
                     <input type="checkbox" value="">
-                    <!-- todo text -->
-                    <span class="text">Design a nice theme</span>
+                    <!-- todotext -->
+                        <td class="post"  data-id="">{{$post->description}}</td>
                     <!-- Emphasis label -->
-                    <small class="label label-danger"><i class="fa fa-clock-o"></i> 2 mins</small>
+                    <small class="label label-danger"><i class="fa fa-clock-o"></i> {{$post->start_date}}</small>
                     <!-- General tools such as edit or delete-->
                     <div class="tools">
-                        <i class="fa fa-edit"></i>
-                        <i class="fa fa-trash-o"></i>
+                       <i onclick="deleteThing({{$post->id}})" class="fa fa-trash fa-lg"></i>
                     </div>
                 </li>
-                <li>
-                      <span class="handle">
-                        <i class="fa fa-ellipsis-v"></i>
-                        <i class="fa fa-ellipsis-v"></i>
-                      </span>
-                    <input type="checkbox" value="">
-                    <span class="text">Make the theme responsive</span>
-                    <small class="label label-info"><i class="fa fa-clock-o"></i> 4 hours</small>
-                    <div class="tools">
-                        <i class="fa fa-edit"></i>
-                        <i class="fa fa-trash-o"></i>
-                    </div>
-                </li>
-                <li>
-                      <span class="handle">
-                        <i class="fa fa-ellipsis-v"></i>
-                        <i class="fa fa-ellipsis-v"></i>
-                      </span>
-                    <input type="checkbox" value="">
-                    <span class="text">Let theme shine like a star</span>
-                    <small class="label label-warning"><i class="fa fa-clock-o"></i> 1 day</small>
-                    <div class="tools">
-                        <i class="fa fa-edit"></i>
-                        <i class="fa fa-trash-o"></i>
-                    </div>
-                </li>
-                <li>
-                      <span class="handle">
-                        <i class="fa fa-ellipsis-v"></i>
-                        <i class="fa fa-ellipsis-v"></i>
-                      </span>
-                    <input type="checkbox" value="">
-                    <span class="text">Let theme shine like a star</span>
-                    <small class="label label-success"><i class="fa fa-clock-o"></i> 3 days</small>
-                    <div class="tools">
-                        <i class="fa fa-edit"></i>
-                        <i class="fa fa-trash-o"></i>
-                    </div>
-                </li>
-                <li>
-                      <span class="handle">
-                        <i class="fa fa-ellipsis-v"></i>
-                        <i class="fa fa-ellipsis-v"></i>
-                      </span>
-                    <input type="checkbox" value="">
-                    <span class="text">Check your messages and notifications</span>
-                    <small class="label label-primary"><i class="fa fa-clock-o"></i> 1 week</small>
-                    <div class="tools">
-                        <i class="fa fa-edit"></i>
-                        <i class="fa fa-trash-o"></i>
-                    </div>
-                </li>
-                <li>
-                      <span class="handle">
-                        <i class="fa fa-ellipsis-v"></i>
-                        <i class="fa fa-ellipsis-v"></i>
-                      </span>
-                    <input type="checkbox" value="">
-                    <span class="text">Let theme shine like a star</span>
-                    <small class="label label-default"><i class="fa fa-clock-o"></i> 1 month</small>
-                    <div class="tools">
-                        <i class="fa fa-edit"></i>
-                        <i class="fa fa-trash-o"></i>
-                    </div>
-                </li>
+                @endforeach
             </ul>
         </div>
         <!-- /.box-body -->
         <div class="box-footer clearfix no-border">
-            <button type="button" class="btn btn-default pull-right"><i class="fa fa-plus"></i> Add item</button>
+            <button data-toggle="modal" data-target="#Modal" type="button" class="btn btn-default pull-right"><i class="fa fa-plus"></i> Add item</button>
         </div>
     </div>
-    <input  type='text' id='name' value=''>
-    <input type='text' id='cordenadax' value=''>
-    <input  type='text' id='cordenaday' value=''>
-    <input  type="button"  onclick="localizar();" value="localizar">
-    <div class="pull-right"  id="map" style="width: 50%;height: 56.5%;"></div>
+
+    <div class="pull-right"  id="map" style="width: 50%;height: 60.5%;"></div>
+</div>
+<!-- Modal -->
+<div id="Modal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <div style="text-align: center;font-size: 20px;font-weight: bold;">Add thing to do</div>
+            </div>
+            <form>
+            <div class="modal-body" style="text-align: center;">
+                <label>Description : </label>
+                <input class="form-control" type="text" id="description">
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary" >Accept</button>
+            </div>
+                </form>
+        </div>
+
+    </div>
 </div>
 <script>
-    function localizar(){
-        navigator.geolocation.watchPosition(showPosition);
-        document.getElementById("name").value = "mi ubicacion";
-        initMap();
-    }
-    function showPosition(position){
-        document.getElementById("cordenadax").value = position.coords.latitude;
-        document.getElementById("cordenaday").value = position.coords.longitude;
-    }
+    var locations = [
+        ['ca'],
+        ['canada'],
+        ['china'],
+        ['brazil'],
+        ['tijuana']
+    ];
+    var i = 0;
+    /* function localizar(){
+     navigator.geolocation.watchPosition(showPosition);
+     document.getElementById("name").value = "mi ubicacion";
+     initMap();
+     }
+     function showPosition(position){
+     document.getElementById("cordenadax").value = position.coords.latitude;
+     document.getElementById("cordenaday").value = position.coords.longitude;
+     }*/
     var map;
     var marker;
     function initMap() {
-        var cordenadax = document.getElementById("cordenadax").value;
-        var cordenaday = document.getElementById("cordenaday").value;
+
+        //var cordenadax = document.getElementById("cordenadax").value;
+        //var cordenaday = document.getElementById("cordenaday").value;
         map = new google.maps.Map(document.getElementById('map'), {
-            center: new google.maps.LatLng(32.715,-117.1625),
+            center: new google.maps.LatLng(-34.397, 150.644),
             zoom: 1,
             styles: [
                 {elementType: 'geometry', stylers: [{color: '#242f3e'}]},
@@ -307,14 +270,12 @@
                 }
             ]
         });
-        var place = new google.maps.LatLng(32.715,-117.1625);
-        marker = new google.maps.Marker({
-            position: place ,
-            title: "my ubication",
-            map: map,
-            mapTypeId: google.maps.MapTypeId.ROADMAP
+        var geocoder = new google.maps.Geocoder();
+
+        $(function() {
+            geocodeAddress(geocoder, map);
         });
-        google.maps.event.addListener(marker,"click",showInfo);
+
     }
     function showInfo() {
         map.setZoom(5);
@@ -323,9 +284,60 @@
             content: "ubicacion del arduino"});
         infowindow.open(map,marker);
     }
+    function geocodeAddress(geocoder, resultsMap) {
+        var address = locations;
+
+        for( i = 0;i < locations.length; i++)
+        {
+            geocoder.geocode({'address': address[i][0].toString()}, function (results, status) {
+                if (status === 'OK') {
+                    resultsMap.setCenter(results[0].geometry.location);
+                    var marker = new google.maps.Marker({
+                        map: resultsMap,
+                        title:"visitors",
+                        position: results[0].geometry.location
+                    });
+                } else {
+                    alert('Geocode was not successful for the following reason: ' + status);
+                }
+            });
+        }
+    }
+    //variables
+    var token = '{{Session::token()}}';
+    var url = '{{route('deletethings')}}';
+    function deleteThing(id) {
+        $('#thing' + id).change(function () {
+            $.ajax({
+                url: url,
+                headers: {'X-CSRF-TOKEN': token},
+                data: id,
+                type: 'POST',
+                success: function( msg ) {
+                    $('#thing' + id).hide();
+                    if ( msg.status === 'success' ) {
+                        toastr.success( msg.msg );
+                        setInterval(function() {
+                            window.location.reload();
+                        }, 5900);
+                    }
+                },
+                error: function( data ) {
+                    if ( data.status === 422 ) {
+                        toastr.error('Cannot delete the category');
+                    }
+                }
+            });
+        });
+    }
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBjBKcrrs3pz18wuE-u41gD8n-GOZsac1g&callback=initMap"
         async defer></script>
+
 </body>
 </html>
+    @endsection
+@section('content')
+
+
     @endsection

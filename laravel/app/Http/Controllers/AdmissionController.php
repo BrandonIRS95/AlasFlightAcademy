@@ -125,4 +125,5 @@ class AdmissionController extends Controller
         return response()->json(['student' => $admission,
             'status' => '0'], 200);
     }
+
 }

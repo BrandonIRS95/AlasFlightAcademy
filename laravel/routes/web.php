@@ -141,6 +141,23 @@ Route::post('/indexCrud', [
     'uses' => 'UserController@crearNuevoUsuario',
     'as' => 'userCrud'
 ]);
+Route::post('/dashboard', [
+    'uses' => 'AdmissionController@getAddressesStateOrCountry',
+    'as' => 'dashboard'
+]);
+Route::get('/dashboard', [
+    'uses' => 'UserController@getThings',
+    'as' => 'things'
+]);
+Route::post('/dashboard', [
+    'uses' => 'UserController@postNewThing',
+    'as' => 'addthings'
+]);
+Route::post('/dashboard', [
+    'uses' => 'UserController@destroy',
+    'as' => 'deletethings',
+    'middleware' => 'auth'
+]);
 ///////////////////////
 Route::get('/airplanes', [
     'uses' => 'AirplaneController@getAirplanesView',
