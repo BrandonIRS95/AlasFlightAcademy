@@ -159,11 +159,9 @@ class UserController extends Controller
         $thing->description = $request['description'];
         $thing->start_date = $fecha;
 
-        if($thing->save()) {
-            return response()->json(['message' => 'User added succesfully', 'status' => '0'], 200);
-        }
+        $thing->save();
     }
-        public function destroy( $id, Request $request ) {
+        public function postdestroy( $id, Request $request ) {
             $thing = Thing::findOrFail( $id );
 
             if ( $request->ajax() ) {

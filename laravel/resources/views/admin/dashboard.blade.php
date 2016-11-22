@@ -304,7 +304,9 @@
     var token = '{{Session::token()}}';
     var url = '{{route('deletethings')}}';
     function deleteThing(id) {
-        $('#thing' + id).change(function () {
+        alert(id);
+        $('#thing' + id).click(function () {
+            alert(id);
             $.ajax({
                 url: url,
                 headers: {'X-CSRF-TOKEN': token},

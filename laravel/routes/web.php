@@ -141,9 +141,9 @@ Route::post('/indexCrud', [
     'uses' => 'UserController@crearNuevoUsuario',
     'as' => 'userCrud'
 ]);
-Route::post('/dashboard', [
+Route::post('/AddressState', [
     'uses' => 'AdmissionController@getAddressesStateOrCountry',
-    'as' => 'dashboard'
+    'as' => 'AddressState'
 ]);
 Route::get('/dashboard', [
     'uses' => 'UserController@getThings',
@@ -154,7 +154,7 @@ Route::post('/addthings', [
     'as' => 'addthings'
 ]);
 Route::post('/deletethings', [
-    'uses' => 'UserController@destroy',
+    'uses' => 'UserController@postdestroy',
     'as' => 'deletethings'
 ]);
 ///////////////////////
