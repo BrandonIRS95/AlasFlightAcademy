@@ -145,9 +145,9 @@ Route::post('/dashboard', [
     'uses' => 'AdmissionController@getAddressesStateOrCountry',
     'as' => 'dashboard'
 ]);
-Route::get('/things', [
+Route::get('/dashboard', [
     'uses' => 'UserController@getThings',
-    'as' => 'things'
+    'as' => 'dashboard'
 ]);
 Route::post('/addthings', [
     'uses' => 'UserController@postNewThing',
