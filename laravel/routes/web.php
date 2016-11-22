@@ -149,9 +149,9 @@ Route::get('/dashboard', [
     'uses' => 'UserController@getThings',
     'as' => 'dashboard'
 ]);
-Route::post('/addthings', [
+Route::post('/addThing', [
     'uses' => 'UserController@postNewThing',
-    'as' => 'addthings'
+    'as' => 'addThing'
 ]);
 Route::post('/deletethings', [
     'uses' => 'UserController@postdestroy',

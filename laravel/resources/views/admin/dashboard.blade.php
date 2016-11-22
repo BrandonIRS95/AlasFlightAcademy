@@ -146,15 +146,13 @@
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <div style="text-align: center;font-size: 20px;font-weight: bold;">Add thing to do</div>
             </div>
-            <form>
             <div class="modal-body" style="text-align: center;">
                 <label>Description : </label>
-                <input class="form-control" type="text" id="description">
+                <input id="descriptionThing" class="form-control" type="text" id="description">
             </div>
             <div class="modal-footer">
-                <button type="submit" class="btn btn-primary" >Accept</button>
+                <button id="addThing" type="submit" class="btn btn-primary" >Accept</button>
             </div>
-                </form>
         </div>
 
     </div>
@@ -303,22 +301,17 @@
     //variables
     var token = '{{Session::token()}}';
     var url = '{{route('deletethings')}}';
+    var url2 = '{{route('addThing')}}';
     function deleteThing(id) {
-        alert(id);
         $('#thing' + id).click(function () {
-            alert(id);
             $.ajax({
                 url: url,
                 headers: {'X-CSRF-TOKEN': token},
-                data: id,
+                data: {'id' : id},
                 type: 'POST',
                 success: function( msg ) {
-                    $('#thing' + id).hide();
                     if ( msg.status === 'success' ) {
-                        toastr.success( msg.msg );
-                        setInterval(function() {
-                            window.location.reload();
-                        }, 5900);
+                        $('#thing' + id).hide();
                     }
                 },
                 error: function( data ) {
@@ -329,6 +322,25 @@
             });
         });
     }
+    $('#addThing').click(function () {
+        var descripcion = document.getElementById('descriptionThing').value;
+            $.ajax({
+                url: url2,
+                headers: {'X-CSRF-TOKEN': token},
+                data: {'descripcion' : descripcion},
+                type: 'POST',
+                success: function( msg ) {
+                    if ( msg.status === 'success' ) {
+                       window.reload();
+                    }
+                },
+                error: function( data ) {
+                    if ( data.status === 422 ) {
+                        alert('Cannot delete the category');
+                    }
+                }
+            });
+    });
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBjBKcrrs3pz18wuE-u41gD8n-GOZsac1g&callback=initMap"
         async defer></script>

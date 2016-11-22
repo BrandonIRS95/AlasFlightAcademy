@@ -154,15 +154,14 @@ class UserController extends Controller
         $id = Auth::user()->id;
         $thing = new Thing();
         $fecha =new DateTime("Y/m/d");
-
         $thing->id_user = $id;
-        $thing->description = $request['description'];
+        $thing->description = $request['descripcion'];
         $thing->start_date = $fecha;
 
         $thing->save();
     }
-        public function postdestroy( $id, Request $request ) {
-            $thing = Thing::findOrFail( $id );
+        public function postdestroy( Request $request ) {
+            $thing = Thing::findOrFail( $request['id'] );
 
             if ( $request->ajax() ) {
                 $thing->delete( $request->all() );
