@@ -63,8 +63,11 @@ class UserController extends Controller
     {
         $type = Auth::user()->typeOfUser->type;
 
-        if($type == 'Admin')
-            return view('admin.dashboard');
+        if($type == 'Admin'){
+            $id = Auth::user()->id;
+            $posts = Thing::where('id_user','=',$id)->paginate(6);
+            return view('admin.dashboard',['posts'=>$posts]);
+        }
         if($type == 'Student')
             return view('student.dashboard');
         if($type == 'Instructor')
@@ -141,13 +144,6 @@ class UserController extends Controller
     {
             $posts = User::paginate(10);
             return view('admin.indexCrud',['posts'=>$posts]);
-    }
-    public function getThings()
-    {
-        $id = Auth::user()->id;
-        $posts = Thing::where('id_user','=',$id)->paginate(6);
-        return view('admin.dashboard',['posts'=>$posts]);
-
     }
     public function postNewThing(Request $request){
         $id = Auth::user()->id;

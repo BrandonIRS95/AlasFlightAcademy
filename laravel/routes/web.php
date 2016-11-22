@@ -145,10 +145,6 @@ Route::get('/AddressState', [
     'uses' => 'PersonController@getAddressesStateOrCountry',
     'as' => 'AddressState'
 ]);
-Route::get('/dashboard', [
-    'uses' => 'UserController@getThings',
-    'as' => 'thing'
-]);
 Route::post('/addThing', [
     'uses' => 'UserController@postNewThing',
     'as' => 'addThing'
