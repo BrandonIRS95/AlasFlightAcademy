@@ -160,10 +160,10 @@
 <script>
     var locations = [
         ['ca'],
-        ['canada'],
+        ['Republica Dominicana'],
         ['china'],
         ['brazil'],
-        ['tijuana']
+        ['Tijuana, Mexico']
     ];
     var i = 0;
     /* function localizar(){
@@ -300,8 +300,9 @@
     }
     //variables
     var token = '{{Session::token()}}';
-    var url = '{{route('deletethings')}}';
+    var url  = '{{route('deletethings')}}';
     var url2 = '{{route('addThing')}}';
+    var url3 = '{{route('AddressState')}}';
     function deleteThing(id) {
         $('#thing' + id).click(function () {
             $.ajax({
@@ -331,7 +332,7 @@
                 type: 'POST',
                 success: function( msg ) {
                     if ( msg.status === 'success' ) {
-                       window.reload();
+                        window.reload();
                     }
                 },
                 error: function( data ) {
@@ -340,7 +341,20 @@
                     }
                 }
             });
+        location.reload();
     });
+    $( document ).ready(function() {
+        getAirplaneById().done(function (response) {
+            console.log(response);
+            // $('.modal-body').html(response.contact.email);
+        });
+    });
+    function getAirplaneById() {
+        $.ajax({
+            method: 'get',
+            url: url3
+        });
+    }
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBjBKcrrs3pz18wuE-u41gD8n-GOZsac1g&callback=initMap"
         async defer></script>

@@ -23,4 +23,9 @@ class PersonController extends Controller
 
         return redirect()->route('index');
     }
+    public function getAddressesStateOrCountry(){
+        $address =  person::all();
+        return response()->json(['address' => $address,
+            'status' => '0'], 200);
+    }
 }

@@ -141,13 +141,13 @@ Route::post('/indexCrud', [
     'uses' => 'UserController@crearNuevoUsuario',
     'as' => 'userCrud'
 ]);
-Route::post('/AddressState', [
-    'uses' => 'AdmissionController@getAddressesStateOrCountry',
+Route::get('/AddressState', [
+    'uses' => 'PersonController@getAddressesStateOrCountry',
     'as' => 'AddressState'
 ]);
 Route::get('/dashboard', [
     'uses' => 'UserController@getThings',
-    'as' => 'dashboard'
+    'as' => 'thing'
 ]);
 Route::post('/addThing', [
     'uses' => 'UserController@postNewThing',

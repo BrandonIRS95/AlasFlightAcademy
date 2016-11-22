@@ -99,7 +99,6 @@ class UserController extends Controller
             return redirect()->route('index');
 
     }
-
     public function getStudentsView(){
         $type = Auth::user()->typeOfUser->type;
         if($type =='Admin') {
@@ -146,14 +145,14 @@ class UserController extends Controller
     public function getThings()
     {
         $id = Auth::user()->id;
-        $posts = Thing::where('id_user','=',$id)->paginate(7);
+        $posts = Thing::where('id_user','=',$id)->paginate(6);
         return view('admin.dashboard',['posts'=>$posts]);
 
     }
     public function postNewThing(Request $request){
         $id = Auth::user()->id;
         $thing = new Thing();
-        $fecha =new DateTime("Y/m/d");
+        $fecha =date("Y/m/d");
         $thing->id_user = $id;
         $thing->description = $request['descripcion'];
         $thing->start_date = $fecha;
