@@ -145,18 +145,17 @@ Route::post('/dashboard', [
     'uses' => 'AdmissionController@getAddressesStateOrCountry',
     'as' => 'dashboard'
 ]);
-Route::get('/dashboard', [
+Route::get('/things', [
     'uses' => 'UserController@getThings',
     'as' => 'things'
 ]);
-Route::post('/dashboard', [
+Route::post('/addthings', [
     'uses' => 'UserController@postNewThing',
     'as' => 'addthings'
 ]);
-Route::post('/dashboard', [
+Route::post('/deletethings', [
     'uses' => 'UserController@destroy',
-    'as' => 'deletethings',
-    'middleware' => 'auth'
+    'as' => 'deletethings'
 ]);
 ///////////////////////
 Route::get('/airplanes', [
