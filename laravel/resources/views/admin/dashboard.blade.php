@@ -80,7 +80,7 @@
         <!-- small box -->
         <div class="small-box bg-red">
             <div class="inner">
-                <h3>65</h3>
+                <h3>{{$counter}}</h3>
 
                 <p>Unique Visitors</p>
             </div>

@@ -11,6 +11,7 @@ use App\Http\Requests;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Thing;
+use App\accountant;
 
 class UserController extends Controller
 {
@@ -64,10 +65,11 @@ class UserController extends Controller
         $type = Auth::user()->typeOfUser->type;
 
         if($type == 'Admin'){
+            $counter = accountant::all()->max('number');
             $id = Auth::user()->id;
             $address =  person::all();
             $posts = Thing::where('id_user','=',$id)->paginate(6);
-            return view('admin.dashboard',['posts'=>$posts,'address'=>$address]);
+            return view('admin.dashboard',['posts'=>$posts,'address'=>$address,'counter'=>$counter]);
         }
         if($type == 'Student') {
             $id = Auth::user()->id;
