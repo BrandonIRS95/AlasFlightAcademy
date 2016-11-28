@@ -8,20 +8,9 @@ use Illuminate\Http\Request;
 use DateTime;
 use App\Http\Requests;
 use App\accountant;
+use DB;
 
 class AdmissionController extends Controller
 {
-    public function postCounter(Request $request)
-    {
-        $counter = new  accountant();
-        $counter = $request['counter'];
-        $counter->save();
-    }
-
-    public function getCounter()
-    {
-        $counter = Auth::accountant()->number;
-        return view('index',['counter'=>$counter,]);
-    }
 
 }

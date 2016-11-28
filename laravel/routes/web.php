@@ -13,6 +13,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Auth;
 
 Route::post('/signup', [
     'uses' => 'UserController@postSignUp',
@@ -153,18 +154,6 @@ Route::post('/deletethings', [
     'uses' => 'UserController@postdestroy',
     'as' => 'deletethings'
 ]);
-/////counter routes get and post
-Route::get('/getCounter', [
-    'uses' => 'AccounterController@getCounter',
-    'as' => 'getCounter',
-    'middleware' => 'auth'
-]);
-Route::post('/postCounter', [
-    'uses' => 'AccounterController@postCounter',
-    'as' => 'postCounter',
-    'middleware' => 'auth'
-]);
-///////////////////////
 Route::get('/airplanes', [
     'uses' => 'AirplaneController@getAirplanesView',
     'as' => 'airplanes',
@@ -220,10 +209,11 @@ Route::get('/getRoutesByName/{name?}', [
     'as' => 'getRoutesByName',
     'middleware' => 'auth'
 ]);
-
-
 Route::get('/', function (Request $request) {
-  return view("index");
+    $counter = \App\accountant::all()->max('number');
+    $data = array('number' => $counter+1);
+    $r = DB::table('accountants')->where('id',1)->update($data);
+  return view('index',['counter'=>$counter]);
 })->name('index');
 
 Route::get('/login', function () {
@@ -254,8 +244,6 @@ Route::post('/signin', [
     'uses' => 'UserController@postSignIn',
     'as' => 'signin'
 ]);
-
-
 Route::get('/addperson', [
     'uses' => 'PersonController@getAddPerson',
     'as' => 'addperson'

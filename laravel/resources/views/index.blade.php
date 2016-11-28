@@ -149,26 +149,5 @@
 
     ga('create', 'UA-86797019-1', 'auto');
     ga('send', 'pageview');
-    var urlPost  = '{{route('postCounter')}}';
-    var urlGet  = '{{route('getCounter')}}';
-    var counter = document.getElementById('counter').value;
-    $( document ).ready(function() {
-        alert(counter);
-        $.ajax({
-            url: urlPost,
-            data: {'counter' : counter+1},
-            type: 'POST',
-            success: function( msg ) {
-                if ( msg.status === 'success' ) {
-                    $('#thing' + id).hide();
-                }
-            },
-            error: function( data ) {
-                if ( data.status === 422 ) {
-                    toastr.error('Cannot delete the category');
-                }
-            }
-        });
-    });
   </script>
 @endsection
