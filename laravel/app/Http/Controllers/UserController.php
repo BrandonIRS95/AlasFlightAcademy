@@ -11,7 +11,6 @@ use App\Http\Requests;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Thing;
-use App\accountant;
 
 class UserController extends Controller
 {
