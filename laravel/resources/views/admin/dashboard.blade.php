@@ -65,7 +65,7 @@
         <!-- small box -->
         <div class="small-box bg-yellow">
             <div class="inner">
-                <h3>44</h3>
+                <h3 id="userRegistrations"></h3>
 
                 <p>User Registrations</p>
             </div>
@@ -135,7 +135,6 @@
             <button data-toggle="modal" data-target="#Modal" type="button" class="btn btn-default pull-right"><i class="fa fa-plus"></i> Add item</button>
         </div>
     </div>
-
     <div class="pull-right"  id="map" style="width: 50%;height: 60.5%;"></div>
 </div>
 <!-- Modal -->
@@ -154,18 +153,25 @@
                 <button id="addThing" type="submit" class="btn btn-primary" >Accept</button>
             </div>
         </div>
-
     </div>
 </div>
 <script>
-    var locations = [
-        ['ca'],
-        ['Republica Dominicana'],
-        ['china'],
-        ['brazil'],
-        ['Tijuana, Mexico']
-    ];
-    var i = 0;
+    var l = new Array();
+    var locations = [];
+    var userRegistration = 0;
+
+
+    $( document ).ready(function() {
+        var i = 0;
+        @foreach($address as $addres)
+                l[i++] = '{{$addres->city_country_of_birth}}';
+                userRegistration = i;
+                @endforeach
+        for(var i =0;i < l.length;i++){
+            locations[i] = l[i];
+        }
+        document.getElementById('userRegistrations').innerHTML = userRegistration;
+    });
     /* function localizar(){
      navigator.geolocation.watchPosition(showPosition);
      document.getElementById("name").value = "mi ubicacion";
@@ -284,7 +290,7 @@
 
         for( i = 0;i < locations.length; i++)
         {
-            geocoder.geocode({'address': address[i][0].toString()}, function (results, status) {
+            geocoder.geocode({'address': address[i].toString()}, function (results, status) {
                 if (status === 'OK') {
                     resultsMap.setCenter(results[0].geometry.location);
                     var marker = new google.maps.Marker({
@@ -302,7 +308,6 @@
     var token = '{{Session::token()}}';
     var url  = '{{route('deletethings')}}';
     var url2 = '{{route('addThing')}}';
-    var url3 = '{{route('AddressState')}}';
     function deleteThing(id) {
         $('#thing' + id).click(function () {
             $.ajax({
@@ -343,18 +348,6 @@
             });
         location.reload();
     });
-    $( document ).ready(function() {
-        getAirplaneById().done(function (response) {
-            console.log(response);
-            // $('.modal-body').html(response.contact.email);
-        });
-    });
-    function getAirplaneById() {
-        $.ajax({
-            method: 'get',
-            url: url3
-        });
-    }
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBjBKcrrs3pz18wuE-u41gD8n-GOZsac1g&callback=initMap"
         async defer></script>

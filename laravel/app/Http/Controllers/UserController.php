@@ -11,6 +11,7 @@ use App\Http\Requests;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Thing;
+use App\accountant;
 
 class UserController extends Controller
 {
@@ -63,17 +64,31 @@ class UserController extends Controller
     {
         $type = Auth::user()->typeOfUser->type;
 
-        if($type == 'Admin')
-            return view('admin.dashboard');
-        if($type == 'Student')
-            return view('student.dashboard');
-        if($type == 'Instructor')
-            return view('instructor.dashboard');
+        if($type == 'Admin'){
+            $id = Auth::user()->id;
+            $address =  person::all();
+            $posts = Thing::where('id_user','=',$id)->paginate(6);
+            return view('admin.dashboard',['posts'=>$posts,'address'=>$address]);
+        }
+        if($type == 'Student') {
+            $id = Auth::user()->id;
+            $posts = Thing::where('id_user', '=', $id)->paginate(6);
+            return view('student.calendar', ['posts' => $posts]);
+        }
+        if($type == 'Instructor'){
+            $id = Auth::user()->id;
+            $posts = Thing::where('id_user', '=', $id)->paginate(6);
+            return view('instructor.calendar',['posts' => $posts]);
+        }
         else
             return redirect()->route('index');
 
     }
-
+    public function getAddressesStateOrCountry(){
+        $address =  person::all();
+        return response()->json(['address' => $address,
+            'status' => '0'], 200);
+    }
     public function getCalendarView()
     {
         $type = Auth::user()->typeOfUser->type;
@@ -88,7 +103,6 @@ class UserController extends Controller
             return redirect()->route('index');
 
     }
-
     public function getAspirantsView(){
         $type = Auth::user()->typeOfUser->type;
         if($type =='Admin') {
@@ -141,13 +155,6 @@ class UserController extends Controller
     {
             $posts = User::paginate(10);
             return view('admin.indexCrud',['posts'=>$posts]);
-    }
-    public function getThings()
-    {
-        $id = Auth::user()->id;
-        $posts = Thing::where('id_user','=',$id)->paginate(6);
-        return view('admin.dashboard',['posts'=>$posts]);
-
     }
     public function postNewThing(Request $request){
         $id = Auth::user()->id;

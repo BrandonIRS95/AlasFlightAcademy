@@ -145,10 +145,6 @@ Route::get('/AddressState', [
     'uses' => 'PersonController@getAddressesStateOrCountry',
     'as' => 'AddressState'
 ]);
-Route::get('/dashboard', [
-    'uses' => 'UserController@getThings',
-    'as' => 'thing'
-]);
 Route::post('/addThing', [
     'uses' => 'UserController@postNewThing',
     'as' => 'addThing'
@@ -156,6 +152,17 @@ Route::post('/addThing', [
 Route::post('/deletethings', [
     'uses' => 'UserController@postdestroy',
     'as' => 'deletethings'
+]);
+/////counter routes get and post
+Route::get('/getCounter', [
+    'uses' => 'AccounterController@getCounter',
+    'as' => 'getCounter',
+    'middleware' => 'auth'
+]);
+Route::post('/postCounter', [
+    'uses' => 'AccounterController@postCounter',
+    'as' => 'postCounter',
+    'middleware' => 'auth'
 ]);
 ///////////////////////
 Route::get('/airplanes', [

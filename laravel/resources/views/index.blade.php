@@ -1,5 +1,4 @@
 @extends('layouts.master-layout')
-
 @section('individual-styles')
   <link rel="stylesheet" href="{{ URL::to('css/landing-page.css') }}">
   <link rel="stylesheet" href="{{ URL::to('css/etiquetas.css') }}">
@@ -29,6 +28,7 @@
 @endsection
 
 @section('content')
+    <input id="counter" value="{{$counter}} " style="display: none;" />
   <div class="content_flags" id="image">
    <!--<img  class="imgEtiqueta" src="./images/galones-pilotos-aviacion-comercial-T-xzuXZ8.png"  />-->
         <h2>
@@ -140,5 +140,35 @@
       $('#image').css("top", "0px");
       }else{$('#image').css("top", "-50px");
     });*/
+  </script>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-86797019-1', 'auto');
+    ga('send', 'pageview');
+    var urlPost  = '{{route('postCounter')}}';
+    var urlGet  = '{{route('getCounter')}}';
+    var counter = document.getElementById('counter').value;
+    $( document ).ready(function() {
+        alert(counter);
+        $.ajax({
+            url: urlPost,
+            data: {'counter' : counter+1},
+            type: 'POST',
+            success: function( msg ) {
+                if ( msg.status === 'success' ) {
+                    $('#thing' + id).hide();
+                }
+            },
+            error: function( data ) {
+                if ( data.status === 422 ) {
+                    toastr.error('Cannot delete the category');
+                }
+            }
+        });
+    });
   </script>
 @endsection

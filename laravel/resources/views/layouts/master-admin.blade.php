@@ -96,7 +96,7 @@
     <body>
         <div id="master-container" class="master-container">
             <nav id="nav">
-                <div class="logo-alas">
+                <div class="logo-alas" onclick="window.location='{{route('dashboard')}}'" style="cursor: hand;" >
                     <span style="color: #fff;">Alas</span><span style="color: #abcff8;">Academy</span>
                 </div>
                 <div class="nav-section">
