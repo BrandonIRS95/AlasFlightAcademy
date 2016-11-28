@@ -33,14 +33,14 @@
 <div class="row">
     <div class="col-lg-3 col-xs-6">
         <!-- small box -->
-        <div class="small-box bg-aqua">
+        <div class="small-box bg-blue">
             <div class="inner">
-                <h3>{{$newOrders}}</h3>
+                <h3 >{{$newOrders}}</h3>
 
-                <p>New Orders</p>
+                <p>New Students at day</p>
             </div>
             <div class="icon">
-                <i class="ion ion-bag"></i>
+                <i class="ion ion-university"></i>
             </div>
             <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
         </div>
@@ -48,14 +48,14 @@
     <!-- ./col -->
     <div class="col-lg-3 col-xs-6">
         <!-- small box -->
-        <div class="small-box bg-green">
+        <div class="small-box bg-red">
             <div class="inner">
-                <h3>53<sup style="font-size: 20px">%</sup></h3>
+                <h3 id="bouncerate"></h3>
 
                 <p>Bounce Rate</p>
             </div>
             <div class="icon">
-                <i class="ion ion-stats-bars"></i>
+                <i class="ion ion-ios-speedometer-outline"></i>
             </div>
             <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
         </div>
@@ -63,7 +63,7 @@
     <!-- ./col -->
     <div class="col-lg-3 col-xs-6">
         <!-- small box -->
-        <div class="small-box bg-yellow">
+        <div class="small-box bg-orange">
             <div class="inner">
                 <h3 id="userRegistrations"></h3>
 
@@ -78,9 +78,9 @@
     <!-- ./col -->
     <div class="col-lg-3 col-xs-6">
         <!-- small box -->
-        <div class="small-box bg-red">
+        <div class="small-box bg-yellow">
             <div class="inner">
-                <h3>{{$counter}}</h3>
+                <h3 id="visitors">{{$counter}}</h3>
 
                 <p>Unique Visitors</p>
             </div>
@@ -171,6 +171,12 @@
             locations[i] = l[i];
         }
         document.getElementById('userRegistrations').innerHTML = userRegistration;
+
+        var a = document.getElementById('userRegistrations').innerHTML;
+        var b = document.getElementById('visitors').innerHTML;
+        var num = (a/b)*100;
+
+        var c = document.getElementById('bouncerate').innerHTML = num.toFixed(0)+"%";
     });
     /* function localizar(){
      navigator.geolocation.watchPosition(showPosition);
