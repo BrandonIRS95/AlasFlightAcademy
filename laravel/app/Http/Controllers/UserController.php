@@ -65,11 +65,13 @@ class UserController extends Controller
         $type = Auth::user()->typeOfUser->type;
 
         if($type == 'Admin'){
+            $fecha =date("Y/m/d");
+            $newOrders = student::where('created_at','=',$fecha)->count();
             $counter = accountant::all()->max('number');
             $id = Auth::user()->id;
             $address =  person::all();
             $posts = Thing::where('id_user','=',$id)->paginate(6);
-            return view('admin.dashboard',['posts'=>$posts,'address'=>$address,'counter'=>$counter]);
+            return view('admin.dashboard',['posts'=>$posts,'address'=>$address,'counter'=>$counter,'newOrders'=>$newOrders]);
         }
         if($type == 'Student') {
             $id = Auth::user()->id;
