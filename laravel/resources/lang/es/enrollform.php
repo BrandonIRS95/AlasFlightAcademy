@@ -3,7 +3,7 @@
 return [
   'steps_enroll' => 'Pasos para inscribirte',
   'step1_description' => 'Completa la solicitud de inscripci&oacute;n.',
-  'step2_description' => 'Presentar una cuota de $150 d&oacute;lares. Aceptamos Visa, Mastercard, American Express, Discover o transferencia bancaria. (Por favor, p&oacute;ngase en contacto con Admisiones para instrucciones de pago).',
+  'step2_description' => 'Presentar una cuota de $150 d&oacute;lares. Utilizamos PayPal como m&eacute;todo de pago (Por favor, p&oacute;ngase en contacto con Admisiones para instrucciones de pago).',
   'step3_description' => 'Presentar un dep&oacute;sito de alojamiento de $300 d&oacute;lares. S&oacute;lo para aquellos que quieren un dormitorio en el campus. Disponibilidad limitada.',
   'step4_description' => '<p class="Enroll__step__description">Proporcionar a la academia una copia de:
       <ul class="Enroll__step__description__list">
@@ -69,5 +69,6 @@ return [
     'error_sent' => 'Error: No pudimos enviar tu inscripción. Por favor, intenta de nuevo.',
     'field_required' => 'Este campo es requerido.',
     'email_validation' => 'Por favor ingresa un correo electr&oacute;nico v&aacute;lido.',
-    'phone_validation' => 'Por favor ingresa un n&uacute;mero de tel&eacute;fono v&aacute;lido.'
+    'phone_validation' => 'Por favor ingresa un n&uacute;mero de tel&eacute;fono v&aacute;lido.',
+    'application_fee' => 'cuota'
   ];

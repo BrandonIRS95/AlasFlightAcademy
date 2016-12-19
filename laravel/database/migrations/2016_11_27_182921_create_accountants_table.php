@@ -14,7 +14,8 @@ class CreateAccountantsTable extends Migration
     public function up()
     {
         Schema::create('accountants', function (Blueprint $table) {
-            $table->increments('number');
+            $table->increments('id');
+            $table->integer('number');
             $table->timestamps();
         });
     }

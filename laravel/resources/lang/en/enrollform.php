@@ -69,5 +69,6 @@ return [
     'error_sent' => 'Error: We could not send your data. Please try again.',
     'field_required' => 'This field is required.',
     'email_validation' => 'Please enter a valid email address.',
-    'phone_validation' => 'Please enter a valid phone number.'
+    'phone_validation' => 'Please enter a valid phone number.',
+    'application_fee' => 'application fee'
   ];

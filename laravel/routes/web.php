@@ -220,6 +220,10 @@ Route::get('/login', function () {
     return view('welcome');
 })->name('welcome');
 
+Route::get('/payment', function () {
+    return view('payment');
+})->name('payment');
+
 Route::get('/about', function () {
     return view('about');
 })->name('about');
