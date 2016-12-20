@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Thing;
 use App\accountant;
+use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
 {
@@ -52,6 +53,23 @@ class UserController extends Controller
             return redirect()->route('dashboard');
         }
         return redirect()->back();
+    }
+
+    public function postVerifyEmail(Request $request) {
+        $this->validate($request, [
+            'email' => 'required|email'
+        ]);
+
+        $user = User::where('email', $request['email'])->first();
+
+        if($user != null && $user->type_of_user_id == 2) {
+            Session::set('userEmail', $request['email']);
+            return response()->json(['found' => true,
+                'status' => 0, 'email' => Session::get('userEmail')], 200);
+        }
+
+        return response()->json(['found' => false,
+            'status' => 1], 200);
     }
 
     public function getLogout()

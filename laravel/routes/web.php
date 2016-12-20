@@ -224,6 +224,11 @@ Route::get('/payment', function () {
     return view('payment');
 })->name('payment');
 
+Route::post('/verifyEmail', [
+    'uses' => 'UserController@postVerifyEmail',
+    'as' => 'verifyEmail'
+]);
+
 Route::get('/about', function () {
     return view('about');
 })->name('about');
