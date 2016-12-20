@@ -229,6 +229,11 @@ Route::post('/verifyEmail', [
     'as' => 'verifyEmail'
 ]);
 
+Route::get('/paySuscription', [
+    'uses' => 'Checkout@paySuscription',
+    'as' => 'paySuscription'
+]);
+
 Route::get('/about', function () {
     return view('about');
 })->name('about');

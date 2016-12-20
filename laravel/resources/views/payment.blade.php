@@ -43,7 +43,9 @@
                         <h6>Make sure you have your PayPal account ready.</h6>
                     </div>
                 </div>
-                <button class="waves-effect green accent-4 btn">Continue</button>
+                <form action="{{route('paySuscription')}}">
+                    <button type="submit" class="waves-effect green accent-4 btn">Continue</button>
+                </form>
             </div>
         </div>
     </div>
