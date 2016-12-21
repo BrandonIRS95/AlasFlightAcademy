@@ -6,6 +6,8 @@
         .Footer {
             display: none;
         }
+
+        [v-cloak] { display: none }
     </style>
     <script src="{{URL::to('js/vue.js')}}"></script>
     <script src="{{URL::to('js/vue-resource.min.js')}}"></script>
@@ -20,7 +22,7 @@
             </div>
             <div class="divider"></div>
             <div class="card-panel blue lighten-4">Remember, you need a <a href="https://www.paypal.com">PayPal</a> account to pay your admission.</div>
-            <div v-if="!isRegistered" class="section">
+            <div v-if="!isRegistered" class="section" v-cloak>
                 <div class="row">
                     <div class="input-field col s12">
                         <input v-validate data-vv-rules="required|email" :class="{'input': true, 'is-danger': errors.has('email') }" name="email" type="text" class="validate" v-model="email">
@@ -36,7 +38,7 @@
                     </div>
                 </div>
             </div>
-            <div v-if="isRegistered" class="section">
+            <div v-if="isRegistered" class="section" v-cloak>
                 <div class="row">
                     <div class="input-field col s12">
                         <h5>Your email is registered, now click continue to go to the next step.</h5>
