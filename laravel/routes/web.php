@@ -229,7 +229,7 @@ Route::post('/verifyEmail', [
     'as' => 'verifyEmail'
 ]);
 
-Route::get('/paySuscription', [
+Route::post('/paySuscription', [
     'uses' => 'Checkout@paySuscription',
     'as' => 'paySuscription'
 ]);

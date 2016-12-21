@@ -5,16 +5,33 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use League\Flysystem\Exception;
+use PayPal\Api\Amount;
+use PayPal\Api\Details;
 use PayPal\Api\Item;
+use PayPal\Api\ItemList;
 use PayPal\Api\Payer;
 
-use App\Start;
+
+use PayPal\Api\RedirectUrls;
+use PayPal\Api\Transaction;
+use PayPal\Api\Payment;
+use PayPal\Auth\OAuthTokenCredential;
+use PayPal\Exception\PayPalConnectionException;
+use PayPal\Rest\ApiContext;
 
 class Checkout extends Controller
 {
     public function paySuscription() {
+        $SITE_URL = 'http://localhost/AlasFlightAcademy/laravel/public';
+        $paypal = new ApiContext(new OAuthTokenCredential(
+            'Adihqrx8m_1iktN6donLICKgZCSgv2q9HOe_-oriNPeWLOG4ZIRdd6FKiP2CQ64BeQqRGJF_MZt56655'
+            ,
+            'EEHHJejiGylsdiwhLw0TjNJnyl1AtSSBplwDjA2Lg8hbKUTdPM5GU_CTfP7JM-F0yG2FUtGa2uKxKPbe'
+        ));
+
         $product = 'Alas Flight Academy Suscription';
-        $price = 120.00;
+        $price = 10.00;
         $shipping = 2.00;
 
         $total = $price + $shipping;
@@ -23,7 +40,53 @@ class Checkout extends Controller
         $payer->setPaymentMethod('paypal');
 
         $item = new Item();
-        $item->setName($product)->setCurrency('US')->setQuantity('1')->price($price);
+        $item->setName($product)
+            ->setCurrency('USD')
+            ->setQuantity(1)
+            ->setPrice($price);
+
+        $itemList = new ItemList();
+        $itemList->setItems([$item]);
+
+        $details = new Details();
+        $details->setShipping($shipping)
+            ->setSubtotal($price);
+
+        $amount = new Amount();
+        $amount->setCurrency('USD')
+            ->setTotal($total)
+            ->setDetails($details);
+
+        $transaction = new Transaction();
+        $transaction->setAmount($amount)
+            ->setItemList($itemList)
+            ->setDescription('Pay for Alas Flight Academy Subscription')
+            ->setInvoiceNumber(uniqid());
+
+        $redirectUrls = new RedirectUrls();
+        $redirectUrls->setReturnUrl($SITE_URL . '/about?success=true')
+            ->setCancelUrl($SITE_URL . '/about?success=false');
+
+        $payment = new Payment();
+        $payment->setIntent('sale')
+            ->setPayer($payer)
+            ->setRedirectUrls($redirectUrls)
+            ->setTransactions([$transaction]);
+
+        try {
+            $payment->create($paypal);
+        } catch (PayPalConnectionException $ex) {
+
+            echo $ex->getData(); // Prints the detailed error message
+            die($ex);
+        } catch (Exception $ex) {
+            die($ex);
+        }
+
+        $approvalUrl = $payment->getApprovalLink();
+
+        return redirect()->to($approvalUrl);
+
 
     }
 }

@@ -43,8 +43,9 @@
                         <h6>Make sure you have your PayPal account ready.</h6>
                     </div>
                 </div>
-                <form action="{{route('paySuscription')}}">
+                <form method="POST" action="{{route('paySuscription')}}">
                     <button type="submit" class="waves-effect green accent-4 btn">Continue</button>
+                    <input name="_token" type="hidden" value="{{Session::token()}}">
                 </form>
             </div>
         </div>
