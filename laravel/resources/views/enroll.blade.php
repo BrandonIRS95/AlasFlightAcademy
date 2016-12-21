@@ -73,7 +73,7 @@
         <h3 class="Enroll__step__number">2.</h3>
         <div class="Enroll__step__divider"></div>
         <p class="Enroll__step__description">{{trans('enrollform.step2_description')}}</p>
-        <a href="">{{trans('enrollform.submit')}} {{trans('enrollform.application_fee')}}</a>
+        <a href="{{route('payment')}}">{{trans('enrollform.submit')}} {{trans('enrollform.application_fee')}}</a>
       </li>
       <li class="Enroll__step">
         <h3 class="Enroll__step__number">3.</h3>

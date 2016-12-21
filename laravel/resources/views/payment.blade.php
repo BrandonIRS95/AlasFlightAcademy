@@ -39,7 +39,7 @@
             <div v-if="isRegistered" class="section">
                 <div class="row">
                     <div class="input-field col s12">
-                        <h5>You are registered, now click continue to go to the next step.</h5>
+                        <h5>Your email is registered, now click continue to go to the next step.</h5>
                         <h6>Make sure you have your PayPal account ready.</h6>
                     </div>
                 </div>
