@@ -22,13 +22,19 @@ use PayPal\Rest\ApiContext;
 
 class Checkout extends Controller
 {
-    public function paySuscription() {
+    public function paySuscription(Request $request) {
+
+        if(!$request->has('email')) {
+            die();
+        }
+
+        $this->validate($request, [
+            'email' => 'required|email'
+        ]);
+
+        $email = $request['email'];
+
         $SITE_URL = 'http://localhost/AlasFlightAcademy/laravel/public';
-        $paypal = new ApiContext(new OAuthTokenCredential(
-            'Adihqrx8m_1iktN6donLICKgZCSgv2q9HOe_-oriNPeWLOG4ZIRdd6FKiP2CQ64BeQqRGJF_MZt56655'
-            ,
-            'EEHHJejiGylsdiwhLw0TjNJnyl1AtSSBplwDjA2Lg8hbKUTdPM5GU_CTfP7JM-F0yG2FUtGa2uKxKPbe'
-        ));
 
         $product = 'Alas Flight Academy Suscription';
         $price = 10.00;
@@ -64,8 +70,8 @@ class Checkout extends Controller
             ->setInvoiceNumber(uniqid());
 
         $redirectUrls = new RedirectUrls();
-        $redirectUrls->setReturnUrl($SITE_URL . '/about?success=true')
-            ->setCancelUrl($SITE_URL . '/about?success=false');
+        $redirectUrls->setReturnUrl($SITE_URL . '/pay?success=true&email='.$email)
+            ->setCancelUrl($SITE_URL . '/pay?success=false');
 
         $payment = new Payment();
         $payment->setIntent('sale')
@@ -74,7 +80,7 @@ class Checkout extends Controller
             ->setTransactions([$transaction]);
 
         try {
-            $payment->create($paypal);
+            $payment->create($this->getPaypal());
         } catch (PayPalConnectionException $ex) {
 
             echo $ex->getData(); // Prints the detailed error message
@@ -88,5 +94,13 @@ class Checkout extends Controller
         return redirect()->to($approvalUrl);
 
 
+    }
+
+    private function getPaypal() {
+        return new ApiContext(new OAuthTokenCredential(
+            'Adihqrx8m_1iktN6donLICKgZCSgv2q9HOe_-oriNPeWLOG4ZIRdd6FKiP2CQ64BeQqRGJF_MZt56655'
+            ,
+            'EEHHJejiGylsdiwhLw0TjNJnyl1AtSSBplwDjA2Lg8hbKUTdPM5GU_CTfP7JM-F0yG2FUtGa2uKxKPbe'
+        ));
     }
 }

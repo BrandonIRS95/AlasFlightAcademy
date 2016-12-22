@@ -63,13 +63,18 @@ class UserController extends Controller
         $user = User::where('email', $request['email'])->first();
 
         if($user != null && $user->type_of_user_id == 2) {
-            Session::set('userEmail', $request['email']);
-            return response()->json(['found' => true,
-                'status' => 0, 'email' => Session::get('userEmail')], 200);
+            return response()->json(['found' => true, 'status' => 0], 200);
         }
 
         return response()->json(['found' => false,
             'status' => 1], 200);
+    }
+
+    public function getPay(Request $request)
+    {
+        $success = true;
+
+        return view('pay',['success' => $success]);
     }
 
     public function getLogout()

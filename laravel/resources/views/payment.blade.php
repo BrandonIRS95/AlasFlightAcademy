@@ -28,7 +28,7 @@
                         <input v-validate data-vv-rules="required|email" :class="{'input': true, 'is-danger': errors.has('email') }" name="email" type="text" class="validate" v-model="email">
                         <div style="color: red;" v-show="errors.has('email')" class="help-block">@{{ errors.first('email') }}</div>
                         <label class="active" for="email">Enter the email which you register your Enrollment Application:</label>
-                        <div class="card-panel  orange lighten-2" v-if="notRegistered">You're not registered in Alas Flight Academy, please go to <a
+                        <div class="card-panel orange lighten-2" v-if="notRegistered">You're not registered in Alas Flight Academy, please go to <a
                                     href="enroll">Enroll Now</a> and complete the Enrollment Application (Step 1).</div>
                         <div v-if="searching" class="progress">
                             <div class="indeterminate"></div>
@@ -48,6 +48,7 @@
                 <form method="POST" action="{{route('paySuscription')}}">
                     <button type="submit" class="waves-effect green accent-4 btn">Continue</button>
                     <input name="_token" type="hidden" value="{{Session::token()}}">
+                    <input type="hidden" name="email" v-model="email">
                 </form>
             </div>
         </div>
