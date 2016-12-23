@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\AlasPayment;
+use App\User;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -33,6 +35,10 @@ class Checkout extends Controller
         ]);
 
         $email = $request['email'];
+
+        $user = User::where('email', $email)->first();
+
+        if($user == null) die();
 
         $SITE_URL = 'http://localhost/AlasFlightAcademy/laravel/public';
 
@@ -69,8 +75,11 @@ class Checkout extends Controller
             ->setDescription('Pay for Alas Flight Academy Subscription')
             ->setInvoiceNumber(uniqid());
 
+        $serial = bin2hex(openssl_random_pseudo_bytes(20));
+        $user_id = $user->id;
+
         $redirectUrls = new RedirectUrls();
-        $redirectUrls->setReturnUrl($SITE_URL . '/pay?success=true&email='.$email)
+        $redirectUrls->setReturnUrl($SITE_URL . '/pay?success=true&student='.$user_id.'&serial='.$serial)
             ->setCancelUrl($SITE_URL . '/pay?success=false');
 
         $payment = new Payment();
@@ -90,6 +99,13 @@ class Checkout extends Controller
         }
 
         $approvalUrl = $payment->getApprovalLink();
+
+        $alas_payment = new AlasPayment();
+        $alas_payment->user_id = $user_id;
+        $alas_payment->serial = $serial;
+        $alas_payment->type = 'subscription';
+
+        $alas_payment->save();
 
         return redirect()->to($approvalUrl);
 

@@ -72,7 +72,11 @@ class UserController extends Controller
 
     public function getPay(Request $request)
     {
-        $success = true;
+        if(!$request->has(['success', 'student', 'serial', 'paymentId', 'token', 'PayerID'])) die();
+
+        
+
+        $success = filter_var($request['success'], FILTER_VALIDATE_BOOLEAN);
 
         return view('pay',['success' => $success]);
     }
