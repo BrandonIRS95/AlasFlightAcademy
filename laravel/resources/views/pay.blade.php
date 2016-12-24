@@ -15,7 +15,7 @@
     <div class="container">
         <div id="app">
             <div class="section">
-                <h5>Enrollment application payment</h5>
+                <h5>Admission payment</h5>
             </div>
             <div class="divider"></div>
             <div class="card-panel {{$success ? 'green accent-2' : 'orange lighten-2'}}">

@@ -28,8 +28,9 @@
                         <input v-validate data-vv-rules="required|email" :class="{'input': true, 'is-danger': errors.has('email') }" name="email" type="text" class="validate" v-model="email">
                         <div style="color: red;" v-show="errors.has('email')" class="help-block">@{{ errors.first('email') }}</div>
                         <label class="active" for="email">Enter the email which you register your Enrollment Application:</label>
-                        <div class="card-panel orange lighten-2" v-if="notRegistered">You're not registered in Alas Flight Academy, please go to <a
+                        <div class="card-panel orange lighten-2" v-if="status === 2">You're not registered in Alas Flight Academy, please go to <a
                                     href="enroll">Enroll Now</a> and complete the Enrollment Application (Step 1).</div>
+                        <div class="card-panel orange lighten-2" v-if="status === 1">You already paid your admission.</div>
                         <div v-if="searching" class="progress">
                             <div class="indeterminate"></div>
                         </div>
@@ -66,7 +67,8 @@
                 notRegistered: false,
                 searching: false,
                 message: 'Check e-mail',
-                email: ''
+                email: '',
+                status: 0
             },
             methods: {
                 checkIfIsRegistered() {
@@ -76,9 +78,9 @@
 
                         this.$http.post('{{route('verifyEmail')}}', {email: this.email, _token: '{{Session::token()}}'}).then((response) => {
                             var found = response.body.found;
+                            this.status = response.body.status;
                             this.searching = false;
                             this.isRegistered = found;
-                            this.notRegistered = !found;
 
                             if(!found) {
                                 this.message = 'Check e-mail'

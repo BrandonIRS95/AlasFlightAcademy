@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\AlasPayment;
 use App\Student;
 use App\Person;
 use App\TypeOfUser;
@@ -63,20 +64,43 @@ class UserController extends Controller
         $user = User::where('email', $request['email'])->first();
 
         if($user != null && $user->type_of_user_id == 2) {
-            return response()->json(['found' => true, 'status' => 0], 200);
+
+            $verify_payment = AlasPayment::where([
+                ['user_id', $user->id],
+                ['type', 'admission'],
+                ['success', 1]
+            ])->first();
+
+            if($verify_payment == null)
+                return response()->json(['found' => true, 'status' => 0], 200);
+
+            return response()->json(['found' => false, 'status' => 1], 200);
         }
 
         return response()->json(['found' => false,
-            'status' => 1], 200);
+            'status' => 2], 200);
     }
 
     public function getPay(Request $request)
     {
         if(!$request->has(['success', 'student', 'serial', 'paymentId', 'token', 'PayerID'])) die();
 
-        
+        $success = $request['success'] == 'true' ? 1 : 0;
 
-        $success = filter_var($request['success'], FILTER_VALIDATE_BOOLEAN);
+        $alas_payment = AlasPayment::where([
+            ['user_id', $request['student']],
+            ['serial', $request['serial']],
+            ['success', NULL]
+        ])->first();
+
+        if($alas_payment == null) die();
+
+        $alas_payment->success = $success;
+        $alas_payment->payment_id = $request['paymentId'];
+        $alas_payment->token = $request['token'];
+        $alas_payment->payer_id = $request['PayerID'];
+
+        $alas_payment->update();
 
         return view('pay',['success' => $success]);
     }

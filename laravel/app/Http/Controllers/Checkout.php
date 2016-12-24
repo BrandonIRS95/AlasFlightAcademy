@@ -40,9 +40,17 @@ class Checkout extends Controller
 
         if($user == null) die();
 
+        $verify_payment = AlasPayment::where([
+            ['user_id', $user->id],
+            ['type', 'admission'],
+            ['success', 1]
+        ])->first();
+
+        if($verify_payment != null) die();
+
         $SITE_URL = 'http://localhost/AlasFlightAcademy/laravel/public';
 
-        $product = 'Alas Flight Academy Suscription';
+        $product = 'Alas Flight Academy Admission';
         $price = 10.00;
         $shipping = 2.00;
 
@@ -72,7 +80,7 @@ class Checkout extends Controller
         $transaction = new Transaction();
         $transaction->setAmount($amount)
             ->setItemList($itemList)
-            ->setDescription('Pay for Alas Flight Academy Subscription')
+            ->setDescription('Pay for Alas Flight Academy Admission')
             ->setInvoiceNumber(uniqid());
 
         $serial = bin2hex(openssl_random_pseudo_bytes(20));
@@ -103,7 +111,7 @@ class Checkout extends Controller
         $alas_payment = new AlasPayment();
         $alas_payment->user_id = $user_id;
         $alas_payment->serial = $serial;
-        $alas_payment->type = 'subscription';
+        $alas_payment->type = 'admission';
 
         $alas_payment->save();
 
