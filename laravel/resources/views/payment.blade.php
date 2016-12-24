@@ -18,7 +18,7 @@
     <div class="container">
         <div id="app">
             <div class="section">
-                <h5>Enrollment application payment</h5>
+                <h5>Admission payment</h5>
             </div>
             <div class="divider"></div>
             <div class="card-panel blue lighten-4">Remember, you need a <a href="https://www.paypal.com">PayPal</a> account to pay your admission.</div>
