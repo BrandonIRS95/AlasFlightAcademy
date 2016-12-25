@@ -83,7 +83,7 @@ class UserController extends Controller
 
     public function getPay(Request $request)
     {
-        if(!$request->has(['success', 'student', 'serial', 'paymentId', 'token', 'PayerID'])) die();
+        /*if(!$request->has(['success', 'student', 'serial', 'paymentId', 'token', 'PayerID'])) die();
 
         $success = $request['success'] == 'true' ? 1 : 0;
 
@@ -100,9 +100,9 @@ class UserController extends Controller
         $alas_payment->token = $request['token'];
         $alas_payment->payer_id = $request['PayerID'];
 
-        $alas_payment->update();
+        $alas_payment->update();*/
 
-        return view('pay',['success' => $success]);
+        return view('pay',['success' => 1]);
     }
 
     public function getLogout()

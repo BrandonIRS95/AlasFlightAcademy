@@ -9,6 +9,7 @@
         [v-cloak] { display: none }
     </style>
     <script src="{{URL::to('js/vue.js')}}"></script>
+    <script src="{{URL::to('js/vee-validate.js')}}"></script>
 @endsection
 
 @section('content')
@@ -31,8 +32,24 @@
             </div>
             @if($success)
                 <div class="section">
-                    <p>Now you can <a href="{{route('signin')}}">Sign in</a> with your email in Alas Flight Academy.</p>
-                    <p>The adventure begins!</p>
+                    <h5>Now, enter the password for your Alas Account:</h5>
+                    <br>
+                    <form action="" @submit.prevent="validateBeforeSubmit">
+                        <div class="input-field col s12">
+                            <input v-validate data-vv-rules="required" name="password" type="password" class="validate" v-model="password">
+                            <div style="color: red;" v-show="errors.has('password')" class="help-block">@{{ errors.first('password') }}</div>
+                            <label class="active" for="email">Password:</label>
+                        </div>
+                        <div class="input-field col s12">
+                            <input v-validate data-vv-rules="required" name="confirm_password" type="password" class="validate" v-model="confirm_password">
+                            <div style="color: red;" v-show="errors.has('confirm_password')" class="help-block">@{{ errors.first('confirm_password') }}</div>
+                            <label class="active" for="email">Confirm password:</label>
+                            <br>
+                            <div style="color: red;" v-show="notEqual" class="help-block">Passwords are not equal, please enter the same password.</div>
+                            <br>
+                            <button type="submit" class="waves-effect waves-light btn">OK</button>
+                        </div>
+                    </form>
                 </div>
             @endif
         </div>
@@ -41,6 +58,33 @@
 
 @section('javascript-functions')
     <script type="text/javascript">
+        Vue.use(VeeValidate);
 
+        new Vue({
+            el: '#app',
+            data: {
+                password: '',
+                confirm_password: '',
+                notEqual: false
+            },
+            methods: {
+                validateBeforeSubmit() {
+                    // Validate All returns a promise and provides the validation result.
+                    this.$validator.validateAll().then(success => {
+                        if (! success) {
+                            // handle error
+                            return;
+                        }
+
+                        if(this.password !== this.confirm_password){
+                            this.notEqual = true;
+                            return;
+                        }
+                        else this.notEqual = false;
+
+                    });
+                }
+            }
+        });
     </script>
 @endsection
