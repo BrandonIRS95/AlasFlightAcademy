@@ -87,7 +87,7 @@ class Checkout extends Controller
         $user_id = $user->id;
 
         $redirectUrls = new RedirectUrls();
-        $redirectUrls->setReturnUrl($SITE_URL . '/pay?success=true&student='.$user_id.'&serial='.$serial)
+        $redirectUrls->setReturnUrl($SITE_URL . '/pay?success=true&email='.$email.'&serial='.$serial)
             ->setCancelUrl($SITE_URL . '/pay?success=false');
 
         $payment = new Payment();

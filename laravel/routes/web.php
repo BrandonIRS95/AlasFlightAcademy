@@ -239,6 +239,11 @@ Route::post('/paySuscription', [
     'as' => 'paySuscription'
 ]);
 
+Route::post('/addPassword', [
+    'uses' => 'UserController@postAddPassword',
+    'as' => 'addPassword'
+]);
+
 Route::get('/about', function () {
     return view('about');
 })->name('about');

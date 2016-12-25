@@ -83,12 +83,16 @@ class UserController extends Controller
 
     public function getPay(Request $request)
     {
-        /*if(!$request->has(['success', 'student', 'serial', 'paymentId', 'token', 'PayerID'])) die();
+        if(!$request->has(['success', 'email', 'serial', 'paymentId', 'token', 'PayerID'])) die();
 
         $success = $request['success'] == 'true' ? 1 : 0;
 
+        $user = User::where('email', $request['email'])->first();
+
+        if($user == NULL) die();
+
         $alas_payment = AlasPayment::where([
-            ['user_id', $request['student']],
+            ['user_id', $user->id],
             ['serial', $request['serial']],
             ['success', NULL]
         ])->first();
@@ -100,9 +104,26 @@ class UserController extends Controller
         $alas_payment->token = $request['token'];
         $alas_payment->payer_id = $request['PayerID'];
 
-        $alas_payment->update();*/
+        $alas_payment->update();
 
-        return view('pay',['success' => 1]);
+        return view('pay',['success' => 1, 'email' => $request['email']]);
+    }
+
+    public function postAddPassword(Request $request)
+    {
+        if(!$request->has(['email', 'password'])) die();
+
+        $user = User::where('email', $request['email'])->first();
+
+        if($user == null) die();
+
+        $user->password = bcrypt($request['password']);
+
+        if($user->update())
+            return redirect()->route('signin');
+
+        return redirect()->route('index');
+
     }
 
     public function getLogout()
@@ -125,9 +146,10 @@ class UserController extends Controller
             return view('admin.dashboard',['posts'=>$posts,'address'=>$address,'counter'=>$counter,'newOrders'=>$newOrders]);
         }
         if($type == 'Student') {
-            $id = Auth::user()->id;
+            /*$id = Auth::user()->id;
             $posts = Thing::where('id_user', '=', $id)->paginate(6);
-            return view('student.calendar', ['posts' => $posts]);
+            return view('student.calendar', ['posts' => $posts]);*/
+            return view('student.calendar');
         }
         if($type == 'Instructor'){
             $id = Auth::user()->id;

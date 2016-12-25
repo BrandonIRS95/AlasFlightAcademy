@@ -34,7 +34,7 @@
                 <div class="section">
                     <h5>Now, enter the password for your Alas Account:</h5>
                     <br>
-                    <form action="" @submit.prevent="validateBeforeSubmit">
+                    <form id="form_password" method="post" action="{{route('addPassword')}}" @submit.prevent="validateBeforeSubmit">
                         <div class="input-field col s12">
                             <input v-validate data-vv-rules="required" name="password" type="password" class="validate" v-model="password">
                             <div style="color: red;" v-show="errors.has('password')" class="help-block">@{{ errors.first('password') }}</div>
@@ -44,6 +44,8 @@
                             <input v-validate data-vv-rules="required" name="confirm_password" type="password" class="validate" v-model="confirm_password">
                             <div style="color: red;" v-show="errors.has('confirm_password')" class="help-block">@{{ errors.first('confirm_password') }}</div>
                             <label class="active" for="email">Confirm password:</label>
+                            <input type="hidden" name="_token" value="{{Session::token()}}">
+                            <input type="hidden" name="email" value="{{$email}}">
                             <br>
                             <div style="color: red;" v-show="notEqual" class="help-block">Passwords are not equal, please enter the same password.</div>
                             <br>
@@ -81,6 +83,8 @@
                             return;
                         }
                         else this.notEqual = false;
+
+                        document.getElementById('form_password').submit();
 
                     });
                 }
