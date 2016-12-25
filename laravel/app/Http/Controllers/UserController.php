@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\AlasPayment;
+use App\Mail\Admission;
 use App\Student;
 use App\Person;
 use App\TypeOfUser;
 use Faker\Provider\cs_CZ\DateTime;
 use Illuminate\Http\Request;
 use App\Http\Requests;
+use Illuminate\Mail\Mailer;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Thing;
@@ -81,7 +83,7 @@ class UserController extends Controller
             'status' => 2], 200);
     }
 
-    public function getPay(Request $request)
+    public function getPay(Request $request, Mailer $mailer)
     {
         if(!$request->has(['success', 'email', 'serial', 'paymentId', 'token', 'PayerID'])) die();
 
@@ -104,7 +106,7 @@ class UserController extends Controller
         $alas_payment->token = $request['token'];
         $alas_payment->payer_id = $request['PayerID'];
 
-        $alas_payment->update();
+        if($alas_payment->update()) $mailer->to($user->email)->send(new Admission());
 
         return view('pay',['success' => 1, 'email' => $request['email']]);
     }
