@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\AlasPayment;
 use App\Mail\Admission;
+use App\Mail\PasswordAdded;
 use App\Student;
 use App\Person;
 use App\TypeOfUser;
@@ -111,7 +112,7 @@ class UserController extends Controller
         return view('pay',['success' => 1, 'email' => $request['email']]);
     }
 
-    public function postAddPassword(Request $request)
+    public function postAddPassword(Request $request, Mailer $mailer)
     {
         if(!$request->has(['email', 'password'])) die();
 
@@ -121,8 +122,11 @@ class UserController extends Controller
 
         $user->password = bcrypt($request['password']);
 
-        if($user->update())
+        if($user->update()) {
+            $mailer->to($user->email)->send(new PasswordAdded());
             return redirect()->route('signin');
+        }
+
 
         return redirect()->route('index');
 

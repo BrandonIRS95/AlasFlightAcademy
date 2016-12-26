@@ -29,6 +29,7 @@
                         Something went wrong with the payment. Please <a href="{{route('contact')}}">Contact us</a> to help you with this issue.
                     @endif
                 </h5>
+                <p>We send you an email with the payment information.</p>
             </div>
             @if($success)
                 <div class="section">
