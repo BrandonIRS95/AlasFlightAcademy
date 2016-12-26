@@ -18,27 +18,19 @@
         Congratulations! Your admission payment was made successfully.
     </div>
 
-    <ul class="list-group">
-        <li class="list-group-item list-group-item-info" >
-            Payment information
-        </li>
-        <li class="list-group-item">
-            <b>Product:</b> Alas Flight Academy Admission
-        </li>
-        <li class="list-group-item">
-            <b>Cost (USD):</b> $150
-        </li>
-        <li class="list-group-item">
-            <b>E-mail:</b> {{$email}}
-        </li>
-        <li class="list-group-item">
-            <b>Payment id:</b> {{$payment_id}}
-        </li>
-        <li class="list-group-item">
-            <b>Payer id:</b> {{$payer_id}}
-        </li>
-        <li class="list-group-item">
-            <b>Date:</b> {{$date}}
-        </li>
+    <ul class="list-group" style="
+        padding-left: 0;
+        margin-bottom: 20px;
+        margin-top: 0;
+        box-sizing: border-box;
+        -webkit-tap-highlight-color: rgba(0,0,0,0);
+    ">
+        @include('includes.list-group-item-info', ["title" => 'Payment information'])
+        @include('includes.list-group-item', ["info" => '<b>Product:</b> Alas Flight Academy Admission'])
+        @include('includes.list-group-item', ["info" => '<b>Cost (USD):</b> $150'])
+        @include('includes.list-group-item', ["info" => '<b>E-mail:</b> '.$email])
+        @include('includes.list-group-item', ["info" => '<b>Payment id:</b> '.$payment_id])
+        @include('includes.list-group-item', ["info" => '<b>Payer id:</b> '.$payer_id])
+        @include('includes.list-group-item', ["info" => '<b>Date:</b> '.$date])
     </ul>
 @endsection

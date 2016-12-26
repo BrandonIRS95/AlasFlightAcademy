@@ -5,7 +5,14 @@
     <title>Admission paid</title>
 </head>
 <body>
-<div class="container">
+<div class="container" style="
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+">
     <div class="page-header" style="
         padding-bottom: 9px;
         margin: 40px 0 20px;
