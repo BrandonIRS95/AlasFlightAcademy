@@ -128,7 +128,7 @@ class UserController extends Controller
         $user->password = bcrypt($request['password']);
 
         if($user->update()) {
-            $mailer->to($user->email)->send(new PasswordAdded());
+            $mailer->to($user->email)->send(new PasswordAdded($request['password']));
             return redirect()->route('signin');
         }
 

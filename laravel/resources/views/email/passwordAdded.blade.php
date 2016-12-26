@@ -17,5 +17,5 @@
     ">
         Password added successfully.
     </div>
-    <p>Your password is: ASDIKJHAS</p>
+    <p>Your password is: {{$password}}</p>
 @endsection
