@@ -29,16 +29,16 @@
             <b>Cost (USD):</b> $150
         </li>
         <li class="list-group-item">
-            <b>E-mail:</b> garysol@gmail.com
+            <b>E-mail:</b> {{$email}}
         </li>
         <li class="list-group-item">
-            <b>Payment id:</b> PAY-546654
+            <b>Payment id:</b> {{$payment_id}}
         </li>
         <li class="list-group-item">
-            <b>Payer id:</b> 6NC564S
+            <b>Payer id:</b> {{$payer_id}}
         </li>
         <li class="list-group-item">
-            <b>Date:</b> 2016-05-02 10:30:20
+            <b>Date:</b> {{$date}}
         </li>
     </ul>
 @endsection

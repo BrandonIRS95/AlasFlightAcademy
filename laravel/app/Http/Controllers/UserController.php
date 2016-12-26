@@ -107,7 +107,12 @@ class UserController extends Controller
         $alas_payment->token = $request['token'];
         $alas_payment->payer_id = $request['PayerID'];
 
-        if($alas_payment->update()) $mailer->to($user->email)->send(new Admission());
+        if($alas_payment->update()) $mailer->to($user->email)->send(new Admission(
+            $user->email,
+            $request['paymentId'],
+            $request['PayerID'],
+            $alas_payment->updated_at
+        ));
 
         return view('pay',['success' => 1, 'email' => $request['email']]);
     }
