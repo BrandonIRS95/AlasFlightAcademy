@@ -53,7 +53,7 @@ class UserController extends Controller
 
         if(Auth::attempt(['email' => $request['email'], 'password' => $request['password'] ]))
         {
-          if(Auth::user()->status == 0)
+          if(Auth::user()->status == 1)
             return redirect()->route('dashboard');
         }
         return redirect()->back();
@@ -107,12 +107,21 @@ class UserController extends Controller
         $alas_payment->token = $request['token'];
         $alas_payment->payer_id = $request['PayerID'];
 
-        if($alas_payment->update()) $mailer->to($user->email)->send(new Admission(
-            $user->email,
-            $request['paymentId'],
-            $request['PayerID'],
-            $alas_payment->updated_at
-        ));
+        if($alas_payment->update()) {
+
+            $mailer->to($user->email)->send(new Admission(
+                $user->email,
+                $request['paymentId'],
+                $request['PayerID'],
+                $alas_payment->updated_at
+            ));
+
+            if($success == 1) {
+                $student = $user->person->student;
+                $student->status = 'password';
+                $student->update();
+            }
+        }
 
         return view('pay',['success' => 1, 'email' => $request['email']]);
     }
@@ -125,15 +134,24 @@ class UserController extends Controller
 
         if($user == null) die();
 
+        $student = $user->person->student;
+
+        if($student->status != 'password') die();
+
         $user->password = bcrypt($request['password']);
+        $user->status = 1;
+
+        $updated = false;
 
         if($user->update()) {
+            $student->status = 'completed';
+            $student->update();
             $mailer->to($user->email)->send(new PasswordAdded($request['password']));
-            return redirect()->route('signin');
+            $updated = true;
         }
 
 
-        return redirect()->route('index');
+        return view('password-change', ['updated' => $updated]);
 
     }
 

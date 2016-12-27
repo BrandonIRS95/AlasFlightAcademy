@@ -13,7 +13,7 @@ class UserTableSeeder extends Seeder
     {
         $user = new \App\User([
             'password' => '$2y$10$urPqqmMYwHD0HMPfydITmuKlIe6tsXHYR8UjYwyAk2oHSXkyrH7f6',
-            'status' => '0',
+            'status' => '1',
             'type_of_user_id' => '1',
             'email' => 'frank@flyalas.com',
             'person_id' => '1'
@@ -23,7 +23,7 @@ class UserTableSeeder extends Seeder
 
         $user = new \App\User([
             'password' => '$2y$10$urPqqmMYwHD0HMPfydITmuKlIe6tsXHYR8UjYwyAk2oHSXkyrH7f6',
-            'status' => '0',
+            'status' => '1',
             'type_of_user_id' => '2',
             'email' => 'johnSmith@gmail.com',
             'person_id' => '2'
@@ -33,7 +33,7 @@ class UserTableSeeder extends Seeder
 
         $user = new \App\User([
             'password' => '$2y$10$urPqqmMYwHD0HMPfydITmuKlIe6tsXHYR8UjYwyAk2oHSXkyrH7f6',
-            'status' => '0',
+            'status' => '1',
             'type_of_user_id' => '3',
             'email' => 'magua@gmail.com',
             'person_id' => '3'
